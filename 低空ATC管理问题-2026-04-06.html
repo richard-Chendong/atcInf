@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空ATC管理问题资讯 - 2026-04-06</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        header .tag {
+            background: rgba(255,255,255,0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .category-section {
+            margin-bottom: 50px;
+        }
+        
+        .category-title {
+            color: white;
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            padding-left: 15px;
+            border-left: 4px solid #ffd700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .category-title .icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 25px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+        
+        .card-header {
+            padding: 20px 24px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .card-category {
+            font-size: 0.75rem;
+            color: white;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .card-date {
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        .card-body {
+            padding: 20px 24px;
+        }
+        
+        .card-title {
+            font-size: 1.15rem;
+            color: #1a1a1a;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .card-desc {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.7;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .card-footer {
+            padding: 15px 24px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f5f5f5;
+        }
+        
+        .card-source {
+            font-size: 0.8rem;
+            color: #888;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .card-link {
+            font-size: 0.85rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.2s;
+        }
+        
+        .card-link:hover {
+            color: #764ba2;
+        }
+        
+        .stats-bar {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 25px 35px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .filter-tab {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .filter-tab:hover, .filter-tab.active {
+            background: white;
+            color: #667eea;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-bar {
+                padding: 20px;
+            }
+            
+            .stat-value {
+                font-size: 1.5rem;
+            }
+        }
+        
+        .highlight-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+            color: white;
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+        
+        .news-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #4ecdc4, #44a3aa);
+            color: white;
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>低空ATC管理问题资讯</h1>
+            <div class="subtitle">
+                <span class="tag">📅 2026年4月6日</span>
+                <span class="tag">🚀 低空经济标准体系</span>
+                <span class="tag">📡 低空智能网联</span>
+            </div>
+        </header>
+        
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value">15</div>
+                <div class="stat-label">精选资讯</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">8</div>
+                <div class="stat-label">主题分类</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">2026.04.04-06</div>
+                <div class="stat-label">资讯时间范围</div>
+            </div>
+        </div>
+        
+        <div class="filter-tabs">
+            <button class="filter-tab active" onclick="filterCards('all')">全部</button>
+            <button class="filter-tab" onclick="filterCards('政策')">政策解读</button>
+            <button class="filter-tab" onclick="filterCards('平台')">平台建设</button>
+            <button class="filter-tab" onclick="filterCards('招投标')">招投标</button>
+            <button class="filter-tab" onclick="filterCards('行业')">行业动态</button>
+        </div>
+        
+        <!-- 一网统飞系统 -->
+        <section class="category-section">
+            <h2 class="category-title">
+                <span class="icon">🌐</span>
+                一网统飞系统
+            </h2>
+            <div class="cards-grid">
+                <div class="card" data-category="平台" onclick="window.open('https://news.qq.com/rain/a/20260403A03S2F00', '_blank')">
+                    <span class="highlight-tag">热门</span>
+                    <div class="card-header">
+                        <span class="card-category">平台建设</span>
+                        <span class="card-date">2026-04-03</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">低空经济爆发！"一网统飞"才是核心密码，各地抢滩布局</h3>
+                        <p class="card-desc">随着"十五五"规划13次提及"低空"，低空经济作为新质生产力的重要赛道，早已从"政策吹风"迈入"全域开放"的爆发期。当前低空发展最大的痛点在于资源分散、监管困难、效率低下——各部门各自为战、无人机闲置率高、空域审批繁琐、数据互不互通。"一网统飞"破解低空发展痛点的金钥匙。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📰 无人机之家</span>
+                        <span class="card-link">查看详情 →</span>
+                    </div>
+                </div>
+                
+                <div class="card" data-category="平台" onclick="window.open('https://city.sina.com.cn/yunnan/business/2026-04-02/detail-inhtakuf7970132.shtml', '_blank')">
+                    <div class="card-header">
+                        <span class="card-category">平台发布</span>
+                        <span class="card-date">2026-04-02</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">破解低空治理痛点：云南移动发布低空"一网统飞"平台</h3>
+                        <p class="card-desc">3月31日，中国移动云南公司正式发布低空"一网统飞"平台，以数智技术破解低空治理痛点、重构低空运营体系。平台构建"四驱两翼"低空智联能力体系——以终端、网络、平台、应用为四轮驱动，以AI智能赋能与安全合规保障为双翼护航。目前昆明市、临沧市、楚雄州已落地无人机"一网统飞"项目。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📰 新浪城市</span>
+                        <span class="card-link">查看详情 →</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 低空新基建 -->
+        <section class="category-section">
+            <h2 class="category-title">
+                <span class="icon">🏗️</span>
+                低空新基建五大赛道
+            </h2>
+            <div class="cards-grid">
+                <div class="card" data-category="行业" onclick="window.open('https://news.qq.com/rain/a/20260401A01QJC00', '_blank')">
+                    <span class="highlight-tag">深度</span>
+                    <div class="card-header">
+                        <span class="card-category">行业分析</span>
+                        <span class="card-date">2026-04-01</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">2026低空新基建五大赛道，哪些企业在领跑？</h3>
+                        <p class="card-desc">2026年是低空经济从试点探索迈向规模化落地的关键之年。低空新基建包含五大赛道：①低空空管与空域管理服务（莱斯信息、四川九州、中科星图）②低空通信导航与天地一体化服务（中国移动、中国联通、中国卫通）③低空感知与探测设施（国睿科技、纳睿雷达）④低空基础设施⑤低空工程规划与设计。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📰 无人机之家</span>
+                        <span class="card-link">查看详情 →</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 标准体系 -->
+        <section class="category-section">
+            <h2 class="category-title">
+                <span class="icon">📋</span>
+                低空经济标准体系
+            </h2>
+            <div class="cards-grid">
+                <div class="card" data-category="政策" onclick="window.open('https://news.qq.com/rain/a/20260402A05VP000', '_blank')">
+                    <span class="highlight-tag">首发</span>
+                    <div class="card-header">
+                        <span class="card-category">政策标准</span>
+                        <span class="card-date">2026-04-02</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">四座城市"编队"起飞，全国首个跨区域标准出炉</h3>
+                        <p class="card-desc">珠海、中山、江门、阳江四市联合发布《珠江口西岸都市圈低空经济标准体系建设指南（2026年版）》，这是全国首个跨区域低空经济标准体系文件。指南明确差异化布局：珠海聚焦飞行服务，中山强化产业配套，江门侧重物流枢纽，阳江突出海岛旅游。目标到2030年实现基础通用、低空航空器、低空飞行保障、场景应用四大领域标准基本覆盖。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📰 21世纪经济报道</span>
+                        <span class="card-link">查看详情 →</span>
+                    </div>
+                </div>
+                
+                <div class="card" data-category="政策" onclick="window.open('https://szb.eyesnews.cn/pad/cont/202604/01/content_176786.html', '_blank')">
+                    <div class="card-header">
+                        <span class="card-category">政策解读</span>
+                        <span class="card-date">2026-04-01</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">大力护航低空经济发展：构建法治化保障体系</h3>
+                        <p class="card-desc">2026年政府工作报告首次将低空经济明确为"新兴支柱产业"，新修订的《民用航空法》将于2026年7月1日起正式施行。建议坚持立法先行，构建统分结合的法规制度体系；强化协同监管，构建规范统一的执法体系；注重司法保障，构建衔接顺畅的行刑协同机制；完善低空经济领域强制保险制度。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📰 贵州日报</span>
+                        <span class="card-link">查看详情 →</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 招投标信息 -->
+        <section class="category-section">
+            <h2 class="category-title">
+                <span class="icon">📢</span>
+                招投标信息
+            </h2>
+            <div class="cards-grid">
+                <div class="card" data-category="招投标" onclick="window.open('https://www.c114.com.cn/news/118/a1307871.html', '_blank')">
+                    <div class="card-header">
+                        <span class="card-category">招投标</span>
+                        <span class="card-date">2026-04-01</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">中国移动启动中小型无人机高空基站设备集采</h3>
+                        <p class="card-desc">中国移动采购与招标网发布2026年中型垂直起降固定翼及小型背负式无人机高空基站设备集中采购项目招标公告。采购内容包含4套中型垂直起降固定翼无人机高空基站和5套小型背负式无人机高空基站及相关售后、飞行保障。项目设置最高投标限价。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📰 C114通信网</span>
+                        <span class="card-link">查看详情 →</span>
+                    </div>
+                </div>
+                
+                <div class="card" data-category="招投标" onclick="window.open('https://m.163.com/dy/article/KPHBIMO90512B07B.html', '_blank')">
+                    <div class="card-header">
+                        <span class="card-category">企业动态</span>
+                        <span class="card-date">2026-04-02</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">英威腾：低空飞行器电机控制器中标定制产品</h3>
+                        <p class="card-desc">英威腾（002334.SZ）在投资者互动平台表示，公司中标的低空飞行器电机控制器产品属于客户为研发工作所需的定制产品，暂无在其他场景应用，也未批量生产。该产品主要服务于低空飞行器研发阶段需求。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📰 每日经济新闻</span>
+                        <span class="card-link">查看详情 →</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 行业数据 -->
+        <section class="category-section">
+            <h2 class="category-title">
+                <span class="icon">📊</span>
+                行业数据与市场分析
+            </h2>
+            <div class="cards-grid">
+                <div class="card" data-category="行业" onclick="window.open('https://www.askci.com/news/chanye/20260403/113341277518722172471148.shtml', '_blank')">
+                    <span class="highlight-tag">数据</span>
+                    <div class="card-header">
+                        <span class="card-category">市场数据</span>
+                        <span class="card-date">2026-04-03</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">2026年中国低空经济产业大数据分析</h3>
+                        <p class="card-desc">2025年中国低空经济市场规模达1.5万亿元，预计2030年达2万亿元。近三年投融资事件累计380起，2024年达161次增长155.6%。2025年低空飞行器制造领域融资118起占比75.6%。截至2026年4月1日，现存17万家低空经济相关企业，2025年新增注册4.93万家同比增长139.1%。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📰 中商情报网</span>
+                        <span class="card-link">查看详情 →</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 地方动态 -->
+        <section class="category-section">
+            <h2 class="category-title">
+                <span class="icon">🏙️</span>
+                地方政策与动态
+            </h2>
+            <div class="cards-grid">
+                <div class="card" data-category="政策" onclick="window.open('https://www.spb.gov.cn/gjyzj/c100015/c100017/202604/72b36f0be4554e52be1086741b11efaa.shtml', '_blank')">
+                    <div class="card-header">
+                        <span class="card-category">地方政策</span>
+                        <span class="card-date">2026-04-02</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">苏州2026年低空经济工作要点印发：赋能行业创新发展</h3>
+                        <p class="card-desc">苏州市发改委印发《2026年苏州市低空经济工作要点》，围绕低空运输系统建设，明确有序发展低空运输系统、大力挖掘低空物流产业潜力，鼓励产业园区、物流仓储园区、大型厂区开展无人机物流配送，持续推广岛屿邮件快件与应急物资低空物流业务，探索开展与海关监管区、周边机场间的高价值、高时效低空物流业务。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📰 国家邮政局</span>
+                        <span class="card-link">查看详情 →</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 本周热点 -->
+        <section class="category-section">
+            <h2 class="category-title">
+                <span class="icon">🔥</span>
+                本周行业热点回顾
+            </h2>
+            <div class="cards-grid">
+                <div class="card" data-category="行业" onclick="window.open('https://www.163.com/dy/article/KPOL2U5705149OCK.html', '_blank')">
+                    <span class="news-tag">周报</span>
+                    <div class="card-header">
+                        <span class="card-category">行业热点</span>
+                        <span class="card-date">2026-04-05</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">无人机网本周行业热点回顾（3月30日-4月4日）</h3>
+                        <p class="card-desc">本周热点包括：①历正科技为"苏超"筑牢空中防线 ②容祺智能MAX320第三版优化升级 ③中科云图中标天津高速无人机智慧管控一张网项目 ④航天宏图应急管理数字孪生解决方案 ⑤"长鹰-8"成功首飞——全球最大货运无人机（载重3.5吨） ⑥纵横股份携手高校打造巴中低空智能管理示范</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📰 无人机网</span>
+                        <span class="card-link">查看详情 →</span>
+                    </div>
+                </div>
+                
+                <div class="card" data-category="政策" onclick="window.open('https://fgw.sc.gov.cn/sfgw/c111938/2026/4/2/b5ffd3b5bab14d8ba1bcb9e58e50bd8a.shtml', '_blank')">
+                    <div class="card-header">
+                        <span class="card-category">产业分类</span>
+                        <span class="card-date">2026-04-02</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">四川省发改委发布低空经济核心产业统计分类</h3>
+                        <p class="card-desc">根据国家发改委《低空经济及其核心产业统计分类（试行）》，低空经济核心产业包括：低空航空器整机制造、低空航空器材料及零部件制造、低空专用设施设备制造、低空生产作业、低空公共服务、低空运输、低空消费、其他低空运营服务、低空基础设施建设、低空飞行辅助活动等10类。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📰 四川省发改委</span>
+                        <span class="card-link">查看详情 →</span>
+                    </div>
+                </div>
+                
+                <div class="card" data-category="行业" onclick="window.open('https://m.163.com/dy/article/KPM5AMRG05149OCK.html', '_blank')">
+                    <div class="card-header">
+                        <span class="card-category">行业研究</span>
+                        <span class="card-date">2026-04-04</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">我国低空经济的发展现状、产业方向、政策引导及行业趋势</h3>
+                        <p class="card-desc">低空经济产业链覆盖上中下游。上游关键零部件企业包括德赛电池、欣旺达等；中游无人机制造商有大疆、纵横股份、亿航智能等；下游应用包括物流公司、测绘公司、消防应急部门等。十二大产业方向涵盖低空制造、低空飞行、低空保障、综合服务等。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📰 前瞻产业研究院</span>
+                        <span class="card-link">查看详情 →</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 空管系统与反无平台 -->
+        <section class="category-section">
+            <h2 class="category-title">
+                <span class="icon">🛡️</span>
+                低空空管系统与反无平台
+            </h2>
+            <div class="cards-grid">
+                <div class="card" data-category="行业" onclick="window.open('https://www.163.com/dy/article/KPOL2U5705149OCK.html', '_blank')">
+                    <div class="card-header">
+                        <span class="card-category">反无平台</span>
+                        <span class="card-date">2026-04-05</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">历正科技三款核心无人机反制产品为"苏超"筑牢空中防线</h3>
+                        <p class="card-desc">《宜兴日报》对历正科技用科技护航赛事低空安全进行了深度聚焦。三款核心无人机反制产品各展所长、互为补充，为"苏超"（苏州马拉松）赛事提供全方位的低空安全保障。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📰 宜兴日报</span>
+                        <span class="card-link">查看详情 →</span>
+                    </div>
+                </div>
+                
+                <div class="card" data-category="行业" onclick="window.open('https://m.globalimporter.net/tradeexpo-d-1312287.htm', '_blank')">
+                    <div class="card-header">
+                        <span class="card-category">展会信息</span>
+                        <span class="card-date">2026-04-01</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">2026中国(郑州)低空产业与无人机展览会在郑州举行</h3>
+                        <p class="card-desc">展会以"豫见低空，智启未来"为主题，聚焦无人机核心技术攻关、智慧城市应用、低空交通管理、产业集群孵化四大关键领域。室内展区细分七大主题，包括反无人系统展区展示低空安全防护技术与装备。预计吸引300家业内知名企业参展，30000名专业买家参观。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📰 郑州无人机展</span>
+                        <span class="card-link">查看详情 →</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>低空经济资讯整理 | 数据来源：各媒体平台 | 更新时间：2026-04-06</p>
+            <p style="margin-top: 10px;">本页面仅供资讯参考，版权归原作者所有</p>
+        </footer>
+    </div>
+    
+    <script>
+        function filterCards(category) {
+            const cards = document.querySelectorAll('.card');
+            const tabs = document.querySelectorAll('.filter-tab');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
