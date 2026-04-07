@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>低空资讯 2026-04-07</title>
+<style>
+:root{--bg:#f0f2f5;--card:#fff;--primary:#1565c0;--accent:#0d47a1;--text:#1a1a2e;--muted:#6b7280;--radius:16px;--shadow:0 4px 20px rgba(0,0,0,.07)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:PingFang SC,Microsoft YaHei,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+header{background:linear-gradient(135deg,#0d47a1,#1565c0 60%,#1976d2);color:#fff;padding:48px 20px 44px;text-align:center;position:relative;overflow:hidden}
+header::before{content:"";position:absolute;inset:0;pointer-events:none;background:url("data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%3E%3Cg%20fill%3D%22%23fff%22%20fill-opacity%3D%220.05%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204v4H4V4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E")}
+header h1{font-size:2.1rem;font-weight:700;letter-spacing:.06em;position:relative;z-index:1}
+header p{margin-top:8px;opacity:.82;font-size:.95rem;position:relative;z-index:1}
+.stats{display:flex;justify-content:center;gap:40px;margin-top:18px;position:relative;z-index:1}
+.stat{text-align:center}
+.stat-num{font-size:1.7rem;font-weight:700}
+.stat-lbl{font-size:.74rem;opacity:.68;margin-top:3px}
+.tag-stats{font-size:.78rem;color:rgba(255,255,255,.75);margin-top:6px;position:relative;z-index:1}
+.container{max-width:1000px;margin:0 auto;padding:28px 16px 64px}
+.filter-bar{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;align-items:center}
+.filter-label{font-size:.85rem;color:var(--muted);font-weight:500;margin-right:4px}
+.fb{padding:6px 18px;border-radius:20px;border:1.5px solid #d1d5db;background:#fff;color:var(--muted);font-size:.82rem;cursor:pointer;font-weight:500;transition:all .2s}
+.fb.active,.fb:hover{border-color:var(--primary);background:var(--primary);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;cursor:pointer;transition:transform .22s,box-shadow .22s;display:flex;flex-direction:column;gap:10px;border:1px solid rgba(0,0,0,.04)}
+.card:hover{transform:translateY(-5px);box-shadow:0 14px 44px rgba(0,0,0,.13)}
+.card-tag{display:inline-block;padding:3px 12px;border-radius:12px;font-size:.71rem;font-weight:600;width:fit-content;letter-spacing:.03em}
+.card-title{font-size:1rem;font-weight:600;line-height:1.5;flex:1}
+.card-snippet{font-size:.83rem;color:var(--muted);line-height:1.72}
+.card-footer{display:flex;justify-content:space-between;align-items:center}
+.card-source{font-size:.74rem;color:var(--muted);font-weight:500}
+.card-date{font-size:.72rem;color:#bdbdbd}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;justify-content:center;align-items:center;padding:20px}
+.modal.open{display:flex}
+.modal-box{background:#fff;border-radius:20px;max-width:700px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:0 32px 80px rgba(0,0,0,.2);position:relative}
+.modal-hdr{padding:24px 24px 0;position:sticky;top:0;background:#fff;z-index:2;border-bottom:1px solid #f0f0f0;padding-bottom:16px}
+.modal-tag{display:inline-block;padding:3px 12px;border-radius:12px;font-size:.72rem;font-weight:600;margin-bottom:10px}
+.modal-title{font-size:1.2rem;font-weight:700;line-height:1.5}
+.modal-meta{font-size:.78rem;color:var(--muted);margin-top:8px}
+.modal-body{padding:20px 24px 32px;line-height:1.85;font-size:.93rem;color:#374151}
+.modal-body p{margin-bottom:14px}
+.modal-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:none;background:#f1f3f4;color:var(--muted);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:#e2e6ea}
+.open-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;padding:10px 24px;background:var(--primary);color:#fff;border:none;border-radius:10px;font-size:.88rem;cursor:pointer;text-decoration:none;font-weight:500;transition:background .2s}
+.open-link:hover{background:var(--accent)}
+.empty{text-align:center;padding:64px 20px;color:var(--muted)}
+@media(max-width:640px){.grid{grid-template-columns:1fr}.stats{gap:20px}header h1{font-size:1.6rem}.modal-box{margin:10px;border-radius:16px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>&#x2708;&#xfe0f; 低空资讯</h1>
+  <p>低空经济 &middot; 空管业务 &middot; 标准体系 &middot; 行业动态</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">12</div><div class="stat-lbl">精选文章</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-lbl">分类覆盖</div></div>
+    <div class="stat"><div class="stat-num">2026-04-07</div><div class="stat-lbl">更新日期</div></div>
+  </div>
+  <div class="tag-stats">政策解读: 4篇 | 空管业务: 8篇</div>
+</header>
+<div class="container">
+  <div class="filter-bar">
+    <span class="filter-label">分类筛选：</span>
+    <button class="fb active" id="fb-all" onclick="filterTag(全部,this)">全部</button>
+    <button class="fb" id="fb-pol" onclick="filterTag(政策解读,this)">政策解读</button>
+    <button class="fb" id="fb-atm" onclick="filterTag(空管业务,this)">空管业务</button>
+    <button class="fb" id="fb-prod" onclick="filterTag(产品案例,this)">产品案例</button>
+    <button class="fb" id="fb-tech" onclick="filterTag(技术应用,this)">技术应用</button>
+    <button class="fb" id="fb-ind" onclick="filterTag(行业动态,this)">行业动态</button>
+  </div>
+  <div class="grid" id="grid">
+<article class="card" data-tag="政策解读" onclick="openDetail(0)"><div class="card-tag" style="background:#e8f5e9;color:#2e7d32">政策解读</div><h2 class="card-title">全国首个 珠江口西岸都市圈发布跨区域低空经济标准体系珠江口指南珠海市_新浪新闻</h2><p class="card-snippet">近日,珠江口西岸都市圈第一次联席会议在珠海召开｡会上,珠海､中山､江门､阳江四市市场监督管理局联合市发展和改革局,发布《珠江口西岸都市圈低空经济标准体系建设指南(2026年版)》(以下简称《指南》)｡ 该《指南》是全国首个跨区域低空经济标准体系文件,标志着珠江口西岸都市圈在低空经济领域迈出标准化､一体化发展的关键一步,为区域低空经济协同发展提供坚实的制度支撑｡ 根据《指南》,预计到2030年,珠江口西岸都市圈将实现基础通用､低空航空器､...</p><div class="card-footer"><span class="card-source">k.sina.com.cn</span><span class="card-date">2026-04-07</span></div></article><article class="card" data-tag="政策解读" onclick="openDetail(1)"><div class="card-tag" style="background:#e8f5e9;color:#2e7d32">政策解读</div><h2 class="card-title">低空经济首成CES Asia 2026核心展区_企业_产业_运营</h2><p class="card-snippet">本届展区以“空中动脉·智联未来”为主题,集中展示eVTOL､无人机物流､空中交通管理系统等前沿技术,吸引多个城市展团集体入驻,标志着低空经济正式迈入规模化商用与全球产业协同的新阶段｡ 政策与技术双轮驱动,产业进入爆发期 2026年被业界公认为低空经济“常态化运营元年”｡政策层面,低空经济连续三年写入政府工作报告,首次被明确定位为新兴支柱产业｡新修订的《民用航空法》将于7月1日施行,首次增设“低空经济发展促进”专章,明确300米以下空域分...</p><div class="card-footer"><span class="card-source">sohu.com</span><span class="card-date">2026-04-07</span></div></article><article class="card" data-tag="空管业务" onclick="openDetail(2)"><div class="card-tag" style="background:#e3f2fd;color:#1565c0">空管业务</div><h2 class="card-title">全球首创!中国“飞碟”eVTOL武汉首飞:桨叶全包裹,贴墙飞也不怕武汉市湖北省飞行器涵道飞行_新浪新闻</h2><p class="card-snippet">涵道式吨级电 动 垂直 起降航空器(eVTOL) 近日在湖北武汉完成 公开试飞 ,这款 外形酷似飞碟的新型飞行器 凭借 全封闭涵道设计 ,实现 安全贴楼飞行 ,引发广泛关注,网友纷纷感叹“科幻照进现实”｡ 在湖北武汉举行的相关活动现场,这架 代号为 “电鹰飞车EFC1200” 的eVTOL航空器 平稳升空,垂直起飞､精准悬停､ 贴楼飞 行､平稳降落 ,整套动作流畅完成,展示出优异的低空操控性能｡ 该飞行器由 武汉光谷企业历时6年自主研发...</p><div class="card-footer"><span class="card-source">k.sina.com.cn</span><span class="card-date">2026-04-07</span></div></article><article class="card" data-tag="政策解读" onclick="openDetail(3)"><div class="card-tag" style="background:#e8f5e9;color:#2e7d32">政策解读</div><h2 class="card-title">ヾ(。*)悄无声息破敌防,手到擒来杀破狼()ノ……电鹰突击一、中国低空经济电动飞行器(eVTOL)研发起始与成果 - 研发起始:2010年国务院、...</h2><p class="card-snippet">鹰突击 一､中国低空经济电动飞行器(eVTOL)研发起始与成果 - 研发起始:2010年国务院､中央军委发布《关于深化我国低空空域管理改革的意见》,拉开低空改革序幕;2014年亿航智能成立,成为国内首批专注eVTOL的企业,开启“无人驾驶+垂直起降”探索;2018年武汉电鹰科技启动吨级全涵道eVTOL项目,切入全球空白赛道｡ - 阶段性成果: 1. 政策奠基:2022年民航局､工信部出台物流无人机与民用无人机安全标准,2023年《无人驾...</p><div class="card-footer"><span class="card-source">toutiao.com</span><span class="card-date">2026-04-07</span></div></article><article class="card" data-tag="空管业务" onclick="openDetail(4)"><div class="card-tag" style="background:#e3f2fd;color:#1565c0">空管业务</div><h2 class="card-title">沃飞长空冲刺A股eVTOL第一股 - 今日头条</h2><p class="card-snippet">低空经济正加速起飞｡4月3日,证监会网站显示,四川沃飞长空科技股份有限公司(以下简称沃飞长空)于4月2日在四川证监局办理辅导备案登记,拟首次公开发行股票并科创板上市｡ 沃飞长空成立于2016年4月,是浙江吉利科技集团旗下品牌,致力于全球低空智慧交通飞行器研发与商业化运营,以无人机､飞行汽车研发生产与运营为主要业务,是国内eVTOL领域的头部企业｡根据上市辅导备案报告显示,公司注册资本3.6亿元,控股股东为湖北吉利太力飞车有限公司,持有沃...</p><div class="card-footer"><span class="card-source">toutiao.com</span><span class="card-date">2026-04-07</span></div></article><article class="card" data-tag="空管业务" onclick="openDetail(5)"><div class="card-tag" style="background:#e3f2fd;color:#1565c0">空管业务</div><h2 class="card-title">新疆无人机培训低空经济与无人机融合,未来生活将有这些变化_城市_物流</h2><p class="card-snippet">新疆保华润天航空无人机培训:当你在2030年的某个清晨按下“无人机配送”按钮,30分钟后新鲜食材就从城郊农场直飞阳台;下班高峰避开地面拥堵,乘坐eVTOL空中出租车15分钟从CBD抵达远郊小区;周末预约低空无人机旅游,俯瞰城市天际线与山川湖泊……这些曾经的科幻场景,正随着低空经济与无人机技术的深度融合,一步步走进现实｡ 物流:从“当日达”到“30分钟达”的极速体验 未来的无人机物流将彻底重构同城配送格局｡在城市核心区,搭载自动避障系统的...</p><div class="card-footer"><span class="card-source">sohu.com</span><span class="card-date">2026-04-07</span></div></article><article class="card" data-tag="空管业务" onclick="openDetail(6)"><div class="card-tag" style="background:#e3f2fd;color:#1565c0">空管业务</div><h2 class="card-title">328万架无人机、78万单外卖、475个闲置机场...低空经济的真相藏在这些数据里!</h2><p class="card-snippet">欧洲多家曾被看好的eVTOL企业近两年接连破产,中东反而在加速批准商业运营,美国FAA的认证流程则持续拉长｡ 一组很少被讨论的数据 先看几个数字: • 截至2025年,中国实名登记无人机突破328万架,累计飞行4530万小时 • 全国已建成46个低空飞行服务站,覆盖23个省区市 • 深圳2025年1-8月无人机载货飞行54.8万架次,同比增加57% • 全国获得无人机运营合格证的单位已达19979家 低空经济作为纳入国家统计的全新生态,...</p><div class="card-footer"><span class="card-source">new.qq.com</span><span class="card-date">2026-04-07</span></div></article><article class="card" data-tag="空管业务" onclick="openDetail(7)"><div class="card-tag" style="background:#e3f2fd;color:#1565c0">空管业务</div><h2 class="card-title">无人机送外卖、智能巡防,AI低空经济落地,城市生活迎来大变革</h2><p class="card-snippet">下班后步行至写字楼顶,乘坐eVTOL( 电动垂直起降飞行器 )避开早晚高峰;点一杯咖啡,由无人机精准投送到窗前;夜间的社区安保,由搭载高清摄像头与AI识别系统的无人机自动完成巡防｡这并非遥不可及的远景,而是低空经济与人工智能技术融合后,正在各地加速落地的真实场景｡2026年以来, 低空经济作为战略新兴产业,正大步迈向规模化商用 ｡但要让满天飞的飞行器互不干扰､安全高效运行,仅靠物理设施远远不够｡</p><div class="card-footer"><span class="card-source">sohu.com</span><span class="card-date">2026-04-07</span></div></article><article class="card" data-tag="空管业务" onclick="openDetail(8)"><div class="card-tag" style="background:#e3f2fd;color:#1565c0">空管业务</div><h2 class="card-title">万亿低空经济起飞!广东霸屏全球,上海剑指世界eVTOL之都 当城市上空出现穿梭的无人机、通勤“飞的”不再是科幻场景,中国低空经济正以“火箭速度...</h2><p class="card-snippet">万亿低空经济起飞!广东霸屏全球,上海剑指世界eVTOL之都 当城市上空出现穿梭的无人机､通勤“飞的”不再是科幻场景,中国低空经济正以“火箭速度”改写发展格局｡从2023年5059.5亿元到2024年6702.5亿元,再到2026年剑指万亿规模,这片3000米以下的低空,已成新质生产力的核心赛道｡ 广东的“空中霸权”早已实至名归｡消费级无人机占据全球七成市场,工业级无人机拿下半壁江山,近1.5万家相关企业构筑起完整产业链,64个通用机场､...</p><div class="card-footer"><span class="card-source">toutiao.com</span><span class="card-date">2026-04-07</span></div></article><article class="card" data-tag="空管业务" onclick="openDetail(9)"><div class="card-tag" style="background:#e3f2fd;color:#1565c0">空管业务</div><h2 class="card-title">2026年无人机行业介绍 - 今日头条</h2><p class="card-snippet">2026年无人机行业介绍-(科普) 低空经济产业链各大省份城市中: 以航发电力､中创､以及直升相关的通用航空是主流 其中 比亚迪 这家单位也会在提供电力支持,电池相关对于无人机行业飞场重要,其中还包括 小鹏汽车 也是给到亿航航天载人有重度合作｡ 上中下游里面其中核心板块: 一､ 上游 :制造{硬件,软件},软件领域普通人是进不去的,做算法,AI,人工智能等｡ 硬件领域,有制造,设计,组装,调试,测试,产品售后,等很多岗位,还有各大组件,...</p><div class="card-footer"><span class="card-source">toutiao.com</span><span class="card-date">2026-04-07</span></div></article><article class="card" data-tag="空管业务" onclick="openDetail(10)"><div class="card-tag" style="background:#e3f2fd;color:#1565c0">空管业务</div><h2 class="card-title">媒体看成飞丨“三能一体”无人机为低空经济带来新选择</h2><p class="card-snippet">近日,由航空工业成飞自主研制的“三能一体”长航时静音混合动力氢能源无人机成功完成首飞｡这型无人机以绿色､静音､长航时的鲜明特点,引起了社会大众的广泛关注｡“这型无人机的能源主体是氢,它的排放物是水,具有零碳排放的‘绿色’优势｡”成飞氢能源无人机项目负责人梁世哲说,相较于燃油无人机和电动无人机,氢能源不仅为低空经济发展提供了绿色低碳的解决路径,同时还为低空产品提供了更持久的能量供给｡fmt=jpg&amp;size=37&amp;h=450&amp;w=799&amp;...</p><div class="card-footer"><span class="card-source">so.html5.qq.com</span><span class="card-date">2026-04-07</span></div></article><article class="card" data-tag="政策解读" onclick="openDetail(11)"><div class="card-tag" style="background:#e8f5e9;color:#2e7d32">政策解读</div><h2 class="card-title">新疆无人机培训2026低空经济趋势,无人机行业4大新变化</h2><p class="card-snippet">一､政策精细化:从“放管”到“精准服务” 2026年无人机政策迎来精细化落地,核心变化体现在三个方面:①空域管理动态化:全国统一低空飞行管理平台上线,实现“即时审批､动态调整”,商用无人机飞行计划审批时间从48小时缩短至1小时;②产业扶持多元化:财政补贴覆盖研发､生产､运营全链条,氢能源无人机研发项目最高可获500万元补贴,税收优惠政策延长至2030年;③标准体系完善化:出台《无人机安全等级划分标准》《城市低空物流运营规范》等12项行业...</p><div class="card-footer"><span class="card-source">sohu.com</span><span class="card-date">2026-04-05</span></div></article>
+  </div>
+  <div class="empty" id="empty" style="display:none"><p>该分类暂无内容</p></div>
+</div>
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeM()">&#x2715;</button>
+    <div class="modal-hdr">
+      <div class="modal-tag" id="mTag"></div>
+      <div class="modal-title" id="mTitle"></div>
+      <div class="modal-meta" id="mMeta"></div>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+<script>
+var D=[{"title": "全国首个 珠江口西岸都市圈发布跨区域低空经济标准体系珠江口指南珠海市_新浪新闻", "url": "https://k.sina.com.cn/article_7857201856_1d45362c0019041w5u.html?from=news&amp;subch=onews", "snippet": "近日,珠江口西岸都市圈第一次联席会议在珠海召开｡会上,珠海､中山､江门､阳江四市市场监督管理局联合市发展和改革局,发布《珠江口西岸都市圈低空经济标准体系建设指南(2026年版)》(以下简称《指南》)｡ 该《指南》是全国首个跨区域低空经济标准体系文件,标志着珠江口西岸都市圈在低空经济领域迈出标准化､一体化发展的关键一步,为区域低空经济协同发展提供坚实的制度支撑｡ 根据《指南》,预计到2030年,珠江口西岸都市圈将实现基础通用､低空航空器､...", "tag": "政策解读", "source": "新浪网", "date_str": "2026-04-07"}, {"title": "低空经济首成CES Asia 2026核心展区_企业_产业_运营", "url": "https://www.sohu.com/a/1006153154_122053393", "snippet": "本届展区以“空中动脉·智联未来”为主题,集中展示eVTOL､无人机物流､空中交通管理系统等前沿技术,吸引多个城市展团集体入驻,标志着低空经济正式迈入规模化商用与全球产业协同的新阶段｡ 政策与技术双轮驱动,产业进入爆发期 2026年被业界公认为低空经济“常态化运营元年”｡政策层面,低空经济连续三年写入政府工作报告,首次被明确定位为新兴支柱产业｡新修订的《民用航空法》将于7月1日施行,首次增设“低空经济发展促进”专章,明确300米以下空域分...", "tag": "政策解读", "source": "搜狐", "date_str": "2026-04-07"}, {"title": "全球首创!中国“飞碟”eVTOL武汉首飞:桨叶全包裹,贴墙飞也不怕武汉市湖北省飞行器涵道飞行_新浪新闻", "url": "https://k.sina.com.cn/article_7857201856_1d45362c0019041zra.html?from=mil", "snippet": "涵道式吨级电 动 垂直 起降航空器(eVTOL) 近日在湖北武汉完成 公开试飞 ,这款 外形酷似飞碟的新型飞行器 凭借 全封闭涵道设计 ,实现 安全贴楼飞行 ,引发广泛关注,网友纷纷感叹“科幻照进现实”｡ 在湖北武汉举行的相关活动现场,这架 代号为 “电鹰飞车EFC1200” 的eVTOL航空器 平稳升空,垂直起飞､精准悬停､ 贴楼飞 行､平稳降落 ,整套动作流畅完成,展示出优异的低空操控性能｡ 该飞行器由 武汉光谷企业历时6年自主研发...", "tag": "空管业务", "source": "新浪网", "date_str": "2026-04-07"}, {"title": "ヾ(。*)悄无声息破敌防,手到擒来杀破狼()ノ……电鹰突击一、中国低空经济电动飞行器(eVTOL)研发起始与成果 - 研发起始:2010年国务院、...", "url": "https://www.toutiao.com/w/1861535856799872/", "snippet": "鹰突击 一､中国低空经济电动飞行器(eVTOL)研发起始与成果 - 研发起始:2010年国务院､中央军委发布《关于深化我国低空空域管理改革的意见》,拉开低空改革序幕;2014年亿航智能成立,成为国内首批专注eVTOL的企业,开启“无人驾驶+垂直起降”探索;2018年武汉电鹰科技启动吨级全涵道eVTOL项目,切入全球空白赛道｡ - 阶段性成果: 1. 政策奠基:2022年民航局､工信部出台物流无人机与民用无人机安全标准,2023年《无人驾...", "tag": "政策解读", "source": "今日头条", "date_str": "2026-04-07"}, {"title": "沃飞长空冲刺A股eVTOL第一股 - 今日头条", "url": "https://www.toutiao.com/article/7624704113385521690/", "snippet": "低空经济正加速起飞｡4月3日,证监会网站显示,四川沃飞长空科技股份有限公司(以下简称沃飞长空)于4月2日在四川证监局办理辅导备案登记,拟首次公开发行股票并科创板上市｡ 沃飞长空成立于2016年4月,是浙江吉利科技集团旗下品牌,致力于全球低空智慧交通飞行器研发与商业化运营,以无人机､飞行汽车研发生产与运营为主要业务,是国内eVTOL领域的头部企业｡根据上市辅导备案报告显示,公司注册资本3.6亿元,控股股东为湖北吉利太力飞车有限公司,持有沃...", "tag": "空管业务", "source": "今日头条", "date_str": "2026-04-07"}, {"title": "新疆无人机培训低空经济与无人机融合,未来生活将有这些变化_城市_物流", "url": "https://www.sohu.com/a/1005993640_121438959", "snippet": "新疆保华润天航空无人机培训:当你在2030年的某个清晨按下“无人机配送”按钮,30分钟后新鲜食材就从城郊农场直飞阳台;下班高峰避开地面拥堵,乘坐eVTOL空中出租车15分钟从CBD抵达远郊小区;周末预约低空无人机旅游,俯瞰城市天际线与山川湖泊……这些曾经的科幻场景,正随着低空经济与无人机技术的深度融合,一步步走进现实｡ 物流:从“当日达”到“30分钟达”的极速体验 未来的无人机物流将彻底重构同城配送格局｡在城市核心区,搭载自动避障系统的...", "tag": "空管业务", "source": "搜狐", "date_str": "2026-04-07"}, {"title": "328万架无人机、78万单外卖、475个闲置机场...低空经济的真相藏在这些数据里!", "url": "https://new.qq.com/rain/a/20260407A01RJ200", "snippet": "欧洲多家曾被看好的eVTOL企业近两年接连破产,中东反而在加速批准商业运营,美国FAA的认证流程则持续拉长｡ 一组很少被讨论的数据 先看几个数字: • 截至2025年,中国实名登记无人机突破328万架,累计飞行4530万小时 • 全国已建成46个低空飞行服务站,覆盖23个省区市 • 深圳2025年1-8月无人机载货飞行54.8万架次,同比增加57% • 全国获得无人机运营合格证的单位已达19979家 低空经济作为纳入国家统计的全新生态,...", "tag": "空管业务", "source": "腾讯网", "date_str": "2026-04-07"}, {"title": "无人机送外卖、智能巡防,AI低空经济落地,城市生活迎来大变革", "url": "https://www.sohu.com/a/1006179255_122541822", "snippet": "下班后步行至写字楼顶,乘坐eVTOL( 电动垂直起降飞行器 )避开早晚高峰;点一杯咖啡,由无人机精准投送到窗前;夜间的社区安保,由搭载高清摄像头与AI识别系统的无人机自动完成巡防｡这并非遥不可及的远景,而是低空经济与人工智能技术融合后,正在各地加速落地的真实场景｡2026年以来, 低空经济作为战略新兴产业,正大步迈向规模化商用 ｡但要让满天飞的飞行器互不干扰､安全高效运行,仅靠物理设施远远不够｡", "tag": "空管业务", "source": "搜狐", "date_str": "2026-04-07"}, {"title": "万亿低空经济起飞!广东霸屏全球,上海剑指世界eVTOL之都 当城市上空出现穿梭的无人机、通勤“飞的”不再是科幻场景,中国低空经济正以“火箭速度...", "url": "https://www.toutiao.com/w/1853751864634436/", "snippet": "万亿低空经济起飞!广东霸屏全球,上海剑指世界eVTOL之都 当城市上空出现穿梭的无人机､通勤“飞的”不再是科幻场景,中国低空经济正以“火箭速度”改写发展格局｡从2023年5059.5亿元到2024年6702.5亿元,再到2026年剑指万亿规模,这片3000米以下的低空,已成新质生产力的核心赛道｡ 广东的“空中霸权”早已实至名归｡消费级无人机占据全球七成市场,工业级无人机拿下半壁江山,近1.5万家相关企业构筑起完整产业链,64个通用机场､...", "tag": "空管业务", "source": "今日头条", "date_str": "2026-04-07"}, {"title": "2026年无人机行业介绍 - 今日头条", "url": "https://www.toutiao.com/article/7622668616151908910/", "snippet": "2026年无人机行业介绍-(科普) 低空经济产业链各大省份城市中: 以航发电力､中创､以及直升相关的通用航空是主流 其中 比亚迪 这家单位也会在提供电力支持,电池相关对于无人机行业飞场重要,其中还包括 小鹏汽车 也是给到亿航航天载人有重度合作｡ 上中下游里面其中核心板块: 一､ 上游 :制造{硬件,软件},软件领域普通人是进不去的,做算法,AI,人工智能等｡ 硬件领域,有制造,设计,组装,调试,测试,产品售后,等很多岗位,还有各大组件,...", "tag": "空管业务", "source": "今日头条", "date_str": "2026-04-07"}, {"title": "媒体看成飞丨“三能一体”无人机为低空经济带来新选择", "url": "https://so.html5.qq.com/page/real/search_news?docid=70000021_33169d4618e12852", "snippet": "近日,由航空工业成飞自主研制的“三能一体”长航时静音混合动力氢能源无人机成功完成首飞｡这型无人机以绿色､静音､长航时的鲜明特点,引起了社会大众的广泛关注｡“这型无人机的能源主体是氢,它的排放物是水,具有零碳排放的‘绿色’优势｡”成飞氢能源无人机项目负责人梁世哲说,相较于燃油无人机和电动无人机,氢能源不仅为低空经济发展提供了绿色低碳的解决路径,同时还为低空产品提供了更持久的能量供给｡fmt=jpg&amp;size=37&amp;h=450&amp;w=799&amp;...", "tag": "空管业务", "source": "企鹅号", "date_str": "2026-04-07"}, {"title": "新疆无人机培训2026低空经济趋势,无人机行业4大新变化", "url": "https://www.sohu.com/a/1005612641_121854726", "snippet": "一､政策精细化:从“放管”到“精准服务” 2026年无人机政策迎来精细化落地,核心变化体现在三个方面:①空域管理动态化:全国统一低空飞行管理平台上线,实现“即时审批､动态调整”,商用无人机飞行计划审批时间从48小时缩短至1小时;②产业扶持多元化:财政补贴覆盖研发､生产､运营全链条,氢能源无人机研发项目最高可获500万元补贴,税收优惠政策延长至2030年;③标准体系完善化:出台《无人机安全等级划分标准》《城市低空物流运营规范》等12项行业...", "tag": "政策解读", "source": "搜狐", "date_str": "2026-04-05"}];
+var TC={"政策解读": ["#e8f5e9", "#2e7d32"], "空管业务": ["#e3f2fd", "#1565c0"], "产品案例": ["#fff3e0", "#e65100"], "技术应用": ["#f3e5f5", "#6a1b9a"], "行业动态": ["#fce4ec", "#c62828"]};
+function getDom(u){try{return new URL(u).hostname.replace("www.","")}catch(e){return"网络"}}
+function filterTag(t,btn){document.querySelectorAll(".fb").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");var v=0;document.querySelectorAll(".card").forEach(function(c){c.style.display=(t==="全部"||c.dataset.tag===t)?"":"none";if(t==="全部"||c.dataset.tag===t)v++});document.getElementById("empty").style.display=v?"none":"block"}
+function openDetail(i){var a=D[i];document.getElementById("mTag").textContent=a.tag;var c=(TC[a.tag]||"#f5f5f5,#333").split(",");document.getElementById("mTag").style.cssText="background:"+c[0]+";color:"+c[1];document.getElementById("mTitle").textContent=a.title;document.getElementById("mMeta").textContent="来源："+(a.source||getDom(a.url))+"  |  "+a.date_str;var p=document.createElement("p");p.textContent=a.snippet;var lnk=document.createElement("a");lnk.className="open-link";lnk.href=a.url;lnk.target="_blank";lnk.textContent="?? 前往原始页面";document.getElementById("mBody").innerHTML="";document.getElementById("mBody").appendChild(p);document.getElementById("mBody").appendChild(lnk);document.getElementById("modal").classList.add("open")}
+function closeM(){document.getElementById("modal").classList.remove("open")}
+document.getElementById("modal").addEventListener("click",function(e){if(e.target===this)closeM()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeM()});
+</script>
+</body>
+</html>
