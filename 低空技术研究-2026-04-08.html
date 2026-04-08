@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>低空技术研究 2026-04-08</title>
+<style>
+:root{--bg:#fafbfc;--card:#fff;--primary:#2563eb;--accent:#1d4ed8;--text:#1a1a2e;--muted:#6b7280;--border:#e5e7eb;--radius:12px;--shadow:0 2px 12px rgba(0,0,0,.06)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",PingFang SC,"Hiragino Sans GB",Microsoft YaHei,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+header{background:linear-gradient(135deg,#1e3a5f,#2563eb);color:#fff;padding:40px 20px;text-align:center}
+header h1{font-size:1.8rem;font-weight:600;letter-spacing:.02em}
+header p{opacity:.8;margin-top:6px;font-size:.9rem}
+.stats{display:flex;justify-content:center;gap:32px;margin-top:16px}
+.stat-num{font-size:1.5rem;font-weight:700}
+.stat-lbl{font-size:.7rem;opacity:.7;margin-top:2px}
+.container{max-width:900px;margin:0 auto;padding:24px 16px 48px}
+.filter-section{margin-bottom:20px}
+.filter-label{font-size:.75rem;color:var(--muted);margin-bottom:8px;font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+.filter-bar{display:flex;gap:6px;flex-wrap:wrap}
+.fb{padding:5px 12px;border-radius:16px;border:1px solid var(--border);background:#fff;color:var(--muted);font-size:.75rem;cursor:pointer;font-weight:500;transition:all .15s}
+.fb.active,.fb:hover{border-color:var(--primary);background:var(--primary);color:#fff}
+.grid{display:grid;gap:16px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;cursor:pointer;transition:all .2s}
+.card:hover{border-color:var(--primary);box-shadow:var(--shadow);transform:translateY(-2px)}
+.card-meta{display:flex;gap:6px;margin-bottom:10px}
+.card-topic,.card-source{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.65rem;font-weight:600}
+.card-topic{color:#fff}
+.card-source{color:#fff}
+.card-title{font-size:.95rem;font-weight:600;line-height:1.5;color:var(--text);margin-bottom:8px}
+.card-snippet{font-size:.82rem;color:var(--muted);line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card-footer{display:flex;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}
+.card-domain{font-size:.72rem;color:var(--muted)}
+.card-date{font-size:.72rem;color:#9ca3af}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;justify-content:center;align-items:center;padding:20px}
+.modal.open{display:flex}
+.modal-box{background:#fff;border-radius:16px;max-width:680px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal-hdr{padding:20px 24px;border-bottom:1px solid var(--border);position:sticky;top:0;background:#fff}
+.modal-meta{display:flex;gap:8px;margin-bottom:8px}
+.modal-title{font-size:1.1rem;font-weight:600;line-height:1.4}
+.modal-body{padding:20px 24px 28px}
+.modal-body p{font-size:.9rem;line-height:1.8;color:#374151;margin-bottom:16px}
+.modal-link{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--primary);color:#fff;border-radius:8px;text-decoration:none;font-size:.85rem;font-weight:500;transition:background .2s}
+.modal-link:hover{background:var(--accent)}
+.modal-close{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;border:none;background:#f3f4f6;color:var(--muted);cursor:pointer;font-size:1rem}
+.empty{text-align:center;padding:48px;color:var(--muted)}
+@media(max-width:640px){.container{padding:16px 12px}.stats{gap:20px}header h1{font-size:1.4rem}}
+</style>
+</head>
+<body>
+<header>
+  <h1>低空技术研究资料汇编</h1>
+  <p>飞行计划申报 | 航线推荐 | 大模型智能体 | 航路拥堵治理 | 动态网格化空域 | 空域容量流量</p>
+  <div class="stats">
+    <div><div class="stat-num">6</div><div class="stat-lbl">篇研究资料</div></div>
+    <div><div class="stat-num">3</div><div class="stat-lbl">主题覆盖</div></div>
+    <div><div class="stat-num">2026-04-08</div><div class="stat-lbl">更新日期</div></div>
+  </div>
+</header>
+<div class="container">
+  <div class="filter-section">
+    <div class="filter-label">主题分类</div>
+    <div class="filter-bar"><button class="fb active" onclick="filterTopic('全部',this)">全部主题</button><button class="fb" onclick="filterTopic('技术研究',this)">技术研究 (4)</button><button class="fb" onclick="filterTopic('飞行计划申报',this)">飞行计划申报 (1)</button><button class="fb" onclick="filterTopic('航线推荐',this)">航线推荐 (1)</button></div>
+  </div>
+  <div class="filter-section">
+    <div class="filter-label">内容来源</div>
+    <div class="filter-bar"><button class="fb active" onclick="filterSource('全部',this)">全部来源</button><button class="fb" onclick="filterSource('网络文章',this)">网络文章 (5)</button><button class="fb" onclick="filterSource('技术笔记',this)">技术笔记 (1)</button></div>
+  </div>
+  <div class="grid" id="grid"><article class="card" data-topic="技术研究" data-source="网络文章" onclick="openDetail(0)"><div class="card-meta"><span class="card-topic" style="background:#f5f5f5;color:#616161">技术研究</span><span class="card-source" style="background:#455a64">网络文章</span></div><h2 class="card-title">三部门为低空经济“上保险”!2027年建立强制保险!</h2><p class="card-snippet">三部门为低空经济“上保险”:构建安全有序发展的制度基石 2026年2月12日,国家发展改革委､金融监管总局与中国民用航空局联合发布《关于推动低空保险高质量发展的实施意见》(以下简称《实施意见》),明确提出:到2027年,初步建立无人驾驶航空器责任保险强制投保制度;到2030年,基本形成覆盖低空经济全链条的保险政策框架｡这一重磅政策标志着我国低空经济正式迈入“有规可依､有险可保､有责可追”的制度化发展阶段,也为全球低空交通治理提供了中国方案｡</p><div class="card-footer"><span class="card-domain">cloud.tencent.com</span><span class="card-date">2026-04-08</span></div></article><article class="card" data-topic="技术研究" data-source="网络文章" onclick="openDetail(1)"><div class="card-meta"><span class="card-topic" style="background:#f5f5f5;color:#616161">技术研究</span><span class="card-source" style="background:#455a64">网络文章</span></div><h2 class="card-title">2026两会定调信通院背书!数字孪生低空经济,解锁万亿新蓝海</h2><p class="card-snippet">2026年3月5日,十四届全国人大四次会议开幕会上,国务院总理李强作政府工作报告,明确将低空经济与集成电路､航空航天､生物医药并列,定位为国家战略性新兴产业的核心支柱,这是继2024年首次写入政府工作报告后,国家层面对其战略地位的再次提升与固化,也标志着低空经济正式进入规模化､高质量发展的黄金周期｡</p><div class="card-footer"><span class="card-domain">cloud.tencent.com</span><span class="card-date">2026-04-08</span></div></article><article class="card" data-topic="技术研究" data-source="网络文章" onclick="openDetail(2)"><div class="card-meta"><span class="card-topic" style="background:#f5f5f5;color:#616161">技术研究</span><span class="card-source" style="background:#455a64">网络文章</span></div><h2 class="card-title">2026军工黑科技!多维多波段监控系统,无人机瞬间变&quot;废铁&quot;!</h2><p class="card-snippet">当军工黑科技打破技术桎梏,当多维多波段技术实现全链路突破,知语云携2026重磅军工黑科技——多维多波段监控系统震撼登场,以全域感知､精准锁定､光速毁伤的硬核实力,让每一架非法入侵无人机,在瞬间沦为“废铁”,用科创之力重塑低空安防新秩序｡军工赋能,多维联动,解锁2026安防黑科技新范式｡知语云多维多波段监控系统,深度萃取军工级技术积淀,打破传统单一探测的局限,创新性融合雷达､光电､红外､频谱分析等多维度探测技术,构建起“空—地—电”三位一体的立体防护网络｡作为2026军工黑科技的核心亮点,多波段协同探测实现了“无死角､无遗漏､无误判”的全域感知,微波､红外､可见光多波段同步扫描,即便面对雷达反射...</p><div class="card-footer"><span class="card-domain">so.html5.qq.com</span><span class="card-date">2026-04-08</span></div></article><article class="card" data-topic="飞行计划申报" data-source="网络文章" onclick="openDetail(3)"><div class="card-meta"><span class="card-topic" style="background:#e3f2fd;color:#1565c0">飞行计划申报</span><span class="card-source" style="background:#455a64">网络文章</span></div><h2 class="card-title">无人机飞手CAAC考证的最新政策解读 - 今日头条</h2><p class="card-snippet">空域管理升级:2025年全国推行空域网格化管理,持证飞手需通过｢低空智联平台｣实时申报飞行计划｡ 安全要求收紧:所有无人机需实名登记,超过120米高度飞行需提前申报空域｡ 持证权益保障:执照作为空域申请､商业投标､保险理赔的唯一合法凭证,持证者在职业竞争中薪资比无证者高30%-50%｡ 定期审验:每2年需在民航局UOM官网更新飞行经历并签注,否则影响空域申报｡</p><div class="card-footer"><span class="card-domain">toutiao.com</span><span class="card-date">2026-04-07</span></div></article><article class="card" data-topic="航线推荐" data-source="技术笔记" onclick="openDetail(4)"><div class="card-meta"><span class="card-topic" style="background:#e8f5e9;color:#2e7d32">航线推荐</span><span class="card-source" style="background:#5d4037">技术笔记</span></div><h2 class="card-title">收藏!2026大模型技术爆发,小白也能看懂的技术变革与学习路径_大模型新技术以-CSDN博客</h2><p class="card-snippet">2026年3月,全球大模型领域迎来史诗级技术爆发,OpenAI､谷歌等海外巨头持续突破能力边界,国产大模型则实现全球调用量反超､旗舰模型登顶国际盲测的双重突破,行业正式告别“参数内卷”,迈入效率优先､场景为王､生态重构的实用主义新时代｡ 从百万Token上下文成为标配,到智能体(Agent)规模化商用,再到端云协同布局提速,一系列核心技术变革正在重塑大模型的发展格局,也为产业落地注入新的活力｡</p><div class="card-footer"><span class="card-domain">blog.csdn.net</span><span class="card-date">2026-04-06</span></div></article><article class="card" data-topic="技术研究" data-source="网络文章" onclick="openDetail(5)"><div class="card-meta"><span class="card-topic" style="background:#f5f5f5;color:#616161">技术研究</span><span class="card-source" style="background:#455a64">网络文章</span></div><h2 class="card-title">2026东滩·低空经济生态共建暨产业融合大会圆满落幕 - 今日头条</h2><p class="card-snippet">一､首飞启航!开辟城市低空交通新动脉 上午10:30,伴随着直升机的轰鸣声,“虹桥-东滩-上海中华学院低空航线”首飞仪式在上海中华职业技术学院足球场正式启动｡一架直升机平稳降落,标志着这条兼具里程碑意义的航线首飞圆满成功｡ 二､院士领航!擘画低空经济发展战略蓝图 下午的会议环节由长三角智慧城区低空经济联合会秘书长王佳主持｡上海东滩建设集团董事长丁健致欢迎辞后,中国工程院院士刘大响发表主旨演讲｡ 作为我国航空动力领域权威专家,刘大响院士从国家战略高度,深入剖析低空经济发展的技术趋势､政策导向与产业前景,为长三角地区乃至全国低空经济发展指明方向,尽显大会的战略引领与行业前瞻价值｡</p><div class="card-footer"><span class="card-domain">toutiao.com</span><span class="card-date">2026-04-06</span></div></article></div>
+  <div class="empty" id="empty" style="display:none">该筛选条件下暂无内容</div>
+</div>
+<div class="modal" id="modal">
+  <div class="modal-box" style="position:relative">
+    <button class="modal-close" onclick="closeM()">X</button>
+    <div class="modal-hdr">
+      <div class="modal-meta" id="mMeta"></div>
+      <div class="modal-title" id="mTitle"></div>
+    </div>
+    <div class="modal-body">
+      <p id="mBody"></p>
+      <a class="modal-link" id="mLink" href="#" target="_blank">查看原文</a>
+    </div>
+  </div>
+</div>
+<script>
+var D=[{"title": "三部门为低空经济“上保险”!2027年建立强制保险!", "url": "https://cloud.tencent.com/developer/article/2645923", "snippet": "三部门为低空经济“上保险”:构建安全有序发展的制度基石 2026年2月12日,国家发展改革委､金融监管总局与中国民用航空局联合发布《关于推动低空保险高质量发展的实施意见》(以下简称《实施意见》),明确提出:到2027年,初步建立无人驾驶航空器责任保险强制投保制度;到2030年,基本形成覆盖低空经济全链条的保险政策框架｡这一重磅政策标志着我国低空经济正式迈入“有规可依､有险可保､有责可追”的制度化发展阶段,也为全球低空交通治理提供了中国方案｡", "topic": "技术研究", "source": "网络文章", "date_str": "2026-04-08"}, {"title": "2026两会定调信通院背书!数字孪生低空经济,解锁万亿新蓝海", "url": "https://cloud.tencent.com/developer/article/2634781", "snippet": "2026年3月5日,十四届全国人大四次会议开幕会上,国务院总理李强作政府工作报告,明确将低空经济与集成电路､航空航天､生物医药并列,定位为国家战略性新兴产业的核心支柱,这是继2024年首次写入政府工作报告后,国家层面对其战略地位的再次提升与固化,也标志着低空经济正式进入规模化､高质量发展的黄金周期｡", "topic": "技术研究", "source": "网络文章", "date_str": "2026-04-08"}, {"title": "2026军工黑科技!多维多波段监控系统,无人机瞬间变&quot;废铁&quot;!", "url": "https://so.html5.qq.com/page/real/search_news?docid=70000021_16069d5b78369752", "snippet": "当军工黑科技打破技术桎梏,当多维多波段技术实现全链路突破,知语云携2026重磅军工黑科技——多维多波段监控系统震撼登场,以全域感知､精准锁定､光速毁伤的硬核实力,让每一架非法入侵无人机,在瞬间沦为“废铁”,用科创之力重塑低空安防新秩序｡军工赋能,多维联动,解锁2026安防黑科技新范式｡知语云多维多波段监控系统,深度萃取军工级技术积淀,打破传统单一探测的局限,创新性融合雷达､光电､红外､频谱分析等多维度探测技术,构建起“空—地—电”三位一体的立体防护网络｡作为2026军工黑科技的核心亮点,多波段协同探测实现了“无死角､无遗漏､无误判”的全域感知,微波､红外､可见光多波段同步扫描,即便面对雷达反射...", "topic": "技术研究", "source": "网络文章", "date_str": "2026-04-08"}, {"title": "无人机飞手CAAC考证的最新政策解读 - 今日头条", "url": "https://www.toutiao.com/article/7625087744959578659/", "snippet": "空域管理升级:2025年全国推行空域网格化管理,持证飞手需通过｢低空智联平台｣实时申报飞行计划｡ 安全要求收紧:所有无人机需实名登记,超过120米高度飞行需提前申报空域｡ 持证权益保障:执照作为空域申请､商业投标､保险理赔的唯一合法凭证,持证者在职业竞争中薪资比无证者高30%-50%｡ 定期审验:每2年需在民航局UOM官网更新飞行经历并签注,否则影响空域申报｡", "topic": "飞行计划申报", "source": "网络文章", "date_str": "2026-04-07"}, {"title": "收藏!2026大模型技术爆发,小白也能看懂的技术变革与学习路径_大模型新技术以-CSDN博客", "url": "https://blog.csdn.net/2401_85154887/article/details/159420938", "snippet": "2026年3月,全球大模型领域迎来史诗级技术爆发,OpenAI､谷歌等海外巨头持续突破能力边界,国产大模型则实现全球调用量反超､旗舰模型登顶国际盲测的双重突破,行业正式告别“参数内卷”,迈入效率优先､场景为王､生态重构的实用主义新时代｡ 从百万Token上下文成为标配,到智能体(Agent)规模化商用,再到端云协同布局提速,一系列核心技术变革正在重塑大模型的发展格局,也为产业落地注入新的活力｡", "topic": "航线推荐", "source": "技术笔记", "date_str": "2026-04-06"}, {"title": "2026东滩·低空经济生态共建暨产业融合大会圆满落幕 - 今日头条", "url": "https://www.toutiao.com/article/7603006290818548267/", "snippet": "一､首飞启航!开辟城市低空交通新动脉 上午10:30,伴随着直升机的轰鸣声,“虹桥-东滩-上海中华学院低空航线”首飞仪式在上海中华职业技术学院足球场正式启动｡一架直升机平稳降落,标志着这条兼具里程碑意义的航线首飞圆满成功｡ 二､院士领航!擘画低空经济发展战略蓝图 下午的会议环节由长三角智慧城区低空经济联合会秘书长王佳主持｡上海东滩建设集团董事长丁健致欢迎辞后,中国工程院院士刘大响发表主旨演讲｡ 作为我国航空动力领域权威专家,刘大响院士从国家战略高度,深入剖析低空经济发展的技术趋势､政策导向与产业前景,为长三角地区乃至全国低空经济发展指明方向,尽显大会的战略引领与行业前瞻价值｡", "topic": "技术研究", "source": "网络文章", "date_str": "2026-04-06"}];
+var TC={"飞行计划申报": ["#e3f2fd", "#1565c0"], "航线推荐": ["#e8f5e9", "#2e7d32"], "大模型智能体": ["#f3e5f5", "#6a1b9a"], "航路拥堵治理": ["#fff3e0", "#e65100"], "动态网格化空域": ["#fce4ec", "#c62828"], "空域容量流量": ["#e0f7fa", "#00838f"], "技术研究": ["#f5f5f5", "#616161"]};
+var SC={"学术论文": "#7b1fa2", "专利": "#f57c00", "知乎问答": "#0288d1", "公众号": "#388e3c", "技术笔记": "#5d4037", "开源项目": "#1976d2", "网络文章": "#455a64"};
+var curTopic="全部",curSource="全部";
+function filterTopic(t,btn){document.querySelectorAll(".filter-section:first-child .fb").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");curTopic=t;applyFilter()}
+function filterSource(s,btn){document.querySelectorAll(".filter-section:last-child .fb").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");curSource=s;applyFilter()}
+function applyFilter(){var v=0;document.querySelectorAll(".card").forEach(function(c){var show=(curTopic==="全部"||c.dataset.topic===curTopic)&&(curSource==="全部"||c.dataset.source===curSource);c.style.display=show?"":"none";if(show)v++});document.getElementById("empty").style.display=v?"none":"block"}
+function openDetail(i){var a=D[i],tb=TC[a.topic]||["#f5f5f5","#333"],sb=SC[a.source]||"#455a64";document.getElementById("mMeta").innerHTML='<span class="card-topic" style="background:'+tb[0]+';color:'+tb[1]+'">'+a.topic+'</span><span class="card-source" style="background:'+sb+'">'+a.source+'</span>';document.getElementById("mTitle").textContent=a.title;document.getElementById("mBody").textContent=a.snippet;document.getElementById("mLink").href=a.url;document.getElementById("modal").classList.add("open")}
+function closeM(){document.getElementById("modal").classList.remove("open")}
+document.getElementById("modal").addEventListener("click",function(e){if(e.target===this)closeM()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeM()});
+</script>
+</body>
+</html>
