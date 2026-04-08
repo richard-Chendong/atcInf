@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空ATC竞品分析 2026-04-08</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+        }
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 40px 0 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+        .section-title h2 {
+            font-size: 1.5rem;
+            color: #f1f5f9;
+        }
+        .section-title .icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .vendor-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            transition: all 0.4s ease;
+        }
+        .vendor-card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.1);
+        }
+        .vendor-header {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .vendor-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+        .vendor-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+        .vendor-content {
+            padding: 24px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .info-item {
+            background: rgba(255,255,255,0.03);
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .info-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .info-value {
+            font-size: 0.95rem;
+            color: #e2e8f0;
+            line-height: 1.5;
+        }
+        .news-item {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+        .news-item:hover {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+        .news-title {
+            font-size: 0.95rem;
+            color: #f1f5f9;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        .news-source {
+            color: #818cf8;
+        }
+        .news-date {
+            color: #475569;
+        }
+        .news-link {
+            color: #3b82f6;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 8px;
+            font-size: 0.8rem;
+            transition: color 0.3s;
+        }
+        .news-link:hover {
+            color: #60a5fa;
+        }
+        .tab-nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        .tab-btn:hover, .tab-btn.active {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            border-color: transparent;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.85rem;
+        }
+        .comparison-table th {
+            background: rgba(99, 102, 241, 0.2);
+            padding: 12px 16px;
+            text-align: left;
+            color: #e2e8f0;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+        }
+        .comparison-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: #94a3b8;
+        }
+        .comparison-table tr:hover td {
+            background: rgba(99, 102, 241, 0.05);
+        }
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 60px;
+        }
+        .footer a { color: #818cf8; text-decoration: none; }
+        .update-time {
+            background: rgba(255,255,255,0.05);
+            padding: 15px 25px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        @media (max-width: 768px) {
+            .info-grid { grid-template-columns: 1fr; }
+            .comparison-table { font-size: 0.75rem; }
+            .comparison-table th, .comparison-table td { padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>低空ATC竞品分析报告</h1>
+        <p>低空空管系统厂商动态 | 竞品追踪 | 市场情报</p>
+    </div>
+    
+    <div class="container">
+        <div style="text-align:center;">
+            <div class="update-time">
+                <span style="color:#94a3b8;">数据更新：</span>
+                <span style="color:#f1f5f9;font-weight:600;">2026年4月8日</span>
+                <span style="color:#475569;"> | </span>
+                <span style="color:#94a3b8;">筛选范围：</span>
+                <span style="color:#f1f5f9;">最近3天</span>
+            </div>
+        </div>
+
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="showTab('domestic')">国内厂商</button>
+            <button class="tab-btn" onclick="showTab('international')">海外厂商</button>
+            <button class="tab-btn" onclick="showTab('comparison')">竞品对比</button>
+        </div>
+
+        <!-- 国内厂商 -->
+        <div id="domestic" class="tab-content active">
+            <div class="section-title">
+                <div class="icon">
+                    <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <h2>国内主要厂商动态</h2>
+            </div>
+
+            <!-- 中科星图 -->
+            <div class="vendor-card">
+                <div class="vendor-header">
+                    <span class="vendor-name">中科星图 (688568)</span>
+                    <span class="vendor-badge">上市公司</span>
+                </div>
+                <div class="vendor-content">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">核心产品</div>
+                            <div class="info-value">省级低空智能网联系统、低空全要素数据底座</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">技术亮点</div>
+                            <div class="info-value">以"以天强空"为理念，整合300+卫星数据，实现0.5米分辨率影像</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">最新动态</div>
+                            <div class="info-value">将于4月15日举行2025年年度业绩说明会</div>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-title">多城标杆实践经验筑基，中科星图打造省级低空智能网联硬核支撑</div>
+                        <div class="news-meta">
+                            <span class="news-source">来源：网易/中国经济网</span>
+                            <span class="news-date">2026-04-07</span>
+                        </div>
+                        <a href="https://www.163.com/dy/article/KPGEORA605149OCK.html" target="_blank" class="news-link">查看原文 →</a>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-title">中科星图股份有限公司关于召开2025年年度业绩说明会的公告</div>
+                        <div class="news-meta">
+                            <span class="news-source">来源：中国证券报/中财网</span>
+                            <span class="news-date">2026-04-07</span>
+                        </div>
+                        <a href="https://paper.cnstock.com/html/2026-04/07/content_2196606.htm" target="_blank" class="news-link">查看原文 →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 莱斯信息 -->
+            <div class="vendor-card">
+                <div class="vendor-header">
+                    <span class="vendor-name">莱斯信息</span>
+                    <span class="vendor-badge">项目中标</span>
+                </div>
+                <div class="vendor-content">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">核心产品</div>
+                            <div class="info-value">"低空天牧平台" - 低空飞行综合管理服务平台</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">技术亮点</div>
+                            <div class="info-value">支持40万+级航空器实时监视，覆盖全域空域</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">最新动态</div>
+                            <div class="info-value">成功中标辽宁省省级低空飞行综合管理服务平台项目(一期)</div>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-title">莱斯信息中标辽宁省省级低空飞行综合管理服务平台项目</div>
+                        <div class="news-meta">
+                            <span class="news-source">来源：证券时报/腾讯网</span>
+                            <span class="news-date">2026-04-02</span>
+                        </div>
+                        <a href="https://www.stcn.com/article/detail/3724257.html" target="_blank" class="news-link">查看原文 →</a>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-title">"低空天牧平台"核心能力覆盖全域感知、空域管理、飞行管理等维度</div>
+                        <div class="news-meta">
+                            <span class="news-source">来源：证券日报</span>
+                            <span class="news-date">2026-01-13</span>
+                        </div>
+                        <a href="http://www.zqrb.cn/gscy/ggkx/2026-01-13/A1768294004161.html" target="_blank" class="news-link">查看原文 →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 中科云图 -->
+            <div class="vendor-card">
+                <div class="vendor-header">
+                    <span class="vendor-name">中科云图</span>
+                    <span class="vendor-badge">技术创新</span>
+                </div>
+                <div class="vendor-content">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">核心产品</div>
+                            <div class="info-value">低空遥感网、中科灵玑低空大模型、天路网</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">技术亮点</div>
+                            <div class="info-value">低空无人机遥感观测网络、遥感网覆盖全国100+区县</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">最新动态</div>
+                            <div class="info-value">将参与海珠区天路网建设，发布"中科灵玑低空大模型"</div>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-title">海珠区将铺设低空"天路" - 中科云图参与天路网建设</div>
+                        <div class="news-meta">
+                            <span class="news-source">来源：腾讯网/广州日报</span>
+                            <span class="news-date">2026-04-01</span>
+                        </div>
+                        <a href="https://news.qq.com/rain/a/20260401A06Y5C00" target="_blank" class="news-link">查看原文 →</a>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-title">中科云图2026低空经济生态合作伙伴大会圆满召开 - 发布"中科灵玑低空大模型"</div>
+                        <div class="news-meta">
+                            <span class="news-source">来源：今日头条</span>
+                            <span class="news-date">2026-03-31</span>
+                        </div>
+                        <a href="https://www.toutiao.com/article/7625164263644086799/" target="_blank" class="news-link">查看原文 →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 中国电信/天翼 -->
+            <div class="vendor-card">
+                <div class="vendor-header">
+                    <span class="vendor-name">中国电信无人科技</span>
+                    <span class="vendor-badge">平台发布</span>
+                </div>
+                <div class="vendor-content">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">核心产品</div>
+                            <div class="info-value">AI+"1+1+4+N"低空经济能力体系、四大低空数字平台</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">技术亮点</div>
+                            <div class="info-value">天翼星云、星盾、星巡、星瀚平台 + "天擎"低空模组</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">最新动态</div>
+                            <div class="info-value">MWC 2026期间面向全球发布低空经济能力体系</div>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-title">中国电信面向全球发布低空经济能力体系</div>
+                        <div class="news-meta">
+                            <span class="news-source">来源：证券之星</span>
+                            <span class="news-date">2026-03-05</span>
+                        </div>
+                        <a href="https://stock.stockstar.com/KX2026030500033477.shtml" target="_blank" class="news-link">查看原文 →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 高域科技 (广汽) -->
+            <div class="vendor-card">
+                <div class="vendor-header">
+                    <span class="vendor-name">高域科技 GOVY (广汽集团)</span>
+                    <span class="vendor-badge">产品进展</span>
+                </div>
+                <div class="vendor-content">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">核心产品</div>
+                            <div class="info-value">GOVY AirCab飞行汽车、eVTOL</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">技术亮点</div>
+                            <div class="info-value">已完成城市核心区场景飞行演示，进入适航审定阶段</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">最新动态</div>
+                            <div class="info-value">计划2026年底前完成适航认证并启动量产交付</div>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-title">高域GOVY AirCab飞行汽车完成场景演示，计划2026年底量产</div>
+                        <div class="news-meta">
+                            <span class="news-source">来源：腾讯网/中新社</span>
+                            <span class="news-date">2026-03-20</span>
+                        </div>
+                        <a href="https://news.qq.com/rain/a/20260403A06ASI00" target="_blank" class="news-link">查看原文 →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 其他厂商动态汇总 -->
+            <div class="vendor-card">
+                <div class="vendor-header">
+                    <span class="vendor-name">其他厂商动态</span>
+                    <span class="vendor-badge">行业概览</span>
+                </div>
+                <div class="vendor-content">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">航天宏图</div>
+                            <div class="info-value">低空经济相关业务持续布局</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">川大智胜</div>
+                            <div class="info-value">低空系统相关技术研发中</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">四川九州</div>
+                            <div class="info-value">低空空管设备供应商</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">海格通信</div>
+                            <div class="info-value">低空通航领域布局</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">深城交</div>
+                            <div class="info-value">低空经济基础设施规划</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">新晨科技</div>
+                            <div class="info-value">低空系统相关业务</div>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-title">低空产业发展将呈现三阶段发展态势 - 中国信通院发布蓝皮书</div>
+                        <div class="news-meta">
+                            <span class="news-source">来源：飞象网/腾讯网</span>
+                            <span class="news-date">2026-04-07</span>
+                        </div>
+                        <a href="https://news.qq.com/rain/a/20260407A05PH200" target="_blank" class="news-link">查看原文 →</a>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-title">2025年低空经济大事记与2026年投资展望 - 金元证券</div>
+                        <div class="news-meta">
+                            <span class="news-source">来源：搜狐</span>
+                            <span class="news-date">2026-02</span>
+                        </div>
+                        <a href="https://www.sohu.com/a/987841185_122020073" target="_blank" class="news-link">查看原文 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 海外厂商 -->
+        <div id="international" class="tab-content">
+            <div class="section-title">
+                <div class="icon">
+                    <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                </div>
+                <h2>海外厂商动态</h2>
+            </div>
+
+            <!-- Thales -->
+            <div class="vendor-card">
+                <div class="vendor-header">
+                    <span class="vendor-name">Thales (法国)</span>
+                    <span class="vendor-badge">国际厂商</span>
+                </div>
+                <div class="vendor-content">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">核心业务</div>
+                            <div class="info-value">空中交通管制系统、低空监视系统</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">技术优势</div>
+                            <div class="info-value">航空电子、安全系统领域全球领先</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">最新动态</div>
+                            <div class="info-value">2026年国际无人机及防务展会参与</div>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-title">2026年国际无人机防务展会日历 - Thales相关活动</div>
+                        <div class="news-meta">
+                            <span class="news-source">来源：Global Importer</span>
+                            <span class="news-date">2026年度</span>
+                        </div>
+                        <a href="https://m.globalimporter.net/tradeexpo-d-1314301.htm" target="_blank" class="news-link">查看原文 →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unifly -->
+            <div class="vendor-card">
+                <div class="vendor-header">
+                    <span class="vendor-name">Unifly (比利时)</span>
+                    <span class="vendor-badge">国际厂商</span>
+                </div>
+                <div class="vendor-content">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">核心业务</div>
+                            <div class="info-value">UTM (无人机交通管理) 系统</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">技术优势</div>
+                            <div class="info-value">欧洲领先UTM解决方案提供商</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">最新动态</div>
+                            <div class="info-value">无人机交通管理行业发展研究参考</div>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-title">2025年无人机交通管理行业深度分析 - Unifly行业地位</div>
+                        <div class="news-meta">
+                            <span class="news-source">来源：中研网</span>
+                            <span class="news-date">2026-03</span>
+                        </div>
+                        <a href="https://m.chinairn.com/hyzx/20260327/165845771.shtml" target="_blank" class="news-link">查看原文 →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ANRA Technologies -->
+            <div class="vendor-card">
+                <div class="vendor-header">
+                    <span class="vendor-name">ANRA Technologies (美国)</span>
+                    <span class="vendor-badge">国际厂商</span>
+                </div>
+                <div class="vendor-content">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">核心业务</div>
+                            <div class="info-value">无人机空域管理、UTM平台</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">技术优势</div>
+                            <div class="info-value">DroneUSS空域管理平台</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">最新动态</div>
+                            <div class="info-value">全球无人机展会参与</div>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-title">ANRA Technologies - 全球无人机交通管理解决方案</div>
+                        <div class="news-meta">
+                            <span class="news-source">来源：行业研究</span>
+                            <span class="news-date">2026年</span>
+                        </div>
+                        <a href="https://m.chinairn.com/hyzx/20260119/173953147.shtml" target="_blank" class="news-link">查看原文 →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vendor-card">
+                <div class="vendor-header">
+                    <span class="vendor-name">全球UTM市场概览</span>
+                    <span class="vendor-badge">市场分析</span>
+                </div>
+                <div class="vendor-content">
+                    <div class="news-item">
+                        <div class="news-title">2026年无人机交通管理行业发展现状及趋势分析</div>
+                        <div class="news-meta">
+                            <span class="news-source">来源：中研普华</span>
+                            <span class="news-date">2026-01</span>
+                        </div>
+                        <a href="https://www.chinairn.com/hyzx/20260119/173953147.shtml" target="_blank" class="news-link">查看原文 →</a>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-title">2026年城市空中交通前景分析</div>
+                        <div class="news-meta">
+                            <span class="news-source">来源：产业调研网</span>
+                            <span class="news-date">2026年</span>
+                        </div>
+                        <a href="https://www.cir.cn/6/50/ChengShiKongZhongJiaoTongQianJing.html" target="_blank" class="news-link">查看原文 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 竞品对比 -->
+        <div id="comparison" class="tab-content">
+            <div class="section-title">
+                <div class="icon">
+                    <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                </div>
+                <h2>竞品对比分析</h2>
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>厂商</th>
+                        <th>核心产品</th>
+                        <th>主要优势</th>
+                        <th>市场定位</th>
+                        <th>最新动态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>中科星图</strong></td>
+                        <td>省级低空智能网联系统</td>
+                        <td>300+卫星数据、0.5米分辨率影像</td>
+                        <td>政府/省级平台</td>
+                        <td>4月15日业绩说明会</td>
+                    </tr>
+                    <tr>
+                        <td><strong>莱斯信息</strong>
+                        <td>低空天牧平台</td>
+                        <td>40万+航空器监视能力</td>
+                        <td>省级平台</td>
+                        <td>中标辽宁省级项目</td>
+                    </tr>
+                    <tr>
+                        <td><strong>中科云图</strong></td>
+                        <td>低空遥感网、天路网</td>
+                        <td>100+区县覆盖、灵玑大模型</td>
+                        <td>城市级/区县</td>
+                        <td>参与海珠天路网建设</td>
+                    </tr>
+                    <tr>
+                        <td><strong>中国电信</strong></td>
+                        <td>1+1+4+N能力体系</td>
+                        <td>四大平台+模组生态</td>
+                        <td>运营商/国家级</td>
+                        <td>MWC全球发布</td>
+                    </tr>
+                    <tr>
+                        <td><strong>高域科技</strong></td>
+                        <td>eVTOL飞行汽车</td>
+                        <td>适航取证、量产准备</td>
+                        <td>飞行器制造</td>
+                        <td>2026年底量产</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thales</strong></td>
+                        <td>ATC/低空监视</td>
+                        <td>航空电子全球领先</td>
+                        <td>国际/高端</td>
+                        <td>展会参与</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Unifly</strong></td>
+                        <td>UTM系统</td>
+                        <td>欧洲UTM领先</td>
+                        <td>国际/UTM</td>
+                        <td>持续拓展</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ANRA</strong></td>
+                        <td>DroneUSS平台</td>
+                        <td>空域管理方案</td>
+                        <td>国际/UTM</td>
+                        <td>展会参与</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="vendor-card" style="margin-top: 24px;">
+                <div class="vendor-header">
+                    <span class="vendor-name">市场洞察</span>
+                    <span class="vendor-badge">分析师观点</span>
+                </div>
+                <div class="vendor-content">
+                    <div class="info-item">
+                        <div class="info-label">行业趋势</div>
+                        <div class="info-value">
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li>省级低空管服平台成为建设重点，东北地区实现突破</li>
+                                <li>低空智能网联系统是核心基础设施，被定义为"天上的红绿灯"</li>
+                                <li>"一网统飞"模式推进，集约化、智能化成为方向</li>
+                                <li>5G-A、北斗、数字孪生技术深度融合</li>
+                                <li>低空经济标准体系建设指南发布，规范化发展加速</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">投资机会</div>
+                        <div class="info-value">
+                            <ul style="margin-left: 20px; line-height: 1.8;">
+                                <li>低空管服平台建设（省级/市级）</li>
+                                <li>低空感知/反无设备</li>
+                                <li>eVTOL及配套基础设施</li>
+                                <li>低空通信/导航/监视系统</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>低空ATC竞品分析 2026-04-08 | 数据来源：综合整理</p>
+        <p style="margin-top:10px;">信息来源包括：证券时报、中国证券报、腾讯网、网易、C114通信网等</p>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
