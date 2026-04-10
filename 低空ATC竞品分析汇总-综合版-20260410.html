@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空空管系统（低空ATC）竞品分析综合报告</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", -apple-system, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 30px 20px; }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a5276 0%, #2874a6 50%, #3498db 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(26, 82, 118, 0.3);
+        }
+        header h1 { font-size: 32px; margin-bottom: 15px; }
+        header .subtitle { font-size: 18px; opacity: 0.95; }
+        
+        /* Report Meta */
+        .report-meta {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .meta-item { display: flex; align-items: center; gap: 10px; }
+        .meta-label { font-weight: bold; color: #1a5276; }
+        .meta-value { color: #555; }
+        
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        .summary-box h2 { font-size: 20px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 12px; }
+        .summary-box ul { padding-left: 25px; }
+        .summary-box li { margin: 12px 0; font-size: 15px; line-height: 1.6; }
+        
+        /* TOC */
+        .toc {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        .toc h2 { font-size: 20px; color: #1a5276; margin-bottom: 20px; border-bottom: 2px solid #2874a6; padding-bottom: 12px; }
+        .toc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+        .toc a { color: #2874a6; text-decoration: none; padding: 8px 15px; display: block; border-radius: 6px; transition: all 0.3s; }
+        .toc a:hover { background: #e8f4f8; color: #1a5276; text-decoration: none; }
+        
+        /* Section */
+        .section {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .section-header {
+            background: linear-gradient(135deg, #2874a6 0%, #3498db 100%);
+            color: white;
+            padding: 20px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-header.comparison { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); }
+        .section-header.tech { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); }
+        .section-header.international { background: linear-gradient(135deg, #7d3c98 0%, #9b59b6 100%); }
+        .section-content { padding: 30px; }
+        
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+            overflow-x: auto;
+            display: block;
+        }
+        .comparison-table th {
+            background: #34495e;
+            color: white;
+            padding: 12px 10px;
+            text-align: left;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .comparison-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        .comparison-table tr:nth-child(even) { background: #f8f9fa; }
+        .comparison-table tr:hover { background: #e8f4f8; }
+        .comparison-table .highlight { background: #fff3cd; font-weight: bold; }
+        .comparison-table .sub-header { background: #ecf0f1; font-weight: bold; color: #2c3e50; }
+        
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .tag-tier1 { background: #e74c3c; color: white; }
+        .tag-tier2 { background: #f39c12; color: white; }
+        .tag-tier3 { background: #3498db; color: white; }
+        .tag-product { background: #d5f5e3; color: #27ae60; }
+        .tag-tech { background: #d6eaf8; color: #2980b9; }
+        .tag-solution { background: #fdebd0; color: #e67e22; }
+        .tag-project { background: #fadbd8; color: #c0392b; }
+        
+        /* Company Card */
+        .company-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .company-card:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .company-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 18px 25px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .company-name { font-size: 18px; font-weight: bold; color: #1a5276; }
+        .company-body { padding: 25px; }
+        
+        /* Info */
+        .info-item { margin-bottom: 15px; }
+        .info-item:last-child { margin-bottom: 0; }
+        .info-label { font-weight: bold; color: #2c3e50; font-size: 15px; margin-bottom: 8px; }
+        .info-value { font-size: 14px; color: #555; line-height: 1.8; }
+        
+        /* Source Links */
+        .source-link {
+            display: inline-block;
+            color: #2874a6;
+            text-decoration: none;
+            font-size: 13px;
+            padding: 6px 14px;
+            background: #e8f4f8;
+            border-radius: 5px;
+            margin: 4px 4px 4px 0;
+            transition: all 0.3s;
+        }
+        .source-link:hover { background: #2874a6; color: white; }
+        
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .feature-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .feature-card.green { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); }
+        .feature-card.orange { background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%); }
+        .feature-card h4 { font-size: 18px; margin-bottom: 10px; }
+        .feature-card p { font-size: 14px; opacity: 0.9; }
+        
+        /* Footer */
+        footer { text-align: center; padding: 40px; color: #888; font-size: 14px; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 24px; }
+            .comparison-table { font-size: 12px; }
+            .comparison-table th, .comparison-table td { padding: 8px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>低空空管系统（低空ATC）竞品分析综合报告</h1>
+            <p class="subtitle">Low Altitude Air Traffic Control System Competitive Analysis Report</p>
+            <p style="margin-top:15px; font-size:14px; opacity:0.8;">报告日期：2026年4月10日 | 信息采集周期：2024年-2026年4月</p>
+        </header>
+
+        <div class="report-meta">
+            <div class="meta-item">
+                <span class="meta-label">覆盖厂商：</span>
+                <span class="meta-value">17家国内 + 3家海外</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">信息采集：</span>
+                <span class="meta-value">政府招标、企业公告、行业媒体</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">对比维度：</span>
+                <span class="meta-value">产品/技术/市场/中标项目</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">更新时间：</span>
+                <span class="meta-value">2026年4月10日</span>
+            </div>
+        </div>
+
+        <div class="summary-box">
+            <h2>本期重要发现摘要</h2>
+            <ul>
+                <li><strong>深城交：</strong>牵头获批深圳低空经济领域首个重点实验室 - 深圳市低空智能交通运行系统重点实验室</li>
+                <li><strong>中科星图：</strong>发布省级低空智能网联系统解决方案，可支撑10万架规模高密度飞行；与民机试飞中心达成战略合作</li>
+                <li><strong>莱斯信息：</strong>成功中标辽宁省省级低空飞行综合管理服务平台项目（一期），填补东北地区省级平台空白</li>
+                <li><strong>北斗伏羲：</strong>中标黄石市低空飞行监管服务平台项目（2888万元），北斗网格码商业化落地</li>
+                <li><strong>广州中科云图：</strong>发布"中科灵玑低空大模型"，参与海珠区天路网建设</li>
+                <li><strong>四川九州：</strong>AI空管2.0方案与DeepSeek联合推出，多个城市取得实质性进展</li>
+            </ul>
+        </div>
+
+        <div class="toc">
+            <h2>目录导航</h2>
+            <div class="toc-grid">
+                <a href="#comparison">一、厂商综合对比分析</a>
+                <a href="#platform">二、低空平台功能对比</a>
+                <a href="#tech">三、技术架构对比</a>
+                <a href="#tier1">四、第一梯队厂商详情</a>
+                <a href="#tier2">五、第二梯队厂商详情</a>
+                <a href="#tier3">六、第三梯队厂商详情</a>
+                <a href="#international">七、海外厂商</a>
+                <a href="#bidding">八、招投标项目汇总</a>
+            </div>
+        </div>
+
+        <!-- 第一部分：厂商综合对比 -->
+        <div class="section" id="comparison">
+            <div class="section-header comparison">
+                一、厂商综合对比分析
+            </div>
+            <div class="section-content">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>厂商名称</th>
+                            <th>梯队定位</th>
+                            <th>核心优势</th>
+                            <th>主要产品</th>
+                            <th>技术特色</th>
+                            <th>市场覆盖</th>
+                            <th>近期重大动态</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight">
+                            <td><strong>中科星图</strong><br/>(688568)</td>
+                            <td><span class="tag tag-tier1">第一梯队</span></td>
+                            <td>空天信息+数字地球+低空云</td>
+                            <td>GEOVIS平台、星图低空云、天驭反无系统</td>
+                            <td>G-DGGS三维剖分、北斗网格码、星瞳大模型</td>
+                            <td>20+城市<br/>80+线上服务</td>
+                            <td>汉中2.95亿、衡水1.39亿、厦门平台</td>
+                        </tr>
+                        <tr>
+                            <td><strong>北斗伏羲</strong><br/>(中科星图参股)</td>
+                            <td><span class="tag tag-tier1">第一梯队</span></td>
+                            <td>北斗网格码国家标准创建者</td>
+                            <td>低空伏羲图、低空立体交通红绿灯</td>
+                            <td>GeoSOT地球空间剖分</td>
+                            <td>合肥、成都、朝阳、衢州、黄石</td>
+                            <td>黄石2888万、朝阳1.3亿</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td><strong>莱斯信息</strong><br/>(688631)</td>
+                            <td><span class="tag tag-tier1">第一梯队</span></td>
+                            <td>民航空管龙头、背靠电科28所</td>
+                            <td>天牧大模型、低空飞行服务平台</td>
+                            <td>40万+航空器实时监视、军民地协同</td>
+                            <td>10+城市、江苏省级平台</td>
+                            <td>辽宁省级平台、澳门机场项目</td>
+                        </tr>
+                        <tr>
+                            <td><strong>四川九州</strong><br/>(000801)</td>
+                            <td><span class="tag tag-tier2">第二梯队</span></td>
+                            <td>空管硬件+软件一体化</td>
+                            <td>ADS-B、应答机、低空协同运营中心</td>
+                            <td>AI空管2.0(DeepSeek)、智能起降调度</td>
+                            <td>东台、建德、长春、深圳、绵阳</td>
+                            <td>绵阳低空研究院、AI空管2.0发布</td>
+                        </tr>
+                        <tr>
+                            <td><strong>深城交</strong></td>
+                            <td><span class="tag tag-tier2">第二梯队</span></td>
+                            <td>城市规划+低空规划融合</td>
+                            <td>SILAS低空智能融合系统、城市低空综合平台</td>
+                            <td>CIM底座、十万级实时管理</td>
+                            <td>20+城市(深圳、无锡、江门)</td>
+                            <td>深圳低空智能交通重点实验室</td>
+                        </tr>
+                        <tr>
+                            <td><strong>广州中科云图</strong></td>
+                            <td><span class="tag tag-tier2">第二梯队</span></td>
+                            <td>无人机遥感网运营</td>
+                            <td>云巢基站、中科灵玑大模型、中科驭空平台</td>
+                            <td>GeoAI、无人机自动驾驶</td>
+                            <td>70+地区、数千台基站</td>
+                            <td>C轮融资、海珠天路网</td>
+                        </tr>
+                        <tr>
+                            <td><strong>安擎科技</strong></td>
+                            <td><span class="tag tag-tier2">第二梯队</span></td>
+                            <td>UTM系统+超视距飞行</td>
+                            <td>SafeSky UTM、DAA智能盒、DroneID</td>
+                            <td>14层地理图层、BVLOS超视距</td>
+                            <td>50+城市、万套设备</td>
+                            <td>UMEX2026参展、百万飞行小时</td>
+                        </tr>
+                        <tr>
+                            <td><strong>航天宏图</strong><br/>(688066)</td>
+                            <td><span class="tag tag-tier3">第三梯队</span></td>
+                            <td>遥感+低空监管</td>
+                            <td>低空综合监管飞行服务平台、PIE-U28</td>
+                            <td>天空地一体化、量子通信</td>
+                            <td>华东、太原、济南、厦门</td>
+                            <td>近4亿元项目中标</td>
+                        </tr>
+                        <tr>
+                            <td><strong>海格通信</strong><br/>(002465)</td>
+                            <td><span class="tag tag-tier3">第三梯队</span></td>
+                            <td>通信+导航+无人机</td>
+                            <td>天腾平台、九天无人机</td>
+                            <td>北斗+5G+卫星互联网</td>
+                            <td>广州为主</td>
+                            <td>西安智能制造基地</td>
+                        </tr>
+                        <tr>
+                            <td><strong>川大智胜</strong><br/>(002253)</td>
+                            <td><span class="tag tag-tier3">第三梯队</span></td>
+                            <td>空管软件+雷达</td>
+                            <td>空管自动化系统、低空监视雷达</td>
+                            <td>宽带融合雷达、语音识别</td>
+                            <td>全国空管系统</td>
+                            <td>雷达小批量供货</td>
+                        </tr>
+                        <tr>
+                            <td><strong>新晨科技</strong><br/>(300542)</td>
+                            <td><span class="tag tag-tier3">第三梯队</span></td>
+                            <td>空管信息化+金融科技</td>
+                            <td>低空申报平台、监视平台、防务系统</td>
+                            <td>20年空管经验、一键申报</td>
+                            <td>全国布局</td>
+                            <td>亏损收窄、双轮驱动</td>
+                        </tr>
+                        <tr>
+                            <td><strong>北京智网易联</strong></td>
+                            <td><span class="tag tag-tier3">第三梯队</span></td>
+                            <td>北斗网格+时空AI</td>
+                            <td>智飞平台、Zhi-Cloud系列</td>
+                            <td>6G通感算智融合、数字孪生</td>
+                            <td>全国布局</td>
+                            <td>南通大学实验室、6G成果发布</td>
+                        </tr>
+                        <tr>
+                            <td><strong>东进航科</strong><br/>(839140)</td>
+                            <td><span class="tag tag-tier3">第三梯队</span></td>
+                            <td>通航飞行服务</td>
+                            <td>通航飞行服务站、ADS-B显示</td>
+                            <td>海南试点经验</td>
+                            <td>海南及全国</td>
+                            <td>苏州规划并购</td>
+                        </tr>
+                        <tr>
+                            <td><strong>众合科技</strong><br/>(000925)</td>
+                            <td><span class="tag tag-tier3">第三梯队</span></td>
+                            <td>轨道交通+低空</td>
+                            <td>Unispace低空平台</td>
+                            <td>多主体统一空域管理</td>
+                            <td>全国布局</td>
+                            <td>行业标准制定</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Thales</strong><br/>(法国)</td>
+                            <td><span class="tag tag-tier2">海外龙头</span></td>
+                            <td>全球空管系统龙头</td>
+                            <td>TopSky-UTM、Eurocat</td>
+                            <td>AI行为预测、软杀伤技术</td>
+                            <td>全球68国</td>
+                            <td>挪威全国UTM</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Unifly</strong><br/>(比利时)</td>
+                            <td><span class="tag tag-tier2">海外龙头</span></td>
+                            <td>欧洲UTM领先</td>
+                            <td>Unifly UTM Platform</td>
+                            <td>150万+飞行支持</td>
+                            <td>10+国家</td>
+                            <td>Terra Drone联合AAM UTM</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ANRA</strong><br/>(美国)</td>
+                            <td><span class="tag tag-tier2">海外龙头</span></td>
+                            <td>美国UTM第一</td>
+                            <td>Nexon UTM、AIRCADEMY</td>
+                            <td>eVTOL+无人机融合</td>
+                            <td>美国为主</td>
+                            <td>Arlington警局合作</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 第二部分：低空平台功能对比 -->
+        <div class="section" id="platform">
+            <div class="section-header tech">
+                二、低空平台功能对比
+            </div>
+            <div class="section-content">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>功能模块</th>
+                            <th>中科星图</th>
+                            <th>莱斯信息</th>
+                            <th>北斗伏羲</th>
+                            <th>四川九州</th>
+                            <th>深城交</th>
+                            <th>安擎科技</th>
+                            <th>航天宏图</th>
+                            <th>Thales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="sub-header"><td colspan="9">核心监管功能</td></tr>
+                        <tr>
+                            <td>飞行计划管理</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>实时监控/跟踪</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>空域管理/划分</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓✓</td>
+                            <td>✓</td>
+                            <td>✓✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>流量管理</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>冲突告警</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr class="sub-header"><td colspan="9">特色功能</td></tr>
+                        <tr>
+                            <td>无人机反制/防控</td>
+                            <td>✓✓ 天驭</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>✓ 智空</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>有人/无人协同</td>
+                            <td>✓</td>
+                            <td>✓✓</td>
+                            <td>✓</td>
+                            <td>✓✓</td>
+                            <td>✓✓</td>
+                            <td>✓</td>
+                            <td>-</td>
+                            <td>✓✓</td>
+                        </tr>
+                        <tr>
+                            <td>气象服务</td>
+                            <td>✓✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>地理围栏</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓✓ 14层</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>低空数字孪生</td>
+                            <td>✓✓</td>
+                            <td>✓</td>
+                            <td>✓✓</td>
+                            <td>-</td>
+                            <td>✓✓ SILAS</td>
+                            <td>-</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>AI大模型</td>
+                            <td>✓✓ 星瞳</td>
+                            <td>✓ 天牧</td>
+                            <td>-</td>
+                            <td>✓✓ AI空管2.0</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>✓ AI预测</td>
+                        </tr>
+                        <tr class="sub-header"><td colspan="9">扩展能力</td></tr>
+                        <tr>
+                            <td>eVTOL支持</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓✓</td>
+                        </tr>
+                        <tr>
+                            <td>无人机起降场管理</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓✓</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>✓ Vertiport</td>
+                        </tr>
+                        <tr>
+                            <td>无人机机巢接入</td>
+                            <td>✓</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>✓</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>5G/6G融合</td>
+                            <td>✓</td>
+                            <td>-</td>
+                            <td>✓ 5G-A</td>
+                            <td>-</td>
+                            <td>✓</td>
+                            <td>-</td>
+                            <td>✓</td>
+                            <td>-</td>
+                        </tr>
+                        <tr class="sub-header"><td colspan="9">性能指标</td></tr>
+                        <tr>
+                            <td>规模支撑</td>
+                            <td>10万+</td>
+                            <td>40万+</td>
+                            <td>未披露</td>
+                            <td>未披露</td>
+                            <td>10万+ SILAS</td>
+                            <td>城市级</td>
+                            <td>未披露</td>
+                            <td>百万级</td>
+                        </tr>
+                        <tr>
+                            <td>省级平台</td>
+                            <td>✓✓</td>
+                            <td>✓✓</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>✓</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>✓✓</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top:15px; color:#666; font-size:13px;">
+                    <strong>说明：</strong>✓✓ 表示该功能为核心优势或能力突出；✓ 表示具备该功能；- 表示暂无明确信息或功能较弱
+                </p>
+            </div>
+        </div>
+
+        <!-- 第三部分：技术架构对比 -->
+        <div class="section" id="tech">
+            <div class="section-header tech">
+                三、技术架构对比
+            </div>
+            <div class="section-content">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>技术维度</th>
+                            <th>中科星图</th>
+                            <th>莱斯信息</th>
+                            <th>北斗伏羲</th>
+                            <th>四川九州</th>
+                            <th>深城交</th>
+                            <th>安擎科技</th>
+                            <th>航天宏图</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="sub-header"><td colspan="8">基础架构</td></tr>
+                        <tr>
+                            <td>核心技术底座</td>
+                            <td>GEOVIS数字地球</td>
+                            <td>空管信息化</td>
+                            <td>GeoSOT地球剖分</td>
+                            <td>空管系统</td>
+                            <td>CIM城市信息模型</td>
+                            <td>SafeSky UTM云</td>
+                            <td>PIESAT遥感</td>
+                        </tr>
+                        <tr>
+                            <td>时空框架</td>
+                            <td>G-DGGS三维剖分</td>
+                            <td>经纬度坐标</td>
+                            <td>北斗网格码(国标)</td>
+                            <td>标准空域模型</td>
+                            <td>城市三维模型</td>
+                            <td>14层地理图层</td>
+                            <td>遥感坐标系</td>
+                        </tr>
+                        <tr>
+                            <td>部署模式</td>
+                            <td>云+端混合</td>
+                            <td>私有化为主</td>
+                            <td>云+本地</td>
+                            <td>私有化</td>
+                            <td>云+边协同</td>
+                            <td>云原生</td>
+                            <td>云+端</td>
+                        </tr>
+                        <tr class="sub-header"><td colspan="8">通信技术</td></tr>
+                        <tr>
+                            <td>5G/5G-A</td>
+                            <td>✓</td>
+                            <td>-</td>
+                            <td>✓</td>
+                            <td>-</td>
+                            <td>✓</td>
+                            <td>-</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>北斗/北斗三代</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓✓ 核心</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>卫星互联网</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>VHF通信</td>
+                            <td>-</td>
+                            <td>✓✓</td>
+                            <td>-</td>
+                            <td>✓✓</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr class="sub-header"><td colspan="8">感知监视</td></tr>
+                        <tr>
+                            <td>ADS-B接收</td>
+                            <td>✓</td>
+                            <td>✓✓</td>
+                            <td>✓</td>
+                            <td>✓✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>低空雷达</td>
+                            <td>-</td>
+                            <td>✓</td>
+                            <td>-</td>
+                            <td>✓✓</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>光电探测</td>
+                            <td>✓</td>
+                            <td>-</td>
+                            <td>✓</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>RID设备</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>✓</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>✓✓ DroneID</td>
+                            <td>-</td>
+                        </tr>
+                        <tr class="sub-header"><td colspan="8">AI/智能</td></tr>
+                        <tr>
+                            <td>大模型</td>
+                            <td>✓ 星瞳</td>
+                            <td>✓ 天牧</td>
+                            <td>-</td>
+                            <td>✓ AI空管2.0</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>智能算法库</td>
+                            <td>✓ 150+算法</td>
+                            <td>✓</td>
+                            <td>✓ 算法中心</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>-</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>路径规划</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓✓ 网格优化</td>
+                            <td>✓</td>
+                            <td>✓✓</td>
+                            <td>✓✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td>数字孪生</td>
+                            <td>✓✓</td>
+                            <td>-</td>
+                            <td>✓✓</td>
+                            <td>-</td>
+                            <td>✓✓ SILAS</td>
+                            <td>-</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr class="sub-header"><td colspan="8">安全能力</td></tr>
+                        <tr>
+                            <td>无人机探测</td>
+                            <td>✓✓ 天驭</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>✓ 智空</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>电子干扰/反制</td>
+                            <td>✓</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>✓</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>身份认证/加密</td>
+                            <td>✓</td>
+                            <td>✓✓</td>
+                            <td>✓</td>
+                            <td>✓✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 第四部分：第一梯队厂商 -->
+        <div class="section" id="tier1">
+            <div class="section-header">
+                四、第一梯队厂商详情
+            </div>
+            <div class="section-content">
+                <!-- 中科星图 -->
+                <div class="company-card" id="zhongkexingtu">
+                    <div class="company-header">
+                        <span class="company-name">中科星图股份有限公司 (688568.SH)</span>
+                        <div>
+                            <span class="tag tag-tier1">第一梯队</span>
+                            <span class="tag tag-product">产品发布</span>
+                            <span class="tag tag-solution">解决方案</span>
+                            <span class="tag tag-project">项目中标</span>
+                        </div>
+                    </div>
+                    <div class="company-body">
+                        <div class="info-item">
+                            <div class="info-label">厂商简介</div>
+                            <div class="info-value">国内领先的数字地球产品与服务提供商，2025年实施"一体两翼"战略，以地理信息为主体，商业航天与低空经济为两翼。已形成涵盖低空规划、安全保障、协同监管、飞行服务、场景应用全链条产品能力。</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">核心产品体系（五位一体）</div>
+                            <div class="info-value">
+                                <table class="comparison-table">
+                                    <tr><th>产品线</th><th>功能定位</th><th>技术特点</th></tr>
+                                    <tr><td>领航·低空飞行综合监管服务平台</td><td>监管核心</td><td>实时监控、冲突告警，空域管理</td></tr>
+                                    <tr><td>御航·低空反无平台</td><td>安全保障</td><td>无人机探测、反制、防控</td></tr>
+                                    <tr><td>空擎·低空中台</td><td>技术底座</td><td>数据融合、算法集成</td></tr>
+                                    <tr><td>智航·低空应用平台</td><td>场景应用</td><td>物流、巡检、应急等</td></tr>
+                                    <tr><td>启航·低空规划平台</td><td>空域规划</td><td>航路设计，空域规划</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">最新动态（2026年3-4月）</div>
+                            <div class="info-value">
+                                <p><strong>1. 战略合作：</strong>2026年3月与中国航空工业集团民机试飞中心在西安达成战略合作，共建低空装备安全性测试验证公共服务平台。</p>
+                                <p><strong>2. 解决方案发布：</strong>发布省级低空智能网联系统解决方案，以"1个数字底座+4个功能模块"为核心，已服务覆盖京津冀、长三角、大湾区等重点区域，线上线下服务近百座城市。</p>
+                                <p><strong>3. 全场景安全方案：</strong>发布低空全场景安全解决方案，涵盖"天驭"系列低空智联反制系统。</p>
+                                <p><strong>4. 业绩表现：</strong>2025年业绩预告，预计营收25-27.5亿元，净利润0.3-0.45亿元。2025年1-9月研发费用达5.22亿元，同比激增33.20%。</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">重大中标项目</div>
+                            <div class="info-value">
+                                <table class="comparison-table">
+                                    <tr><th>项目名称</th><th>金额</th><th>时间</th></tr>
+<tr><td>汉中市低空经济数字化基础设施建设项目</td><td>2.95亿元</td><td>2025年11月</td></tr>
+                                    <tr><td>衡水市天空地一体化综合建设管理运营项目</td><td>1.39亿元</td><td>2026年3月</td></tr>
+                                    <tr><td>长治市上党区低空示范区安全保障体系项目</td><td>1.398亿元</td><td>2026年1月</td></tr>
+                                    <tr><td>厦门市低空综合管理服务平台</td><td>-</td><td>2026年3月</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">信息来源</div>
+                            <div class="info-value">
+                                <a href="https://www.stcn.com/article/detail/3683219.html" class="source-link" target="_blank">证券时报</a>
+                                <a href="https://www.c114.com.cn/la/6544/a1307861.html" class="source-link" target="_blank">C114</a>
+                                <a href="https://www.geovis.com.cn/cases/detail/379" class="source-link" target="_blank">中科星图官网</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 莱斯信息 -->
+                <div class="company-card" id="laisixinxi">
+                    <div class="company-header">
+                        <span class="company-name">南京莱斯信息技术股份有限公司 (688631.SH)</span>
+                        <div>
+                            <span class="tag tag-tier1">第一梯队</span>
+                            <span class="tag tag-project">项目中标</span>
+                            <span class="tag tag-product">产品发布</span>
+                        </div>
+                    </div>
+                    <div class="company-body">
+                        <div class="info-item">
+                            <div class="info-label">厂商简介</div>
+                            <div class="info-value">中国民用航空局空中交通管理局直属企业，国内民航空管领域龙头。2023年6月28日科创板上市，主营业务包括民航空中交通管理、应急指挥、智慧城市等。拥有20+年空管技术积累，2026年股价创历史新高。</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">核心产品</div>
+                            <div class="info-value">
+                                <table class="comparison-table">
+                                    <tr><th>产品</th><th>功能</th><th>特点</th></tr>
+                                    <tr><td>"天牧"低空大模型</td><td>航空运输大模型</td><td>国内首套、智能决策能力</td></tr>
+                                    <tr><td>低空飞行服务管理平台</td><td>核心平台</td><td>有人/无人协同管理</td></tr>
+                                    <tr><td>江苏省低空飞行服务中心</td><td>省级平台</td><td>军民地三方协同机制</td></tr>
+                                    <tr><td>低空管服平台</td><td>省市级解决方案</td><td>"全域感知+智能中枢+协同引擎"</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">最新动态（2026年3-4月）</div>
+                            <div class="info-value">
+                                <p><strong>1. 重大中标：</strong>成功中标辽宁省省级低空飞行综合管理服务平台项目（一期)，填补东北地区省级低空飞行综合管理服务体系空白。</p>
+                                <p><strong>2. 市场布局：</strong>"天牧"系统已支撑全国10余个城市低空能力建设，包括湖北省、南京市等标杆项目。签约澳门国际机场塔台自动化系统项目。</p>
+                                <p><strong>3. 技术能力：</strong>平台可支持40万级以上航空器的实时监视数据接入、解析与处理，满足空域申请、飞行计划审批等高频业务的并发请求。</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">信息来源</div>
+                            <div class="info-value">
+                                <a href="https://www.stcn.com/article/detail/3724257.html" class="source-link" target="_blank">证券时报</a>
+                                <a href="http://www.zqrb.cn/gscy/ggkx/2026-01-13/A1768294004161.html" class="source-link" target="_blank">证券日报</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 北斗伏羲 -->
+                <div class="company-card" id="beidoufuxi">
+                    <div class="company-header">
+                        <span class="company-name">北斗伏羲信息技术有限公司</span>
+                        <div>
+                            <span class="tag tag-tier1">第一梯队</span>
+                            <span class="tag tag-project">项目中标</span>
+                            <span class="tag tag-tech">技术发布</span>
+                        </div>
+                    </div>
+                    <div class="company-body">
+                        <div class="info-item">
+                            <div class="info-label">厂商简介</div>
+                            <div class="info-value">北京大学投资孵化的国家高新技术企业，北斗网格位置码国家标准创始单位。依托GeoSOT地球空间剖分理论，围绕低空三维网格化建模，创新发展低空立体空域图。设北京、合肥双总部，被列入安徽省IPO重点支持企业。</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">核心技术体系</div>
+                            <div class="info-value">
+                                <table class="comparison-table">
+                                    <tr><th>技术/产品</th><th>特点</th></tr>
+                                    <tr><td>北斗网格码技术</td><td>厘米级精度，国家标准创建者</td></tr>
+                                    <tr><td>GeoSOT地球空间剖分理论</td><td>北京大学程承旗教授原创理论</td></tr>
+                                    <tr><td>低空伏羲图iWhereSky 1.0</td><td>全球首款低空立体空域图</td></tr>
+                                    <tr><td>低空立体交通红绿灯系统</td><td>低空飞行安全管理创新产品</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">最新动态（2026年3-4月）</div>
+                            <div class="info-value">
+                                <p><strong>1. 重大中标：</strong>2026年3月11日中标黄石市低空飞行监管服务平台建设项目，中标金额2888.19万元。</p>
+                                <p><strong>2. 项目架构：</strong>一个门户 + 五大系统 + 一个算法中心 + 一个数据底座 + 一套三维网格图 + 一套感知监测体系（含ADS-B、无线电探测，光电探测，RID设备、5G-A基站）。</p>
+                                <p><strong>3. 战略合作：</strong>与广东省低空经济产业发展有限公司、北京高德云图科技有限公司达成战略合作，共推大湾区低空经济发展。</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">信息来源</div>
+                            <div class="info-value">
+                                <a href="https://news.qq.com/rain/a/20260311A04X5Z00" class="source-link" target="_blank">腾讯网</a>
+                                <a href="https://c.m.163.com/news/a/KOAATC5S0511D6RL.html" class="source-link" target="_blank">网易</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第五部分：第二梯队厂商 -->
+        <div class="section" id="tier2">
+            <div class="section-header">
+                五、第二梯队厂商详情
+            </div>
+            <div class="section-content">
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>四川九州</h4>
+                        <p>AI空管2.0+DeepSeek<br/>绵阳低空研究院<br/>多城市中标</p>
+                    </div>
+                    <div class="feature-card green">
+                        <h4>深城交</h4>
+                        <p>深圳低空重点实验室<br/>SILAS系统<br/>20+城市覆盖</p>
+                    </div>
+                    <div class="feature-card orange">
+                        <h4>广州中科云图</h4>
+                        <p>中科灵玑大模型<br/>海珠天路网<br/>C轮融资</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>安擎科技</h4>
+                        <p>SafeSky UTM<br/>50+城市覆盖<br/>万套设备交付</p>
+                    </div>
+                </div>
+
+                <div class="info-item" style="margin-top:30px;">
+                    <div class="info-label">第二梯队厂商核心优势对比</div>
+                    <div class="info-value">
+                        <table class="comparison-table">
+                            <tr><th>厂商</th><th>差异化优势</th><th>近期亮点</th></tr>
+                            <tr><td><strong>四川九州</strong></td><td>硬件+软件一体化，ADS-B/应答机核心能力，AI空管2.0</td><td>东台、建德、长春、深圳、绵阳多地中标；绵阳低空研究院揭牌</td></tr>
+                            <tr><td><strong>深城交</strong></td><td>城市规划+低空规划融合，CIM底座，SILAS十万级管理</td><td>获批深圳低空智能交通重点实验室；沃飞长空战略合作</td></tr>
+                            <tr><td><strong>广州中科云图</strong></td><td>GeoAI算法+无人机遥感网+云巢基站生态</td><td>发布中科灵玑低空大模型；C轮融资；参与海珠天路网</td></tr>
+                            <tr><td><strong>安擎科技</strong></td><td>SafeSky UTM+14层地理图层+BVLOS超视距飞行</td><td>UMEX2026参展；50+城市、万套设备、百万飞行小时</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第六部分：第三梯队厂商 -->
+        <div class="section" id="tier3">
+            <div class="section-header">
+                六、第三梯队厂商（新兴/特色领域）
+            </div>
+            <div class="section-content">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>厂商</th>
+                            <th>定位</th>
+                            <th>核心产品</th>
+                            <th>技术特色</th>
+                            <th>近期动态</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>航天宏图</strong>(688066)</td><td>遥感+低空监管</td><td>低空综合监管飞行服务平台、PIE-U28</td><td>天空地一体化、量子通信</td><td>华东、太原、济南、厦门近4亿项目</td></tr>
+                        <tr><td><strong>海格通信</strong>(002465)</td><td>通信+导航</td><td>天腾平台、九天无人机</td><td>北斗+5G+卫星互联网</td><td>西安智能制造基地建设</td></tr>
+                        <tr><td><strong>川大智胜</strong>(002253)</td><td>空管软件+雷达</td><td>空管自动化系统、低空监视雷达</td><td>宽带融合雷达、语音识别</td><td>雷达小批量供货</td></tr>
+                        <tr><td><strong>新晨科技</strong>(300542)</td><td>空管信息化</td><td>低空申报平台、监视平台</td><td>20年空管经验</td><td>亏损收窄、双轮驱动战略</td></tr>
+                        <tr><td><strong>北京智网易联</strong></td><td>北斗网格+时空AI</td><td>智飞平台</td><td>6G通感算智融合</td><td>南通大学实验室、6G成果发布</td></tr>
+                        <tr><td><strong>东进航科</strong>(839140)</td><td>通航飞行服务</td><td>通航飞行服务站</td><td>海南试点经验</td><td>苏州规划拟并购</td></tr>
+                        <tr><td><strong>众合科技</strong>(000925)</td><td>轨道交通+低空</td><td>Unispace低空平台</td><td>多主体统一空域</td><td>行业标准制定参与者</td></tr>
+                        <tr><td><strong>北京领云时代</strong></td><td>军民融合</td><td>星云空地一体系统</td><td>无人作战系统</td><td>多项无人机专利</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 第七部分：海外厂商 -->
+        <div class="section" id="international">
+            <div class="section-header international">
+                七、海外厂商（国际UTM方案提供商）
+            </div>
+            <div class="section-content">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>厂商</th>
+                            <th>国家</th>
+                            <th>定位</th>
+                            <th>核心产品</th>
+                            <th>技术优势</th>
+                            <th>全球布局</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Thales Group</strong></td>
+                            <td>法国</td>
+                            <td>全球空管龙头</td>
+                            <td>TopSky-UTM、Eurocat、AMS</td>
+                            <td>AI行为预测算法、软杀伤技术、端到端解决方案</td>
+                            <td>68个国家、全球市场份额前五</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Unifly</strong></td>
+                            <td>比利时</td>
+                            <td>欧洲UTM领先</td>
+                            <td>Unifly UTM Platform</td>
+                            <td>150万+飞行支持、10+国家部署</td>
+                            <td>欧洲为主、全球30+演示项目</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ANRA Technologies</strong></td>
+                            <td>美国</td>
+                            <td>美国UTM第一</td>
+                            <td>Nexon UTM、AIRCADEMY、missionManager</td>
+                            <td>eVTOL+无人机融合、FAA UTM深度参与</td>
+                            <td>美国市场主导</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="info-item" style="margin-top:25px;">
+                    <div class="info-label">国内外厂商对比分析</div>
+                    <div class="info-value">
+                        <p><strong>国际厂商优势：</strong></p>
+                        <p>• Thales：传统民航ATC深厚积累，与传统空管系统无缝集成能力强</p>
+                        <p>• Unifly：欧洲UTM标准制定参与者，本地化部署经验丰富</p>
+                        <p>• ANRA：FAA深度合作，eVTOL与无人机融合管理技术领先</p>
+                        <br/>
+                        <p><strong>国内厂商优势：</strong></p>
+                        <p>• 政策支持：国家战略性新兴产业，背靠国内市场政策红利</p>
+                        <p>• 技术创新：北斗网格码、数字孪生、AI大模型等特色技术</p>
+                        <p>• 场景丰富：无人机物流、应急、物流等多场景应用</p>
+                        <p>• 成本优势：本土化研发和部署成本较低</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第八部分：招投标项目 -->
+        <div class="section" id="bidding">
+            <div class="section-header">
+                八、招投标项目汇总（2025-2026年）
+            </div>
+            <div class="section-content">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>项目名称</th>
+                            <th>中标单位</th>
+                            <th>金额</th>
+                            <th>时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>汉中市低空经济数字化基础设施建设项目</td><td>中科星图联合体</td><td>2.95亿元</td><td>2025年11月</td></tr>
+                        <tr><td>衡水市天空地一体化综合建设管理运营项目</td><td>中科星图联合体</td><td>1.39亿元</td><td>2026年3月</td></tr>
+                        <tr><td>长治市上党区低空示范区安全保障体系项目</td><td>中科星图联合体</td><td>1.398亿元</td><td>2026年1月</td></tr>
+                        <tr><td>朝阳市低空空域基础设施及应用场景项目</td><td>北斗伏羲+辽宁低空运营</td><td>1.3亿元</td><td>2024年</td></tr>
+                        <tr><td>黄石市低空飞行监管服务平台建设项目</td><td>北斗伏羲</td><td>2888万元</td><td>2026年3月</td></tr>
+                        <tr><td>辽宁省省级低空飞行综合管理服务平台（一期）</td><td>莱斯信息</td><td>-</td><td>2026年4月</td></tr>
+                        <tr><td>安徽省新技术融合应用低空飞行服务平台</td><td>莱斯信息</td><td>-</td><td>2024年1月</td></tr>
+                        <tr><td>无锡市低空经济发展规划及实施方案</td><td>深城交</td><td>-</td><td>2024年4月</td></tr>
+                        <tr><td>深圳市低空航空器起降设施布局规划</td><td>深城交</td><td>-</td><td>2024年8月</td></tr>
+                        <tr><td>南山区低空经济运行试验区项目</td><td>深城交</td><td>-</td><td>2024年</td></tr>
+                        <tr><td>晋城无人机设备采购</td><td>科比特创新</td><td>约3967万元</td><td>2026年1月</td></tr>
+                        <tr><td>挪威全国UTM系统</td><td>Thales</td><td>-</td><td>2024年</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="info-item" style="margin-top:20px;">
+                    <div class="info-label">行业重要活动</div>
+                    <div class="info-value">
+                        <p><strong>2026世界无人机大会：</strong>2026年5月21-23日，深圳会展中心（福田），主题"低空经济飞向未来"。130余场平行论坛、140+国家代表、1200+企业参展、展览面积11万平方米。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 总结 -->
+        <div class="section">
+            <div class="summary-box">
+                <h2>总结与建议</h2>
+                <ul>
+                    <li><strong>市场格局：</strong>第一梯队（中科星图、莱斯信息、北斗伏羲）占据主要市场份额和技术话语权；第二梯队（四川九州、深城交、中科云图、安擎科技）凭借差异化优势快速崛起；第三梯队厂商聚焦细分领域。</li>
+                    <li><strong>技术趋势：</strong>AI大模型、数字孪生、5G-A通感一体化、北斗网格码成为核心技术方向；省级/城市级低空平台成为建设重点。</li>
+                    <li><strong>竞争焦点：</strong>有人/无人协同管理、eVTOL支持、10万+规模飞行支撑能力成为平台竞争关键指标。</li>
+                    <li><strong>投资建议：</strong>重点关注第一梯队厂商技术迭代、第二梯队厂商差异化突破、省级平台建设带来的市场机会。</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p>本报告由Matrix Agent收集整理 | 信息采集日期：2026年4月10日</p>
+            <p>声明：本报告仅供研究参考，文中信息可能存在时效性限制，请以官方最新公告为准</p>
+        </footer>
+    </div>
+</body>
+</html>
