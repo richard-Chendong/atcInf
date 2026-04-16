@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>低空ATC竞品分析 2026-04-16</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #0d6efd; --primary-l: #e8f1ff;
+      --purple: #7c3aed; --teal: #059669;
+      --orange: #d97706; --red: #dc2626;
+      --dark: #0f172a; --muted: #64748b;
+      --card: #ffffff; --bg: #f0f4fb;
+      --border: #dde4f0; --radius: 16px;
+      --shadow: 0 4px 24px rgba(13,110,253,.10);
+    }
+    body { font-family: "PingFang SC","Microsoft YaHei",sans-serif; background: var(--bg); color: var(--dark); min-height: 100vh; }
+
+    /* Header */
+    header { background: linear-gradient(135deg,#064e3b 0%,#0d6efd 50%,#7c3aed 100%); padding: 40px 24px 32px; text-align: center; position: relative; overflow: hidden; }
+    .header-icon { display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;background:rgba(255,255,255,.18);border-radius:14px;margin-bottom:14px; }
+    header h1 { font-size: clamp(22px,4vw,30px); font-weight:700; color:#fff; letter-spacing:.04em; }
+    header p { margin-top:8px; color:rgba(255,255,255,.75); font-size:14px; }
+    .badge-row { display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px; }
+    .badge { padding:4px 12px;border-radius:20px;background:rgba(255,255,255,.18);color:#fff;font-size:12px;font-weight:500; }
+
+    /* Stats */
+    .stats-bar { display:flex;flex-wrap:wrap;gap:12px;max-width:1200px;margin:24px auto 0;padding:0 20px; }
+    .stat-chip { flex:1;min-width:120px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 18px;display:flex;flex-direction:column;gap:4px; }
+    .stat-chip .num { font-size:24px;font-weight:800;color:var(--primary); }
+    .stat-chip .lbl { font-size:12px;color:var(--muted); }
+
+    /* Filter */
+    .filter-bar { display:flex;flex-wrap:wrap;gap:10px;max-width:1200px;margin:20px auto 0;padding:0 20px;align-items:center; }
+    .filter-btn { padding:7px 16px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--muted);font-size:13px;cursor:pointer;transition:all .2s;font-family:inherit; }
+    .filter-btn:hover,.filter-btn.active { border-color:var(--primary);background:var(--primary);color:#fff; }
+    .count-label { margin-left:auto;font-size:13px;color:var(--muted); }
+
+    /* Grid */
+    .grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;max-width:1200px;margin:20px auto 60px;padding:0 20px; }
+
+    /* Card */
+    .card { background:var(--card);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;transition:transform .22s,box-shadow .22s;cursor:pointer;text-decoration:none;color:inherit; }
+    .card:hover { transform:translateY(-4px);box-shadow:0 12px 40px rgba(13,110,253,.18); }
+    .card-top { height:6px; }
+    .top-product { background:linear-gradient(90deg,#0d6efd,#60a5fa); }
+    .top-tech { background:linear-gradient(90deg,#7c3aed,#a78bfa); }
+    .top-solution { background:linear-gradient(90deg,#059669,#34d399); }
+    .top-bidding { background:linear-gradient(90deg,#dc2626,#f87171); }
+    .top-industry { background:linear-gradient(90deg,#d97706,#fbbf24); }
+    .card-body { padding:20px;flex:1;display:flex;flex-direction:column;gap:12px; }
+    .card-meta { display:flex;align-items:center;gap:8px;flex-wrap:wrap; }
+    .tag { padding:3px 10px;border-radius:12px;font-size:11.5px;font-weight:600; }
+    .tag-cat { background:var(--primary-l);color:var(--primary); }
+    .tag-cat.product { background:#eff6ff;color:#1d4ed8; }
+    .tag-cat.tech { background:#f3f0ff;color:#7c3aed; }
+    .tag-cat.solution { background:#ecfdf5;color:#059669; }
+    .tag-cat.bidding { background:#fff1f2;color:#e11d48; }
+    .tag-cat.industry { background:#fffbeb;color:#d97706; }
+    .tag-company { background:#f1f5f9;color:var(--muted);font-size:11px; }
+    .card-title { font-size:15.5px;font-weight:700;line-height:1.55;color:var(--dark);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden; }
+    .card-summary { font-size:13.5px;color:var(--muted);line-height:1.7;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;flex:1; }
+    .card-footer { display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-top:1px solid var(--border);background:#fafbfd; }
+    .card-source { font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:5px; }
+    .card-time { font-size:12px;color:#94a3b8; }
+    .read-more { font-size:12.5px;color:var(--primary);font-weight:600;white-space:nowrap; }
+
+    /* Company list */
+    .company-section { max-width:1200px;margin:0 auto 40px;padding:0 20px; }
+    .section-title { font-size:16px;font-weight:700;color:var(--dark);margin:30px 0 14px;display:flex;align-items:center;gap:8px; }
+    .company-grid { display:flex;flex-wrap:wrap;gap:10px; }
+    .company-chip { padding:6px 14px;border-radius:20px;background:#fff;border:1px solid var(--border);font-size:12.5px;color:var(--muted); }
+    .company-chip.active { background:var(--primary-l);border-color:var(--primary);color:var(--primary); }
+    .company-chip.no-news { background:#f8fafc;color:#94a3b8; }
+
+    /* Footer */
+    footer { text-align:center;padding:24px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--border); }
+    footer a { color:var(--primary);text-decoration:none; }
+    @media(max-width:600px) { .grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-icon">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg>
+  </div>
+  <h1>低空ATC竞品分析 · 2026-04-16</h1>
+  <p>聚焦低空软件平台及系统竞品动态 · 数据截止 2026-04-16 10:53</p>
+  <div class="badge-row">
+    <span class="badge">民营企业</span>
+    <span class="badge">空管厂商</span>
+    <span class="badge">地方国企</span>
+    <span class="badge">海外厂商</span>
+    <span class="badge">低空软件平台</span>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-chip"><span class="num">2</span><span class="lbl">📰 1天内资讯</span></div>
+  <div class="stat-chip"><span class="num" style="color:#1d4ed8">1</span><span class="lbl">🚀 产品发布</span></div>
+  <div class="stat-chip"><span class="num" style="color:#dc2626">1</span><span class="lbl">📢 招投标</span></div>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="doFilter('all',this)">全部</button>
+  <button class="filter-btn" onclick="doFilter('产品发布',this)">产品发布</button>
+  <button class="filter-btn" onclick="doFilter('技术发布',this)">技术发布</button>
+  <button class="filter-btn" onclick="doFilter('解决方案',this)">解决方案</button>
+  <button class="filter-btn" onclick="doFilter('招投标',this)">招投标</button>
+  <button class="filter-btn" onclick="doFilter('行业动态',this)">行业动态</button>
+  <span class="count-label" id="count-label">共 2 条</span>
+</div>
+
+<div class="grid" id="card-grid">
+
+  <a class="card" href="https://www.21jingji.com/article/20260415/herald/6c97ea961b54f44f5958cc44ba5d1194.html" target="_blank" rel="noopener" data-cat="产品发布">
+    <div class="card-top top-product"></div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="tag tag-cat product">产品发布</span>
+        <span class="tag tag-company">中国航空工业集团</span>
+      </div>
+      <div class="card-title">HH-200航空商用无人运输系统首飞成功</div>
+      <div class="card-summary">2026年4月15日上午，由中国航空工业集团自主研制的HH-200航空商用无人运输系统首飞成功。飞机采用方形直通机体、双发上单翼、双尾撑设计，商载1.5吨、货舱容积12立方米可扩展至18立方米，最大航程2360千米，最大巡航速度310千米/时。该系统按民航标准设计，可全程智能自主飞行，具备AI智能避障功能，使用寿命达5万飞行小时、1.5万飞行起落，全寿命周期运营成本4.7元/吨公里。能够适应-40℃至50℃极端温度、500米短跑道起降、4200米以上高高原机场起降等复杂环境，可广泛用于沿边沿海及跨境支线货运、内陆点对点小货物流、东南亚跨岛货运及应急救援、森林消防、人工影响天气等场景。</div>
+    </div>
+    <div class="card-footer">
+      <span class="card-source">📰 21财经/新华社</span>
+      <span class="card-time">2026-04-15</span>
+      <span class="read-more">查看原文 →</span>
+    </div>
+  </a>
+
+  <a class="card" href="https://450108.bidcenter.com.cn/bidinfo-1-a0f73512c37219a93375693d0a8034eed9a8dde8c25695c8.html" target="_blank" rel="noopener" data-cat="招投标">
+    <div class="card-top top-bidding"></div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="tag tag-cat bidding">招投标</span>
+        <span class="tag tag-company">多地相关厂商</span>
+      </div>
+      <div class="card-title">多个低空经济/无人机招投标项目发布</div>
+      <div class="card-summary">2026年4月15日，多地发布低空经济/无人机相关招投标项目，包括：石家庄委托第三方机构协助开展低空经济产业招商推介会（预算金额未披露）；杭州市下涯镇之江村低空AI农事服务采购项目（预算金额未披露）；璧山区低空飞行器动力系统技术调研咨询服务采购项目（要求供应商具备航空动力/新能源动力/低空经济领域成功咨询业绩≥3项）；贵州观山湖区无人机飞行实训室建设采购项目；河北区2026年无人机相机成交候选人公示（公示时间4月15日至19日）。</div>
+    </div>
+    <div class="card-footer">
+      <span class="card-source">📰 中国采招网</span>
+      <span class="card-time">2026-04-15</span>
+      <span class="read-more">查看原文 →</span>
+    </div>
+  </a>
+
+</div>
+
+<!-- 厂商动态速览 -->
+<div class="company-section">
+  <div class="section-title">🏢 厂商动态速览（1天内）</div>
+  <div class="company-grid">
+    <span class="company-chip active">🟢 中国航空工业集团 - HH-200首飞</span>
+    <span class="company-chip active">🟢 多地 - 招投标项目发布</span>
+  </div>
+
+  <div class="section-title">📋 指定监控厂商（1天内无新动态）</div>
+  <div class="company-grid">
+    <span class="company-chip no-news">中科星图</span>
+    <span class="company-chip no-news">北斗伏羲</span>
+    <span class="company-chip no-news">合众信息</span>
+    <span class="company-chip no-news">安擎科技</span>
+    <span class="company-chip no-news">四川九州</span>
+    <span class="company-chip no-news">航天宏图</span>
+    <span class="company-chip no-news">北京领云时代科技</span>
+    <span class="company-chip no-news">北京智网易联科技</span>
+    <span class="company-chip no-news">广州中科云图</span>
+    <span class="company-chip no-news">新晨科技</span>
+    <span class="company-chip no-news">海格通信</span>
+    <span class="company-chip no-news">奇航信息</span>
+    <span class="company-chip no-news">中科天域</span>
+    <span class="company-chip no-news">青岛云世纪</span>
+    <span class="company-chip no-news">莱斯信息</span>
+    <span class="company-chip no-news">川大智胜</span>
+    <span class="company-chip no-news">北京东进航科</span>
+    <span class="company-chip no-news">民航二所</span>
+    <span class="company-chip no-news">苏交科</span>
+    <span class="company-chip no-news">深城交</span>
+    <span class="company-chip no-news">法国Thales</span>
+    <span class="company-chip no-news">Unifly</span>
+    <span class="company-chip no-news">ANRA Technologies</span>
+  </div>
+</div>
+
+<footer>
+  <p>数据收集自公开网络资源 · 仅作行业信息参考 · 生成时间 2026-04-16 10:53 · 由 <strong>Matrix Agent</strong> 自动整理</p>
+  <p style="margin-top:6px;">信息来源：21财经、新华社、中国采招网 等权威媒体</p>
+</footer>
+
+<script>
+  function doFilter(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    var cards = document.querySelectorAll('#card-grid .card');
+    var visible = 0;
+    cards.forEach(function(c) {
+      var match = cat === 'all' || c.dataset.cat === cat;
+      c.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+    document.getElementById('count-label').textContent = '共 ' + visible + ' 条';
+  }
+</script>
+</body>
+</html>
