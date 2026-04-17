@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空ATC竞品分析 - 2026年4月17日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.15));
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .time-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #60a5fa;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+        
+        .company-section {
+            margin-bottom: 50px;
+        }
+        
+        .company-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding: 20px 25px;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 16px;
+            border-left: 4px solid;
+        }
+        
+        .company-header h2 {
+            font-size: 1.4rem;
+            color: #f1f5f9;
+        }
+        
+        .company-type {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .type-private { background: rgba(139, 92, 246, 0.2); color: #a78bfa; }
+        .type-atc { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .type-state { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+        }
+        
+        .card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(96, 165, 250, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .card-tag {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .tag-product { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+        .tag-tech { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .tag-finance { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+        .tag-bid { background: rgba(236, 72, 153, 0.2); color: #f472b6; }
+        .tag-policy { background: rgba(139, 92, 246, 0.2); color: #a78bfa; }
+        
+        .card-time {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .card-content {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .card-highlight {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-left: 3px solid #3b82f6;
+        }
+        
+        .highlight-title {
+            font-size: 0.8rem;
+            color: #60a5fa;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        
+        .highlight-content {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+        }
+        
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .card-source {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        
+        .card-link {
+            font-size: 0.8rem;
+            color: #60a5fa;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.2s;
+        }
+        
+        .card-link:hover {
+            color: #93c5fd;
+        }
+        
+        .quality-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 0.65rem;
+            font-weight: 600;
+        }
+        
+        .quality-high { background: rgba(16, 185, 129, 0.3); color: #34d399; }
+        .quality-medium { background: rgba(245, 158, 11, 0.3); color: #fbbf24; }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 20px 15px; }
+            h1 { font-size: 1.8rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .stats { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>低空ATC竞品分析</h1>
+            <p class="subtitle">民营企业 · 空管厂商 · 地方国企 竞品动态追踪</p>
+            <div class="time-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                更新于 2026-04-17 10:47 | 数据范围：最近24小时
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="total-count">-</div>
+                    <div class="stat-label">精选资讯</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">16</div>
+                    <div class="stat-label">监测企业</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">企业类别</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 民营企业 -->
+        <section class="company-section">
+            <div class="company-header" style="border-color: #a78bfa;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <h2>民营企业</h2>
+                <span class="company-type type-private">民营企业</span>
+            </div>
+            <div class="cards-grid">
+                <!-- 中科星图 -->
+                <article class="card" onclick="window.open('https://finance.stockstar.com/IG2026041600018853.shtml', '_blank')">
+                    <span class="quality-badge quality-high">高质量</span>
+                    <div class="card-header">
+                        <span class="card-tag tag-finance">财务报告</span>
+                        <span class="card-time">2026-04-15</span>
+                    </div>
+                    <h3 class="card-title">中科星图2025年营收26.77亿元，研发投入7.47亿元</h3>
+                    <div class="card-highlight">
+                        <div class="highlight-title">核心数据</div>
+                        <div class="highlight-content">研发费用率19.94%，商业航天全产业链布局，"星眼"太空感知星座计划发布</div>
+                    </div>
+                    <p class="card-content">中科星图2025年实现营业收入26.77亿元，归母净利润2,940.01万元。公司加大在智能地球、商业航天、低空经济等新兴领域布局，全年研发投入高达7.47亿元，研发费用率攀升至19.94%，创下历史新高。</p>
+                    <div class="card-footer">
+                        <span class="card-source">证券之星</span>
+                        <a class="card-link" href="https://finance.stockstar.com/IG2026041600018853.shtml" target="_blank">
+                            查看原文
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 中科云图 -->
+                <article class="card" onclick="window.open('https://www.toutiao.com/article/7625164263644086799/', '_blank')">
+                    <span class="quality-badge quality-high">高质量</span>
+                    <div class="card-header">
+                        <span class="card-tag tag-product">产品发布</span>
+                        <span class="card-time">2026-03-31</span>
+                    </div>
+                    <h3 class="card-title">中科云图发布"中科灵玑低空大模型"，深度融合AI能力</h3>
+                    <div class="card-highlight">
+                        <div class="highlight-title">产品亮点</div>
+                        <div class="highlight-content">模型工厂+低空算法集+多模态数据处理+多智能体协同</div>
+                    </div>
+                    <p class="card-content">中科云图2026低空经济生态合作伙伴大会上，发布了战略级产品"中科灵玑低空大模型"。该模型深度融合模型工厂、低空算法集、多模态数据处理、多智能体协同等核心能力，实现从低空数据采集到智能决策的全链路贯通。</p>
+                    <div class="card-footer">
+                        <span class="card-source">今日头条</span>
+                        <a class="card-link" href="https://www.toutiao.com/article/7625164263644086799/" target="_blank">
+                            查看原文
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 广州中科云图 - 天路网 -->
+                <article class="card" onclick="window.open('https://news.qq.com/rain/a/20260401A06Y5C00', '_blank')">
+                    <span class="quality-badge quality-high">高质量</span>
+                    <div class="card-header">
+                        <span class="card-tag tag-tech">解决方案</span>
+                        <span class="card-time">2026-04-01</span>
+                    </div>
+                    <h3 class="card-title">海珠区将铺设低空"天路"，中科云图参与建设</h3>
+                    <div class="card-highlight">
+                        <div class="highlight-title">战略布局</div>
+                        <div class="highlight-content">天路网数据与民航局系统全部打通，实现与所有实名认证无人机数据互联互通</div>
+                    </div>
+                    <p class="card-content">中科云图集团副总裁徐朝朝介绍，公司将参与海珠区天路网建设，规划区分载人、农林植保、物流等不同用途的低空飞行器航路。航路网将主要沿着城市江河、道路绿化带等区域铺设，配合反制体系和监测体系防范"黑飞"。</p>
+                    <div class="card-footer">
+                        <span class="card-source">腾讯新闻</span>
+                        <a class="card-link" href="https://news.qq.com/rain/a/20260401A06Y5C00" target="_blank">
+                            查看原文
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 海格通信 -->
+                <article class="card" onclick="window.open('https://stock.stockstar.com/RB2026041300028220.shtml', '_blank')">
+                    <span class="quality-badge quality-high">高质量</span>
+                    <div class="card-header">
+                        <span class="card-tag tag-tech">业务进展</span>
+                        <span class="card-time">2026-04-13</span>
+                    </div>
+                    <h3 class="card-title">海格通信：低空智联网覆盖"制造-运营-保障-服务"全链条</h3>
+                    <div class="card-highlight">
+                        <div class="highlight-title">业务布局</div>
+                        <div class="highlight-content">在广州、合肥、重庆、福州、宁波等城市开展低空智联网示范应用建设</div>
+                    </div>
+                    <p class="card-content">海格通信在业绩说明会上表示，公司已构建起基于系列化通导监视终端设备的低空智联网、强大的平台服务以及成熟的无人机及应用场景解决方案的生态系统，覆盖"制造-运营-保障-服务"的低空生态全链条。</p>
+                    <div class="card-footer">
+<span class="card-source">证券之星</span>
+                        <a class="card-link" href="https://stock.stockstar.com/RB2026041300028220.shtml" target="_blank">
+                            查看原文
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 空管厂商 -->
+        <section class="company-section">
+            <div class="company-header" style="border-color: #60a5fa;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                    <path d="M2 17l10 5 10-5"></path>
+                    <path d="M2 12l10 5 10-5"></path>
+                </svg>
+                <h2>空管厂商</h2>
+                <span class="company-type type-atc">空管厂商</span>
+            </div>
+            <div class="cards-grid">
+                <!-- 莱斯信息 -->
+                <article class="card" onclick="window.open('https://news.qq.com/rain/a/20260416A0490400', '_blank')">
+                    <span class="quality-badge quality-high">高质量</span>
+                    <div class="card-header">
+                        <span class="card-tag tag-finance">市场动态</span>
+                        <span class="card-time">2026-04-16</span>
+                    </div>
+                    <h3 class="card-title">低空经济概念异动拉升，莱斯信息涨超10%</h3>
+                    <div class="card-highlight">
+                        <div class="highlight-title">市场表现</div>
+                        <div class="highlight-content">莱斯信息市值88.04亿，盘中涨超10%，领涨低空经济板块</div>
+                    </div>
+                    <p class="card-content">4月16日午后，低空经济概念异动拉升，莱斯信息、深城交双双涨超10%。消息面上，国务院国资委召开中央企业低空经济产业发展专题推进会，要求加大投资力度，当好发展低空经济的长期资本、战略资本、耐心资本。</p>
+                    <div class="card-footer">
+                        <span class="card-source">腾讯新闻</span>
+                        <a class="card-link" href="https://news.qq.com/rain/a/20260416A0490400" target="_blank">
+                            查看原文
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 莱斯信息 - 省级标杆 -->
+                <article class="card" onclick="window.open('https://xh.21csp.com.cn/c62/202412/11425757.html', '_blank')">
+                    <span class="quality-badge quality-high">高质量</span>
+                    <div class="card-header">
+                        <span class="card-tag tag-product">标杆项目</span>
+                        <span class="card-time">2024-12</span>
+                    </div>
+                    <h3 class="card-title">莱斯信息成功落地首个省级低空平台标杆项目</h3>
+                    <div class="card-highlight">
+                        <div class="highlight-title">项目概述</div>
+                        <div class="highlight-content">江苏省低空飞行服务中心建设项目，全国首个军民地三方协同的低空飞行服务平台</div>
+                    </div>
+                    <p class="card-content">莱斯信息成功落实"江苏省低空飞行服务中心建设项目"，作为全国两会首次将"低空经济"纳入政府工作报告后首个落地的省级低空飞行服务平台标杆项目。公司发布以低空飞行服务管理平台为核心的"天牧"系列产品，形成广泛市场影响力。</p>
+                    <div class="card-footer">
+                        <span class="card-source">中国安防协会</span>
+                        <a class="card-link" href="https://xh.21csp.com.cn/c62/202412/11425757.html" target="_blank">
+                            查看原文
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 地方国企 -->
+        <section class="company-section">
+            <div class="company-header" style="border-color: #fbbf24;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="3" y1="9" x2="21" y2="9"></line>
+                    <line x1="9" y1="21" x2="9" y2="9"></line>
+                </svg>
+                <h2>地方国企</h2>
+                <span class="company-type type-state">地方国企</span>
+            </div>
+            <div class="cards-grid">
+                <!-- 深城交 -->
+                <article class="card" onclick="window.open('https://www.stcn.com/article/detail/3729281.html', '_blank')">
+                    <span class="quality-badge quality-high">高质量</span>
+                    <div class="card-header">
+                        <span class="card-tag tag-product">重点实验室</span>
+                        <span class="card-time">2026-04-07</span>
+                    </div>
+                    <h3 class="card-title">深城交牵头获批"深圳市低空智能交通运行系统重点实验室"</h3>
+                    <div class="card-highlight">
+                        <div class="highlight-title">研究方向</div>
+                        <div class="highlight-content">全要素数字底座、高效调度服务、低空冲突解脱、融合感知管控、虚实融合验证</div>
+                    </div>
+                    <p class="card-content">深城交牵头联合中山大学·深圳和电子科技大学(深圳)高等研究院共同建设的"深圳市低空智能交通运行系统重点实验室"正式获批并揭牌。实验室依托全国首个市域级低空数字化管理服务平台，为深圳打造全国低空经济发展标杆筑牢创新支点。</p>
+                    <div class="card-footer">
+                        <span class="card-source">证券时报</span>
+                        <a class="card-link" href="https://www.stcn.com/article/detail/3729281.html" target="_blank">
+                            查看原文
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 深城交 - 市场表现 -->
+                <article class="card" onclick="window.open('https://www.163.com/dy/article/KQKVIIBS0512B07B.html', '_blank')">
+                    <span class="quality-badge quality-high">高质量</span>
+                    <div class="card-header">
+                        <span class="card-tag tag-finance">市场表现</span>
+                        <span class="card-time">2026-04-16</span>
+                    </div>
+                    <h3 class="card-title">深城交盘中涨超10%，低空经济板块持续火热</h3>
+                    <div class="card-highlight">
+                        <div class="highlight-title">公司市值</div>
+                        <div class="highlight-content">深城交(301091)市值112.57亿，盘中涨幅超10%</div>
+                    </div>
+                    <p class="card-content">低空经济概念异动拉升，莱斯信息、深城交双双涨超10%，中信海直、万丰奥威、宗申动力、英搏尔等跟涨。国务院国资委召开中央企业低空经济产业发展专题推进会，要求加快打造具有国际竞争力的低空经济产业集群。</p>
+                    <div class="card-footer">
+                        <span class="card-source">网易财经</span>
+                        <a class="card-link" href="https://www.163.com/dy/article/KQKVIIBS0512B07B.html" target="_blank">
+                            查看原文
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 民航二所 -->
+                <article class="card" onclick="window.open('https://www.stdaily.com/web/cjgxdj/content_491023.html', '_blank')">
+                    <span class="quality-badge quality-high">高质量</span>
+                    <div class="card-header">
+                        <span class="card-tag tag-tech">服务能力</span>
+                        <span class="card-time">2026-04-15</span>
+                    </div>
+                    <h3 class="card-title">民航二所：低空航空器试验试飞服务能力介绍</h3>
+                    <div class="card-highlight">
+                        <div class="highlight-title">设施配置</div>
+                        <div class="highlight-content">1200米跑道、标准化机库、塔台、气象站、无人机专用场的A类通用机场</div>
+                    </div>
+                    <p class="card-content">民航二所运营管理具备完整配套设施的A类通用机场，提供专业的航空器试验试飞空域与地面保障服务。严格遵循民航适航规章，可支持从轻型运动飞机、电动飞机到各类无人机的航程型研发试飞、适航审定试飞、飞行员培训及功能性验证飞行。</p>
+                    <div class="card-footer">
+                        <span class="card-source">中国科技网</span>
+                        <a class="card-link" href="https://www.stdaily.com/web/cjgxdj/content_491023.html" target="_blank">
+                            查看原文
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 青岛云世纪相关 -->
+                <article class="card" onclick="window.open('https://www.qingdaonews.com/app/content/2026-04/10/content_23727932.htm', '_blank')">
+                    <span class="quality-badge quality-high">高质量</span>
+                    <div class="card-header">
+                        <span class="card-tag tag-policy">政策动态</span>
+                        <span class="card-time">2026-04-10</span>
+                    </div>
+                    <h3 class="card-title">青岛市气象局：构建全域立体低空气象监测网络</h3>
+                    <div class="card-highlight">
+                        <div class="highlight-title">建设方案</div>
+                        <div class="highlight-content">激光测风雷达、毫米波测云仪等新型监测设备，500米以下低空域分层精准监测</div>
+                    </div>
+                    <p class="card-content">青岛市气象局印发《青岛市低空经济高质量发展2026年工作要点》，将在全市通用机场、重点无人机起降点及低空飞行航线关键节点规划布局新型监测设备，构建全域立体的低空气象监测网络，为低空飞行活动提供全方位支撑。</p>
+                    <div class="card-footer">
+                        <span class="card-source">青岛新闻网</span>
+                        <a class="card-link" href="https://www.qingdaonews.com/app/content/2026-04/10/content_23727932.htm" target="_blank">
+                            查看原文
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 行业招投标 -->
+        <section class="company-section">
+            <div class="company-header" style="border-color: #f472b6;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f472b6" stroke-width="2">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                </svg>
+                <h2>相关招投标信息</h2>
+                <span class="company-type type-private">招投标</span>
+            </div>
+            <div class="cards-grid">
+                <article class="card" onclick="window.open('https://371103.bidcenter.com.cn/datelist-2026-4-2-0-1.html', '_blank')">
+                    <span class="quality-badge quality-medium">中等</span>
+                    <div class="card-header">
+                        <span class="card-tag tag-bid">招标公告</span>
+                        <span class="card-time">2026-04-03</span>
+                    </div>
+                    <h3 class="card-title">岚山区低空飞行服务能力建设一期项目招标公告</h3>
+                    <div class="card-highlight">
+                        <div class="highlight-title">项目名称</div>
+                        <div class="highlight-content">岚山区低空飞行产业基础设施建设项目-岚山区低空飞行服务能力建设一期项目</div>
+                    </div>
+                    <p class="card-content">山东日照岚山低空飞行产业基础设施建设项目正在进行招标，项目包括低空飞行服务能力建设一期工程。</p>
+                    <div class="card-footer">
+                        <span class="card-source">中国采招网</span>
+                        <a class="card-link" href="https://371103.bidcenter.com.cn/datelist-2026-4-2-0-1.html" target="_blank">
+                            查看原文
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="card" onclick="window.open('https://jl.bidcenter.com.cn/diqucontent-414384945-6.html', '_blank')">
+                    <span class="quality-badge quality-medium">中等</span>
+                    <div class="card-header">
+                        <span class="card-tag tag-bid">招标更正</span>
+                        <span class="card-time">2026-04-16</span>
+                    </div>
+                    <h3 class="card-title">某部无人机反制设备采购项目更正公告</h3>
+                    <div class="card-highlight">
+                        <div class="highlight-title">更正内容</div>
+                        <div class="highlight-content">比价时间更正为2026年4月21日10时00分</div>
+                    </div>
+                    <p class="card-content">某部无人机反制设备采购项目比价时间更正，比价时间为2026年4月21日10时00分。</p>
+                    <div class="card-footer">
+                        <span class="card-source">吉林招标网</span>
+                        <a class="card-link" href="https://jl.bidcenter.com.cn/diqucontent-414384945-6.html" target="_blank">
+                            查看原文
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 行业动态 -->
+        <section class="company-section">
+            <div class="company-header" style="border-color: #34d399;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+                <h2>行业重要动态</h2>
+                <span class="company-type type-private">行业</span>
+            </div>
+            <div class="cards-grid">
+                <article class="card" onclick="window.open('https://news.qq.com/rain/a/20260417A028L200', '_blank')">
+                    <span class="quality-badge quality-high">高质量</span>
+                    <div class="card-header">
+                        <span class="card-tag tag-policy">政策</span>
+                        <span class="card-time">2026-04-17</span>
+                    </div>
+                    <h3 class="card-title">国务院国资委：加快打造具有国际竞争力的低空经济产业集群</h3>
+                    <div class="card-highlight">
+                        <div class="highlight-title">核心要求</div>
+                        <div class="highlight-content">中央企业要加大投资力度，当好发展低空经济的长期资本、战略资本、耐心资本</div>
+                    </div>
+                    <p class="card-content">国务院国资委4月15日召开中央企业低空经济产业发展专题推进会，强调发展低空经济是国资央企培育壮大新质生产力、开辟增长"第二曲线"的迫切需要。</p>
+                    <div class="card-footer">
+                        <span class="card-source">腾讯新闻</span>
+                        <a class="card-link" href="https://news.qq.com/rain/a/20260417A028L200" target="_blank">
+                            查看原文
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="card" onclick="window.open('https://www.askci.com/news/chanye/20260414/090342277612862261226285_3.shtml', '_blank')">
+                    <span class="quality-badge quality-high">高质量</span>
+                    <div class="card-header">
+                        <span class="card-tag tag-finance">市场</span>
+                        <span class="card-time">2026-04-14</span>
+                    </div>
+                    <h3 class="card-title">2026年中国低空经济市场规模预测及产业链分析</h3>
+                    <div class="card-highlight">
+                        <div class="highlight-title">市场规模</div>
+                        <div class="highlight-content">2025年市场规模1.5万亿元，2030年预计超过1.6万亿元，2025年相关企业注册量同比增长139.1%</div>
+                    </div>
+                    <p class="card-content">中商产业研究院数据显示，2025年中国低空经济市场规模达1.5万亿元，2025年低空经济相关企业注册量同比激增139.1%至4.93万家，融资事件380起。</p>
+                    <div class="card-footer">
+                        <span class="card-source">中商情报网</span>
+                        <a class="card-link" href="https://www.askci.com/news/chanye/20260414/090342277612862261226285_3.shtml" target="_blank">
+                            查看原文
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <footer>
+            <p>低空ATC竞品分析 · 每日追踪</p>
+            <p style="margin-top: 8px; color: #475569;">数据来源：综合整理自权威媒体、行业平台及企业公告 | 内容质量评估基于信息深度与实用价值</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            document.getElementById('total-count').textContent = cards.length;
+        });
+    </script>
+</body>
+</html>
