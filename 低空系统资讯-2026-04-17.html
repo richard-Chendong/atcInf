@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空系统资讯 - 2026年4月17日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #60a5fa;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+        
+        .category-section {
+            margin-bottom: 50px;
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 25px;
+            padding-left: 15px;
+            border-left: 4px solid;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .category-title svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .policy { border-color: #3b82f6; }
+        .standard { border-color: #8b5cf6; }
+        .industry { border-color: #10b981; }
+        .tender { border-color: #f59e0b; }
+        .tech { border-color: #ec4899; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 24px;
+        }
+        
+        .card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(96, 165, 250, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card:hover::before {
+            opacity: 1;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .card-tag {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .tag-policy { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .tag-standard { background: rgba(139, 92, 246, 0.2); color: #a78bfa; }
+        .tag-industry { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+        .tag-tender { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+        .tag-tech { background: rgba(236, 72, 153, 0.2); color: #f472b6; }
+        .tag-analysis { background: rgba(14, 165, 233, 0.2); color: #38bdf8; }
+        
+        .card-time {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .card-desc {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .card-source {
+            font-size: 0.8rem;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .card-link {
+            font-size: 0.85rem;
+            color: #60a5fa;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.2s;
+        }
+        
+        .card-link:hover {
+            color: #93c5fd;
+        }
+        
+        .card-link svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                gap: 20px;
+            }
+        }
+        
+        .time-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.1);
+            color: #34d399;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>低空系统资讯</h1>
+            <p class="subtitle">每日精选 · 低空经济标准体系与行业动态</p>
+            <div class="time-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                更新于 2026-04-17 10:10
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="total-count">-</div>
+                    <div class="stat-label">精选资讯</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">当前年份</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">涵盖领域</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 政策标准 -->
+        <section class="category-section">
+            <h2 class="category-title policy">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                政策标准
+            </h2>
+            <div class="cards-grid">
+                <article class="card" onclick="window.open('https://www.samr.gov.cn/xw/sp/art/2026/art_8a0f4e6cc0694b33b5b9c6f72ace638c.html', '_blank')">
+                    <div class="card-header">
+                        <span class="card-tag tag-policy">国家标准</span>
+                        <span class="card-time">2026-02-02</span>
+                    </div>
+                    <h3 class="card-title">《低空经济标准体系建设指南(2025年版)》正式发布</h3>
+                    <p class="card-desc">市场监管总局等十部门联合发布，明确到2027年低空经济标准体系基本建立，到2030年低空经济领域标准超过300项。</p>
+                    <div class="card-footer">
+                        <span class="card-source">国家市场监督管理总局</span>
+                        <a class="card-link" href="https://www.samr.gov.cn/xw/sp/art/2026/art_8a0f4e6cc0694b33b5b9c6f72ace638c.html" target="_blank">
+                            查看原文
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="card" onclick="window.open('https://www.stcn.com/article/detail/3683219.html', '_blank')">
+                    <div class="card-header">
+                        <span class="card-tag tag-policy">政策解读</span>
+                        <span class="card-time">2026-03-18</span>
+                    </div>
+                    <h3 class="card-title">国家发改委：推进低空智能网联系统建设</h3>
+                    <p class="card-desc">低空智能网联系统是"天上的红绿灯+交警+导航地图"，把地面互联网+交通管理逻辑搬到空域，构建安全有序高效智能的低空数字生态。</p>
+                    <div class="card-footer">
+                        <span class="card-source">证券时报</span>
+                        <a class="card-link" href="https://www.stcn.com/article/detail/3683219.html" target="_blank">
+                            查看原文
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="card" onclick="window.open('https://finance.people.com.cn/n1/2026/0130/c1004-40656051.html', '_blank')">
+                    <div class="card-header">
+                        <span class="card-tag tag-standard">强制国标</span>
+                        <span class="card-time">2026-01-30</span>
+                    </div>
+                    <h3 class="card-title">《民用无人驾驶航空器系统运行识别规范》2026年5月实施</h3>
+                    <p class="card-desc">民航局发布强制性国家标准，要求无人机运行全过程主动报送身份、位置、速度等信息，从发送段到接收段构建全链条技术标准。</p>
+                    <div class="card-footer">
+                        <span class="card-source">人民网</span>
+                        <a class="card-link" href="https://finance.people.com.cn/n1/2026/0130/c1004-40656051.html" target="_blank">
+                            查看原文
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 行业动态 -->
+        <section class="category-section">
+            <h2 class="category-title industry">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+                行业动态
+            </h2>
+            <div class="cards-grid">
+                <article class="card" onclick="window.open('https://www.chinairn.com/hyzx/20260410/17365773.shtml', '_blank')">
+                    <div class="card-header">
+                        <span class="card-tag tag-industry">产业分析</span>
+                        <span class="card-time">2026-04-10</span>
+                    </div>
+                    <h3 class="card-title">2026年低空产业发展大会在横琴召开</h3>
+                    <p class="card-desc">大会主题"开放融合 共筑低空产业发展新生态"，低空经济战略地位第三次跃升，标志产业加速驶入规模化发展主航道。</p>
+                    <div class="card-footer">
+                        <span class="card-source">中研网</span>
+                        <a class="card-link" href="https://www.chinairn.com/hyzx/20260410/17365773.shtml" target="_blank">
+                            查看原文
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="card" onclick="window.open('https://news.qq.com/rain/a/20260414A05HNA00', '_blank')">
+                    <div class="card-header">
+                        <span class="card-tag tag-industry">全球动态</span>
+                        <span class="card-time">2026-04-14</span>
+                    </div>
+                    <h3 class="card-title">低空经济全球动态3月刊：首张载人eVTOL运营合格证落地</h3>
+                    <p class="card-desc">全球首张载人eVTOL运营合格证落地广州亿航智能，美国推出全自动无人机拦截系统，追觅发布空中智能生态。</p>
+                    <div class="card-footer">
+                        <span class="card-source">腾讯新闻</span>
+                        <a class="card-link" href="https://news.qq.com/rain/a/20260414A05HNA00" target="_blank">
+                            查看原文
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="card" onclick="window.open('https://www.askci.com/news/chanye/20260414/090342277612862261226285_3.shtml', '_blank')">
+                    <div class="card-header">
+                        <span class="card-tag tag-analysis">数据洞察</span>
+                        <span class="card-time">2026-04-14</span>
+                    </div>
+                    <h3 class="card-title">2026年中国低空经济产业链图谱及投资布局分析</h3>
+                    <p class="card-desc">2025年低空经济市场规模达1.5万亿元，预计2030年超过1.6万亿元。低空经济相关企业注册量同比激增139.1%。</p>
+                    <div class="card-footer">
+                        <span class="card-source">中商情报网</span>
+                        <a class="card-link" href="https://www.askci.com/news/chanye/20260414/090342277612862261226285_3.shtml" target="_blank">
+                            查看原文
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 招投标信息 -->
+        <section class="category-section">
+            <h2 class="category-title tender">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                </svg>
+                招投标信息
+            </h2>
+            <div class="cards-grid">
+                <article class="card" onclick="window.open('https://jl.bidcenter.com.cn/diqucontent-414384945-6.html', '_blank')">
+                    <div class="card-header">
+                        <span class="card-tag tag-tender">招标更正</span>
+                        <span class="card-time">2026-04-16</span>
+                    </div>
+                    <h3 class="card-title">某部无人机反制设备采购项目更正公告</h3>
+                    <p class="card-desc">无人机反制设备采购项目比价时间更正为2026年4月21日10时00分，采购机构联系方式同时更新。</p>
+                    <div class="card-footer">
+                        <span class="card-source">吉林招标网</span>
+                        <a class="card-link" href="https://jl.bidcenter.com.cn/diqucontent-414384945-6.html" target="_blank">
+                            查看原文
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="card" onclick="window.open('https://gd.bidcenter.com.cn/diqucontent-412260680-1.html', '_blank')">
+                    <div class="card-header">
+                        <span class="card-tag tag-tender">公开招标</span>
+                        <span class="card-time">2026-04</span>
+                    </div>
+                    <h3 class="card-title">广州市无人机购置采购项目(2026-4)公开招标公告</h3>
+                    <p class="card-desc">采购夜视热成像无人机9套、轻型夜视AI无人机3套、一站式无人机机场1套，预算金额125万元。</p>
+                    <div class="card-footer">
+                        <span class="card-source">广东招标网</span>
+                        <a class="card-link" href="https://gd.bidcenter.com.cn/diqucontent-412260680-1.html" target="_blank">
+                            查看原文
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="card" onclick="window.open('https://hainan.jianyu360.cn/jybx/20260304_26030337031343.html', '_blank')">
+                    <div class="card-header">
+                        <span class="card-tag tag-tender">招标公告</span>
+                        <span class="card-time">2026-03</span>
+                    </div>
+                    <h3 class="card-title">无人机飞行服务、无人船保障服务采购(2026-JHNVHG-F1001)</h3>
+                    <p class="card-desc">采购无人机飞行服务40架次(筒射型)，预算98万元；无人船保障服务2艘(每艘4天)，预算48万元。</p>
+                    <div class="card-footer">
+                        <span class="card-source">海南招标网</span>
+                        <a class="card-link" href="https://hainan.jianyu360.cn/jybx/20260304_26030337031343.html" target="_blank">
+                            查看原文
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 解决方案 -->
+        <section class="category-section">
+            <h2 class="category-title tech">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2">
+                    <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                    <rect x="9" y="9" width="6" height="6"></rect>
+                    <line x1="9" y1="1" x2="9" y2="4"></line>
+                    <line x1="15" y1="1" x2="15" y2="4"></line>
+                    <line x1="9" y1="20" x2="9" y2="23"></line>
+                    <line x1="15" y1="20" x2="15" y2="23"></line>
+                    <line x1="20" y1="9" x2="23" y2="9"></line>
+                    <line x1="20" y1="14" x2="23" y2="14"></line>
+                    <line x1="1" y1="9" x2="4" y2="9"></line>
+                    <line x1="1" y1="14" x2="4" y2="14"></line>
+                </svg>
+                产品解决方案
+            </h2>
+            <div class="cards-grid">
+                <article class="card" onclick="window.open('https://www.cnblogs.com/pinpaituijan/p/19447039', '_blank')">
+                    <div class="card-header">
+                        <span class="card-tag tag-tech">平台方案</span>
+                        <span class="card-time">2026</span>
+                    </div>
+                    <h3 class="card-title">2026年低空感知平台解决方案商推荐：全自动无人化运营能力横向测评</h3>
+                    <p class="card-desc">政府机构、大型基础设施运营商及公共服务部门面临如何高效、安全、智能化管理低空活动的战略抉择，推荐技术领先、可靠的低空感知平台解决方案。</p>
+                    <div class="card-footer">
+                        <span class="card-source">博客园</span>
+                        <a class="card-link" href="https://www.cnblogs.com/pinpaituijan/p/19447039" target="_blank">
+                            查看原文
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="card" onclick="window.open('https://www.stdaily.com/web/cjgxdj/content_491001.html', '_blank')">
+                    <div class="card-header">
+                        <span class="card-tag tag-tech">核心技术</span>
+                        <span class="card-time">2026-04-08</span>
+                    </div>
+                    <h3 class="card-title">低空飞行活动软件平台建设核心技术供给</h3>
+                    <p class="card-desc">提供以低空飞行时空间为数字底座"软基建"核心技术及一体化解决方案，深度融合数字孪生、北斗高精度定位与智能空管算法。</p>
+                    <div class="card-footer">
+                        <span class="card-source">中国科技网</span>
+                        <a class="card-link" href="https://www.stdaily.com/web/cjgxdj/content_491001.html" target="_blank">
+                            查看原文
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="card" onclick="window.open('https://blog.csdn.net/tigerups/article/details/158580923', '_blank')">
+                    <div class="card-header">
+                        <span class="card-tag tag-tech">一网统飞</span>
+                        <span class="card-time">2026</span>
+                    </div>
+                    <h3 class="card-title">空天地联动 | 一网统飞 | 无人机巡检系统落地方案</h3>
+                    <p class="card-desc">2026年前实现地市一级飞行数据全接入、空域审批一体化、低空监管数字化，构建统一平台、统一调度、统一数据模式支撑政务巡检、应急救援等场景。</p>
+                    <div class="card-footer">
+                        <span class="card-source">CSDN</span>
+                        <a class="card-link" href="https://blog.csdn.net/tigerups/article/details/158580923" target="_blank">
+                            查看原文
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 低空管控技术 -->
+        <section class="category-section">
+            <h2 class="category-title industry">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                低空管控技术
+            </h2>
+            <div class="cards-grid">
+                <article class="card" onclick="window.open('https://www.cnblogs.com/deepagents/p/19663833', '_blank')">
+                    <div class="card-header">
+                        <span class="card-tag tag-industry">反制技术</span>
+                        <span class="card-time">2026</span>
+                    </div>
+                    <h3 class="card-title">筑牢低空防线：2026国内反无人机技术发展现状与未来展望</h3>
+                    <p class="card-desc">2026年国内低空安全监管政策迎来密集落地，反无人机技术发展有了清晰的政策导向和边界，构建"探测-识别-反制-溯源"全链条。</p>
+                    <div class="card-footer">
+                        <span class="card-source">博客园</span>
+                        <a class="card-link" href="https://www.cnblogs.com/deepagents/p/19663833" target="_blank">
+                            查看原文
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="card" onclick="window.open('https://xueqiu.com/6157001146/383631914', '_blank')">
+                    <div class="card-header">
+                        <span class="card-tag tag-tech">企业动态</span>
+                        <span class="card-time">2026-04-12</span>
+                    </div>
+                    <h3 class="card-title">新劲刚的小慢无人机反制技术</h3>
+                    <p class="card-desc">专注于小慢无人机反制技术研发，为低空安全监管、服务及新技术领域提供市场机遇。</p>
+                    <div class="card-footer">
+                        <span class="card-source">雪球</span>
+                        <a class="card-link" href="https://xueqiu.com/6157001146/383631914" target="_blank">
+                            查看原文
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="card" onclick="window.open('https://www.sohu.com/a/999405460_122311471', '_blank')">
+                    <div class="card-header">
+                        <span class="card-tag tag-industry">厂商榜单</span>
+                        <span class="card-time">2026-Q1</span>
+                    </div>
+                    <h3 class="card-title">2026年第一季度排名前十的无人机反制设备厂家</h3>
+                    <p class="card-desc">国内反无人机行业涌现出一批技术领先、场景适配性强的企业，通过自主创新与生态构建，为低空安全构筑起全链条保障。</p>
+                    <div class="card-footer">
+                        <span class="card-source">搜狐</span>
+                        <a class="card-link" href="https://www.sohu.com/a/999405460_122311471" target="_blank">
+                            查看原文
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <footer>
+            <p>低空系统资讯 · 每日自动更新</p>
+            <p style="margin-top: 8px; color: #475569;">数据来源：综合整理自各权威媒体与行业平台</p>
+        </footer>
+    </div>
+
+    <script>
+        // 统计卡片数量
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            document.getElementById('total-count').textContent = cards.length;
+        });
+    </script>
+</body>
+</html>
