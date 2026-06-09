@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>低空工程跟踪 · 2026-W24 (06-08 ~ 06-14)</title>
+<meta name="description" content="2026 年第 24 周（06-08 ~ 06-14）中国低空经济工程侧周报：聚焦新出现的中标/招标/采购项目、低空平台与产品供应商、低空应用场景落地、低空空管/调度/指挥技术系统。" />
+<style>
+  :root {
+    --bg: #f6f7fa;
+    --bg-soft: #ffffff;
+    --ink: #14171c;
+    --ink-soft: #4a5160;
+    --ink-mute: #8a93a3;
+    --line: #e7e9ef;
+    --line-soft: #eef0f4;
+    --accent: #2b6cff;
+    --accent-soft: #eaf0ff;
+    --t-bid: #c2410c;
+    --t-soft-bid: #fff3ea;
+    --t-sup: #6b46c1;
+    --t-soft-sup: #f1ecff;
+    --t-app: #15803d;
+    --t-soft-app: #ebf7f0;
+    --t-atc: #0369a1;
+    --t-soft-atc: #e6f1fa;
+    --t-pub: #b45309;
+    --t-soft-pub: #fbf1de;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+      "Microsoft YaHei", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: antialiased;
+  }
+  .container { max-width: 1120px; margin: 0 auto; padding: 48px 32px 88px; }
+
+  .masthead { border-bottom: 1px solid var(--line); padding-bottom: 26px; margin-bottom: 32px; }
+  .eyebrow {
+    display: inline-block; font-size: 11.5px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent); background: var(--accent-soft);
+    padding: 5px 10px; border-radius: 4px; font-weight: 600; margin-bottom: 16px;
+  }
+  h1.title { font-size: 34px; line-height: 1.22; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.4px; }
+  .subtitle { font-size: 15px; color: var(--ink-soft); margin: 0 0 18px; max-width: 820px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 22px; font-size: 12.5px; color: var(--ink-mute); }
+  .meta b { color: var(--ink-soft); font-weight: 600; }
+
+  .summary-bar {
+    background: var(--bg-soft); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+    padding: 16px 20px; border-radius: 6px; font-size: 13.5px; color: var(--ink-soft);
+    margin: 0 0 28px; line-height: 1.75;
+  }
+  .summary-bar b { color: var(--ink); }
+  .summary-bar .hl { color: var(--accent); font-weight: 600; }
+
+  .toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 22px; align-items: center; }
+  .toolbar .label { font-size: 12px; color: var(--ink-mute); margin-right: 4px; letter-spacing: 0.05em; }
+  .chip {
+    display: inline-flex; align-items: center; font-size: 12.5px; padding: 5px 12px;
+    border-radius: 999px; background: var(--bg-soft); border: 1px solid var(--line);
+    color: var(--ink-soft); cursor: pointer; transition: all 0.15s ease; user-select: none;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+  .chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .chip .count { margin-left: 6px; font-weight: 600; opacity: 0.75; }
+
+  /* item list (工程跟踪用列表式) */
+  .list { display: flex; flex-direction: column; gap: 12px; }
+  .item {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 18px;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 20px 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    position: relative;
+  }
+  .item::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: var(--accent); border-radius: 10px 0 0 10px; opacity: 0;
+    transition: opacity 0.18s ease;
+  }
+  .item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(20, 30, 60, 0.07);
+    border-color: #d4dbe8;
+  }
+  .item:hover::before { opacity: 1; }
+  .item-id {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; color: var(--ink-mute);
+    font-variant-numeric: tabular-nums; letter-spacing: -0.5px;
+  }
+  .item-body { min-width: 0; }
+  .item-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-bottom: 6px; }
+  .item h2 {
+    font-size: 15.5px; line-height: 1.45; font-weight: 600; margin: 0; color: var(--ink);
+    letter-spacing: -0.1px; flex: 1; min-width: 0;
+  }
+  .item .summary {
+    font-size: 13px; line-height: 1.7; color: var(--ink-soft); margin: 0 0 10px;
+  }
+  .item .params {
+    display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--ink-mute);
+    border-top: 1px dashed var(--line-soft); padding-top: 8px; margin-top: 4px;
+  }
+  .item .params b { color: var(--ink-soft); font-weight: 600; }
+  .item .params .dot { color: var(--line); }
+  .item .params .money { color: var(--t-bid); font-weight: 600; }
+
+  .item-tags { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; min-width: 96px; }
+  .tag {
+    display: inline-block; font-size: 11px; padding: 3px 8px; border-radius: 4px;
+    font-weight: 600; color: #fff; letter-spacing: 0.04em; white-space: nowrap;
+  }
+  .tag.tag-bid  { background: var(--t-bid); }
+  .tag.tag-sup  { background: var(--t-sup); }
+  .tag.tag-app  { background: var(--t-app); }
+  .tag.tag-atc  { background: var(--t-atc); }
+  .tag.tag-pub  { background: var(--t-pub); }
+  .date {
+    font-size: 12px; color: var(--ink-mute); font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+
+  .empty { text-align: center; padding: 60px 0; color: var(--ink-mute); font-size: 14px; display: none; }
+  .footer {
+    margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line);
+    font-size: 12.5px; color: var(--ink-mute); line-height: 1.7;
+  }
+  .footer p { margin: 0 0 6px; }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 720px) {
+    .container { padding: 28px 18px 56px; }
+    h1.title { font-size: 24px; }
+    .item { grid-template-columns: 1fr; padding: 16px; }
+    .item-id { font-size: 14px; align-items: flex-start; justify-content: flex-start; }
+    .item-tags { flex-direction: row; align-items: flex-start; min-width: 0; }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="masthead">
+      <span class="eyebrow">ATC INF · ENGINEERING TRACKER</span>
+      <h1 class="title">低空工程跟踪 · 2026-W24</h1>
+      <p class="subtitle">每周一次的低空经济工程侧周报。本期覆盖 <b style="color:var(--ink)">2026 年 6 月 8 日 — 6 月 14 日</b> 中国市场本周窗口内新出现或本周报道的优质动态，重点聚焦：<b>新发布的低空平台/系统/产品招标与中标</b>、<b>新进入的供应商与生态合作</b>、<b>新落地的低空应用场景</b>、<b>低空空管/调度/指挥技术系统</b>。窗口外（6-01 ~ 6-07）已发布但本周仍是"工程侧热点"的项目亦一并收录。</p>
+      <div class="meta">
+        <span>📅 收录时间窗口　<b>2026-06-01 ~ 2026-06-14（重点 06-08 ~ 06-14）</b></span>
+        <span>📦 收录条数　<b>14 条</b></span>
+        <span>🔗 全部 URL 已 <b>HTTP 200 验证可达</b></span>
+        <span>🎯 视角　<b>工程侧</b></span>
+      </div>
+    </header>
+
+    <div class="summary-bar">
+      <b>本期洞察：</b>本周窗口（<span class="hl">06-08 ~ 06-14</span>）低空工程侧呈现"<span class="hl">厂商入局加速 + 平台层集中招标 + 应用场景试点落地</span>"的三线并发。
+      <b>① 平台层</b>：德州全域智慧低空一体化平台（3000 万）、宁夏低空空管服务（7 标段）等大额招标集中释放；广东、河南、福建三省本周同步进入低空空管/服务平台建设期。
+      <b>② 厂商侧</b>：<b>中国通号（卡斯柯）</b> 联合体中标南安低空空域智能管控系统（ID-Space），<b>中国移动</b> 揭阳分公司中标 2014 万"鹰眼"平台，<b>深城交</b> 中标惠州低空规划 150 万；<b>纵横股份</b> 全资子公司中标 6518 万新野低空综合治理（设备+无人值守系统）；南方电网通用航空发布 2026-2027 无人机租赁+Mesh 自组网招标，技术方向从巡检走向"通感算一体化"。
+      <b>③ 应用侧</b>：<b>嵊泗</b> 飞服中心完成设备采购（288 万，电信舟山中标），同时启动低空综合管理平台开发招标；浙江测绘院 750 万无人值守机库+无人机项目进入投标期。
+      <b>④ 基础设施</b>：广东铁塔 5G-A 低空智联网、标准化起降点 300 个年底目标（珠三角）持续推进。
+    </div>
+
+    <div class="toolbar" id="toolbar">
+      <span class="label">按工程方向筛选</span>
+      <span class="chip active" data-filter="all">全部 <span class="count">14</span></span>
+      <span class="chip" data-filter="bid">💰 招投标/采购</span>
+      <span class="chip" data-filter="sup">🏭 新供应商/合作</span>
+      <span class="chip" data-filter="app">🛩️ 应用场景</span>
+      <span class="chip" data-filter="atc">📡 空管/调度/指挥</span>
+      <span class="chip" data-filter="pub">📜 政策/规划</span>
+    </div>
+
+    <div class="list" id="list">
+
+      <!-- 01 -->
+      <a class="item" data-cat="bid" href="https://zfcg.henan.gov.cn/cmsweb35rc67w/henan/cgxx/cggg/webinfo/2026/06/08/1967145.htm" target="_blank" rel="noopener">
+        <div class="item-id">01</div>
+        <div class="item-body">
+          <div class="item-head"><h2>河南省 6-08 发布低空经济产业平台/系统类招标（省级公共资源）</h2></div>
+          <p class="summary">河南省政府采购网 6-08 集中发布一批低空经济产业相关招标公告，含低空平台系统、低空基础设施、低空空管等方向。河南省 2026 年起将低空经济列入重点产业链，本周作为省级窗口的连续放量信号。</p>
+          <div class="params"><span><b>采购方</b> 河南省本级</span><span class="dot">·</span><span><b>方向</b> 低空平台/基础设施/空管</span><span class="dot">·</span><span><b>来源</b> 河南政府采购网</span></div>
+        </div>
+        <div class="item-tags"><span class="tag tag-bid">💰 招投标</span><span class="date">2026-06-08</span></div>
+      </a>
+
+      <!-- 02 -->
+      <a class="item" data-cat="bid" href="https://www.ccgp-ningxia.gov.cn/public/NXGPPNEW/dynamic/contents/CGGG/ZBGG/content.jsp?id=8b80b27a9e4a1564019ea651e7470456&cid=316&sid=1&type=101" target="_blank" rel="noopener">
+        <div class="item-id">02</div>
+        <div class="item-body">
+          <div class="item-head"><h2>宁夏公共资源交易中心发布低空空管/飞行服务类中标公告（7 标段省级集采）</h2></div>
+          <p class="summary">宁夏政府采购与公共资源交易网 6-08 发布低空空域管理与飞行服务相关中标公告，宁夏作为西北首个省级低空空管服务体系建设试点，本周内多标段连续落地，是西部低空工程化的重要里程碑。</p>
+          <div class="params"><span><b>采购方</b> 宁夏自治区本级</span><span class="dot">·</span><span><b>方向</b> 低空空管/飞行服务</span><span class="dot">·</span><span><b>来源</b> 宁夏政采</span></div>
+        </div>
+        <div class="item-tags"><span class="tag tag-bid">💰 招投标</span><span class="date">2026-06-08</span></div>
+      </a>
+
+      <!-- 03 -->
+      <a class="item" data-cat="bid sup" href="https://m.bidcenter.com.cn/zhongbiaodanweilist-422920207-1.html" target="_blank" rel="noopener">
+        <div class="item-id">03</div>
+        <div class="item-body">
+          <div class="item-head"><h2>"揭阳鹰眼"低空经济无人机综合服务平台中标公示：3 家供应商候选、2014 万 / 2020 万 / 2011 万</h2></div>
+          <p class="summary">广东揭阳市发布"鹰眼"低空经济无人机综合服务平台中标公示，3 家候选供应商报价接近：<b>中国移动揭阳分公司 2014.41 万</b>、<b>广东旋飞科技 2020.98 万</b>、<b>夜鹰慧飞 2011.36 万</b>。平台用于揭阳市域低空飞行统一监管，是广东粤东首个地市级低空统一平台。</p>
+          <div class="params"><span><b>采购方</b> 揭阳市相关单位</span><span class="dot">·</span><span class="money">金额 ~2011 ~ 2020 万</span><span class="dot">·</span><span><b>方向</b> 无人机综合服务平台</span></div>
+        </div>
+        <div class="item-tags"><span class="tag tag-bid">💰 招投标</span><span class="tag tag-sup">🏭 供应商</span><span class="date">2026-06-08</span></div>
+      </a>
+
+      <!-- 04 -->
+      <a class="item" data-cat="sup atc" href="https://gd.bidcenter.com.cn/diqucontent-414681833-2.html" target="_blank" rel="noopener">
+        <div class="item-id">04</div>
+        <div class="item-body">
+          <div class="item-head"><h2>中国通号·卡斯柯 + 通号建设集团联合体中标南安市低空空域智能管控系统（ID-Space）</h2></div>
+          <p class="summary">中国通号（03969.HK）旗下 <b>卡斯柯信号</b> 与 <b>通号建设集团</b> 联合体中标南安市低空空域智能管控系统（ID-Space）。卡斯柯是国内干线铁路 CTC/调度集中头部供应商，本次将轨交信号+空管调度技术下沉到城市级低空空域，是"轨道+低空"双轨调度融合的标杆信号。</p>
+          <div class="params"><span><b>采购方</b> 南安市</span><span class="dot">·</span><span><b>供应商</b> 卡斯柯 × 通号建设集团</span><span class="dot">·</span><span><b>方向</b> 低空空域智能管控（ID-Space）</span></div>
+        </div>
+        <div class="item-tags"><span class="tag tag-sup">🏭 供应商</span><span class="tag tag-atc">📡 空管/调度</span><span class="date">2026-06-08</span></div>
+      </a>
+
+      <!-- 05 -->
+      <a class="item" data-cat="bid app" href="https://www.ixbang.com/bid/detail/FAB52864A9798B14087DC617434DA217.html" target="_blank" rel="noopener">
+        <div class="item-id">05</div>
+        <div class="item-body">
+          <div class="item-head"><h2>嘉兴低空公司 2026 年度无人机安装运维服务（一期）中标公示：28 台大疆 3 代机场，3 年运维</h2></div>
+          <p class="summary">嘉兴低空公司 2026 年度无人机安装运维服务（一期）项目中标公示，<b>涉及 28 台大疆 3 代机场</b> 的安装与配套运维（保养/机场巡检 3 年、网络通信与场地租赁 5 年）。嘉兴作为浙江省"低空经济先导区"已进入规模化机场组网期。</p>
+          <div class="params"><span><b>采购方</b> 嘉兴低空公司</span><span class="dot">·</span><span><b>规模</b> 28 台大疆机场 3</span><span class="dot">·</span><span><b>运维期</b> 3 年 + 5 年</span></div>
+        </div>
+        <div class="item-tags"><span class="tag tag-bid">💰 招投标</span><span class="tag tag-app">🛩️ 应用</span><span class="date">2026-06-05</span></div>
+      </a>
+
+      <!-- 06 -->
+      <a class="item" data-cat="sup bid" href="https://www.ixbang.com/bid/detail/B0D41DC313D94BACE9CBFA6309C75217.html" target="_blank" rel="noopener">
+        <div class="item-id">06</div>
+        <div class="item-body">
+          <div class="item-head"><h2>2026 年低空服务能力建设项目一期采购中选公示（新供应商入局）</h2></div>
+          <p class="summary">2026 年低空服务能力建设项目（一期）中选结果公示，本批次涉及低空综合服务、平台运营、能力建设等多项内容，是今年面向地市/行业落地"低空服务能力"专项采购的早期窗口。</p>
+          <div class="params"><span><b>采购方</b> 公开采购人</span><span class="dot">·</span><span><b>方向</b> 低空服务能力建设</span><span class="dot">·</span><span><b>来源</b> 销邦招标平台</span></div>
+        </div>
+        <div class="item-tags"><span class="tag tag-sup">🏭 供应商</span><span class="tag tag-bid">💰 招投标</span><span class="date">2026-05-22</span></div>
+      </a>
+
+      <!-- 07 -->
+      <a class="item" data-cat="sup bid" href="https://sohu.com/a/783601001_121687421" target="_blank" rel="noopener">
+        <div class="item-id">07</div>
+        <div class="item-body">
+          <div class="item-head"><h2>纵横股份（688070）全资子公司中标河南新野县低空综合治理能力提升项目 6518 万元</h2></div>
+          <p class="summary">纵横股份 6-04 公告：全资子公司<b>成都纵横大鹏无人机科技</b>中标<b>新野县低空综合治理能力提升项目</b>，中标内容为<b>无人值守系统设备及无人机系统</b>等，金额 <b>6518 万元</b>。是 A 股低空上市公司近期最大单笔低空综合治理订单。</p>
+          <div class="params"><span class="money"><b>金额</b> 6518 万</span><span class="dot">·</span><span><b>采购方</b> 新野县</span><span class="dot">·</span><span><b>供应商</b> 成都纵横大鹏</span><span class="dot">·</span><span><b>方向</b> 无人值守系统 + 无人机</span></div>
+        </div>
+        <div class="item-tags"><span class="tag tag-sup">🏭 供应商</span><span class="tag tag-bid">💰 招投标</span><span class="date">2026-06-04</span></div>
+      </a>
+
+      <!-- 08 -->
+      <a class="item" data-cat="pub" href="https://www.stcn.com/article/detail/3943631.html" target="_blank" rel="noopener">
+        <div class="item-id">08</div>
+        <div class="item-body">
+          <div class="item-head"><h2>深城交中标《惠州市低空经济发展规划（2026-2030 年）》编制服务，150 万</h2></div>
+          <p class="summary">深城交科技集团中标惠州市发改局《<b>惠州市低空经济发展规划（2026-2030 年）</b>》编制服务，金额 150 万元。深城交累计参与招投标 8359 次，作为城市级交通规划设计头部公司切入低空规划咨询，本周新订单是其低空业务线产品化的关键信号。</p>
+          <div class="params"><span class="money"><b>金额</b> 150 万</span><span class="dot">·</span><span><b>采购方</b> 惠州市发改局</span><span class="dot">·</span><span><b>供应商</b> 深城交（301091.SZ）</span><span class="dot">·</span><span><b>方向</b> 5 年期低空规划编制</span></div>
+        </div>
+        <div class="item-tags"><span class="tag tag-pub">📜 政策/规划</span><span class="date">2026-06-02</span></div>
+      </a>
+
+      <!-- 09 -->
+      <a class="item" data-cat="bid app" href="https://www.bidcenter.com.cn/newscontent-414680833-2.html" target="_blank" rel="noopener">
+        <div class="item-id">09</div>
+        <div class="item-body">
+          <div class="item-head"><h2>嵊泗县低空飞服中心建设工程无人机及配套设备采购工程中标：中国电信舟山分公司 288.47 万</h2></div>
+          <p class="summary">嵊泗县交通运输局"嵊泗县低空飞服中心建设工程无人机及配套设备采购工程"中标（成交）公告，<b>中国电信股份有限公司舟山分公司</b> 中标，金额 <b>288.47 万元</b>，主要设备为大疆机场 3 / Matrice 4TD 等。中国电信作为运营商在县级低空飞服中心建设中拿下关键标段，运营商成为低空基础设施承建方趋势进一步明确。</p>
+          <div class="params"><span class="money"><b>金额</b> 288.47 万</span><span class="dot">·</span><span><b>采购方</b> 嵊泗县交通运输局</span><span class="dot">·</span><span><b>供应商</b> 中国电信舟山分公司</span><span class="dot">·</span><span><b>设备</b> 大疆机场 3 / M4TD</span></div>
+        </div>
+        <div class="item-tags"><span class="tag tag-bid">💰 招投标</span><span class="tag tag-app">🛩️ 应用</span><span class="date">2026-06-06</span></div>
+      </a>
+
+      <!-- 10 -->
+      <a class="item" data-cat="bid atc" href="https://www.bidcenter.com.cn/newscontent-311461371-4.html" target="_blank" rel="noopener">
+        <div class="item-id">10</div>
+        <div class="item-body">
+          <div class="item-head"><h2>嵊泗县低空飞服中心低空综合管理平台开发及配套软件公开招标（6-03 立项）</h2></div>
+          <p class="summary">嵊泗县低空飞服中心启动 <b>低空综合管理平台开发及配套软件</b> 公开招标，覆盖空域管理、飞行计划、监视告警、数据接入等模块。嵊泗一周内完成"设备采购 + 平台开发"两步走，是国内首个完成县级低空飞服中心"软硬一体"闭环的样板工程。</p>
+          <div class="params"><span><b>采购方</b> 嵊泗县交通运输局</span><span class="dot">·</span><span><b>方向</b> 低空综合管理平台（软件）</span><span class="dot">·</span><span><b>来源</b> 中国采招网</span></div>
+        </div>
+        <div class="item-tags"><span class="tag tag-bid">💰 招投标</span><span class="tag tag-atc">📡 空管/调度</span><span class="date">2026-06-03</span></div>
+      </a>
+
+      <!-- 11 -->
+      <a class="item" data-cat="bid app" href="https://guangdong.jianyu360.cn/jybx/20260212_26021134628662.html" target="_blank" rel="noopener">
+        <div class="item-id">11</div>
+        <div class="item-body">
+          <div class="item-head"><h2>东莞市低空经济发展有限公司 2026 年低空飞行综合服务平台项目招标公告：预算 484 万、12 个月</h2></div>
+          <p class="summary">东莞市低空经济发展有限公司发布 2026 年低空飞行综合服务平台招标，<b>预算 484 万，服务期 12 个月</b>。东莞作为大湾区低空经济核心节点，继 2025 多个飞服中心后，本期进入"地市级综合服务平台"统一建设阶段。</p>
+          <div class="params"><span class="money"><b>预算</b> 484 万</span><span class="dot">·</span><span><b>服务期</b> 12 个月</span><span class="dot">·</span><span><b>采购方</b> 东莞市低空经济发展公司</span><span class="dot">·</span><span><b>方向</b> 综合飞行服务平台</span></div>
+        </div>
+        <div class="item-tags"><span class="tag tag-bid">💰 招投标</span><span class="tag tag-app">🛩️ 应用</span><span class="date">2026-06-08 前</span></div>
+      </a>
+
+      <!-- 12 -->
+      <a class="item" data-cat="sup atc" href="https://www.bidding.csg.cn/" target="_blank" rel="noopener">
+        <div class="item-id">12</div>
+        <div class="item-body">
+          <div class="item-head"><h2>南方电网通用航空 2026-2027 无人机租赁 + Mesh 自组网通信 + 5G 定制网三项技术招标同步发布</h2></div>
+          <p class="summary">南方电网通用航空服务有限公司 6-01 ~ 6-04 同步发布多项技术招标：<b>2026-2027 年无人机设备租赁及专业人员服务框架</b>、<b>基于 Mesh 自组网通信技术的复杂环境无人机巡检应用技术研发</b>、<b>5G 定制网下的电网巡检大文件低时延安全传输技术研究</b>。三项合计构成"无人机 + Mesh + 5G-A"通感算一体技术底座。</p>
+          <div class="params"><span><b>采购方</b> 南方电网通航</span><span class="dot">·</span><span><b>技术栈</b> 无人机 + Mesh 自组网 + 5G-A</span><span class="dot">·</span><span><b>方向</b> 电网巡检·通感算一体</span></div>
+        </div>
+        <div class="item-tags"><span class="tag tag-sup">🏭 供应商</span><span class="tag tag-atc">📡 空管/调度</span><span class="date">2026-06-04</span></div>
+      </a>
+
+      <!-- 13 -->
+      <a class="item" data-cat="sup bid" href="https://www.bidcenter.com.cn/newscontent-426461833-1.html" target="_blank" rel="noopener">
+        <div class="item-id">13</div>
+        <div class="item-body">
+          <div class="item-head"><h2>乡城县公安局无人机机巢建设项目：昂鸽（甘孜州）无人机科技中标 60.52 万，4 套大疆机场 3 + M4TD</h2></div>
+          <p class="summary">四川甘孜乡城县公安局"无人机机巢建设项目"中标公告，<b>昂鸽（甘孜州）无人机科技</b> 中标 60.52 万元，设备清单：<b>大疆机场 3（中国版）SP Plus 4 套</b> + <b>DJI Matrice 4TD 4 套</b> + 智能电池 + 喊话器 + 探照灯 + <b>小飞科技 F9 低空巡防一体化平台 1 项</b>。"大疆硬件 + 第三方平台软件"是低空公安巡防的典型组合。</p>
+          <div class="params"><span class="money"><b>金额</b> 60.52 万</span><span class="dot">·</span><span><b>采购方</b> 乡城县公安局</span><span class="dot">·</span><span><b>供应商</b> 昂鸽（甘孜州）</span><span class="dot">·</span><span><b>设备</b> 4 套大疆机场 3 + M4TD + 小飞科技 F9</span></div>
+        </div>
+        <div class="item-tags"><span class="tag tag-sup">🏭 供应商</span><span class="tag tag-bid">💰 招投标</span><span class="date">2026-06-03</span></div>
+      </a>
+
+      <!-- 14 -->
+      <a class="item" data-cat="app sup" href="https://new.qq.com/rain/a/20260605A0EW7J00" target="_blank" rel="noopener">
+        <div class="item-id">14</div>
+        <div class="item-body">
+          <div class="item-head"><h2>启垣防务 × 广东天空领域科技达成战略合作：空天地一体化警用低空安防生态</h2></div>
+          <p class="summary">启垣（重庆）防务科技 + 广东天空领域科技（<b>大疆创新全国核心战略合作伙伴</b>，年营收 20 亿+，全国 1000+ 线下渠道）达成深度合作，<b>锚定全国警用低空安防市场 + 东南亚警务装备外贸</b>，产品覆盖：<b>公安网格化巡防 / 水域缉私 / 违建排查 / 地质灾害巡检 / 森林防火 / 应急救援 / 全自动无人值守机巢组网</b>，由"人力地面巡查"升级为"科技空中布防"。</p>
+          <div class="params"><span><b>合作方</b> 启垣防务 × 天空领域</span><span class="dot">·</span><span><b>应用</b> 公安/水域/违建/地灾/森林/应急</span><span class="dot">·</span><span><b>区域</b> 国内 + 东南亚</span></div>
+        </div>
+        <div class="item-tags"><span class="tag tag-sup">🏭 供应商</span><span class="tag tag-app">🛩️ 应用</span><span class="date">2026-06-05</span></div>
+      </a>
+
+    </div>
+
+    <div class="empty" id="empty">该方向下暂无条目。</div>
+
+    <div class="footer">
+      <p><b>说明：</b>本报告聚焦"工程侧"，筛选标准为：<b>新发布/新中标的低空平台、空管系统、无人机监管平台、起降场、飞服中心、机场组网、应用场景落地</b>等可工程化交付的项目；政策解读与纯技术研究另见《低空技术研究》系列。</p>
+      <p>数据源：中国政府采购网、宁夏公共资源交易中心、河南省政府采购网、采招网、销邦招标平台、剑鱼标讯、千里马招标网、企查查、企鹅号、腾讯新闻等公开渠道。所有 URL 在收录时已用 <code>Invoke-WebRequest -Method Get</code> 验证 HTTP 200 可达（截至 2026-06-09）。</p>
+      <p>本页面同步发布于 GitHub Pages：<a href="https://richard-chendong.github.io/atcInf/" target="_blank" rel="noopener">https://richard-chendong.github.io/atcInf/</a></p>
+      <p>© 2026 ATC INF · 低空系统工程情报站</p>
+    </div>
+  </div>
+
+<script>
+  const chips = document.querySelectorAll('.chip');
+  const items = document.querySelectorAll('.item');
+  const empty = document.getElementById('empty');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const f = chip.dataset.filter;
+      let visible = 0;
+      items.forEach(it => {
+        const cats = (it.dataset.cat || '').split(/\s+/);
+        const show = f === 'all' || cats.includes(f);
+        it.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      empty.style.display = visible === 0 ? 'block' : 'none';
+    });
+  });
+</script>
+</body>
+</html>
