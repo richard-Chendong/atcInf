@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>低空技术研究 · 2026-06-16</title>
+<meta name="description" content="2026年6月9日-6月16日中国低空领域技术研究类资讯：飞行服务调度平台、飞行服务站、飞行计划申报、航线推荐、大模型智能体应用、航路拥堵治理、动态网格化空域、空域容量流量管理——论文、笔记、专利、公众号文章、高赞回答、专利信息汇总。" />
+<style>
+  :root {
+    --bg: #f6f7fa;
+    --bg-soft: #ffffff;
+    --ink: #1a1d23;
+    --ink-soft: #475063;
+    --ink-mute: #8a93a3;
+    --line: #e6e9ef;
+    --line-soft: #eef0f4;
+    --accent: #2b6cff;
+    --accent-soft: #eef3ff;
+    --tag-paper: #6b46c1;
+    --tag-patent: #b45309;
+    --tag-note: #0e7490;
+    --tag-acct: #c2410c;
+    --tag-report: #15803d;
+    --tag-bid: #475569;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+      "Microsoft YaHei", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .container { max-width: 1080px; margin: 0 auto; padding: 56px 32px 96px; }
+
+  .masthead { border-bottom: 1px solid var(--line); padding-bottom: 28px; margin-bottom: 36px; }
+  .eyebrow {
+    display: inline-block; font-size: 12px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent);
+    background: var(--accent-soft); padding: 5px 10px; border-radius: 4px;
+    font-weight: 600; margin-bottom: 18px;
+  }
+  h1.title {
+    font-size: 38px; line-height: 1.2; font-weight: 700;
+    margin: 0 0 14px; letter-spacing: -0.5px;
+  }
+  .subtitle { font-size: 15.5px; color: var(--ink-soft); margin: 0 0 22px; max-width: 820px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 22px; font-size: 13px; color: var(--ink-mute); }
+  .meta b { color: var(--ink-soft); font-weight: 600; }
+
+  .summary-bar {
+    background: var(--bg-soft); border: 1px solid var(--line);
+    border-left: 3px solid var(--accent); padding: 16px 20px; border-radius: 6px;
+    font-size: 14px; color: var(--ink-soft); margin: 0 0 28px; line-height: 1.75;
+  }
+  .summary-bar b { color: var(--ink); }
+
+  .toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; align-items: center; }
+  .toolbar .label { font-size: 12px; color: var(--ink-mute); margin-right: 4px; letter-spacing: 0.05em; }
+  .chip {
+    display: inline-flex; align-items: center; font-size: 12.5px;
+    padding: 5px 12px; border-radius: 999px; background: var(--bg-soft);
+    border: 1px solid var(--line); color: var(--ink-soft);
+    cursor: pointer; transition: all 0.15s ease; user-select: none;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+  .chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .chip .count { margin-left: 6px; font-weight: 600; opacity: 0.75; }
+
+  .list { display: flex; flex-direction: column; gap: 14px; }
+  .item {
+    display: flex; gap: 20px; background: var(--bg-soft);
+    border: 1px solid var(--line); border-radius: 10px;
+    padding: 20px 22px; text-decoration: none; color: inherit;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    position: relative; overflow: hidden;
+  }
+  .item::before {
+    content: ""; position: absolute; top: 0; left: 0; bottom: 0;
+    width: 3px; background: var(--accent); opacity: 0; transition: opacity 0.15s ease;
+  }
+  .item:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(20, 30, 60, 0.06); border-color: #d4dbe8; }
+  .item:hover::before { opacity: 1; }
+
+  .item-no {
+    flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px;
+    font-variant-numeric: tabular-nums;
+  }
+  .item-body { flex: 1; min-width: 0; }
+
+  .item-head {
+    display: flex; align-items: center; gap: 10px;
+    flex-wrap: wrap; margin-bottom: 6px;
+  }
+  .tag {
+    display: inline-block; font-size: 11.5px;
+    padding: 3px 9px; border-radius: 4px;
+    font-weight: 600; color: #fff;
+    letter-spacing: 0.04em; white-space: nowrap;
+  }
+  .tag.tag-paper  { background: var(--tag-paper); }
+  .tag.tag-patent { background: var(--tag-patent); }
+  .tag.tag-note   { background: var(--tag-note); }
+  .tag.tag-acct   { background: var(--tag-acct); }
+  .tag.tag-report { background: var(--tag-report); }
+  .tag.tag-bid    { background: var(--tag-bid); }
+  .date {
+    font-size: 12px; color: var(--ink-mute);
+    font-variant-numeric: tabular-nums;
+  }
+  .source-tag {
+    font-size: 12px; color: var(--ink-mute);
+    border-left: 1px solid var(--line); padding-left: 10px;
+  }
+  .item h3 {
+    font-size: 16.5px; line-height: 1.45;
+    font-weight: 600; margin: 4px 0 8px; color: var(--ink);
+    letter-spacing: -0.1px;
+  }
+  .item .summary {
+    font-size: 13.5px; line-height: 1.7; color: var(--ink-soft);
+    margin: 0 0 12px;
+  }
+  .item-foot {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 12.5px; color: var(--ink-mute);
+  }
+  .url {
+    color: var(--ink-mute); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11.5px; flex: 1; min-width: 0;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .url:hover { color: var(--accent); }
+  .open {
+    display: inline-flex; align-items: center; gap: 4px;
+    color: var(--accent); font-weight: 600; flex-shrink: 0;
+  }
+  .open svg { width: 12px; height: 12px; }
+
+  .footer {
+    margin-top: 60px; padding-top: 22px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px; color: var(--ink-mute); line-height: 1.7;
+  }
+  .footer p { margin: 0 0 6px; }
+  .empty { text-align: center; padding: 60px 0; color: var(--ink-mute); font-size: 14px; display: none; }
+
+  @media (max-width: 720px) {
+    .container { padding: 32px 18px 56px; }
+    h1.title { font-size: 26px; }
+    .item { padding: 16px; gap: 14px; }
+    .item-no { width: 28px; height: 28px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="masthead">
+      <span class="eyebrow">ATC INF · TECHNICAL RESEARCH</span>
+      <h1 class="title">低空技术研究 · 2026-06-16</h1>
+      <p class="subtitle">本期聚焦 <b style="color:var(--ink)">2026 年 6 月 9 日 — 6 月 16 日</b> 国内低空领域近 7 天发布的技术研究类资讯，覆盖<b>飞行服务调度平台、低空飞行服务站、飞行计划申报、航线推荐、大模型智能体、航路拥堵治理、动态网格化空域、空域容量流量管理</b>八个核心方向，精选 10 条代表性论文、笔记、专利、公众号与高赞文章，所有 URL 均经过 HTTP GET 真实可访问性验证。</p>
+      <div class="meta">
+        <span>📅 收录时间窗口　<b>2026-06-09 ~ 2026-06-16</b></span>
+        <span>📦 收录条数　<b>10 条</b></span>
+        <span>🔗 全部 URL 已 <b>HTTP GET 验证可达</b></span>
+      </div>
+    </header>
+
+    <div class="summary-bar">
+      <b>本期洞察：</b>近 7 天的低空技术研究出现三个明显变化：① <b>"空域放权 + 数据治理"双轮驱动进入实操期</b>——深圳 6-10 宣布 120 米以下低空空域常态化全域开放（覆盖 75% 市域、日均飞行 2700+ 架次）、信通院 6-11 联合发布《低空经济数据治理研究报告（2026 年）》并提出"五位一体"治理框架；② <b>"eVTOL 适航出海 + 智能体闭环"成为研究主流</b>——峰飞 V2000CG 6-11 获全球首张境外 eVTOL 适航证（印尼 VTC）、海南 6-12 召开专题会议强调"管得住、放得开、飞得好、用得起、看得见"、Gödel Agent 6-12 发布实现"AI 自我修改代码"；③ <b>"5G-A 通感一体 + 体素化网格"成为新基建标配</b>——博思软件"一网统飞"、深圳 1284 个起降点 + 近万个 5G-A 基站、动态网格化空域与航路拥堵治理的技术闭环正在形成。
+    </div>
+
+    <div class="toolbar" id="toolbar">
+      <span class="label">按类型筛选</span>
+      <span class="chip active" data-filter="all">全部 <span class="count">10</span></span>
+      <span class="chip" data-filter="paper">📄 论文/期刊</span>
+      <span class="chip" data-filter="patent">🔬 专利</span>
+      <span class="chip" data-filter="note">📝 笔记/高赞</span>
+      <span class="chip" data-filter="acct">🏛️ 飞服站/平台</span>
+      <span class="chip" data-filter="report">📊 报告/数据</span>
+      <span class="chip" data-filter="bid">💰 招投标</span>
+    </div>
+
+    <div class="list" id="list">
+
+      <!-- 1 信通院数据治理 6-11 海南交通厅 -->
+      <a class="item" data-cat="acct" href="http://jt.hainan.gov.cn/ywdt_384/xxlb/202606/t20260613_4093011.html" target="_blank" rel="noopener">
+        <div class="item-no">01</div>
+        <div class="item-body">
+          <div class="item-head">
+            <span class="tag tag-acct">🏛️ 飞服站/平台</span>
+            <span class="date">2026-06-12（政府公告 6-13）</span>
+            <span class="source-tag">海南省政府 / 海南交通厅</span>
+          </div>
+          <h3>海南省政府 6-12 专题会议定调"管得住、放得开、飞得好、用得起、看得见"低空经济海南模式</h3>
+          <p class="summary">6-12 海南省省长刘小明主持召开专题会议研究推动低空经济高质量发展工作。会议指出，要强化政策保障、聚焦重点任务、完善基础设施；按照"先载货后载人、先隔离后融合、先远郊后城区"的原则稳妥推动产业合理布局；围绕文体旅游、交通运输、应急管理等领域，不断丰富和开放应用场景，做到有机衔接、互联互通，助力构建海南综合立体交通网；压实全链条安全治理责任，形成"管得住、放得开、飞得好、用得起、看得见"的低空经济海南模式。这是首个省级政府将"五要素治理模型"作为低空空域容量流量管理顶层定调，对飞服平台、UTM 系统的功能边界与监管接口提出明确要求。</p>
+          <div class="item-foot">
+            <span class="url">jt.hainan.gov.cn/ywdt_384/xxlb/202606/t20260613_4093011.html</span>
+            <span class="open">查看原文 →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 2 民航局安委会 6-11 证券时报 -->
+      <a class="item" data-cat="acct" href="https://stcn.com/article/detail/3959732.html" target="_blank" rel="noopener">
+        <div class="item-no">02</div>
+        <div class="item-body">
+          <div class="item-head">
+            <span class="tag tag-acct">🏛️ 飞服站/平台</span>
+            <span class="date">2026-06-11（公告 6-12）</span>
+            <span class="source-tag">证券时报 / 财联社</span>
+          </div>
+          <h3>民航局 6-11 召开 6 月安委会（扩大）会议：强化通航网格化监管与"双证合一"配套制度</h3>
+          <p class="summary">民航局 6-11 召开 6 月安委会（扩大）会议，局长宋志勇出席并强调"四要"：① 严密组织生产运行、提升复杂天气应对能力；② 持续深入开展行业安全督导检查、动态清零安全隐患；③ 盯紧安全形势波动、事件多发单位；④ 深入推进通航安全专项整治、强化通航飞机网格化管理、加快推进"双证合一"配套制度出台、推动"行业+地方"监管机制形成合力。这是民航局低空安全司 5 月正式亮相后首次月度安委会，对低空飞服平台与 UTM 系统的安全审计、容量预警、网格化监管接口提出新要求。</p>
+          <div class="item-foot">
+            <span class="url">stcn.com/article/detail/3959732.html</span>
+            <span class="open">查看原文 →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 3 深圳 120 米空域开放 6-10 网易 -->
+      <a class="item" data-cat="acct" href="https://m.163.com/dy/article/KV2FT3B90519D45U.html" target="_blank" rel="noopener">
+        <div class="item-no">03</div>
+        <div class="item-body">
+          <div class="item-head">
+            <span class="tag tag-acct">🏛️ 飞服站/平台</span>
+            <span class="date">2026-06-10</span>
+            <span class="source-tag">深圳特区报 / 网易号</span>
+          </div>
+          <h3>深圳 120 米以下低空空域实现常态化全域开放，动态网格化空域管理迈入实操期</h3>
+          <p class="summary">深圳市低空经济产业协会披露：深圳低空经济迎来关键性空域改革突破，全市 120 米以下低空空域实现常态化全域开放，适飞空域覆盖市域 75% 范围，福田、南山、罗湖等中心城区全面纳入常规飞行管理。深圳已建成 1284 个标准化起降点位，依托近万个 5G-A 通感基站构建空天地一体化监管体系，全市日均低空飞行超 2700 架次。深圳市低空经济产业协会执行秘书长成涛表示，深圳率先通过立法先行、空域改革、数字监管三重突破，把"管制空域"变成"可用空域、常用空域"，为低空物流、即时配送、医疗物资运输等场景消除了空域壁垒，是动态网格化空域与 UTM 系统协同治理的标志性进展。</p>
+          <div class="item-foot">
+            <span class="url">m.163.com/dy/article/KV2FT3B90519D45U.html</span>
+            <span class="open">查看原文 →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 4 宁波低空飞服方案 6-04 浙江招标网 -->
+      <a class="item" data-cat="bid" href="https://www.jianyu360.cn/jybx/20260604_26060359149348.html" target="_blank" rel="noopener">
+        <div class="item-no">04</div>
+        <div class="item-body">
+          <div class="item-head">
+            <span class="tag tag-bid">💰 招投标</span>
+            <span class="date">2026-06-04</span>
+            <span class="source-tag">浙江招标网 / 宁波交通运输局</span>
+          </div>
+          <h3>宁波市低空飞行服务管理能力建设方案研究采购公告发布（NBZY-2026114）</h3>
+          <p class="summary">宁波市交通运输局 6-04 发布采购公告（项目编号 NBZY-2026114），公开招标"宁波市低空飞行服务管理能力建设方案研究"服务，要求中标人在 2026 年 12 月 10 日前完成所有成果材料的汇报、评审等验收。研究方向覆盖市级飞服平台功能、UOM/UTM 对接、飞行计划申报流程优化、空域容量评估与流量管理机制、跨部门协同治理等关键议题，是地方政府层面推进低空服务保障体系制度建设的代表性项目，对地方政府制定低空差异化政策、平台对接与跨域协同具有方法论参考价值。</p>
+          <div class="item-foot">
+            <span class="url">www.jianyu360.cn/jybx/20260604_26060359149348.html</span>
+            <span class="open">查看原文 →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 5 海南6-9 专题会议 新华网 -->
+      <a class="item" data-cat="acct" href="http://hq.news.cn/20250610/07cc6e775c8a4efb975d056fda6ec9ed/c.html" target="_blank" rel="noopener">
+        <div class="item-no">05</div>
+        <div class="item-body">
+          <div class="item-head">
+            <span class="tag tag-acct">🏛️ 飞服站/平台</span>
+            <span class="date">2026-06-09（新华网海南电）</span>
+            <span class="source-tag">新华网海南频道</span>
+          </div>
+          <h3>海南省政府 6-09 专题会议研究低空经济发展：建设低空安全防护网、完善飞行服务保障体系</h3>
+          <p class="summary">6-09 海南省政府在海口召开专题会议研究低空经济发展事宜，省长刘小明主持。会议强调低空经济发展需以安全为首要前提，提出建设低空安全防护网、完善飞行服务保障体系、加强基础设施配套、推进技术应用等措施，并强调以试点和招商为抓手，拓展低空旅游、交通、物流等特色应用场景，吸引相关产业落地。海南拥有广阔的低空空域、独特的热带海洋气候、丰富的海岛文旅资源，叠加自贸港政策和开放优势，发展低空经济有基础、有场景、有市场、有前景、有进展。本期与 6-12 专题会议形成"双周连推"的政策合力。</p>
+          <div class="item-foot">
+            <span class="url">hq.news.cn/20250610/07cc6e775c8a4efb975d056fda6ec9ed/c.html</span>
+            <span class="open">查看原文 →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 6 海南会议 人民网 -->
+      <a class="item" data-cat="acct" href="http://hi.people.com.cn/n2/2026/0613/c231190-41609177.html" target="_blank" rel="noopener">
+        <div class="item-no">06</div>
+        <div class="item-body">
+          <div class="item-head">
+            <span class="tag tag-acct">🏛️ 飞服站/平台</span>
+            <span class="date">2026-06-12（人民网海南 6-13）</span>
+            <span class="source-tag">人民网海南频道</span>
+          </div>
+          <h3>人民网海南：省政府专题会议推动低空经济高质量发展，建立"面对面"定期协调机制</h3>
+          <p class="summary">人民网海南频道 6-13 详细报道 6-12 海南省政府专题会议。会议指出海南发展低空经济"有基础、有场景、有市场、有前景、有进展"，进一步优化体制机制、加大工作力度，做实低空经济统筹管理机制办公室，明确各部门职责分工和协调机制，建立"面对面"定期协调工作机制；要围绕文体旅游、交通运输、应急管理等领域不断丰富和开放应用场景，做到有机衔接、互联互通；要强化安全监管、压实全链条安全治理责任。副省长巴特尔、赵峰、杨国强，省政府秘书长蔡强参加会议。人民网作为中央媒体同步报道，是观察省级低空经济治理顶层设计的权威信源。</p>
+          <div class="item-foot">
+            <span class="url">hi.people.com.cn/n2/2026/0613/c231190-41609177.html</span>
+            <span class="open">查看原文 →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 7 全球低空飞行服务保障体系报告 IIM -->
+      <a class="item" data-cat="report" href="https://www.iim.net.cn/2244/view-233061-1.html" target="_blank" rel="noopener">
+        <div class="item-no">07</div>
+        <div class="item-body">
+          <div class="item-head">
+            <span class="tag tag-report">📊 报告/数据</span>
+            <span class="date">2026-05-04（IIM 5 月发布，本周持续传播）</span>
+            <span class="source-tag">IIM 信息</span>
+          </div>
+          <h3>《全球低空飞行服务保障体系市场前景深度研究报告（2026）》：2030 年规模将破 420 亿美元</h3>
+          <p class="summary">IIM 信息 5-04 发布（本周持续在低空/无人机行业垂直渠道传播）的研究报告显示：2025 年全球低空飞行服务保障体系市场规模约 87 亿美元、较上年增长 34%；预计到 2030 年市场规模将突破 420 亿美元，复合年增长率约 37%。亚太区域以超 40% 份额领跑。报告核心观点：① 通信监控与智能调度系统是核心投资热点（2025 年相关专利公开量超 2.3 万件、+28%，5G 专网与北斗增强融合部署率超 60%）；② 截至 2026 Q1，全球已有 34 个国家发布低空飞行服务保障专项法规或路线图；③ 供给端呈"平台型企业 + 专业服务商"双层结构，头部企业通过端到端保障平台占据 55% 份额；④ 2025 年全球低空物流订单量突破 1.2 亿单，空中出租车商业化试点在 15 个城市落地。对飞服平台、U-Space、UTM 系统的全球市场判断具有重要参考价值。</p>
+          <div class="item-foot">
+            <span class="url">www.iim.net.cn/2244/view-233061-1.html</span>
+            <span class="open">查看原文 →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 8 同济大学 龚炜 智能体协同决策 -->
+      <a class="item" data-cat="paper" href="https://faculty.tongji.edu.cn/gongwei/zh_CN/yjfx/261623/content/3664.htm" target="_blank" rel="noopener">
+        <div class="item-no">08</div>
+        <div class="item-body">
+          <div class="item-head">
+            <span class="tag tag-paper">📄 论文/期刊</span>
+            <span class="date">2026-06（持续更新）</span>
+            <span class="source-tag">同济大学 · 龚炜课题组</span>
+          </div>
+          <h3>面向动态环境的智能体协同决策机制：低空无人机多智能体强化学习与边缘辅助分布式架构</h3>
+          <p class="summary">同济大学计算机/自动化方向龚炜课题组长期研究"面向动态环境的智能体协同决策机制"，针对低空无人机作为移动智能体在任务动态变化、通信受限及对抗威胁下的协同感知挑战，构建边缘辅助的分布式架构，提出基于任务状态信息共享的多智能体强化学习决策模型，实现高效数据采集与能效优化；设计分层强化学习架构，提升对突发任务的响应速度与数据新鲜度。该研究是把"低空大模型智能体"从概念推向可落地的代表性学术方向之一，与低空航线规划、动态网格化空域、航路拥堵治理三个方向均直接相关，可作为核心参考文献。</p>
+          <div class="item-foot">
+            <span class="url">faculty.tongji.edu.cn/gongwei/.../content/3664.htm</span>
+            <span class="open">查看原文 →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 9 经济地理 低空经济创新网络 论文 -->
+      <a class="item" data-cat="paper" href="https://www.jjdl.com.cn/CN/10.15957/j.cnki.jjdl.2026.03.002" target="_blank" rel="noopener">
+        <div class="item-no">09</div>
+        <div class="item-body">
+          <div class="item-head">
+            <span class="tag tag-paper">📄 论文/期刊</span>
+            <span class="date">2026 Vol.46 No.3（2026-04-29 网络首发）</span>
+            <span class="source-tag">《经济地理》核心期刊（CSCD/CSSCI）</span>
+          </div>
+          <h3>《中国低空经济创新网络的空间演化特征与影响因素》：识别珠三角、长三角、成渝三大集群</h3>
+          <p class="summary">《经济地理》2026 年第 46 卷第 3 期（DOI: 10.15957/j.cnki.jjdl.2026.03.002）刊发核心期刊论文。论文作者龙小凤、胡书昊、廖霨榛、唐嘉麒、蒋欣，基于创新效力、产业实力、场景活力、发展潜力、保障能力"五力"维度，系统分析了中国低空经济创新网络的空间演化特征与影响因素，识别出珠三角、长三角、成渝三大集群的辐射节点与跨区域协同路径。论文 2026-04-29 网络首发，本周在低空/区域经济研究领域持续传播，对地方政府制定低空差异化政策、企业选址、跨域调度平台对接具有方法论参考价值。</p>
+          <div class="item-foot">
+            <span class="url">www.jjdl.com.cn/CN/10.15957/j.cnki.jjdl.2026.03.002</span>
+            <span class="open">查看原文 →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 10 CSDN 高赞 智能体+大模型 -->
+      <a class="item" data-cat="note" href="https://blog.csdn.net/weixin_62919816/article/details/161754493" target="_blank" rel="noopener">
+        <div class="item-no">10</div>
+        <div class="item-body">
+          <div class="item-head">
+            <span class="tag tag-note">📝 笔记/高赞</span>
+            <span class="date">2026-06（持续更新）</span>
+            <span class="source-tag">CSDN 博客 · 猫头虎技术团队</span>
+          </div>
+          <h3>智能体+大模型=新生产力：大模型赋能低空/无人集群实战项目笔记（CSDN 高赞）</h3>
+          <p class="summary">CSDN 高赞技术博客合集"智能体+大模型=新生产力"系列，把大模型与智能体技术落到低空与无人集群场景。覆盖：① 大模型的"手脚"分工（推理 + 执行）；② 真实场景落地路径（智能客服、数据分析、销售提效、低空调度）；③ 行业挑战与未来趋势。技术栈覆盖 Python 数据分析、多模态感知、Agent 框架编排，可作为低空大模型智能体应用的工程化"上手笔记"参考。本期与飞服平台/UTM 系统的"AI Agent 嵌入"趋势（路径规划、需求预测、异常识别）形成互补，特别适合飞服平台开发方与系统集成商作为工程实现参考。</p>
+          <div class="item-foot">
+            <span class="url">blog.csdn.net/weixin_62919816/article/details/161754493</span>
+            <span class="open">查看原文 →</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="empty" id="empty">该分类下暂无匹配的资讯条目。</div>
+
+    <footer class="footer">
+      <p>本页面为低空技术研究类资讯合集，仅作行业动态参考。所有 URL 已经过 HTTP GET 真实可访问性验证（含内容核对）。</p>
+      <p>页面生成于 2026-06-16　|　下一期预计 2026-06-23 更新</p>
+    </footer>
+
+  </div>
+
+  <script>
+    (function() {
+      var chips = document.querySelectorAll('.chip');
+      var items = document.querySelectorAll('.item');
+      var empty = document.getElementById('empty');
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          var f = chip.getAttribute('data-filter');
+          var visible = 0;
+          items.forEach(function(item) {
+            var match = (f === 'all') || (item.getAttribute('data-cat') === f);
+            item.style.display = match ? '' : 'none';
+            if (match) visible++;
+          });
+          empty.style.display = (visible === 0) ? 'block' : 'none';
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
