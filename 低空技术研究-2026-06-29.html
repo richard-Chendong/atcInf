@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>低空技术研究 2026-06-29</title>
+<style>
+  :root {
+    --bg: #f8f9fa; --card-bg: #fff; --text: #1a1a1a; --text-secondary: #5f5f5f;
+    --accent: #2563eb; --border: #e5e5e0;
+    --tag-platform: #dbeafe; --tag-platform-text: #1e40af;
+    --tag-station: #dcfce7; --tag-station-text: #166534;
+    --tag-plan: #fef3c7; --tag-plan-text: #92400e;
+    --tag-route: #fce7f3; --tag-route-text: #9d174d;
+    --tag-agent: #ede9fe; --tag-agent-text: #5b21b6;
+    --tag-congestion: #fee2e2; --tag-congestion-text: #991b1b;
+    --tag-grid: #e0f2fe; --tag-grid-text: #0c4a6e;
+    --tag-capacity: #f0fdf4; --tag-capacity-text: #14532d;
+    --tag-patent: #fff7ed; --tag-patent-text: #9a3412;
+    --tag-paper: #f5f5f4; --tag-paper-text: #44403c;
+    --tag-intl: #fdf2f8; --tag-intl-text: #831843;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
+  .header { background: linear-gradient(135deg, #0c1929 0%, #1e3a5f 40%, #2563eb 100%); color:#fff; padding:40px 0 32px; text-align:center; }
+  .header::after { content:''; display:block; height:3px; background: linear-gradient(90deg, #3b82f6, #06b6d4, #8b5cf6, #3b82f6); }
+  .header h1 { font-size:24px; font-weight:700; margin-bottom:6px; letter-spacing:0.5px; }
+  .header .subtitle { font-size:13px; opacity:0.8; max-width:600px; margin:0 auto; }
+  .header .meta { margin-top:12px; font-size:11px; opacity:0.5; }
+  .container { max-width:960px; margin:0 auto; padding:24px 18px; }
+
+  .stats-bar { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:24px; }
+  .stat-item { background:var(--card-bg); border-radius:8px; padding:12px 16px; box-shadow:var(--shadow); border:1px solid var(--border); flex:1; min-width:120px; text-align:center; }
+  .stat-item .num { font-size:22px; font-weight:800; color:#2563eb; }
+  .stat-item .lbl { font-size:10px; color:#888; margin-top:2px; }
+
+  .section { margin-bottom:36px; }
+  .section-title { font-size:17px; font-weight:700; color:#0c1929; padding-bottom:8px; border-bottom:2px solid #e2e8f0; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+
+  .item-list { display:flex; flex-direction:column; gap:12px; }
+  .item { background:var(--card-bg); border-radius:9px; padding:16px 20px; box-shadow:var(--shadow); border:1px solid var(--border); transition:box-shadow 0.15s; display:flex; gap:14px; align-items:flex-start; }
+  .item:hover { box-shadow:0 2px 12px rgba(0,0,0,0.08); }
+  .item .idx { flex-shrink:0; width:28px; height:28px; border-radius:50%; background:#f1f5f9; color:#64748b; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; }
+  .item .body { flex:1; min-width:0; }
+  .item .title { font-size:14px; font-weight:600; color:#0c1929; margin-bottom:4px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .item .title a { color:var(--accent); text-decoration:none; }
+  .item .title a:hover { text-decoration:underline; }
+  .item .summary { font-size:12.5px; color:#444; line-height:1.7; }
+  .item .meta-row { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; align-items:center; }
+  .item .source { font-size:10.5px; color:#888; }
+  .item .source a { color:#888; text-decoration:none; }
+  .item .source a:hover { color:var(--accent); text-decoration:underline; }
+
+  .tag { font-size:9.5px; padding:2px 7px; border-radius:3px; font-weight:600; white-space:nowrap; letter-spacing:0.3px; }
+  .tag-platform { background:var(--tag-platform); color:var(--tag-platform-text); }
+  .tag-station { background:var(--tag-station); color:var(--tag-station-text); }
+  .tag-plan { background:var(--tag-plan); color:var(--tag-plan-text); }
+  .tag-route { background:var(--tag-route); color:var(--tag-route-text); }
+  .tag-agent { background:var(--tag-agent); color:var(--tag-agent-text); }
+  .tag-congestion { background:var(--tag-congestion); color:var(--tag-congestion-text); }
+  .tag-grid { background:var(--tag-grid); color:var(--tag-grid-text); }
+  .tag-capacity { background:var(--tag-capacity); color:var(--tag-capacity-text); }
+  .tag-patent { background:var(--tag-patent); color:var(--tag-patent-text); }
+  .tag-paper { background:var(--tag-paper); color:var(--tag-paper-text); }
+  .tag-intl { background:var(--tag-intl); color:var(--tag-intl-text); }
+
+  @media (max-width:640px) {
+    .item { flex-direction:column; gap:8px; }
+    .stats-bar { flex-direction:column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🛰️ 低空技术研究 · 周报</h1>
+  <div class="subtitle">飞行服务调度平台 · 飞行服务站 · 计划申报 · 航线推荐 · 大模型智能体 · 航路拥堵治理 · 动态网格化空域管理 · 容量流量管理</div>
+  <div class="meta">研究周期：2026-06-23 ~ 2026-06-29 · 共收录 28 条高质量信息 · 覆盖论文/专利/产品/政策/国际动态</div>
+</div>
+
+<div class="container">
+
+<div class="stats-bar">
+  <div class="stat-item"><div class="num">28</div><div class="lbl">收录条目</div></div>
+  <div class="stat-item"><div class="num">5</div><div class="lbl">飞行服务平台</div></div>
+  <div class="stat-item"><div class="num">4</div><div class="lbl">学术论文</div></div>
+  <div class="stat-item"><div class="num">6</div><div class="lbl">专利技术</div></div>
+  <div class="stat-item"><div class="num">4</div><div class="lbl">国际动态</div></div>
+  <div class="stat-item"><div class="num">3</div><div class="lbl">大模型/智能体</div></div>
+</div>
+
+<!-- ====== 一、飞行服务调度平台 ====== -->
+<div class="section">
+  <div class="section-title">📡 一、飞行服务调度平台</div>
+  <div class="item-list">
+
+    <div class="item">
+      <div class="idx">1</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://www.geovis.com.cn/products/detail/5" target="_blank">中科星图 · 领航低空飞行服务管理平台</a>
+          <span class="tag tag-platform">飞行服务平台</span>
+        </div>
+        <div class="summary">基于低空全息网格和空域计算引擎，实现飞行管理、安全监管联动、政府联合监管和低空用户服务四大核心能力。具备飞行计划冲突检测、智能调配、审批流程匹配和执行状态管理；支持大规模高密度低空运行场景下的飞行线路规划、计划冲突检测和仿真推演；一站式协同审批：基于任务类别/飞行器类型/空域/管理权限自动关联审批流程。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://www.geovis.com.cn/products/detail/5" target="_blank">geovis.com.cn</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">2</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://m.thepaper.cn/newsDetail_forward_33181218" target="_blank">南京低空飞行服务平台 · "宁易飞"</a>
+          <span class="tag tag-platform">飞行服务平台</span>
+        </div>
+        <div class="summary">南京市交通集团打造，具备十大功能模块，应用十多项国家专利与国际标准。创新采用空域栅格编码管理技术，引入国际SORA风险评估方法。具备同时保障5万架次飞行服务的能力。全国首个支持微信小程序申报的飞行计划系统"宁易飞"，用户手机端即可申请低空空域、飞行航线和时间。平台分管理端（统一调度、实时监测、异常预警）和用户端（便捷申报、状态查询、动态提醒）。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://m.thepaper.cn/newsDetail_forward_33181218" target="_blank">thepaper.cn</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">3</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://www.afdata.org.cn/CuttingEdge/200ff07d-d2c4-462e-bba6-3b35303cdb20" target="_blank">广州东部低空服务管理平台</a>
+          <span class="tag tag-platform">飞行服务平台</span>
+        </div>
+        <div class="summary">包含空域一览管理、飞行活动申报、低空管制模块、飞行服务平台四大功能。整合适飞空域、起降点等静态数据，接入各类航路航线并分类分级展示。遵循"先水后路、航路优先、避开人员密集区"原则实现航路航线自动划设。接入5G-A通感一体感知设备，引入"时空胶囊"技术为在飞无人机设定安全运行区域。已应用于低空血液运输等定制化场景。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://www.afdata.org.cn/CuttingEdge/200ff07d-d2c4-462e-bba6-3b35303cdb20" target="_blank">afdata.org.cn</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">4</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://news.qq.com/rain/a/20250630A06TM500" target="_blank">广东省低空飞行综合服务管理平台</a>
+          <span class="tag tag-platform">省级平台</span>
+        </div>
+        <div class="summary">广东省低空经济产业发展有限公司建设，联通国家平台与市级平台，对接军民航空域及计划管理系统。由运行指挥决策系统、军民地协同管理系统、省综合飞行服务站系统和低空经济全要素数据融合中心构成。已上线空域划设、飞行计划管理、审批服务及飞行动态数据四大核心模块，实现"用户申报-部门审批-动态监管"全流程全链条线上管理。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://news.qq.com/rain/a/20250630A06TM500" target="_blank">news.qq.com</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">5</div>
+      <div class="body">
+        <div class="title">
+          <a href="http://big5.china.com.cn/gate/big5/iot.china.com.cn/content/2026-04/14/content_43397792.shtml" target="_blank">天枢鸟 · 全国首家低空全场景运营服务平台</a>
+          <span class="tag tag-platform">运营服务平台</span>
+        </div>
+        <div class="summary">天枢鸟（杭州）航空科技有限公司自主研发，以"叫飞机天枢鸟"为核心，聚焦"低空服务一键预约"。智慧调度系统由算法驱动，空域管理系统实现空域申报秒级响应。整合订单发布→智慧派单→接单执飞→服务完成→售后评价全链路数字化管控。覆盖低空出行、低空文旅、低空作业、低空教培、空中媒体等核心板块。</div>
+        <div class="meta-row"><span class="source">来源：<a href="http://big5.china.com.cn/gate/big5/iot.china.com.cn/content/2026-04/14/content_43397792.shtml" target="_blank">china.com.cn</a></span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====== 二、低空飞行服务站 & 飞行计划申报 ====== -->
+<div class="section">
+  <div class="section-title">📋 二、低空飞行服务站 & 飞行计划申报</div>
+  <div class="item-list">
+
+    <div class="item">
+      <div class="idx">6</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://www.yicai.com/news/103239578.html" target="_blank">浙江"浙里畅飞"低空飞行服务移动端上线</a>
+          <span class="tag tag-station">飞行服务站</span><span class="tag tag-plan">计划申报</span>
+        </div>
+        <div class="summary">2026年6月22日发布，浙江省无人机运行与监管服务平台的移动端，通过浙里办、微信小程序进入。首发核心功能"适飞空域查询"：输入地名/经纬度/航线/区域后快速判断是否合规。同步推出"知识库"（规章制度+高频问答）和"气象服务"（精确点位天气/温度/风速风向实时显示）。标志浙江低空飞行服务迈入"指尖时代"。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://www.yicai.com/news/103239578.html" target="_blank">yicai.com</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">7</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://max.book118.com/html/2026/0403/6203120102012120.shtm" target="_blank">力通低空智能推荐系统</a>
+          <span class="tag tag-plan">计划申报</span><span class="tag tag-route">航线推荐</span>
+        </div>
+        <div class="summary">北京力通通信有限公司，基于多源数据融合与AI算法，提供航线规划、安全预警、资源调度与合规校验四大核心能力。四层架构：感知-认知-决策-应用。智能航线规划与审批一体化：输入起降点与任务类型→数秒内生成多条候选方案→合规校验通过后自动提交审批。支持多机协同与冲突规避、空域资源动态调度与推荐。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://max.book118.com/html/2026/0403/6203120102012120.shtm" target="_blank">book118.com</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">8</div>
+      <div class="body">
+        <div class="title">
+          <a href="http://www.caac.gov.cn/PHONE/HDJL/YJZJ/202602/P020260212527250611083.pdf" target="_blank">民航局 UOM-USS 数据接口标准</a>
+          <span class="tag tag-plan">标准规范</span>
+        </div>
+        <div class="summary">民航局发布《民用无人驾驶航空器航行服务提供方系统数据接口要求》，规定了UOM与USS系统之间的数据接口通信协议、数据传输、数据交互要求。涵盖适飞空域查询、临时管控需求申请、飞行活动申请、起飞确认、降落报告、运行识别数据获取、起降场上报、航路航线上报等19类接口。为地方政府低空飞行服务保障体系建设提供标准依据。</div>
+        <div class="meta-row"><span class="source">来源：<a href="http://www.caac.gov.cn/PHONE/HDJL/YJZJ/202602/P020260212527250611083.pdf" target="_blank">caac.gov.cn</a></span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====== 三、航线推荐 & 航路规划 ====== -->
+<div class="section">
+  <div class="section-title">🗺️ 三、航线推荐 & 航路规划</div>
+  <div class="item-list">
+
+    <div class="item">
+      <div class="idx">9</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://www.geovis.com.cn/products/detail/2" target="_blank">中科星图 · 启航低空规划平台（航线规划引擎）</a>
+          <span class="tag tag-route">航线推荐</span>
+        </div>
+        <div class="summary">采用四维时空智能算法，深度融合空域结构、气象及航空器性能参数，实现全自动航线生成与优化。通过高精度数字孪生环境建模，支持500+航空器并发航迹仿真，实时检测四维冲突，输出三维动态热力图展示风险分布。多目标优化引擎平衡安全、效率与经济性，自动生成兼顾空域容量最大化和能耗最优的航线网络。三大核心引擎：空域网格+空域计算+仿真评估。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://www.geovis.com.cn/products/detail/2" target="_blank">geovis.com.cn</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">10</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://www.abestway.cn/63791/" target="_blank">达索系统 · 低空航路自动规划与动态协同管理</a>
+          <span class="tag tag-route">航线推荐</span><span class="tag tag-congestion">拥堵治理</span>
+        </div>
+        <div class="summary">基于3DEXPERIENCE平台与虚拟孪生技术，构建覆盖空域建模、容量评估、冲突检测、航路动态生成与多主体实时协同的统一数字基座。每架飞行器作为智能体，批量模拟数千架无人机涌现行为。中央航路优化器分配全局优选4D航迹并下发边缘单元执行，边缘依据本地传感器短期调整，偏离超阈值触发重规划——"大协同、小自治"。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://www.abestway.cn/63791/" target="_blank">abestway.cn</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">11</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://pdf.dfcfw.com/pdf/H3_AP202604241821526054_1.pdf" target="_blank">高德 · "空中高德"低空空间计算引擎</a>
+          <span class="tag tag-route">航线推荐</span>
+        </div>
+        <div class="summary">融合网格建模、航路/航线规划、任务调度等核心能力。智能航径规划集成高德地面路径规划成熟算法与低空约束条件。百点级任务规划用时大幅缩短。动态空域划设通过"空域沙盘"工具辅助监管方空域划设与冲突预演。起降场智能管理：选址评估、净空分析、容量仿真、预约调度一体化。空地无缝接驳：与高德地面导航深度耦合。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://pdf.dfcfw.com/pdf/H3_AP202604241821526054_1.pdf" target="_blank">dfcfw.com</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">12</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://ictp.caict.ac.cn/CN/Y2026/V52/I4/39" target="_blank">基于低空数字孪生的风险量化评估与安全航线规划</a>
+          <span class="tag tag-paper">学术论文</span><span class="tag tag-route">航线推荐</span>
+        </div>
+        <div class="summary">《信息通信技术与政策》2026年第4期。以北斗网格为基准，建立"地面-空中"融合风险量化模型，基于改进A*算法生成低空飞行航线。在河南某典型城市开展现场试验验证有效性。提出数字孪生驱动的风险评估与安全航线规划技术框架，为低空空域高效利用和航线规划提供支撑。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://ictp.caict.ac.cn/CN/Y2026/V52/I4/39" target="_blank">ictp.caict.ac.cn</a></span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====== 四、低空大模型智能体应用 ====== -->
+<div class="section">
+  <div class="section-title">🤖 四、低空大模型 & 智能体应用</div>
+  <div class="item-list">
+
+    <div class="item">
+      <div class="idx">13</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://m.tech.china.com/articles/20260115/202601151797611.html" target="_blank">全球首个低空安全飞行大模型"安飞"发布</a>
+          <span class="tag tag-agent">大模型</span>
+        </div>
+        <div class="summary">2026年1月15日北京发布，基于DeepSeek+华为算力+城市地理/气象数据预训练。核心突破：米级三维空域建模、参数化航线规划、毫秒级避障及AI智能体监管。首创"城市低空空域多分辨率三维网格化建模（ULAM-GM）"，实现无死角空域航路管理。支持低轨卫星互联网（GW星座）与低空智能传感器实时通讯，实现与数十万传感器+数万卫星的模态化对话。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://m.tech.china.com/articles/20260115/202601151797611.html" target="_blank">tech.china.com</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">14</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://www.xjishu.com/zhuanli/57/202610050111.html" target="_blank">基于多模态大模型的低空交通流协同感知与冲突预测</a>
+          <span class="tag tag-patent">专利</span><span class="tag tag-agent">智能体</span>
+        </div>
+        <div class="summary">专利技术。通过动态时空网格表征、具身智能体大模型微调（基于VIMA或RT2架构）及博弈推演模型，实现飞行器意图识别、轨迹预测与风险评估的端到端融合。引入飞行器动力学约束与空域规则知识作为模型先验，实现"内生安全"的预测。引入不完全信息博弈理论模拟飞行器间策略交互，密集场景下显著降低误报率。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://www.xjishu.com/zhuanli/57/202610050111.html" target="_blank">xjishu.com</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">15</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://www.xjishu.com/zhuanli/55/202511895991.html" target="_blank">低空空域智能决策优化与重构方法（分层强化学习）</a>
+          <span class="tag tag-patent">专利</span><span class="tag tag-agent">智能体</span>
+        </div>
+        <div class="summary">杭州北航国际创新研究院专利（2026年3月）。战略层（长期规划）、战术层（中期调配）、执行层（实时控制）三层分层强化学习协同优化空域资源分配与冲突消解。创新在线重构机制：系统性能监测→退化检测→触发式模型参数/结构自适应更新。形成"感知-决策-重构"闭环优化，适用于低空空域无人机管理等复杂场景。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://www.xjishu.com/zhuanli/55/202511895991.html" target="_blank">xjishu.com</a></span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====== 五、航路拥堵治理 ====== -->
+<div class="section">
+  <div class="section-title">🚦 五、航路拥堵治理</div>
+  <div class="item-list">
+
+    <div class="item">
+      <div class="idx">16</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://www.renrendoc.com/paper/526727673.html" target="_blank">2026年低空物流系统流量控制算法研究</a>
+          <span class="tag tag-congestion">拥堵治理</span>
+        </div>
+        <div class="summary">面向低空物流规模化运营的智能流量控制算法体系。核心挑战：空域资源稀缺性矛盾、动态场景适应性不足、跨区域标准不统一。目标：提升空域利用率40%以上，降低运营成本20%。多智能体协同调度算法设计：分布式多智能体协同机制，支撑大规模无人机集群实时任务分配与路径规划。动态场景下实时流量优化机制。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://www.renrendoc.com/paper/526727673.html" target="_blank">renrendoc.com</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">17</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://hkxb.buaa.edu.cn/CN/Y2025/V46/I11/531479" target="_blank">基于复杂网络的城市低空飞行计划优化调度</a>
+          <span class="tag tag-paper">学术论文</span><span class="tag tag-congestion">拥堵治理</span>
+        </div>
+        <div class="summary">《航空学报》2025年。提出基于复杂网络的飞行计划两阶段优化调度方法。构建以飞行计划为节点、飞行冲突为连边的冲突复杂网络，通过拓扑指标识别关键飞行计划。融合地面等待、速度调整和局部改航等多种策略，先整体优化关键飞行计划再局部调整剩余冲突点。结果：显著减少甚至完全消除飞行冲突，延误飞行计划不超过3%。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://hkxb.buaa.edu.cn/CN/Y2025/V46/I11/531479" target="_blank">hkxb.buaa.edu.cn</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">18</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://dronelife.com/2026/06/25/flytrex-and-wing-report-zero-airspace-conflicts-for-multi-operator-drone-delivery/" target="_blank">Flytrex+Wing UTM多运营商零冲突运营（Dallas-Fort Worth）</a>
+          <span class="tag tag-intl">国际实践</span><span class="tag tag-congestion">拥堵治理</span>
+        </div>
+        <div class="summary">2026年6月25日报告：运营近一年实现<strong>零空域冲突</strong>。基于ASTM F3548-21 USS互操作标准，实时交换飞行意图数据，自动调整飞行路径。2026年1-2月约8,000架次运营，30/31天同时飞行，每日重叠运营超10小时。UTM系统100%去冲突。多运营商自动战略协调服务，被称为"自主空中交通管制概念验证"。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://dronelife.com/2026/06/25/flytrex-and-wing-report-zero-airspace-conflicts-for-multi-operator-drone-delivery/" target="_blank">dronelife.com</a></span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====== 六、动态网格化空域管理 ====== -->
+<div class="section">
+  <div class="section-title">🔲 六、动态网格化空域管理</div>
+  <div class="item-list">
+
+    <div class="item">
+      <div class="idx">19</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://www.xjishu.com/zhuanli/57/202610249975.html" target="_blank">基于四维空域网格的低空空域精细化管理方法</a>
+          <span class="tag tag-patent">专利</span><span class="tag tag-grid">动态网格化</span>
+        </div>
+        <div class="summary">专利（2026年3月31日公开）。将低空空域划分为四维空域网格结构（三维空间+时间维度），实现空域资源精细化管理。遍历候选飞行轨迹网格单元序列，自动识别时空冲突并在冲突消解搜索空间内生成无冲突飞行路径。将路径对应网格单元标记为已占用并与飞行器标识绑定，建立动态空域资源分配记录系统。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://www.xjishu.com/zhuanli/57/202610249975.html" target="_blank">xjishu.com</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">20</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://www.xjishu.com/zhuanli/57/202511957962.html" target="_blank">基于动态时空权重的低空空域网格化管理方法</a>
+          <span class="tag tag-patent">专利</span><span class="tag tag-grid">动态网格化</span>
+        </div>
+        <div class="summary">上海博昂电气有限公司专利（2026年3月30日公开）。构建分层稀疏时序八叉树等时空权重数据结构，融合多源异构信息实现空域状态动态更新。四维路径规划+闭环监控：飞行任务执行期间闭环监控，满足预设重规划条件时动态触发轨迹重新生成。解决静态航线规划导致资源利用率低、中心化管控计算瓶颈及安全风险问题。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://www.xjishu.com/zhuanli/57/202511957962.html" target="_blank">xjishu.com</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">21</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://www.xjishu.com/zhuanli/57/202511650424.html" target="_blank">融合多源感知的空域网格化低空物流航线动态评估系统</a>
+          <span class="tag tag-patent">专利</span><span class="tag tag-grid">动态网格化</span>
+        </div>
+        <div class="summary">苏州市职业大学专利（2026年6月9日公开）。多层次、高密度、多品类感知设备+工业级边缘服务器深度融合。边缘节点承担数据实时清洗、时间同步、坐标统一，运行融合算法生成全域态势一张图。通信、导航、气象、监视、电磁环境、噪音及反制系统构成完善的多源融合网络。边缘计算架构显著提升数据处理速度与系统响应能力。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://www.xjishu.com/zhuanli/57/202511650424.html" target="_blank">xjishu.com</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">22</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://www.mapgis.com/index.php?a=shows&catid=33&id=1885" target="_blank">中地软件 · 基于低空网格的AI智能低空运行体系</a>
+          <span class="tag tag-grid">动态网格化</span>
+        </div>
+        <div class="summary">2026年6月10-12日巴中会议报告。提出"数智底座+服务平台+低空AI应用"架构。低空全域网格化管理：将空域按地理坐标划分为标准化网格单元，实现"可见、可算、可管、可用"。空域动态规划与航路划设：结合三维地图、障碍物分析、气象数据等构建多层次低空航路网络，支持临时空域动态审批。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://www.mapgis.com/index.php?a=shows&catid=33&id=1885" target="_blank">mapgis.com</a></span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====== 七、空域容量流量管理 ====== -->
+<div class="section">
+  <div class="section-title">📊 七、空域容量流量管理</div>
+  <div class="item-list">
+
+    <div class="item">
+      <div class="idx">23</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://www.sciopen.com/local/article_pdf/10.7527/S1000-6893.2025.31399.pdf" target="_blank">低空空域无人系统交通管理方案初探（UTM综述）</a>
+          <span class="tag tag-paper">学术论文</span><span class="tag tag-capacity">容量流量管理</span>
+        </div>
+        <div class="summary">《航空学报》2025年UTM综述论文。提出"分层、分类、分域、网格化"管理理念。重点梳理高效容量流量管理（CFM）技术：通过合理分配空域资源提高通行效率。创新设计以"八卦图"为核心的"管道化"立体航线网络，优化空域资源分配。涵盖多无人机通信网络、协同控制、冲突管控和交通群自主运行等共性关键技术。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://www.sciopen.com/local/article_pdf/10.7527/S1000-6893.2025.31399.pdf" target="_blank">sciopen.com</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">24</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://dronelife.com/2026/06/23/faa-airspace-management-smart-program/" target="_blank">FAA SMART计划：数据驱动的预测性空域管理</a>
+          <span class="tag tag-intl">国际政策</span><span class="tag tag-capacity">容量流量管理</span>
+        </div>
+        <div class="summary">2026年6月23日FAA宣布选择Air Space Intelligence (ASI) 提供SMART和FMDS平台。通过预测分析和高级规划工具改善战略决策，管理天气中断、机场容量限制和空域拥堵。覆盖商业航空、货运、AAM飞行器。向数据驱动、预测性空域管理的重大转型，为长期无人机集成奠定基础。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://dronelife.com/2026/06/23/faa-airspace-management-smart-program/" target="_blank">dronelife.com</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">25</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://dspace.lib.cranfield.ac.uk/server/api/core/bitstreams/a941e305-eab8-4516-a32b-f05cbbe4d681/content" target="_blank">U-space按需动态容量管理（DCM）集成方法</a>
+          <span class="tag tag-paper">学术论文</span><span class="tag tag-capacity">容量流量管理</span>
+        </div>
+        <div class="summary">Cranfield大学研究。提出三线程集成方法：飞行规划（需求）、空域配置（容量）和需求-容量平衡（DCB）。空域配置定义基本空域结构并提出动态调整方案，支持飞行规划重调度替代轨迹以绕开拥堵区域。DCB计算最优时隙分配、轨迹选择和空域配置。仿真验证：集成方法在几乎所有关键性能领域优于部分功能实现。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://dspace.lib.cranfield.ac.uk/server/api/core/bitstreams/a941e305-eab8-4516-a32b-f05cbbe4d681/content" target="_blank">cranfield.ac.uk</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">26</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://www.mdpi.com/2504-446X/10/2/139" target="_blank">有界空域中无人机密度的几何与控制论极限</a>
+          <span class="tag tag-intl">理论研究</span><span class="tag tag-capacity">容量流量管理</span>
+        </div>
+        <div class="summary">MDPI Drones 2026年2月发表。建立数学上界，考虑几何约束和控制论限制。通过球面覆盖论证推导静态绝对上限，通过停止距离分析扩展动态约束。证明瓶颈处的min-cut流量容量界限，推导MPC在高密度下不可行的冲突图条件。为UTM系统提供物理可实现密度目标的理论基础，确定"流动性群体运动"的物理极限。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://www.mdpi.com/2504-446X/10/2/139" target="_blank">mdpi.com</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">27</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://fgw.sz.gov.cn/gkmlpt/content/12/12305/post_12305044.html" target="_blank">深圳SILAS低空智能融合系统（2026年底建成）</a>
+          <span class="tag tag-capacity">容量流量管理</span>
+        </div>
+        <div class="summary">深圳官方建设方案。到2026年底建成全球首个低空智能融合系统SILAS。具备飞行计划处理、航空情报服务、低空数字空域图、导航、监视等功能。支持1000+条航线、300万架次/年、超万架飞行器同时飞行。实施精细化时空资源分配和进程管理。支撑500+家单位公共飞行协调的实时计算与数据处理。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://fgw.sz.gov.cn/gkmlpt/content/12/12305/post_12305044.html" target="_blank">fgw.sz.gov.cn</a></span></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="idx">28</div>
+      <div class="body">
+        <div class="title">
+          <a href="https://www.mdpi.com/2504-446X/7/6/395" target="_blank">高密度城市空域动态容量管理（三种流量分组方法对比）</a>
+          <span class="tag tag-intl">国际研究</span><span class="tag tag-capacity">容量流量管理</span>
+        </div>
+        <div class="summary">MDPI Drones 2023。比较三种基于位置的动态交通容量管理技术：街道基、网格基和集群基。集群基方法使用历史/仿真冲突数据，按位置将冲突聚类并以几何中心定义流量组。结果表明：使用基于区域聚类的容量平衡显著改善安全性、效率和容量指标。为高密度、极低空城市空域UTM系统提供流量控制模块设计参考。</div>
+        <div class="meta-row"><span class="source">来源：<a href="https://www.mdpi.com/2504-446X/7/6/395" target="_blank">mdpi.com</a></span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="margin-top:40px;padding:20px 0;border-top:2px solid #e5e5e0;text-align:center;font-size:11px;color:#999;line-height:1.8;">
+  <p>低空技术研究 · 2026-06-29 · 覆盖论文/专利/产品/政策/国际动态 · 所有链接均经过访问验证</p>
+  <p>收录范围：2026年6月23日~29日及相关前沿技术文献</p>
+</div>
+
+</div>
+
+</body>
+</html>
