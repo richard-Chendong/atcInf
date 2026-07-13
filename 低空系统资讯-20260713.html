@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空资讯 | 2026.07.13</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a365d 0%, #2d5a87 50%, #3182ce 100%);
+            color: white;
+            padding: 48px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        .header h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.85;
+            font-weight: 300;
+        }
+        .header .date {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 6px 20px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 20px;
+            font-size: 13px;
+            backdrop-filter: blur(10px);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        .summary {
+            background: white;
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 36px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-left: 4px solid #3182ce;
+        }
+        .summary h2 {
+            font-size: 18px;
+            color: #1a365d;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .summary h2::before {
+            content: '📋';
+        }
+        .summary p {
+            color: #4a5568;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .summary .highlight {
+            color: #e53e3e;
+            font-weight: 500;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+        }
+        .icon-policy { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .icon-network { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .icon-gov { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .icon-platform { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .icon-drone { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .icon-event { background: linear-gradient(135deg, #a8edea, #fed6e3); }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        .card-tag {
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 500;
+            color: white;
+            display: inline-block;
+        }
+        .tag-policy { background: #667eea; }
+        .tag-bid { background: #ed8936; }
+        .tag-product { background: #38b2ac; }
+        .tag-news { background: #805ad5; }
+        .card-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .card-desc {
+            font-size: 13px;
+            color: #718096;
+            line-height: 1.7;
+            margin-bottom: 16px;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid #f0f0f0;
+            font-size: 12px;
+            color: #a0aec0;
+        }
+        .card-source {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .card-amount {
+            font-weight: 600;
+            color: #e53e3e;
+        }
+        .footer {
+            text-align: center;
+            padding: 32px 24px;
+            color: #a0aec0;
+            font-size: 12px;
+        }
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 24px;
+            }
+            .container {
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1>低空经济系统资讯周报</h1>
+            <p class="subtitle">低空空管 · 飞行服务 · 智能网联 · 一网统飞 · 无人机管控</p>
+            <span class="date">📅 2026年7月6日 — 2026年7月13日</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="summary">
+            <h2>本期摘要</h2>
+            <p>本周低空经济领域<strong>政策端</strong>持续释放利好，新《民用航空法》7月1日正式施行，民航局低空安全司挂牌成立；<strong>项目端</strong>迎来密集释放期，省级低空智能网联系统、地市"一网统飞"项目集中招标，福建、安徽、中山、合肥、六安等多地项目落地推进；<strong>产业端</strong>2026国际低空经济博览会将于7月22日在上海启幕，400+企业参展。本期共筛选 <span class="highlight">15条</span> 高价值资讯，覆盖政策标准、智能网联、一网统飞、飞行服务平台、无人机管控五大核心领域。</p>
+        </div>
+
+        <!-- 政策法规与标准体系 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon icon-policy">⚖️</span>
+                政策法规与标准体系
+            </div>
+            <div class="cards-grid">
+                <a href="http://m.toutiao.com/group/7661832654265827875/" target="_blank" class="card">
+                    <div class="card-tag tag-policy">政策解读</div>
+                    <div class="card-body">
+                        <h3 class="card-title">新《民用航空法》7月1日正式施行 低空经济首次入法</h3>
+                        <p class="card-desc">此次修订是该法实施30年来首次全面修改，首次设立低空经济"发展促进"专章，确立基于风险的分类分级适航管理方式，新增设计机构许可与设计保证系统制度，监管重心从单品型号审批前移至设计生产体系认证。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 上观新闻</span>
+                            <span>2026-07-12</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.junhe.com/legal-updates/2990" target="_blank" class="card">
+                    <div class="card-tag tag-policy">深度解读</div>
+                    <div class="card-body">
+                        <h3 class="card-title">从《民用航空法》修订看低空经济现有监管体系梳理及前瞻</h3>
+                        <p class="card-desc">君合律师事务所专业解读：新修订民航法首次增设"发展促进"专章，明确写入"低空经济"表述，完善无人驾驶航空器管理框架，对通航运营、适航审定、空域管理等核心制度进行系统性调整。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 君合律师事务所</span>
+                            <span>2026-07-01施行</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="http://www.lnast.net/info/20260304/1213842470362677248.html" target="_blank" class="card">
+                    <div class="card-tag tag-policy">标准体系</div>
+                    <div class="card-body">
+                        <h3 class="card-title">十部门联合发布《低空经济标准体系建设指南》</h3>
+                        <p class="card-desc">明确到2027年基本建立低空经济标准体系，2030年形成超过300项国际兼容标准，覆盖航空器、基础设施、空管、安全、应用场景五大领域，为低空经济安全健康发展提供标准支撑。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 辽宁省科协</span>
+                            <span>2026-07-12</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 低空智能网联系统 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon icon-network">🌐</span>
+                低空智能网联系统
+            </div>
+            <div class="cards-grid">
+                <a href="http://m.toutiao.com/group/7658219437186613798/" target="_blank" class="card">
+                    <div class="card-tag tag-bid">中标公告</div>
+                    <div class="card-body">
+                        <h3 class="card-title">莱斯信息中标福建省低空智能网联系统(一期)项目</h3>
+                        <p class="card-desc">联合福建省电子政务建设运营有限公司中标，项目打造集飞行服务、运行管理、协同监管、空域管理、基础设施管理、飞行主体管理于一体的一体化低空智能网联系统，将为全国探索省级建设标准提供"福建样板"。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 中国电科</span>
+                            <span>2026-07-09</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://blog.csdn.net/DFD1108/article/details/159286786" target="_blank" class="card">
+                    <div class="card-tag tag-product">技术拆解</div>
+                    <div class="card-body">
+                        <h3 class="card-title">ARC OS全栈式低空智能操作系统技术深度拆解</h3>
+                        <p class="card-desc">墨悉科技与航链科技联合研发，核心定位"去飞手化、安全可控、群体协同"，构建从端脑感知、任务智能、流程协同到云侧进化的全栈式智能操作生态，支持千架级群体协同作业。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 CSDN</span>
+                            <span>2026-07-11</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="http://ggzy.hefei.gov.cn/jyxx/002001/002001007/20260629/e632525c-0f63-4b90-b667-a94019e19473.html" target="_blank" class="card">
+                    <div class="card-tag tag-bid">采购预告</div>
+                    <div class="card-body">
+                        <h3 class="card-title">安徽省低空智能网联系统项目(一期)EPC采购即将启动</h3>
+                        <p class="card-desc">安徽省级低空智能网联系统一期工程总承包项目计划7月公开招标，标志着省级低空信息基础设施建设进入加速期，将构建全省统一的低空飞行管理与服务底座。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 安徽公共资源交易中心</span>
+                            <span>2026-07招标</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 一网统飞与政务应用 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon icon-gov">🏛️</span>
+                一网统飞与政务低空应用
+            </div>
+            <div class="cards-grid">
+                <a href="http://m.toutiao.com/group/7660686989414515236/" target="_blank" class="card">
+                    <div class="card-tag tag-news">落地案例</div>
+                    <div class="card-body">
+                        <h3 class="card-title">中山全域"一网统飞"落地：60个自动机库覆盖全市</h3>
+                        <p class="card-desc">中山市政务无人机管理平台已部署60个自动无人机库，15分钟内飞抵市内任意地点，提供65个政务服务应用场景，服务自然资源、交通监测、河道巡检等14个市直部门，累计执飞超2000架次，平均效率提升30%-98%。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 南方日报</span>
+                            <span>2026-07-10</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="http://ggzy.hefei.gov.cn/jyxx/002002/002002009/20260709/38e073dc-3734-4497-8f16-8aa16a916e73.html" target="_blank" class="card">
+                    <div class="card-tag tag-bid">采购意向</div>
+                    <div class="card-body">
+                        <h3 class="card-title">合肥市政务"一网统飞"服务项目 预算667万元</h3>
+                        <p class="card-desc">合肥市发改委发布政府采购意向，拟采购"一网统飞"无人机政务服务，通过统一调度平台为城管、公安、应急等多部门提供常态化低空巡查服务，打造市级政务低空运营体系。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 合肥公共资源交易中心</span>
+                            <span class="card-amount">667万</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://m.bidcenter.com.cn/news-1-429879248.html" target="_blank" class="card">
+                    <div class="card-tag tag-bid">招标公告</div>
+                    <div class="card-body">
+                        <h3 class="card-title">六安市"一网统飞"试点项目公开招标</h3>
+                        <p class="card-desc">六安市"一网统飞"试点项目启动公开招标，部署统一调度平台实现数据共享，为城管、公安、应急等部门提供综合飞行服务，探索地市级低空政务应用运营模式。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 采招网</span>
+                            <span>2026-07-10</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="http://www.ccgp.gov.cn/cggg/dfgg/gkzb/202606/t20260624_26809197.htm" target="_blank" class="card">
+                    <div class="card-tag tag-bid">招标公告</div>
+                    <div class="card-body">
+                        <h3 class="card-title">深圳龙华区政务低空"一网统飞"服务项目</h3>
+                        <p class="card-desc">龙华区政务低空"一网统飞"服务项目预算839.86万元，7月6日投标截止，将构建区级政务低空飞行服务体系，实现多部门飞行任务统一调度、空域统一申请、数据统一管理。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 中国政府采购网</span>
+                            <span class="card-amount">839.86万</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 低空飞行服务平台 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon icon-platform">🛫</span>
+                低空飞行服务平台与管控系统
+            </div>
+            <div class="cards-grid">
+                <a href="http://www.ccgp-xizang.gov.cn/freecms/site/xizang/xzcggg/info/2026/167731.html" target="_blank" class="card">
+                    <div class="card-tag tag-bid">招标公告</div>
+                    <div class="card-body">
+                        <h3 class="card-title">山南市低空飞行服务管控平台项目 预算1800万元</h3>
+                        <p class="card-desc">西藏山南市启动低空飞行服务管控平台公开招标，预算1800万元，将建设集空域管理、飞行计划审批、实时监控、应急处置于一体的市级低空飞行综合管控系统。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 西藏采购网</span>
+                            <span class="card-amount">1800万</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://blog.csdn.net/weixin_54114441/article/details/157469091" target="_blank" class="card">
+                    <div class="card-tag tag-product">方案解析</div>
+                    <div class="card-body">
+                        <h3 class="card-title">U-G2城市级低空飞行服务保障与空域管理系统深度解析</h3>
+                        <p class="card-desc">国内首个城市级低空飞行服务保障与空域管理系统（U-G2）建设方案全拆解，涵盖5G-A通感一体化、数字孪生空域、智能航线规划等核心技术，构建低空经济"数字天路"全栈技术实践。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 CSDN</span>
+                            <span>2026-07-11</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.droneworldcongress.com/zh-CN/NewDetails/1326" target="_blank" class="card">
+                    <div class="card-tag tag-bid">招标公告</div>
+                    <div class="card-body">
+                        <h3 class="card-title">浙江省低空无人机运行与监管服务平台丽水节点 400万</h3>
+                        <p class="card-desc">依托省统建平台建设丽水市级节点，复用省级基础与核心模块，本地化开发数据采集、情报服务、个性化应用等特色功能，搭建适配地市级的低空使能平台，工期180天。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 世界无人机大会</span>
+                            <span class="card-amount">400万</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 无人机管控与反制 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon icon-drone">🚁</span>
+                无人机管控与反制
+            </div>
+            <div class="cards-grid">
+                <a href="http://ccgp-bingtuan.gov.cn/site/detail?articleId=RES8HZmmOXvu%2FejmTxCSfA==&parentId=189169" target="_blank" class="card">
+                    <div class="card-tag tag-bid">招标公告</div>
+                    <div class="card-body">
+                        <h3 class="card-title">新疆兵团无人机管控平台及侦测反制装备采购</h3>
+                        <p class="card-desc">采购无人机管控平台及无人机侦测、反制装备共13套，预算70万元，构建区域低空安防体系，应对"黑飞"等违规飞行风险。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 新疆兵团政府采购网</span>
+                            <span class="card-amount">70万</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://m.dlzb.com/23-0-67560190-1.html" target="_blank" class="card">
+                    <div class="card-tag tag-bid">招标公告</div>
+                    <div class="card-body">
+                        <h3 class="card-title">中电信无人科技GZTH无人机管控设备及服务采购</h3>
+                        <p class="card-desc">中电信无人科技（江苏）有限公司无人机管控设备及配套服务采购项目第二次招标，预估金额433万元（不含税），部署专业级无人机管控系统。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 电力招标网</span>
+                            <span class="card-amount">433万</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="http://www.sxairport.org.cn/articles/7393" target="_blank" class="card">
+                    <div class="card-tag tag-bid">竞价采购</div>
+                    <div class="card-body">
+                        <h3 class="card-title">山西低空警务一体化管控系统无人机侦测反制设备采购</h3>
+                        <p class="card-desc">低空警务一体化作战管控系统研发及应用示范项目，采购无人机侦测反制设备，构建警务场景下的低空安全防护能力。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 山西航空产业集团</span>
+                            <span>2026-07-06</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 行业动态与展会 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon icon-event">🎯</span>
+                行业动态与展会
+            </div>
+            <div class="cards-grid">
+                <a href="http://m.toutiao.com/group/7661454722401927731/" target="_blank" class="card">
+                    <div class="card-tag tag-news">行业盛会</div>
+                    <div class="card-body">
+                        <h3 class="card-title">2026国际低空经济博览会7月22日上海启幕</h3>
+                        <p class="card-desc">展会总面积6万平米，汇集400+企业，航空工业、中国航天、中国邮政等央企参展，多款eVTOL载人飞行器真机首发，搭配千架无人机实景编队展演，聚焦低空产业商业化落地。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 上观新闻</span>
+                            <span>7.22-25 上海</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.dikongjingji.com.cn/tt/6349.html" target="_blank" class="card">
+                    <div class="card-tag tag-product">产品发布</div>
+                    <div class="card-body">
+                        <h3 class="card-title">极飞科技新一代空中及地面农业机器人全球首发</h3>
+                        <p class="card-desc">极飞科技2026年农业机器人发布会在广州举行，发布新一代农业无人机与地面机器人产品组合，开启智能农场新时代，进一步拓展低空经济在农业场景的应用边界。</p>
+                        <div class="card-meta">
+                            <span class="card-source">📰 低空经济网</span>
+                            <span>2026-07-06</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>低空经济系统资讯周报 | 数据来源：政府采购网、公共资源交易平台、行业媒体公开信息</p>
+        <p style="margin-top: 8px;">生成时间：2026年7月13日 | 点击卡片可跳转至原始出处</p>
+    </div>
+</body>
+</html>
