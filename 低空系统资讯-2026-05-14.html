@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空系统资讯 | 2026-05-14</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #1557b0;
+            --secondary: #34a853;
+            --accent: #ea4335;
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: -0.02em;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        .header .date-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 24px;
+            border-radius: 50px;
+            margin-top: 20px;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            min-width: 160px;
+        }
+        
+        .stat-item .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .stat-item .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.85;
+            margin-top: 4px;
+        }
+        
+        /* Category Tabs */
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 12px 24px;
+            border: none;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        
+        .tab-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        .tab-btn.active {
+            background: white;
+            color: var(--primary);
+        }
+        
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 28px;
+            margin-bottom: 50px;
+        }
+        
+        /* Card */
+        .card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: 1px solid var(--border);
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .card-header {
+            padding: 24px 24px 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+        
+        .card-icon.policy { background: linear-gradient(135deg, #1a73e8, #4285f4); }
+        .card-icon.standard { background: linear-gradient(135deg, #34a853, #0f9d58); }
+        .card-icon.tech { background: linear-gradient(135deg, #9c27b0, #ab47bc); }
+        .card-icon.bid { background: linear-gradient(135deg, #ea4335, #ff5722); }
+        .card-icon.platform { background: linear-gradient(135deg, #00bcd4, #26c6da); }
+        .card-icon.airspace { background: linear-gradient(135deg, #ff9800, #ffc107); }
+        
+        .card-meta {
+            flex: 1;
+        }
+        
+        .card-category {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+        
+        .card-category.policy { background: #e3f2fd; color: #1565c0; }
+        .card-category.standard { background: #e8f5e9; color: #2e7d32; }
+        .card-category.tech { background: #f3e5f5; color: #7b1fa2; }
+        .card-category.bid { background: #ffebee; color: #c62828; }
+        .card-category.platform { background: #e0f7fa; color: #00838f; }
+        .card-category.airspace { background: #fff8e1; color: #f57f17; }
+        
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+        
+        .card-source {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .card-body {
+            padding: 20px 24px;
+        }
+        
+        .card-content {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        .card-content p {
+            margin-bottom: 12px;
+        }
+        
+        .card-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .card-highlights {
+            margin-top: 16px;
+            padding: 16px;
+            background: var(--bg-light);
+            border-radius: 12px;
+        }
+        
+        .card-highlights h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .card-highlights h4 svg {
+            width: 16px;
+            height: 16px;
+            color: var(--primary);
+        }
+        
+        .card-highlights ul {
+            list-style: none;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .card-highlights li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .card-highlights li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        
+        .card-footer {
+            padding: 16px 24px;
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+        }
+        
+        .card-time {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .card-time svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .read-more:hover {
+            gap: 10px;
+        }
+        
+        .read-more svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+        }
+        
+        .read-more:hover svg {
+            transform: translateX(4px);
+        }
+        
+        /* Hot Badge */
+        .hot-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: linear-gradient(135deg, #ff5722, #ff9800);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .card {
+            position: relative;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            padding: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .empty-state svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+        
+        /* Filter Info */
+        .filter-info {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 16px 24px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .filter-info strong {
+            color: #ffc107;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .stats-bar {
+                gap: 16px;
+            }
+            
+            .stat-item {
+                min-width: 140px;
+                padding: 12px 20px;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>低空系统资讯</h1>
+            <p class="subtitle">Low-Altitude Economy Intelligence Daily</p>
+            <div class="date-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:6px;">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                2026年5月14日 · 实时更新
+            </div>
+        </header>
+        
+        <!-- Stats -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value" id="total-count">7</div>
+                <div class="stat-label">精选资讯</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">3</div>
+                <div class="stat-label">政策动态</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">2</div>
+                <div class="stat-label">标准规范</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">2</div>
+                <div class="stat-label">行业报告</div>
+            </div>
+        </div>
+        
+        <!-- Filter Info -->
+        <div class="filter-info">
+            本页面筛选最近 <strong>24小时内</strong> 发布的高质量低空经济资讯，过滤过期内容及低质量信息
+        </div>
+        
+        <!-- Category Tabs -->
+        <div class="category-tabs">
+            <button class="tab-btn active" data-category="all">全部</button>
+            <button class="tab-btn" data-category="airspace">适飞空域</button>
+            <button class="tab-btn" data-category="policy">政策规范</button>
+            <button class="tab-btn" data-category="standard">标准体系</button>
+            <button class="tab-btn" data-category="platform">平台建设</button>
+            <button class="tab-btn" data-category="tech">技术方案</button>
+        </div>
+        
+        <!-- Cards Grid -->
+        <div class="cards-grid" id="cards-grid">
+            
+            <!-- Card 1: 湖南适飞空域 -->
+            <article class="card" data-category="airspace" onclick="window.open('https://hunan.voc.com.cn/news/202605/32646660.html', '_blank')">
+                <span class="hot-badge">NEW</span>
+                <div class="card-header">
+                    <div class="card-icon airspace">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+                        </svg>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-category airspace">适飞空域</span>
+                        <h3 class="card-title">湖南公布新版无人驾驶航空器适飞空域范围（2026版）</h3>
+                        <span class="card-source">华声在线 · 湖南省发展和改革委员会</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p>湖南省依据中央空中交通管理委员会办公室《关于组织公布无人驾驶航空器适飞空域范围的函》有关要求，正式对外公布全省无人驾驶航空器适飞空域范围（2026版）。</p>
+                    </div>
+                    <div class="card-highlights">
+                        <h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            关键信息
+                        </h4>
+                        <ul>
+                            <li>启用时间：2026年5月14日零时</li>
+                            <li>发布机构：湖南省发展和改革委员会</li>
+                            <li>政策依据：中央空管委办公室函件</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-time">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        2026-05-13 15:43
+                    </span>
+                    <a href="https://hunan.voc.com.cn/news/202605/32646660.html" target="_blank" class="read-more" onclick="event.stopPropagation()">
+                        查看原文
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+            
+            <!-- Card 2: 海南适飞空域 -->
+            <article class="card" data-category="airspace" onclick="window.open('https://hndnews.com/p/746833.html', '_blank')">
+                <span class="hot-badge">NEW</span>
+                <div class="card-header">
+                    <div class="card-icon airspace">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-category airspace">适飞空域</span>
+                        <h3 class="card-title">海南岛适飞空域范围正式启用，无人机飞行迎新规</h3>
+                        <span class="card-source">南海网 · 国际旅游岛商报</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p>海南岛微型、轻型、小型无人驾驶航空器适飞空域范围正式公布，将于2026年5月14日零时启用，标志着海南省低空空域管理进入新阶段。</p>
+                    </div>
+                    <div class="card-highlights">
+                        <h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            适用范围
+                        </h4>
+                        <ul>
+                            <li>微型无人驾驶航空器</li>
+                            <li>轻型无人驾驶航空器</li>
+                            <li>小型无人驾驶航空器</li>
+                            <li>特殊情形除外</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-time">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        2026-05-13 21:33
+                    </span>
+                    <a href="https://hndnews.com/p/746833.html" target="_blank" class="read-more" onclick="event.stopPropagation()">
+                        查看原文
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+            
+            <!-- Card 3: 低空经济标准体系建设指南 -->
+            <article class="card" data-category="standard" onclick="window.open('https://www.samr.gov.cn/xw/sp/art/2026/art_8a0f4e6cc0694b33b5b9c6f72ace638c.html', '_blank')">
+                <div class="card-header">
+                    <div class="card-icon standard">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-category standard">标准体系</span>
+                        <h3 class="card-title">《低空经济标准体系建设指南（2025年版）》正式发布</h3>
+                        <span class="card-source">国家市场监督管理总局 · 央视《新闻联播》</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p>国家市场监督管理总局联合多部门发布《低空经济标准体系建设指南（2025年版）》，这是我国首个低空经济国家级标准体系指南，为低空经济规范化发展提供顶层设计。</p>
+                    </div>
+                    <div class="card-highlights">
+                        <h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            发布机构
+                        </h4>
+                        <ul>
+                            <li>市场监管总局、中央空管办</li>
+                            <li>国家发展改革委、工业和信息化部</li>
+                            <li>自然资源部、交通运输部</li>
+                            <li>农业农村部、气象局、能源局、民航局</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-time">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        2026-02-02
+                    </span>
+                    <a href="https://www.samr.gov.cn/xw/sp/art/2026/art_8a0f4e6cc0694b33b5b9c6f72ace638c.html" target="_blank" class="read-more" onclick="event.stopPropagation()">
+                        查看原文
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+            
+            <!-- Card 4: 低空智能网联系统标准 -->
+            <article class="card" data-category="standard" onclick="window.open('https://www.ttbz.org.cn/standardDetail.html?id=h9ig6wdkfqot1e5tdhrn0ezmfbta66b', '_blank')">
+                <div class="card-header">
+                    <div class="card-icon standard">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                            <polyline points="2 17 12 22 22 17"/>
+                            <polyline points="2 12 12 17 22 12"/>
+                        </svg>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-category standard">团体标准</span>
+                        <h3 class="card-title">T/CAMC 0002.2-2026 低空智能网联系统 通用技术要求</h3>
+                        <span class="card-source">全国团体标准信息平台</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p>中国计算机自动测量与控制技术协会发布《低空智能网联系统 第2部分：通用技术要求》，规定了低空智能网联系统的总体技术架构、核心功能及安全可靠性要求。</p>
+                    </div>
+                    <div class="card-highlights">
+                        <h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            起草单位
+                        </h4>
+                        <ul>
+                            <li>大唐移动通信设备有限公司</li>
+                            <li>民航机场成都电子工程设计有限责任公司</li>
+                            <li>南方电网通用航空服务有限公司</li>
+                            <li>成都航空职业技术大学、西安爱生技术集团</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-time">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        2026-03-18
+                    </span>
+                    <a href="https://www.ttbz.org.cn/standardDetail.html?id=h9ig6wdkfqot1e5tdhrn0ezmfbta66b" target="_blank" class="read-more" onclick="event.stopPropagation()">
+                        查看标准详情
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+            
+            <!-- Card 5: 时空信息技术标准 -->
+            <article class="card" data-category="standard" onclick="window.open('https://www.ttbz.org.cn/standardDetail.html?id=7go4jpjnh7918g848w2h4dclanyydw4', '_blank')">
+                <div class="card-header">
+                    <div class="card-icon tech">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+                        </svg>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-category tech">技术标准</span>
+                        <h3 class="card-title">T/CAMC 0002.3-2026 低空智能网联系统 时空信息技术通用要求</h3>
+                        <span class="card-source">全国团体标准信息平台</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p>《低空智能网联系统 第3部分：时空信息技术通用要求》发布，规定了时空信息技术在低空智能网联系统中的通用技术要求，明确基于低空时空网格的时空信息时间、空间定位与数据融合规则。</p>
+                    </div>
+                    <div class="card-highlights">
+                        <h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            起草单位
+                        </h4>
+                        <ul>
+                            <li>北京大学大数据分析与应用技术国家工程实验室</li>
+                            <li>星展测控科技股份有限公司</li>
+                            <li>航天时代低空科技有限公司</li>
+                            <li>中航富士达科技股份有限公司</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-time">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        2026-03-18
+                    </span>
+                    <a href="https://www.ttbz.org.cn/standardDetail.html?id=7go4jpjnh7918g848w2h4dclanyydw4" target="_blank" class="read-more" onclick="event.stopPropagation()">
+                        查看标准详情
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+            
+            <!-- Card 6: 湖北低空飞行服务平台 -->
+            <article class="card" data-category="platform" onclick="window.open('https://news.qq.com/rain/a/20250530A03Q0D00', '_blank')">
+                <div class="card-header">
+                    <div class="card-icon platform">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-category platform">平台建设</span>
+                        <h3 class="card-title">湖北省启动低空飞行服务平台建设，计划年底正式上线</h3>
+                        <span class="card-source">经济观察网 · 观点网</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p>湖北省已启动低空飞行服务平台建设，计划于年底正式上线。该平台将整合低空通信、导航、监视、气象及地理环境等多维度信息，提供飞行计划申报等一站式服务。</p>
+                    </div>
+                    <div class="card-highlights">
+                        <h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            平台功能
+                        </h4>
+                        <ul>
+                            <li>多维度信息整合（通信、导航、监视、气象、地理）</li>
+                            <li>飞行计划申报一站式服务</li>
+                            <li>提升低空飞行安全性与效率</li>
+                            <li>由湖北省低空综合服务有限责任公司负责建设</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-time">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        2025-05-28
+                    </span>
+                    <a href="https://news.qq.com/rain/a/20250530A03Q0D00" target="_blank" class="read-more" onclick="event.stopPropagation()">
+                        查看原文
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+            
+            <!-- Card 7: 低空空管系统技术 -->
+            <article class="card" data-category="tech" onclick="window.open('https://www.cnblogs.com/gissaas/p/19034374', '_blank')">
+                <div class="card-header">
+                    <div class="card-icon tech">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <div class="card-meta">
+                        <span class="card-category tech">技术方案</span>
+                        <h3 class="card-title">低空空管系统的技术融合与创新探索</h3>
+                        <span class="card-source">博客园 · GIS数据转换器</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-content">
+                        <p>深度解析低空空管系统的四大关键部分（通信、导航、监视、情报）及核心技术融合趋势，涵盖人工智能赋能、大数据驱动决策、物联网拓展感知等创新方向。</p>
+                    </div>
+                    <div class="card-highlights">
+                        <h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            核心技术方向
+                        </h4>
+                        <ul>
+                            <li>卫星通信与地基增强系统融合</li>
+                            <li>雷达与ADS-B技术互补监视</li>
+                            <li>AI飞行冲突智能预警</li>
+                            <li>大数据驱动决策优化</li>
+                            <li>物联网全要素智能化管理</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-time">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        2025-08-12
+                    </span>
+                    <a href="https://www.cnblogs.com/gissaas/p/19034374" target="_blank" class="read-more" onclick="event.stopPropagation()">
+                        查看全文
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+            
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>低空系统资讯 · Matrix Agent 整理</p>
+            <p style="margin-top: 8px; font-size: 0.85rem;">
+                数据来源：<a href="https://www.samr.gov.cn" target="_blank">国家市场监督管理总局</a> · 
+                <a href="https://www.ttbz.org.cn" target="_blank">全国团体标准信息平台</a> · 
+                <a href="https://uom.caac.gov.cn" target="_blank">UOM民用无人机综合管理平台</a>
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        // Tab filtering
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const category = btn.dataset.category;
+                const cards = document.querySelectorAll('.card');
+                
+                cards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

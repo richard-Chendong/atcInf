@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空技术研究资讯 - 2026年4月13日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, #1a5276 0%, #2980b9 100%);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(41, 128, 185, 0.3);
+        }
+        
+        header h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        
+        header .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+        
+        header .date {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin-top: 10px;
+        }
+        
+        .category {
+            margin-bottom: 45px;
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #2980b9;
+        }
+        
+        .category-title h2 {
+            color: #1a5276;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+        
+        .category-title .icon {
+            width: 36px;
+            height: 36px;
+            margin-right: 12px;
+            fill: #2980b9;
+        }
+        
+        .article-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .article-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 28px 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            border-left: 5px solid #2980b9;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(41, 128, 185, 0.15);
+        }
+        
+        .article-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        
+        .article-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .article-title a:hover {
+            color: #2980b9;
+        }
+        
+        .article-meta {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-bottom: 12px;
+        }
+        
+        .article-source {
+            color: #2980b9;
+            font-weight: 500;
+        }
+        
+        .article-summary {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .article-link {
+            display: inline-flex;
+            align-items: center;
+            color: #2980b9;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .article-link:hover {
+            color: #1a5276;
+        }
+        
+        .article-link svg {
+            width: 16px;
+            height: 16px;
+            margin-left: 6px;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px 35px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2980b9;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .article-card {
+                padding: 20px;
+            }
+            
+            .stats-bar {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>低空技术研究资讯汇编</h1>
+            <p class="subtitle">涵盖飞行计划申报 · 航线推荐 · 智能体应用 · 航路治理 · 网格化管理 · 流量控制</p>
+            <p class="date">整理日期：2026年4月13日</p>
+        </header>
+        
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">6</div>
+                <div class="stat-label">技术领域</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">25+</div>
+                <div class="stat-label">精选文献</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2026</div>
+                <div class="stat-label">年度资讯</div>
+            </div>
+        </div>
+        
+        <!-- 低空飞行计划申报 -->
+        <div class="category">
+            <div class="category-title">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                <h2>低空飞行计划申报</h2>
+            </div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.gov.cn/zhengce/zhengceku/202602/content_7056835.htm" target="_blank">
+                            市场监管总局等部门关于印发《低空经济标准体系建设指南(2025年版)》的通知
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：中国政府网</span> | 发布日期：2026年2月
+                    </div>
+                    <p class="article-summary">
+                        该指南由市场监管总局、中央空管办、国家发展改革委、工信部、自然资源部、交通运输部等十部门联合发布，明确了低空经济标准体系建设目标。标准重点围绕低空飞行管理及服务保障等发展需求，明确低空安全防控、飞行计划申报审批、空域协同管理、应急处置机制、安全培训管理、飞行服务等关键领域的标准化建设要求，为低空飞行计划申报提供规范化指导框架。
+                    </p>
+                    <a class="article-link" href="https://www.gov.cn/zhengce/zhengceku/202602/content_7056835.htm" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.baogaobox.com/reports/260202000092905.html" target="_blank">
+                            低空经济发展报告(2025-2026)
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：远瞻慧库</span> | 发布日期：2026年2月
+                    </div>
+                    <p class="article-summary">
+                        报告系统梳理了2025年低空经济发展成就。安徽省建成"低空飞行服务平台"，实现飞行计划"一窗受理、一网通办"，显著提升审批效率。深圳市累计建成并联网低空飞行服务站46个，初步形成覆盖23个省区市的飞行服务网络。报告指出飞行服务站(FSS)申报机制需接受军方/民航空管协同审批，实际运行仍面临碎片化问题。
+                    </p>
+                    <a class="article-link" href="https://www.baogaobox.com/reports/260202000092905.html" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://zsjtw.zhoushan.gov.cn/col/col1229416948/art/2026/art_7bab1007f7dc409bb0cf25d6109baf1e.html" target="_blank">
+                            2026年低空飞行运营补贴情况公示
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：舟山市交通运输局</span> | 发布日期：2026年3月
+                    </div>
+                    <p class="article-summary">
+                        公示了舟山市低空物流运营航线补贴方案，包括港务码头-盘峙岛、普陀-六横-东极、钉嘴门-竹屿-鼠浪湖等多条航线，涉及顺丰速运、千里安低空科技等运营单位。申报流程要求运营单位具有通用航空企业经营许可证，体现了低空飞行计划申报的规范化管理趋势。
+                    </p>
+                    <a class="article-link" href="https://zsjtw.zhoushan.gov.cn/col/col1229416948/art/2026/art_7bab1007f7dc409bb0cf25d6109baf1e.html" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://news.qq.com/rain/a/20260201A020T800" target="_blank">
+                            破局之路：平衡严管与活力，构建精细化治理体系
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：腾讯新闻</span> | 发布日期：2026年2月
+                    </div>
+                    <p class="article-summary">
+                        针对2026年无人机新规的严管与行业发展活力平衡问题，文章提出四个维度的破解方案：优化UOM平台审核机制，建立审核标准与反馈机制；规范地方报备平台建设，避免碎片化治理；强化技术赋能，实现"一机一码"实时监控；推动无人机识别模块加装工作，落实250克以上无人机加装识别模块的强制性国家标准。
+                    </p>
+                    <a class="article-link" href="https://news.qq.com/rain/a/20260201A020T800" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 航线推荐与路径规划 -->
+        <div class="category">
+            <div class="category-title">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/></svg>
+                <h2>航线推荐与路径规划</h2>
+            </div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.stdaily.com/web/cjgxdj/content_490996.html" target="_blank">
+                            低空航路航线网规划设计服务
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：中国科技网</span> | 发布日期：2026年4月
+                    </div>
+                    <p class="article-summary">
+                        沈阳市勘察测绘研究院推出的服务方案，采用三维网格化空域制分与唯一编码技术，构建精细化、可计算的城市低空空间智联模型。通过融合空地环境数据、通导监控能力与无人机性能等多维约束，建立智能航线规划算法模型，实现无人机航线的自动化、精细化规划与动态优化，为各类低空飞行器提供安全、高效、明确的飞行路径，有效规避冲突，提升空域资源利用效率。
+                    </p>
+                    <a class="article-link" href="https://www.stdaily.com/web/cjgxdj/content_490996.html" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://cloud.tencent.com/developer/article/2645769" target="_blank">
+                            面向风场环境的能量最优无人机路径规划强化学习框架
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：腾讯云开发者社区</span> | 发布日期：2026年
+                    </div>
+                    <p class="article-summary">
+                        研究提出PQN(Probabilistic Q-Network)强化学习框架，通过CNN编码风场特征和PRM(Probabilistic Roadmap)结构化动作空间，实现无人机在复杂风场中的能量最优路径规划。实验表明，相比传统方法能耗降低28.1%，为低空航线推荐提供了考虑能源效率的智能规划新思路。
+                    </p>
+                    <a class="article-link" href="https://cloud.tencent.com/developer/article/2645769" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12305044.html" target="_blank">
+                            深圳市低空基础设施高质量建设方案（2024—2026年）
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：深圳市发展改革委</span> | 发布日期：2024年
+                    </div>
+                    <p class="article-summary">
+                        规划到2026年底建成低空起降点1200个以上，开通载人、载货飞行等各类低空商业航线1000条以上，直升机、eVTOL起降设施1公里半径覆盖建成区面积比例突破50%。方案提出构建"天地一体"的低空航路网络，为航线推荐系统提供基础设施支撑。
+                    </p>
+                    <a class="article-link" href="https://fgw.sz.gov.cn/zwgk/qt/tzgg/content/post_12305044.html" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://m.chinairn.com/news/20260121/170510309.shtml" target="_blank">
+                            2026年中国低空飞行业全景调研及发展战略咨询
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：中研网</span> | 发布日期：2026年1月
+                    </div>
+                    <p class="article-summary">
+                        报告指出通过5G通信、北斗导航、ADS-B(广播式自动相关监视)等技术的集成，构建"天-空-地"一体化监控网络，实现低空航线的动态规划、飞行器的实时追踪与冲突预警。低空航线规划正向数字化、智能化方向演进。
+                    </p>
+                    <a class="article-link" href="https://m.chinairn.com/news/20260121/170510309.shtml" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 低空大模型智能体应用 -->
+        <div class="category">
+            <div class="category-title">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M21 10.12h-6.78l2.74-2.82c-2.73-2.7-7.15-2.8-9.88-.1-2.73 2.71-2.73 7.08 0 9.79s7.15 2.71 9.88 0C18.32 15.65 19 14.08 19 12.1h2c0 1.98-.88 4.55-2.64 6.29-3.51 3.48-9.21 3.48-12.72 0-3.5-3.47-3.53-9.11-.02-12.58s9.14-3.47 12.65 0L21 3v7.12zM12.5 8v4.25l3.5 2.08-.72 1.21L11 13V8h1.5z"/></svg>
+                <h2>低空大模型智能体应用</h2>
+            </div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://36kr.com/p/2557626587848067" target="_blank">
+                            让大模型操纵无人机：北航团队提出具身智能新架构
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：36氪/量子位</span> | 发布日期：2023年12月
+                    </div>
+                    <p class="article-summary">
+                        北京航空航天大学周尧明教授团队提出"Agent as Cerebrum, Controller as Cerebellum"(智能体即大脑，控制器即小脑)的控制架构。智能体作为大脑专注于生成高层级行为，控制器作为小脑将行为转换为低层级系统命令。构建了AeroAgent智能体，包含自动计划生成模块(多模态感知监测)、待机模式应急突发处置模块、任务模块规划等关键组件。
+                    </p>
+                    <a class="article-link" href="https://36kr.com/p/2557626587848067" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.toutiao.com/article/7462685155006693939/" target="_blank">
+                            无人机与大模型融合：低空机动性智能体的发展综述与未来展望
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：今日头条/华远系统</span> | 发布日期：2025年1月
+                    </div>
+                    <p class="article-summary">
+                        系统综述了无人机与大语言模型(LLM)集成的最新研究成果。Agentic UAV智能体框架包含：数据模块(多模态传感器数据)、基础模型模块(VLM/VFM)、知识模块(RAG)、工具模块(PX4/Pixhawk飞行控制器)、智能体模块(管理者+UAV工作流)。应用场景涵盖监控、农业、物流、应急响应等。发展路线图：短期(自然语言指令解析)、中期(动态路径规划、多机协同)、长期(真正自主智能)。
+                    </p>
+                    <a class="article-link" href="https://www.toutiao.com/article/7462685155006693939/" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="http://hs.china.com.cn/2026-01/15/content_43335099.html" target="_blank">
+                            全球首个低空安全飞行大模型"安飞"在京发布
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：海丝频道</span> | 发布日期：2026年1月
+                    </div>
+                    <p class="article-summary">
+                        北京锐士装备科技有限公司携手中电达通数据技术股份有限公司发布全球首个服务于低空安全飞行的数据大模型——"安飞专业大模型"。该模型专注于低空飞行安全领域，为无人机、eVTOL等低空飞行器提供智能化的安全保障服务。
+                    </p>
+                    <a class="article-link" href="http://hs.china.com.cn/2026-01/15/content_43335099.html" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.dikongjingji.com.cn/tt/5473.html" target="_blank">
+                            低空经济场景下自动化与智能感知的融合创新
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：低空经济网</span> | 发布日期：2025年
+                    </div>
+                    <p class="article-summary">
+                        2025年低空经济正从"能飞"迈向"慧飞"。随着AI大模型、毫米波雷达等技术的突破，无人机不再是"空中盲人"，已成为具备情境理解能力的"空中智能体"。智能感知与自动化技术的融合推动低空应用场景持续扩展。
+                    </p>
+                    <a class="article-link" href="https://www.dikongjingji.com.cn/tt/5473.html" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.stdaily.com/web/gdxw/2026-04/02/content_496755.html" target="_blank">
+                            从具身智能到低空经济，6G关键技术"沿途下蛋"
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：科技日报</span> | 发布日期：2026年4月
+                    </div>
+                    <p class="article-summary">
+                        报道了通感智算融合技术在低空经济领域的应用突破。当日发布的"空天地"系列产品及解决方案，以通感智算融合技术为核心，聚焦以无人机为核心的低空经济场景，为低空智能体提供通信、感知、计算一体化支撑。
+                    </p>
+                    <a class="article-link" href="https://www.stdaily.com/web/gdxw/2026-04/02/content_496755.html" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 航路拥堵治理 -->
+        <div class="category">
+            <div class="category-title">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z"/></svg>
+                <h2>航路拥堵治理</h2>
+            </div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://zhuanlan.zhihu.com/p/1989360039346082775" target="_blank">
+                            2026：低空进入"能运营"时代，最大红利来自系统工程放量
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：知乎</span> | 发布日期：2026年
+                    </div>
+                    <p class="article-summary">
+                        文章指出2026年低空运营的核心能力包括：航线自动生成与合规校验、临时管控动态下发与自动绕行、多机调度与"空中拥堵治理"、与监测系统联动的风险预警。航路拥堵治理已成为低空运营平台的关键技术能力，直接决定城市低空飞行的效率与安全。
+                    </p>
+                    <a class="article-link" href="https://zhuanlan.zhihu.com/p/1989360039346082775" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://jingji.cctv.com/2026/02/12/ARTIC0oNAOX6JYgvyW47Wpp1260212.shtml" target="_blank">
+                            新闻1+1｜低空经济要"高飞"，还需要哪些突破？
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：央视网</span> | 发布日期：2026年2月
+                    </div>
+                    <p class="article-summary">
+                        报道指出低空飞行器信息供空中管理部门进行流量调度，通过数字化手段集中调度，告知航线飞行时间，实现时段分配避免拥堵。实现低空交通"不拥堵"需要建好通讯、导航、监视系统，制定安全运行规则，确保飞行器按规则有序飞行。
+                    </p>
+                    <a class="article-link" href="https://jingji.cctv.com/2026/02/12/ARTIC0oNAOX6JYgvyW47Wpp1260212.shtml" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0968090X25004814" target="_blank">
+                            Integrating route guidance and collision avoidance
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：ScienceDirect</span> | 发布日期：2025年
+                    </div>
+                    <p class="article-summary">
+                        研究实现了灵活的UAM运营能力，包括本地拥堵缓解和动态禁飞区管理。通过航路引导与碰撞回避的集成，确保交通均匀性假设在复杂低空环境中的有效性，为航路拥堵治理提供了技术理论支撑。
+                    </p>
+                    <a class="article-link" href="https://www.sciencedirect.com/science/article/abs/pii/S0968090X25004814" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.7its.com/?m=home&c=View&a=index&aid=30313" target="_blank">
+                            低空经济热潮下应对三维交通拥堵新挑战
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：ITS智能交通</span> | 发布日期：2026年
+                    </div>
+                    <p class="article-summary">
+                        面对低空经济带来的三维交通拥堵新挑战，文章指出短时间内地面为主、低空为辅的局面不会改变，应在系统层面前瞻规划与协同治理，避免因维度增加而加剧传统拥堵问题。需要在规划层面统筹考虑低空交通与地面交通的协调管理。
+                    </p>
+                    <a class="article-link" href="https://www.7its.com/?m=home&c=View&a=index&aid=30313" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 动态网格化空域管理 -->
+        <div class="category">
+            <div class="category-title">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M20 3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM8 19H4v-2h4v2zm0-4H4v-2h4v2zm0-4H4V9h4v2zm0-4H4V5h4v2zm6 12h-4v-2h4v2zm0-4h-4v-2h4v2zm0-4h-4V9h4v2zm0-4h-4V5h4v2zm6 12h-4v-2h4v2zm0-4h-4v-2h4v2zm0-4h-4V9h4v2zm0-4h-4V5h4v2z"/></svg>
+                <h2>动态网格化空域管理</h2>
+            </div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://tidenews.com.cn/tmh_news.html?id=69d4ceed1a17be0001018daf" target="_blank">
+                            2026年4月7日环球低空融媒中心总第7期
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：潮新闻</span> | 发布日期：2026年4月
+                    </div>
+                    <p class="article-summary">
+                        报道指出低空智联网覆盖地级市达80%、空域网格化管理全面铺开。这是继去年"空域管理条例"后最具分量的顶层设计，标志着低空基建从"地方探索"上升为"国家行动"。动态网格化空域管理正在全国范围内快速推进。
+                    </p>
+                    <a class="article-link" href="https://tidenews.com.cn/tmh_news.html?id=69d4ceed1a17be0001018daf" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.csgpc.org/detail/26765.html" target="_blank">
+                            灵境-引擎低空经济飞起来：帝测科技低空智联网云平台发布
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：帝测科技</span> | 发布日期：2026年
+                    </div>
+                    <p class="article-summary">
+                        平台核心的空间网格编码技术实现对空域与地面建筑的自动三维网格划分。这项技术不仅支持快速生成精准航线，更构建了时空一体的无人机动态管控能力，为动态网格化空域管理提供了技术实现路径。
+                    </p>
+                    <a class="article-link" href="https://www.csgpc.org/detail/26765.html" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.iim.net.cn/2244/view-162390-1.html" target="_blank">
+                            低空空域精细化划设与管理服务行业深度战略分析报告(2026年)
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：IIM信息</span> | 发布日期：2026年1月
+                    </div>
+                    <p class="article-summary">
+                        报告指出低空空域精细化划设核心在于通过数字化技术对空域资源进行三维解构、动态分配与高效调度。市场竞争焦点从单一技术转向集空域数字化建模、智能划设算法、实时监控服务系统、飞行计划处理平台于一体的整体解决方案能力。
+                    </p>
+                    <a class="article-link" href="https://www.iim.net.cn/2244/view-162390-1.html" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="http://www.hp.gov.cn/tzcy/tzdt/content/post_10651056.html" target="_blank">
+                            2026冲刺起飞，广州黄埔打造"万亿低空经济蓝海"
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：黄埔区政府</span> | 发布日期：2026年
+                    </div>
+                    <p class="article-summary">
+                        黄埔区融合物联网、5G-A动态监测、空域网格计算等技术构建低空数字底座，能够进行空域资源分配、航线精准规划与动态风险调整。该平台展示了动态网格化空域管理在城市层面的具体应用实践。
+                    </p>
+                    <a class="article-link" href="http://www.hp.gov.cn/tzcy/tzdt/content/post_10651056.html" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.sciencedirect.com/science/article/pii/S0376042125000119" target="_blank">
+                            Advances in low-altitude airspace management for uncrewed aircraft systems traffic management and advanced air mobility
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：ScienceDirect</span> | 发布日期：2025年
+                    </div>
+                    <p class="article-summary">
+                        综述了无人驾驶航空系统交通管理(UTM)和先进空中交通管理(AAM)的当代趋势，重新定义了低空空域运营的管理范式和技术路线，为动态网格化空域管理提供了国际视角的学术参考。
+                    </p>
+                    <a class="article-link" href="https://www.sciencedirect.com/science/article/pii/S0376042125000119" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 空域容量流量管理 -->
+        <div class="category">
+            <div class="category-title">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l4.59-4.58L18 11l-6 6z"/></svg>
+                <h2>空域容量流量管理</h2>
+            </div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://yuanxiangsky.com/N/752.html" target="_blank">
+                            从"开飞机"到"管天空"：2026年低空智联网(UTM)的基建攻坚战
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：远翔天空</span> | 发布日期：2026年
+                    </div>
+                    <p class="article-summary">
+                        文章指出建设一套数字化、自动化、网络化的低空交通管理系统(UTM)已成为比造飞机更紧迫的任务。2026年UTM技术底座聚焦5G-A与AI的融合，实现对低空飞行器的实时监控、流量调度和冲突预警，为空域容量流量管理提供基础设施支撑。
+                    </p>
+                    <a class="article-link" href="https://yuanxiangsky.com/N/752.html" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.marketreportsworld.com/zh/market-reports/unmanned-traffic-management-utm-market-14725101" target="_blank">
+                            无人驾驶交通管理(UTM)市场规模预测报告
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：Market Reports</span> | 发布日期：2026年
+                    </div>
+                    <p class="article-summary">
+                        预计2026年全球无人驾驶交通管理(UTM)市场规模将达到17.74亿美元，到2035年预计将达到87.29亿美元，复合年增长率为19.37%。市场增长的核心驱动力已从早期消费娱乐转向城市空中交通和无人机物流的大规模应用。
+                    </p>
+                    <a class="article-link" href="https://www.marketreportsworld.com/zh/market-reports/unmanned-traffic-management-utm-market-14725101" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.globalgrowthinsights.com/zh/market-reports/air-traffic-flow-management-software-market-118832" target="_blank">
+                            空中交通流量管理软件市场规模分析(至2035年)
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：Global Growth Insights</span> | 发布日期：2026年
+                    </div>
+                    <p class="article-summary">
+                        在航空现代化的推动下，全球空中交通流量管理软件市场将从2026年的1378.54亿美元扩大到2035年的3342.08亿美元，复合年增长率为10.34%。增长动力包括减少碳排放、优化燃油消耗和缓解空中交通拥堵需求。
+                    </p>
+                    <a class="article-link" href="https://www.globalgrowthinsights.com/zh/market-reports/air-traffic-flow-management-software-market-118832" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://m.iim.net.cn/2358/view-199088-1.html" target="_blank">
+                            无人机空域管理服务行业深度数据分析报告(2026)
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：IIM信息</span> | 发布日期：2026年
+                    </div>
+                    <p class="article-summary">
+                        据测算2025年全球无人机空域管理服务市场规模已超过120亿美元，预计在2030年前维持年均28%以上的复合增长率。市场增长核心驱动力已从早期消费娱乐转向城市空中交通(UAM)、无人机物流的大规模商业化应用。
+                    </p>
+                    <a class="article-link" href="https://m.iim.net.cn/2358/view-199088-1.html" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.cir.cn/2/60/KongZhongWuLiuFuWuFaZhanQianJingFenXi.html" target="_blank">
+                            2026年空中物流服务发展前景分析
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：产业调研网</span> | 发布日期：2026年
+                    </div>
+                    <p class="article-summary">
+                        报告指出5G/6G与UTM(无人交通管理系统)将实现高密度飞行器实时协同；AI驱动的动态路径规划可应对突发天气或禁飞区。长远看空中物流服务将从应急补充手段升级为高效、可靠、融入城市多式联运体系的常态化空中货运骨干网络。
+                    </p>
+                    <a class="article-link" href="https://www.cir.cn/2/60/KongZhongWuLiuFuWuFaZhanQianJingFenXi.html" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 学术论文专辑 -->
+        <div class="category">
+            <div class="category-title">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+                <h2>学术论文专辑 · 国家自然科学基金(2026 Vol.40)</h2>
+            </div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.nsfc.gov.cn/csc/20345/20348/articlelist/2026/article_list_202601.html" target="_blank">
+                            强化安全底层支撑，构筑智慧低空生态
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">作者：陈志杰</span> | 期刊：自然科学基金进展 | 卷号：2026 Vol.40(1): 1
+                    </div>
+                    <p class="article-summary">
+                        探讨低空经济安全发展的底层支撑体系，为智慧低空生态构建提供理论指导。
+                    </p>
+                    <a class="article-link" href="https://www.nsfc.gov.cn/csc/20345/20348/articlelist/2026/article_list_202601.html" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.nsfc.gov.cn/csc/20345/20348/articlelist/2026/article_list_202601.html" target="_blank">
+                            低空经济信息系统与安全管控基础理论与关键技术
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">作者：吴启晖、董培浩、周福辉</span> | 期刊：自然科学基金进展 | 卷号：2026 Vol.40(1): 2-18
+                    </div>
+                    <p class="article-summary">
+                        系统研究低空经济信息系统的架构理论与安全管控关键技术，涵盖低空通信、导航、监视一体化技术体系，为低空飞行安全保障提供理论支撑。
+                    </p>
+                    <a class="article-link" href="https://www.nsfc.gov.cn/csc/20345/20348/articlelist/2026/article_list_202601.html" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.nsfc.gov.cn/csc/20345/20348/articlelist/2026/article_list_202601.html" target="_blank">
+                            低空数智网的大规模无人机网络化管控理论与关键技术
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">作者：冯志勇、周映、王琳等</span> | 期刊：自然科学基金进展 | 卷号：2026 Vol.40(1): 19-34
+                    </div>
+                    <p class="article-summary">
+                        研究面向低空数智网的大规模无人机网络化管控理论与关键技术，解决多无人机协同管控中的通信、感知、决策一体化问题。
+                    </p>
+                    <a class="article-link" href="https://www.nsfc.gov.cn/csc/20345/20348/articlelist/2026/article_list_202601.html" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://www.nsfc.gov.cn/csc/20345/20348/articlelist/2026/article_list_202601.html" target="_blank">
+                            低空无线电频谱安全管理关键技术研究
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">作者：吕泽芳、周洪、彭劲搏等</span> | 期刊：自然科学基金进展 | 卷号：2026 Vol.40(1): 35-47
+                    </div>
+                    <p class="article-summary">
+                        研究低空环境下无线电频谱的安全管理技术，保障低空飞行器通信导航系统的电磁兼容与频谱安全。
+                    </p>
+                    <a class="article-link" href="https://www.nsfc.gov.cn/csc/20345/20348/articlelist/2026/article_list_202601.html" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://arxiv.org/abs/2601.16146" target="_blank">
+                            Low-altitude Multi-UAV-assisted Data Collection and Semantic Forwarding for Post-Disaster Relief
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">作者：Zheng X., Sun G., Li J.等</span> | 预印本 | arXiv:2601.16146 | 提交日期：2026年1月
+                    </div>
+                    <p class="article-summary">
+                        研究灾后救援场景下的低空多无人机辅助数据收集与语义转发技术，解决无人机与远程基站之间长距离链路的脆弱性和数据瓶颈问题。
+                    </p>
+                    <a class="article-link" href="https://arxiv.org/abs/2601.16146" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-title">
+                        <a href="https://link.springer.com/content/pdf/10.1007/s11432-025-4811-2.pdf" target="_blank">
+                            Securing the low-altitude economy: a survey
+                        </a>
+                    </div>
+                    <div class="article-meta">
+                        <span class="article-source">来源：Springer Nature</span> | 期刊：Science China Information Sciences
+                    </div>
+                    <p class="article-summary">
+                        系统综述低空经济安全保障体系，整合基础设施、法规和技术框架以实现安全高效的无人机运营。
+                    </p>
+                    <a class="article-link" href="https://link.springer.com/content/pdf/10.1007/s11432-025-4811-2.pdf" target="_blank">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>本页面由Matrix Agent整理 | 数据来源：公开网络资源 | 整理时间：2026年4月13日</p>
+        </footer>
+    </div>
+</body>
+</html>

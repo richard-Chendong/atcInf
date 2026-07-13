@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人人都是产品经理 - 2026年4月18日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #e85d04;
+            --secondary: #dc2f02;
+            --accent: #ffba08;
+            --bg-dark: #0d1117;
+            --bg-card: #161b22;
+            --bg-card-hover: #1c2128;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --border: #30363d;
+            --tag-ai: #58a6ff;
+            --tag-lobster: #f85149;
+            --tag-pm: #a371f7;
+            --tag-hot: #ff7b72;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding: 48px 0;
+            background: linear-gradient(135deg, rgba(232, 93, 4, 0.1) 0%, rgba(220, 47, 2, 0.1) 100%);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+        
+        header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+        }
+        
+        header .stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+        
+        header .stat-item {
+            text-align: center;
+        }
+        
+        header .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        header .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 24px;
+        }
+        
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 40px rgba(232, 93, 4, 0.15);
+        }
+        
+        .card-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        
+        .card-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .card-tag {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .tag-ai { background: rgba(88, 166, 255, 0.15); color: var(--tag-ai); }
+        .tag-lobster { background: rgba(248, 81, 73, 0.15); color: var(--tag-lobster); }
+        .tag-pm { background: rgba(163, 113, 247, 0.15); color: var(--tag-pm); }
+        .tag-hot { background: rgba(255, 123, 114, 0.15); color: var(--tag-hot); }
+        
+        .card-time {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        
+        .card-body {
+            padding: 24px;
+        }
+        
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+        
+        .card-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .card-title a:hover {
+            color: var(--primary);
+        }
+        
+        .card-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .card-meta {
+            display: flex;
+            gap: 20px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        
+        .card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .card-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .card-author {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        .card-link {
+            font-size: 0.85rem;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: gap 0.2s;
+        }
+        
+        .card-link:hover {
+            gap: 8px;
+        }
+        
+        .featured-card {
+            grid-column: span 2;
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(232, 93, 4, 0.05) 100%);
+            border-color: rgba(232, 93, 4, 0.3);
+        }
+        
+        .featured-card .card-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+        
+        .featured-card .card-desc {
+            -webkit-line-clamp: 6;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .refresh-time {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+        }
+        
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .featured-card {
+                grid-column: span 1;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+            header .stats {
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>人人都是产品经理</h1>
+            <p class="subtitle">AI · 龙虾 · 产品经理 · 精选资讯</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">精选文章</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">7天</div>
+                    <div class="stat-label">追踪范围</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">年度</div>
+                </div>
+            </div>
+        </header>
+        
+        <p class="refresh-time">数据更新时间：2026-04-18 20:40 | 筛选范围：近7天</p>
+        
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">全部</button>
+            <button class="filter-btn" data-filter="ai">AI相关</button>
+            <button class="filter-btn" data-filter="lobster">龙虾专题</button>
+            <button class="filter-btn" data-filter="pm">产品经理</button>
+        </div>
+        
+        <div class="grid">
+            <!-- 头条：Vibe Coding -->
+            <div class="card featured-card" data-category="ai">
+                <div class="card-header">
+                    <div class="card-tags">
+                        <span class="card-tag tag-ai">AI</span>
+                        <span class="card-tag tag-hot">热门</span>
+                    </div>
+                    <span class="card-time">2026-04-18</span>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        <a href="https://www.woshipm.com/ai/6379607.html" target="_blank">
+                            Vibe Coding：程序员的效率革命，还是产品经理的集体幻觉？
+                        </a>
+                    </h2>
+                    <p class="card-desc">
+                        2026年技术圈最热门的话题——Vibe Coding（氛围编程）。文章探讨了由特斯拉前AI总监Andrej Karpathy提出的概念，揭示真实代价：一位AI工程师连续四个月每天向AI发出数百条提示词后，失去了独立写代码的能力。约68%的受访者正在使用AI辅助编程工具，但只有23%会对AI生成的代码进行全面审查，近四分之三处于「顺从」而非「监督」的状态。
+                    </p>
+                    <div class="card-meta">
+                        <span>👁️ 315 次浏览</span>
+                        <span>💬 0 条评论</span>
+                        <span>⏱️ 22分钟阅读</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-author">✍️ AI驯化师的好奇心</span>
+                    <a href="https://www.woshipm.com/ai/6379607.html" target="_blank" class="card-link">
+                        查看原文 →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- AI大事件 -->
+            <div class="card" data-category="ai">
+                <div class="card-header">
+                    <div class="card-tags">
+                        <span class="card-tag tag-ai">AI</span>
+                        <span class="card-tag tag-hot">热门</span>
+                    </div>
+                    <span class="card-time">2026-04-18</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a href="https://www.woshipm.com/ai/6379704.html" target="_blank">
+                            AI大事件：Claude Opus 4.7再升级，梁文锋计划融资20亿，阿里腾讯同日开源世界模型
+                        </a>
+                    </h3>
+                    <p class="card-desc">
+                        Anthropic把Claude Opus拉到4.7，编码和Agent能力又上一个台阶；智元机器人2500人合作伙伴大会；阿里发布世界模型HappyOyster，视频编辑全球第一；中国日均词元调用量突破140万亿，Stanford报告称中美模型差距仅剩2.7%。
+                    </p>
+                    <div class="card-meta">
+                        <span>👁️ 733 次浏览</span>
+                        <span>💬 0 条评论</span>
+                        <span>⏱️ 14分钟阅读</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-author">✍️ AI星球</span>
+                    <a href="https://www.woshipm.com/ai/6379704.html" target="_blank" class="card-link">
+                        查看原文 →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 阿里秒悟 -->
+            <div class="card" data-category="ai">
+                <div class="card-header">
+                    <div class="card-tags">
+                        <span class="card-tag tag-ai">AI</span>
+                    </div>
+                    <span class="card-time">2026-04-18</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a href="https://www.woshipm.com/ai/6379551.html" target="_blank">
+                            阿里发布了一个"弱"工具，但它瞄准的问题比Cursor更难
+                        </a>
+                    </h3>
+                    <p class="card-desc">
+                        阿里最新推出的AI产品"秒悟"让1万名非技术员工能够用自然语言直接生成完整网站并一键部署。当代码生成不再是障碍，需求表达能力和产品思维将成为新的分水岭。本文深度剖析这款产品如何重构开发流程。
+                    </p>
+                    <div class="card-meta">
+                        <span>👁️ 687 次浏览</span>
+                        <span>💬 0 条评论</span>
+                        <span>⏱️ 16分钟阅读</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-author">✍️ 秋叶的枫</span>
+                    <a href="https://www.woshipm.com/ai/6379551.html" target="_blank" class="card-link">
+                        查看原文 →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 龙虾本纪 -->
+            <div class="card" data-category="lobster">
+                <div class="card-header">
+                    <div class="card-tags">
+                        <span class="card-tag tag-lobster">龙虾</span>
+                        <span class="card-tag tag-hot">深度</span>
+                    </div>
+                    <span class="card-time">2026-04-04</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a href="https://www.woshipm.com/ai/6370331.html" target="_blank">
+                            龙虾本纪：AI Agent浪潮的兴衰史与行业启示
+                        </a>
+                    </h3>
+                    <p class="card-desc">
+                        龙虾AI的兴衰史不仅是一场技术狂欢的缩影，更是行业集体焦虑的投射。从全民养虾的狂热到开发者的大规模出走，这款曾被视为万能个人助手的工具，揭示了AI商业化与用户需求间的深刻断裂。
+                    </p>
+                    <div class="card-meta">
+                        <span>👁️ 1549 次浏览</span>
+                        <span>💬 1 条评论</span>
+                        <span>⏱️ 15分钟阅读</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-author">✍️ 脑极体</span>
+                    <a href="https://www.woshipm.com/ai/6370331.html" target="_blank" class="card-link">
+                        查看原文 →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- AI PM转岗 -->
+            <div class="card" data-category="pm">
+                <div class="card-header">
+                    <div class="card-tags">
+                        <span class="card-tag tag-pm">产品经理</span>
+                    </div>
+                    <span class="card-time">2026-04-16</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a href="https://www.woshipm.com/class/6379168.html" target="_blank">
+                            0经验转AI产品经理，拿下40W年薪offer！
+                        </a>
+                    </h3>
+                    <p class="card-desc">
+                        分享了一位0经验的转岗者成功拿到AI产品经理40万年薪offer的亲身经历。作者原本是2年技术岗工作，通过体系化学习产品经理0-1建设全流程，最终成功转岗。介绍了自我认知、系统学习、实战积累、求职指导的关键步骤。
+                    </p>
+                    <div class="card-meta">
+                        <span>👁️ 850 次浏览</span>
+                        <span>💬 0 条评论</span>
+                        <span>⏱️ 19分钟阅读</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-author">✍️ 起点课堂</span>
+                    <a href="https://www.woshipm.com/class/6379168.html" target="_blank" class="card-link">
+                        查看原文 →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 龙虾竞品分析 -->
+            <div class="card" data-category="lobster">
+                <div class="card-header">
+                    <div class="card-tags">
+                        <span class="card-tag tag-lobster">龙虾</span>
+                        <span class="card-tag tag-ai">AI</span>
+                    </div>
+                    <span class="card-time">2026-04-07</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a href="https://www.woshipm.com/ai/6375654.html" target="_blank">
+                            用小龙虾做竞品分析报告：从2天到20分钟
+                        </a>
+                    </h3>
+                    <p class="card-desc">
+                        基于OpenClaw"小龙虾"生态做了一款竞品分析技能，让AI智能体帮我们高效、高质量地完成竞品分析报告。介绍了什么是"技能(Skill)"体系，以及如何创建专属的竞品分析AI技能。
+                    </p>
+                    <div class="card-meta">
+                        <span>👁️ 技能教程</span>
+                        <span>💬 OpenClaw</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-author">✍️ 人人都是产品经理</span>
+                    <a href="https://www.woshipm.com/ai/6375654.html" target="_blank" class="card-link">
+                        查看原文 →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 龙虾员工 -->
+            <div class="card" data-category="lobster">
+                <div class="card-header">
+                    <div class="card-tags">
+                        <span class="card-tag tag-lobster">龙虾</span>
+                    </div>
+                    <span class="card-time">2026-04-06</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a href="https://www.woshipm.com/ai/6364567.html" target="_blank">
+                            当所有人都在买AI工具，这家公司已经在交付AI员工了
+                        </a>
+                    </h3>
+                    <p class="card-desc">
+                        95%的企业AI试点困在实验阶段，真正的分水岭已从"买工具"转向"雇员工"。黄仁勋说每家公司都需要龙虾战略，核心不在于工具，而在于把AI当成能独立干活的劳动力。
+                    </p>
+                    <div class="card-meta">
+                        <span>👁️ 企业AI转型</span>
+                        <span>💬 Agent</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-author">✍️ 人人都是产品经理</span>
+                    <a href="https://www.woshipm.com/ai/6364567.html" target="_blank" class="card-link">
+                        查看原文 →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 龙虾众生相 -->
+            <div class="card" data-category="lobster">
+                <div class="card-header">
+                    <div class="card-tags">
+                        <span class="card-tag tag-lobster">龙虾</span>
+                    </div>
+                    <span class="card-time">2026-04-05</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a href="https://www.woshipm.com/ai/6366292.html" target="_blank">
+                            小龙虾，众生相：AI时代的集体狂欢与焦虑
+                        </a>
+                    </h3>
+                    <p class="card-desc">
+                        OpenClaw的爆火与速朽，折射出AI时代的一场集体狂欢。从技术开发者的流量盛宴到体制内领导的昏昏欲睡，从大学生的求职"邪修"到科技公司的疯狂迭代，五个真实故事揭示我们为何在技术浪潮中越跑越快。
+                    </p>
+                    <div class="card-meta">
+                        <span>👁️ 行业观察</span>
+                        <span>💬 深度解读</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-author">✍️ 人人都是产品经理</span>
+                    <a href="https://www.woshipm.com/ai/6366292.html" target="_blank" class="card-link">
+                        查看原文 →
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>数据来源：人人都是产品经理 (woshipm.com)</p>
+            <p style="margin-top: 8px;">生成时间：2026-04-18 20:40 | Matrix Agent 整理</p>
+        </footer>
+    </div>
+    
+    <script>
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                document.querySelectorAll('.card').forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

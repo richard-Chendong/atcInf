@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空ATC竞品分析 2026-04-20</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1E40AF;
+            --secondary: #3B82F6;
+            --accent: #06B6D4;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1e3a5f 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeDown 0.6s ease-out;
+        }
+
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.4);
+        }
+
+        .header-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #10B981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #93c5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 4px;
+        }
+
+        .company-section {
+            margin-bottom: 50px;
+            animation: fadeUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .company-section:nth-child(2) { animation-delay: 0.1s; }
+        .company-section:nth-child(3) { animation-delay: 0.2s; }
+        .company-section:nth-child(4) { animation-delay: 0.3s; }
+        .company-section:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .company-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .company-logo {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .company-info h2 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .company-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .tag.highlight {
+            background: linear-gradient(135deg, var(--accent), #0891b2);
+            color: white;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 20px;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            border-radius: var(--radius) 0 0 var(--radius);
+        }
+
+        .card-type {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .card-type.bid { background: #dcfce7; color: #166534; }
+        .card-type.product { background: #dbeafe; color: #1e40af; }
+        .card-type.tech { background: #fef3c7; color: #92400e; }
+        .card-type.policy { background: #f3e8ff; color: #7c3aed; }
+        .card-type.data { background: #ffe4e6; color: #be123c; }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .card-content {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .card-highlight {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+        }
+
+        .card-highlight-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 6px;
+        }
+
+        .card-highlight-content {
+            font-size: 14px;
+            color: #78350f;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+        }
+
+        .card-source {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .card-date {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .key-data {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 14px;
+        }
+
+        .key-data-item {
+            text-align: center;
+        }
+
+        .key-data-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .key-data-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .footer-time {
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 20px 16px; }
+            h1 { font-size: 2rem; }
+            .info-grid { grid-template-columns: 1fr; }
+            .stats-row { gap: 20px; }
+            .key-data { grid-template-columns: 1fr; }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .comparison-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .comparison-table tr:hover td {
+            background: #f8fafc;
+        }
+
+        .section-title {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(180deg, var(--accent), var(--secondary));
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-badge">
+                <span>实时追踪</span>
+                <span>2026-04-20 11:10</span>
+            </div>
+            <h1>低空ATC竞品分析</h1>
+            <p class="subtitle">空管自动化系统 · 飞行服务平台 · 智能网联厂商动态</p>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-value">15</div>
+                    <div class="stat-label">监测厂商</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">最新动态</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">招投标项目</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 竞品对比总览 -->
+        <section class="company-section">
+            <h3 class="section-title">重点厂商能力对比</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>厂商名称</th>
+                        <th>类型</th>
+                        <th>核心产品/平台</th>
+                        <th>近期动态</th>
+                        <th>市场地位</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>莱斯信息</strong></td>
+                        <td>空管龙头</td>
+                        <td>低空天牧平台、省级低空管服平台</td>
+                        <td>中标辽宁省省级平台、2025年营收12.7亿</td>
+                        <td>国内首个省级低空平台标杆</td>
+                    </tr>
+                    <tr>
+                        <td><strong>海格通信</strong></td>
+                        <td>军工通信</td>
+                        <td>低空智联网、系列化通导监视终端</td>
+                        <td>广州/合肥/重庆/宁波等城市示范建设</td>
+                        <td>全产业链布局领先者</td>
+                    </tr>
+                    <tr>
+                        <td><strong>深城交</strong></td>
+                        <td>规划设计</td>
+                        <td>低空智能交通运行系统</td>
+                        <td>牵头深圳市低空重点实验室获批</td>
+                        <td>深圳低空经济首个重点实验室</td>
+                    </tr>
+                    <tr>
+                        <td><strong>民航二所+九洲</strong></td>
+                        <td>联合体</td>
+                        <td>四川省低空运行管理服务系统</td>
+                        <td>中标6532万元省级系统集成项目</td>
+                        <td>西南地区省级平台建设</td>
+                    </tr>
+                    <tr>
+                        <td><strong>苏交科</strong></td>
+                        <td>工程咨询</td>
+                        <td>低空规划、检测监测</td>
+                        <td>持续中标多个重点项目</td>
+                        <td>城市更新领域保持竞争力</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 莱斯信息 -->
+        <section class="company-section">
+            <div class="company-header">
+                <divclass="company-logo">莱</div>
+                <div class="company-info">
+                    <h2>莱斯信息</h2>
+                    <div class="company-tags">
+                        <span class="tag">民航空管龙头</span>
+                        <span class="tag highlight">省级低空平台标杆</span>
+                        <span class="tag">科创板上市</span>
+                    </div>
+                </div>
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <span class="card-type bid">招投标</span>
+                    <h3 class="card-title">中标辽宁省省级低空飞行综合管理服务平台项目（一期）</h3>
+                    <p class="card-content">莱斯信息成功中标辽宁省省级低空飞行综合管理服务平台项目(一期)，实现省级低空管服平台在东北区域市场关键性突破。该平台建成后，将贯通辽宁全省低空管理、审批流程与安全保障全链条。</p>
+                    <div class="card-footer">
+                        <span class="card-source">证券时报</span>
+                        <span class="card-date">2026-04-02</span>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <span class="card-type data">财务数据</span>
+                    <h3 class="card-title">2025年度业绩快报</h3>
+                    <div class="key-data">
+                        <div class="key-data-item">
+                            <div class="key-data-value">12.7亿</div>
+                            <div class="key-data-label">营业总收入</div>
+                        </div>
+                        <div class="key-data-item">
+                            <div class="key-data-value">-20.9%</div>
+                            <div class="key-data-label">同比变化</div>
+                        </div>
+                        <div class="key-data-item">
+                            <div class="key-data-value">5523万</div>
+                            <div class="key-data-label">归母净利润</div>
+                        </div>
+                    </div>
+                    <p class="card-content">公司表示，将率先卡位低空领域战略机遇，打造军地民协同、省级标杆应用、省市联动、eVTOL文旅飞行等多个全国性、示范性标杆案例。</p>
+                    <div class="card-footer">
+                        <span class="card-source">中国证券报</span>
+                        <span class="card-date">2026-02-14</span>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <span class="card-type product">核心产品</span>
+                    <h3 class="card-title">"低空天牧平台"核心能力发布</h3>
+                    <div class="card-highlight">
+                        <div class="card-highlight-title">平台核心能力维度</div>
+                        <div class="card-highlight-content">全域感知、空域管理、飞行管理、飞行服务、安全监管</div>
+                    </div>
+                    <p class="card-content">平台可支持40万级以上航空器的实时监视数据接入、解析与处理，同时满足空域申请、飞行计划审批等高频业务的并发请求，保障海量数据处理的低延迟与高可靠性。</p>
+                    <div class="card-footer">
+                        <span class="card-source">证券日报</span>
+                        <span class="card-date">2026-01-13</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 海格通信 -->
+        <section class="company-section">
+            <div class="company-header">
+                <div class="company-logo" style="background: linear-gradient(135deg, #059669, #10B981);">海</div>
+                <div class="company-info">
+                    <h2>海格通信</h2>
+                    <div class="company-tags">
+                        <span class="tag">军工通信</span>
+                        <span class="tag highlight">全产业链布局</span>
+                        <span class="tag">北斗+5G领先</span>
+                    </div>
+                </div>
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <span class="card-type tech">技术动态</span>
+                    <h3 class="card-title">低空智联网多城市示范建设</h3>
+                    <p class="card-content">海格通信已构建基于系列化通导监视终端设备的低空智联网、强大的平台服务以及成熟的无人机及应用场景解决方案的生态系统，覆盖"制造-运营-保障-服务"的低空生态全链条。</p>
+                    <div class="card-highlight">
+                        <div class="card-highlight-title">已布局城市</div>
+                        <div class="card-highlight-content">广州、合肥、重庆、福州、宁波</div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">证券之星</span>
+                        <span class="card-date">2026-04-10</span>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <span class="card-type data">业绩说明</span>
+                    <h3 class="card-title">2026年4月10日业绩说明会</h3>
+                    <div class="key-data">
+                        <div class="key-data-item">
+                            <div class="key-data-value">全产业链</div>
+                            <div class="key-data-label">卫星互联网布局</div>
+                        </div>
+                        <div class="key-data-item">
+                            <div class="key-data-value">6.9亿</div>
+                            <div class="key-data-label">前三季度研发</div>
+                        </div>
+                        <div class="key-data-item">
+                            <div class="key-data-value">425亿</div>
+                            <div class="key-data-label">最新市值</div>
+                        </div>
+                    </div>
+                    <p class="card-content">2026年一季度业绩将于4月25日披露。公司在北斗导航领域率先实现"芯片、模块、天线、终端、系统、运营"全产业链布局，是"北斗+5G"应用领先者。</p>
+                    <div class="card-footer">
+                        <span class="card-source">证券之星</span>
+                        <span class="card-date">2026-04-13</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 深城交 -->
+        <section class="company-section">
+            <div class="company-header">
+                <div class="company-logo" style="background: linear-gradient(135deg, #7C3AED, #A855F7);">深</div>
+                <div class="company-info">
+                    <h2>深城交</h2>
+                    <div class="company-tags">
+                        <span class="tag">城市规划设计</span>
+                        <span class="tag highlight">重点实验室</span>
+                        <span class="tag">低空规划头部</span>
+                    </div>
+                </div>
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <span class="card-type tech">重大突破</span>
+                    <h3 class="card-title">牵头深圳市低空智能交通运行系统重点实验室获批</h3>
+                    <p class="card-content">深城交科技集团股份有限公司牵头，联合中山大学·深圳和电子科技大学(深圳)高等研究院共同建设的"深圳市低空智能交通运行系统重点实验室"正式获批并揭牌。</p>
+                    <div class="card-highlight">
+                        <div class="card-highlight-title">实验室定位</div>
+                        <div class="card-highlight-content">突破大规模飞行条件下低空交通的运行效率与安全韧性瓶颈，构建低空飞行全链路智能管控与安全保障体系</div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">东方财富网</span>
+                        <span class="card-date">2026-04-07</span>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <span class="card-type bid">招投标</span>
+                    <h3 class="card-title">中标吴兴文旅集团低空经济建设项目方案研究</h3>
+                    <p class="card-content">深城交（联合体牵头人）与湖州交通组成联合体，中标吴兴文旅集团低空经济建设项目方案研究，成交价格按实结算。</p>
+                    <div class="card-footer">
+                        <span class="card-source">中国采招网</span>
+                        <span class="card-date">2026-04-13</span>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <span class="card-type bid">招投标</span>
+                    <h3 class="card-title">吉安深城交低空文旅产业发展规划</h3>
+                    <p class="card-content">深城交低空文旅产业发展规划产业调查服务采购项目，采购控制价约30万元，服务期30天。</p>
+                    <div class="card-footer">
+                        <span class="card-source">中国采招网</span>
+                        <span class="card-date">2026-03-24</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 民航二所+九洲 -->
+        <section class="company-section">
+            <div class="company-header">
+                <div class="company-logo" style="background: linear-gradient(135deg, #DC2626, #EF4444);">民</div>
+                <div class="company-info">
+                    <h2>民航二所 + 四川九洲</h2>
+                    <div class="company-tags">
+                        <span class="tag">联合体中标</span>
+                        <span class="tag highlight">6532万元</span>
+                        <span class="tag">省级平台</span>
+                    </div>
+                </div>
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <span class="card-type bid">大单中标</span>
+                    <h3 class="card-title">四川省低空运行管理服务项目（系统集成）</h3>
+                    <div class="key-data">
+                        <div class="key-data-item">
+                            <div class="key-data-value">6532万</div>
+                            <div class="key-data-label">中标金额</div>
+                        </div>
+                        <div class="key-data-item">
+                            <div class="key-data-value">98.28</div>
+                            <div class="key-data-label">评审得分</div>
+                        </div>
+                        <div class="key-data-item">
+                            <div class="key-data-value">1020天</div>
+                            <div class="key-data-label">服务期</div>
+                        </div>
+                    </div>
+                    <p class="card-content">民航第二研究所有限公司（联合体成员：四川九洲空管科技有限责任公司）中标四川省低空运行管理服务项目系统集成，主要建设四川省低空空域运行服务中心系统、通信监视设备、本地灾备机房和运行值班大厅。</p>
+                    <div class="card-footer">
+                        <span class="card-source">剑鱼标讯</span>
+                        <span class="card-date">2026-03-20</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 苏交科 -->
+        <section class="company-section">
+            <div class="company-header">
+                <div class="company-logo" style="background: linear-gradient(135deg, #EA580C, #F97316);">苏</div>
+                <div class="company-info">
+                    <h2>苏交科</h2>
+                    <div class="company-tags">
+                        <span class="tag">工程咨询</span>
+                        <span class="tag highlight">全链条服务</span>
+                        <span class="tag">创业板上市</span>
+                    </div>
+                </div>
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <span class="card-type bid">近期中标</span>
+                    <h3 class="card-title">持续中标多个重点项目</h3>
+                    <p class="card-content">苏交科近期持续中标多个重点项目，包括广州荔湾区坑口村城中村改造项目、中山翠亨新区科学城园区配套基础设施工程、宁沪公司2026年度桥梁维修加固设计项目等。</p>
+                    <div class="card-highlight">
+                        <div class="card-highlight-title">核心竞争力</div>
+                        <div class="card-highlight-content">覆盖"规划-设计-检测-运维"的全链条服务能力，在城市更新、检测监测等优势领域保持强劲竞争力</div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">证券之星</span>
+                        <span class="card-date">2026-03-25</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 中科星图 -->
+        <section class="company-section">
+            <div class="company-header">
+                <div class="company-logo" style="background: linear-gradient(135deg, #0D9488, #14B8A6);">星</div>
+                <div class="company-info">
+                    <h2>中科星图</h2>
+                    <div class="company-tags">
+                        <span class="tag">空天信息</span>
+                        <span class="tag highlight">低空一朵云</span>
+                        <span class="tag">科创板上市</span>
+                    </div>
+                </div>
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <span class="card-type product">产品方案</span>
+                    <h3 class="card-title">"低空一朵云"数据全要素支撑</h3>
+                    <p class="card-content">中科星图基于空天信息多圈层数据供给能力，整合通信、导航、监视、气象、反制、起降场等低空基础设施运行数据，打造"低空一朵云"，提供低空数据全要素支撑。</p>
+                    <div class="card-highlight">
+                        <div class="card-highlight-title">数据局政策支持</div>
+                        <div class="card-highlight-content">国家数据局加强低空数据体系建设，要求强化低空数据与城市数据底座互联互通</div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">东方财富网</span>
+                        <span class="card-date">2026-04-01</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-time">
+                <span>最后更新：2026-04-20 11:10</span>
+            </div>
+            <p>数据来源：公开网络招标信息、企业公告、证券时报等 | 仅供研究参考</p>
+        </footer>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            document.querySelector('.header-badge span:last-child').textContent = now.toLocaleString('zh-CN', {
+                year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'
+            });
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+    </script>
+</body>
+</html>

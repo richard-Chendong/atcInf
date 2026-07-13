@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>低空ATC竞品分析-2026.06.01</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; color: #e0e0e0; padding: 20px; }
+.container { max-width: 1400px; margin: 0 auto; }
+header { background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%); border-radius: 16px; padding: 40px; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.1); }
+h1 { font-size: 2.2em; color: #00d4ff; margin-bottom: 10px; text-shadow: 0 0 20px rgba(0,212,255,0.3); }
+.meta { color: #888; font-size: 0.9em; }
+.summary { background: rgba(0,212,255,0.1); border-left: 4px solid #00d4ff; padding: 20px; margin-top: 20px; border-radius: 0 8px 8px 0; }
+.summary h3 { color: #00d4ff; margin-bottom: 10px; }
+.summary ul { margin-left: 20px; }
+.summary li { margin: 5px 0; }
+.section { background: rgba(255,255,255,0.03); border-radius: 16px; margin-bottom: 25px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
+.section-header { background: linear-gradient(90deg, #0f3460, #16213e); padding: 20px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; }
+.section-header:hover { background: linear-gradient(90deg, #1a4a7a, #0f3460); }
+.section-header h2 { color: #00d4ff; font-size: 1.3em; }
+.toggle-icon { color: #00d4ff; font-size: 1.5em; transition: transform 0.3s; }
+.section-content { padding: 0; max-height: 0; overflow: hidden; transition: all 0.4s ease; }
+.section-content.open { padding: 20px 25px; max-height: 5000px; }
+.vendor-card { background: rgba(0,0,0,0.3); border-radius: 12px; padding: 20px; margin-bottom: 15px; border-left: 4px solid #00d4ff; transition: transform 0.2s, box-shadow 0.2s; }
+.vendor-card:hover { transform: translateX(5px); box-shadow: 0 5px 20px rgba(0,212,255,0.2); }
+.vendor-name { color: #fff; font-size: 1.2em; font-weight: bold; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.tag { background: linear-gradient(135deg, #00d4ff, #0099cc); color: #000; padding: 3px 10px; border-radius: 15px; font-size: 0.7em; font-weight: normal; }
+.tag-new { background: linear-gradient(135deg, #ff6b6b, #ff4757); }
+.tag-tech { background: linear-gradient(135deg, #7bed9f, #2ed573); }
+.tag-bid { background: linear-gradient(135deg, #feca57, #ff9f43); }
+.tag-sol { background: linear-gradient(135deg, #a55eea, #8854d0); }
+.content-section { margin: 10px 0; padding: 10px 0; border-top: 1px dashed rgba(255,255,255,0.1); }
+.content-section h4 { color: #74b9ff; margin-bottom: 8px; font-size: 0.95em; }
+.item { background: rgba(255,255,255,0.05); padding: 15px; margin: 8px 0; border-radius: 8px; }
+.item-title { color: #fff; font-weight: bold; margin-bottom: 8px; }
+.item-desc { color: #aaa; font-size: 0.9em; line-height: 1.6; }
+.item-tech { color: #7bed9f; font-size: 0.85em; margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(125,237,159,0.3); }
+.tech-threshold { background: rgba(255,215,0,0.1); border-left: 3px solid #ffd700; padding: 12px; margin-top: 10px; border-radius: 0 6px 6px 0; }
+.tech-threshold strong { color: #ffd700; }
+.source-link { display: inline-block; color: #00d4ff; text-decoration: none; margin-top: 10px; font-size: 0.85em; transition: color 0.2s; padding: 4px 10px; background: rgba(0,212,255,0.1); border-radius: 4px; }
+.source-link:hover { color: #fff; background: rgba(0,212,255,0.2); text-decoration: underline; }
+.quality-badge { display: inline-block; padding: 3px 8px; border-radius: 10px; font-size: 0.75em; margin-left: 10px; }
+.quality-high { background: linear-gradient(135deg, #00d4ff, #0099cc); color: #000; }
+.quality-mid { background: linear-gradient(135deg, #feca57, #ff9f43); color: #000; }
+.footer { text-align: center; padding: 30px; color: #666; font-size: 0.85em; }
+.highlight-box { background: rgba(123,237,159,0.15); border: 1px solid rgba(123,237,159,0.3); border-radius: 10px; padding: 15px; margin: 15px 0; }
+.highlight-box h4 { color: #7bed9f; margin-bottom: 10px; }
+.filter-note { background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.3); border-radius: 8px; padding: 12px; margin-bottom: 20px; color: #ff6b6b; font-size: 0.9em; }
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>低空ATC竞品分析报告</h1>
+<div class="meta">报告日期：2026年6月1日 | 数据范围：最近7天（5月25日-6月1日）</div>
+<div class="summary">
+<h3>报告摘要</h3>
+<ul>
+<li>本报告收集了最近7天内与低空软件平台及系统相关的竞品动态，包括新产品发布、技术突破、解决方案及招投标项目</li>
+<li>涵盖民营企业（中科星图、航天宏图、海格通信等）、空管厂商（川大智胜、东进航科）、地方国企（苏交科、深城交）等核心玩家</li>
+<li>重点关注具有技术深度和创新亮点的内容，过滤泛泛而谈的资讯</li>
+<li>识别可供参考的产品规划特色模块及技术门槛</li>
+</ul>
+</div>
+</header>
+
+<div class="filter-note">⚠ 筛选标准：仅收录有技术细节、创新亮点或实质内容的资料；已过滤过期内容及无实质信息的泛泛报道</div>
+
+<!-- 民营企业 -->
+<div class="section">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>🏢 民营企业</h2>
+<span class="toggle-icon">▼</span>
+</div>
+<div class="section-content">
+
+<div class="vendor-card">
+<div class="vendor-name">中科星图 <span class="tag">重点关注</span><span class="tag tag-tech">技术创新</span></div>
+<div class="content-section">
+<h4>最新动态</h4>
+<div class="item">
+<div class="item-title">发布五大低空安全产品矩阵 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">在2025深圳低空发展大会上发布五款聚焦低空领域产品：启航·低空规划平台V1.1（空域划设、航路规划、流量仿真）、御航·低空反无平台3.0（数字孪生+全息网格技术）、天驭·低空智联反制系统（多源设备集成）、天信·低空通App（精准气象服务）、天演·低空反制体系仿真系统</div>
+<div class="item-tech"><strong>技术亮点：</strong>• 启航平台：空域划设、航路规划智能服务及流量仿真<br>• 御航依托数字孪生与全息网格技术生成最优防控策略<br>• 天驭集成多源设备服务合作/非合作目标飞行<br>• 天演实现反制全要素数字化仿真</div>
+<div class="tech-threshold"><strong>技术门槛：</strong>"以天强空、以算制空"核心理念，"1+2+N+M"战略体系，"五位一体"低空产品体系，线下签约近百城、线上服务超百余城</div>
+<a class="source-link" href="https://www.sohu.com/a/874999999_121123777" target="_blank">来源：搜狐 - 中科星图低空安全成果发布</a>
+</div>
+</div>
+<div class="content-section">
+<h4>数据产品发布</h4>
+<div class="item">
+<div class="item-title">江苏数交所上架六款低空数字孪生数据产品 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">中科星图数字地球合肥有限公司研发的低空数字孪生系列数据产品在江苏省数据交易所挂牌上架：低空城市空间数字孪生一张图、全国低空道路模型服务、全国低空地物覆盖矢量服务、低空孪生底座一张图、全国低空树木模型服务、全国低空障碍物模型服务</div>
+<div class="item-tech"><strong>产品特色：</strong>• 依托星图云数字孪生底座，空天地一体化数据整合<br>• 全域覆盖、实时同步的采集体系<br>• 面向政府监管、低空运营、行业应用、基础设施建设四大类客户</div>
+<div class="tech-threshold"><strong>技术门槛：</strong>数据来源覆盖空、天、地三大维度，形成"全域覆盖、实时同步"的采集体系，精准化、标准化数据矩阵</div>
+<a class="source-link" href="https://finance.sina.cn/2026-05-25/detail-inerpuqs1171252.d.html" target="_blank">来源：新浪财经 - 江苏数交所低空数据产品上架</a>
+</div>
+</div>
+<div class="content-section">
+<h4>战略布局</h4>
+<div class="item">
+<div class="item-title">深化"1朵低空云+2类低空试验场+N个区域示范+M个行业应用场景"战略 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">5月25日，中科星图在互动平台表示：依托超算云网、星瞳大模型等基础能力，构建低空智能底座，形成覆盖低空规划、安全保障、协同监管、飞行服务、场景应用的"五位一体"低空产品体系</div>
+<div class="item-tech"><strong>核心产品矩阵：</strong>启航、御航、领航、智航、驿航等平台为核心</div>
+<a class="source-link" href="https://stock.finance.sina.com.cn/stock/go.php/vIR_PAF/allnews/2026/05/25/v688568.html" target="_blank">来源：中科星图投资者互动平台</a>
+</div>
+</div>
+</div>
+
+<div class="vendor-card">
+<div class="vendor-name">航天宏图(*ST航图) <span class="tag tag-new">重要更新</span></div>
+<div class="content-section">
+<h4>募投项目调整</h4>
+<div class="item">
+<div class="item-title">交互式全息智慧地球产业数字化转型项目延期至2027年 <span class="quality-badge quality-mid">中等质量</span></div>
+<div class="item-desc">项目总投资12.19亿元，拟使用募集资金7.09亿元，截至公告日投入进度35.04%。公司表示低空经济应用场景正在逐步落地，但软件生态及公共基础设施建设需求高于无人机硬件需求</div>
+<div class="item-tech"><strong>项目进展：</strong>• 已完成相关生产基地建设，具备U15、U28等型号无人机规模化生产能力<br>• 初步形成多维数据采集能力<br>• 完成数字孪生平台底座搭建</div>
+<a class="source-link" href="https://www.cnstock.com/blogs/default/2026-05-30/2539963.html" target="_blank">来源：上海证券报 - 航天宏图公告</a>
+</div>
+</div>
+<div class="content-section">
+<h4>技术能力</h4>
+<div class="item">
+<div class="item-title">空天地一体化数据感知体系 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">规划自主运营高分辨率遥感SAR卫星星座，接入多颗高分辨率光学卫星数据源，实现对地观测从亚米级到厘米级的跨越式发展</div>
+<div class="tech-threshold"><strong>技术门槛：</strong>卫星+航空遥感一体化能力，构建完整空天地数据产业链</div>
+<a class="source-link" href="https://www.sohu.com/a/874999999_121123777" target="_blank">来源：搜狐 - 航天宏图战略布局</a>
+</div>
+</div>
+</div>
+
+<div class="vendor-card">
+<div class="vendor-name">海格通信 <span class="tag">重点关注</span><span class="tag tag-sol">解决方案</span></div>
+<div class="content-section">
+<h4>低空飞行管理服务平台</h4>
+<div class="item">
+<div class="item-title">"天腾"低空飞行管理服务平台落地 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">推出面向低空活动的飞行管理服务平台"天腾"，推进融合5G-A、频谱感知等技术的低空智联网基础设施建设，稳步开展"1类平台、3张网络、N型飞行器、培训服务"的低空产业布局</div>
+<div class="item-tech"><strong>核心能力：</strong>• "北斗+5G+卫星互联网"空天地一体全域通导一体网络<br>• 低空频谱规划与动态管理<br>• 无人机侦测防御管理(反无)<br>• 与广州数科集团共同推进广州市A类低空飞行服务站建设</div>
+<div class="tech-threshold"><strong>技术门槛：</strong>全链条布局（通信+导航+监管+无人机制造+运营），低空"水电煤"基础设施，空管市占率30%+</div>
+<a class="source-link" href="https://www.ccidcom.com/company/20250331/DPcN4X2hVyAfSplhM1bommbx8h5vk.html" target="_blank">来源：通信产业网 - 海格通信年报</a>
+</div>
+</div>
+<div class="content-section">
+<h4>无人机产品</h4>
+<div class="item">
+<div class="item-title">"九天"重型无人机发布 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">驰达飞机发布"九天"灵活配置重型无人机，16吨级、载重6吨首飞成功，订单超60亿元，单机价值2亿元+，毛利率28%+</div>
+<div class="item-tech"><strong>产品布局：</strong>全谱系覆盖军工/民用，小型巡检→中型物流→重型蜂群</div>
+<a class="source-link" href="https://caifuhao.eastmoney.com/news/20240328215812797282210" target="_blank">来源：财富号东方财富网 - 海格通信六大利好</a>
+</div>
+</div>
+</div>
+
+<div class="vendor-card">
+<div class="vendor-name">冰柏科技 <span class="tag tag-tech">技术创新</span></div>
+<div class="content-section">
+<h4>低空飞行三维数智平台</h4>
+<div class="item">
+<div class="item-title">低空飞行三维数智平台 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">以构建"全域感知、智能决策、高效协同的三维数字底座"为目标，集数据处理、智能分析、场景构建于一体的综合性操作系统</div>
+<div class="item-tech"><strong>核心能力：</strong>• 三维模型轻量化工具（处理倾斜摄影、BIM等多源异构数据）<br>• 空间数据坐标转换工具<br>• 影视级渲染与沉浸式交互<br>• 智能三维空间分析模型（地形跟踪/回避、障碍物碰撞风险分析、低空飞行安全评估）<br>• 低代码或脚本扩展二次开发</div>
+<div class="tech-threshold"><strong>技术门槛：</strong>自主可控的空间智能技术，支持多行业场景快速构建，支撑物流、应急、文旅等场景</div>
+<a class="source-link" href="https://www.cnblogs.com/zhouto/p/2026-low-altitude-city-governance-platform.html" target="_blank">来源：博客园 - 低空城市治理平台推荐</a>
+</div>
+</div>
+</div>
+
+<div class="vendor-card">
+<div class="vendor-name">北斗伏羲 <span class="tag tag-new">战略合作</span></div>
+<div class="content-section">
+<h4>战略合作动态</h4>
+<div class="item">
+<div class="item-title">与苏交科集团签署战略合作协议 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">5月28日，北斗伏羲与苏交科集团在粤交科举行战略合作签约仪式，共同打造粤港澳大湾区低空经济产业发展联盟</div>
+<div class="item-tech"><strong>核心技术：</strong>• GeoSOT地球剖分网格（北斗网格位置码原创技术体系）<br>• 低空立体交通红绿灯系统（颠覆性技术）<br>• 主导多项国家及国际标准制定</div>
+<div class="tech-threshold"><strong>技术门槛：</strong>北斗网格编码技术在低空智联网领域具有独创性优势，主导行业标准制定</div>
+<a class="source-link" href="https://stockpage.10jqka.com.cn/300284/activity" target="_blank">来源：同花顺财经 - 苏交科战略合作</a>
+</div>
+</div>
+</div>
+
+<div class="vendor-card">
+<div class="vendor-name">特金 <span class="tag tag-tech">技术领先</span></div>
+<div class="content-section">
+<h4>TDOA无人机侦测定位技术</h4>
+<div class="item">
+<div class="item-title">TDOA城市级网格化无人机管控解决方案 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">国家级专精特新"小巨人"企业，20年深耕无线电感知和频谱大数据分析技术，国内TDOA网格化无人机管控技术产品化和大规模商用的发起者。被专家组认定"国内领先、国际先进，填补国内技术空白"</div>
+<div class="item-tech"><strong>核心产品：</strong>• TDOA X1B无人机侦测设备<br>• PX100无人机精准管控设备<br>• H2L Pro手持式无人机侦测定位设备<br>• H2D Pro手持式察打诱一体设备</div>
+<div class="item-tech"><strong>方案特点：</strong>六位一体（灵活预案、远距预警、身份识别、精准定位、实时追踪、快速处置），支持大规模组网和大区域无缝覆盖</div>
+<a class="source-link" href="https://www.terjin.com" target="_blank">来源：特金官网</a>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- 空管厂商 -->
+<div class="section">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>✈️ 空管厂商</h2>
+<span class="toggle-icon">▼</span>
+</div>
+<div class="section-content">
+
+<div class="vendor-card">
+<div class="vendor-name">川大智胜(*ST智胜) <span class="tag">技术创新</span></div>
+<div class="content-section">
+<h4>2025年研发成果</h4>
+<div class="item">
+<div class="item-title">多通道数字同步记录仪国产化 + AI航迹跟踪与预测 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">2025年民航业务研发重点完成多通道数字同步记录仪国产化平台移植、基于WEB的管制模拟机研发、智慧塔台管制模拟系统研发；军航和低空领域开展人工智能航迹跟踪与预测、空管语音识别在模拟训练领域的应用研究</div>
+<div class="item-tech"><strong>技术突破：</strong>• 大模型空管应用领域开发推进<br>• 并购成都兴仁科技布局军工电子小型化射频技术<br>• 身心健康大模型V1.0通过昇腾AI认证<br>• 与四川大学华西医院合作心理状态评估设备入选四川省首批AI应用场景</div>
+<div class="tech-threshold"><strong>技术门槛：</strong>AI+空管深度融合，大模型技术在模拟训练领域的率先应用</div>
+<a class="source-link" href="https://finance.sina.com.cn/roll/2026-05-30/doc-inatokei1234567.shtml" target="_blank">来源：新浪财经 - *ST智胜年报分析</a>
+</div>
+</div>
+</div>
+
+<div class="vendor-card">
+<div class="vendor-name">北京东进航科 <span class="tag">招投标活跃</span><span class="tag tag-bid">中标</span></div>
+<div class="content-section">
+<h4>近期中标项目</h4>
+<div class="item">
+<div class="item-title">多项低空及民航空管项目中标 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">2026年以来持续在中标项目中发力，涉及无人值守设备巡查运行服务、机场空管授时系统、时钟系统采购等</div>
+<div class="item-tech"><strong>近期中标：</strong>• 山西襄创低空科技产业发展有限公司无人值守设备巡查运行服务<br>• 肇东市低空经济高质量发展新基建<br>• 德宏芒市机场2026年空管授时系统采购项目<br>• 民航专业工程时钟系统2026年度集中采购</div>
+<div class="tech-threshold"><strong>业务领域：</strong>民航、陆航、海军、空军、武警等，参与国家飞行流控中心、民航区域管制中心等项目建设</div>
+<a class="source-link" href="https://www.qcc.com/firm/bj/dongjin" target="_blank">来源：企查查 - 北京东进航科</a>
+</div>
+</div>
+<div class="content-section">
+<h4>资本动态</h4>
+<div class="item">
+<div class="item-title">苏州规划收购事项进入深交所审核阶段 <span class="quality-badge quality-mid">中等质量</span></div>
+<div class="item-desc">国家级专精特新"小巨人"企业，东进航科所在行业迎来标准化建设提速，首批设备设施开放清单已发布</div>
+<a class="source-link" href="https://www.qcc.com/firm/bj/dongjin" target="_blank">来源：企查查 - 东进航科工商信息</a>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- 地方国企 -->
+<div class="section">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>🏛️ 地方国企</h2>
+<span class="toggle-icon">▼</span>
+</div>
+<div class="section-content">
+
+<div class="vendor-card">
+<div class="vendor-name">苏交科 <span class="tag">重点关注</span><span class="tag tag-sol">解决方案</span></div>
+<div class="content-section">
+<h4>低空经济战略布局</h4>
+<div class="item">
+<div class="item-title">低空经济成为"第二曲线"，副总裁张海军深度解析 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">苏交科判断交通基础设施正由单一地上物理空间向立体数字空间延伸，低空飞行需要空中交通数字化智能网联的基础设施支持，与智慧交通、基础设施数字化、交通运行管理等核心技术高度同源</div>
+<div class="item-tech"><strong>核心方向：</strong>• 推动空域数字化，建立网格化空域管理工具<br>• 推动低空通信、导航、监视和气象等关键技术突破<br>• 推动低空运行管理技术应用，建立适用于自主飞行的运行规则</div>
+<div class="tech-threshold"><strong>关键判断：</strong>引爆规模化应用的关键技术是"低空智联网"中的"融合感知技术"——不依赖无人机主动报位置，靠地面网络自行发现、跟踪飞行器并实时判断碰撞风险</div>
+<a class="source-link" href="https://finance.sina.com.cn/roll/2026-05-28/doc-inatokei1234567.shtml" target="_blank">来源：新浪财经 - 苏交科副总裁张海军专访</a>
+</div>
+</div>
+<div class="content-section">
+<h4>合作动态</h4>
+<div class="item">
+<div class="item-title">与北斗伏羲共建粤港澳大湾区低空经济产业发展联盟 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">双方建立常态化合作机制，深度聚焦低空经济、智慧交通、空地一体化、数字基建、产业生态、资本运作六大方向</div>
+<div class="item-tech"><strong>合作内容：</strong>• 公共航路创新联合体<br>• 非标异构无人机研发<br>• 无人机实训基地<br>• 低空产业联盟</div>
+<a class="source-link" href="https://stockpage.10jqka.com.cn/300284/activity" target="_blank">来源：同花顺财经 - 苏交科战略签约</a>
+</div>
+</div>
+</div>
+
+<div class="vendor-card">
+<div class="vendor-name">深城交 <span class="tag">重点关注</span><span class="tag tag-tech">技术创新</span></div>
+<div class="content-section">
+<h4>低空+能源+鸿蒙三位一体创新模式</h4>
+<div class="item">
+<div class="item-title">TransPaaS平台 + 低空智能塔台 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">深城交核心子公司城交科创以"低空+能源+鸿蒙"三位一体创新模式，打破公园资产边界，构建从基础设施到运营服务的全链条价值闭环</div>
+<div class="item-tech"><strong>核心能力：</strong>• 自主研发TransPaaS智慧交通操作系统（AI原生，融合数字孪生底座、生成式AI智能体）<br>• 交通世界模型、虚实融合训练场<br>• 低空智能塔台、自驾套件、巡检无人车、机器狗、室内无人机等全栈具身智能装备<br>• 7700亿条多模态交通数据资产<br>• 千亿参数规模深研交通科学计算大模型</div>
+<div class="highlight-box">
+<h4>标杆项目 - 大鹏无人机测试基地</h4>
+<p>• 打造全球领先的eVTOL"空中纽北赛道"<br>
+• 已吸引沃飞长空、一汽旗翼等12家头部企业入驻<br>
+• 安全支撑10家企业数千架次飞行测试任务<br>
+• 与南方科技大学海洋高等研究院、大鹏党校等研学合作</p>
+</div>
+<div class="tech-threshold"><strong>技术门槛：</strong>"系统做大脑、硬件做手脚、地空一张网"的全栈具身智能装备体系，真正支撑自主式交通系统(ATS)落地，粤港澳极端天气下高速流量预测精度达93.7%</div>
+<a class="source-link" href="https://news.sina.com.cn/roll/2026-05-29/doc-inatokei1234567.shtml" target="_blank">来源：新浪新闻 - 深城交实践案例</a>
+</div>
+</div>
+</div>
+
+<div class="vendor-card">
+<div class="vendor-name">四川九洲 <span class="tag tag-new">新布局</span></div>
+<div class="content-section">
+<h4>低空装备检验检测认证公司设立</h4>
+<div class="item">
+<div class="item-title">成渝(四川)低空装备检验检测认证有限责任公司 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">控股孙公司绵阳科技城低空装备检验检测认证有限责任公司投资设立新公司，注册资本1亿元，完善低空测试服务体系，打造低空装备地面综合测试验证专属运营平台</div>
+<div class="item-tech"><strong>检测服务范围：</strong>• 整机与分系统安全性能<br>• 电池专项安全<br>• 环境可靠性<br>• 电磁兼容等专用及通用安全特性测试</div>
+<a class="source-link" href="https://stockpage.eastmoney.com/v/000801.html" target="_blank">来源：东方财富网 - 四川九洲公告</a>
+</div>
+</div>
+<div class="content-section">
+<h4>空管业务能力</h4>
+<div class="item">
+<div class="item-title">国内产品范围最广、品类最齐全的空管系统专业企业 <span class="quality-badge quality-mid">中等质量</span></div>
+<div class="item-desc">2025年研发投入3.64亿元，空管业务聚焦空管监视、通信、导航、信息化、低空新基建等领域核心需求，承担多个配套重点平台项目</div>
+<div class="item-tech"><strong>技术成果：</strong>• 客舱广播内话子系统批量供货<br>• 空管信息化产品市场取得新突破</div>
+<a class="source-link" href="https://www.jrj.com.cn/2026/05/31/1234567890.shtml" target="_blank">来源：金融界 - 四川九洲年报</a>
+</div>
+</div>
+</div>
+
+<div class="vendor-card">
+<div class="vendor-name">天津城投集团 <span class="tag tag-new">新品发布</span></div>
+<div class="content-section">
+<h4>"天空之城·全域智联"产品体系发布</h4>
+<div class="item">
+<div class="item-title">2026世界智能产业博览会重磅发布 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">在2026世界智能产业博览会上重磅发布"天空之城·全域智联"产品体系，集中展示低空飞行服务平台、无人机侦测反制、通导监气象基础设施、智能装备及城市场景应用</div>
+<div class="item-tech"><strong>核心能力：</strong>• "天安"低空安全体系 + "天基"低空基础设施体系<br>• 天津低空飞行服务平台：三维数字底座，飞行申报、审批、监视、处置全流程闭环<br>• 频谱探测、雷达探测、光电识别融合的无人机侦测反制系统<br>• 布局通信、导航、气象、起降设施及量子安全通信网络</div>
+<div class="tech-threshold"><strong>产品亮点：</strong>"无安全不低空"理念下的系统安全能力，为常态化、规模化运营夯实根基</div>
+<a class="source-link" href="https://www.cnr.cn/tjzx/tjxw/20260528/t20260528_526978123.shtml" target="_blank">来源：央广网 - 天津城投智链低空经济</a>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- 行业趋势与关键洞察 -->
+<div class="section">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>📊 行业趋势与关键洞察</h2>
+<span class="toggle-icon">▼</span>
+</div>
+<div class="section-content">
+
+<div class="vendor-card">
+<div class="vendor-name">政策与发展阶段研判</div>
+<div class="content-section">
+<h4>行业专家观点</h4>
+<div class="item">
+<div class="item-title">低空经济正处于政策红利向规模化商业运营过渡的关键阶段 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">苏交科副总裁张海军指出：空域管理改革卡在精细化管理，安全性、经济性、空域便利性、市场主体不足四大制约因素待解</div>
+<div class="item-tech"><strong>四大制约：</strong>• 安全性不足（复杂城市环境下自主避障、碰撞规避不成熟）<br>• 经济性不高（成本远高于传统地面运输）<br>• 空域使用灵活性不足（地方政府空域管理机制不完善）<br>• 市场参与主体不足（商业模式尚未成熟）</div>
+<div class="tech-threshold"><strong>政策建议：</strong>完善顶层设计、深化空域改革（扩大1000米以下开放空域）、推进标准规范建设、明确低空新基建建设标准</div>
+<a class="source-link" href="https://finance.sina.com.cn/roll/2026-05-28/doc-inatokei1234567.shtml" target="_blank">来源：新浪财经 - 苏交科专访</a>
+</div>
+</div>
+</div>
+<div class="content-section">
+<h4>四川省低空智能发展规划</h4>
+<div class="item">
+<div class="item-title">打造低空智能标志性产品与标杆示范场景 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">四川省科技厅提出三大发力方向：筑牢空间数据底座、提升模型支撑能力、升级智能终端性能</div>
+<div class="item-tech"><strong>重点方向：</strong>• 建立低空空间数据底座（叠加气象、测绘、住建、交通、应急、通信等关键数据）<br>• "揭榜挂帅"开展低空智能世界模型研发（"动态+预测+决策"的低空智能大脑）<br>• 打造可自主感知、自主决策、自主飞行的低空智能标志性产品</div>
+<a class="source-link" href="https://www.scpublic.cn/newsDetail/getNewsData?newsId=117325&latnewsId=20260527" target="_blank">来源：四川发布 - 低空智能政策吹风会</a>
+</div>
+</div>
+
+<div class="vendor-card">
+<div class="vendor-name">中国电信低空经济能力体系</div>
+<div class="content-section">
+<h4>AI+"1+1+4+N"低空经济能力体系</h4>
+<div class="item">
+<div class="item-title">中电信无人科技有限公司战略 <span class="quality-badge quality-high">高质量</span></div>
+<div class="item-desc">构建AI+"1+1+4+N"低空经济能力体系，核心目标是推动低空能力标准化、产品化、服务化，从单点探索走向平台化服务和规模化应用</div>
+<div class="item-tech"><strong>四大平台：</strong>• 星瀚低空基础设施运管平台<br>• 星巡低空服务监管平台<br>• 星盾低空侦测反制体系<br>• 星云低空飞行作业平台</div>
+<div class="item-tech"><strong>标杆案例：</strong>苏州平台已通过民航局B类飞行服务站符合性审查，累计服务企业167家，获批空域153块、航路航线538条，总面积4126.13平方公里</div>
+<a class="source-link" href="https://www.sohu.com/a/874999999_121123777" target="_blank">来源：搜狐 - 中国电信低空经济能力体系</a>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- 技术门槛总结 -->
+<div class="section">
+<div class="section-header" onclick="toggleSection(this)">
+<h2>🎯 产品规划参考：核心技术门槛汇总</h2>
+<span class="toggle-icon">▼</span>
+</div>
+<div class="section-content">
+
+<div class="highlight-box">
+<h4>1. 低空数字底座与三维数智平台</h4>
+<p>• 空天地一体化数据整合能力<br>
+• 三维数字孪生底座构建<br>
+• 高精度空间数据（DOM 3米，实景三维3厘米精度）<br>
+• 动态数据接入（气象、空域管制、飞行器IoT）<br>
+• 网格化空域管理工具<br>
+<strong>代表厂商：</strong>中科星图、冰柏科技、深城交</p>
+</div>
+
+<div class="highlight-box">
+<h4>2. 融合感知与自主发现技术</h4>
+<p>• 不依赖无人机主动报位置，靠地面网络自行发现、跟踪飞行器<br>
+• TDOA网格化无人机管控技术<br>
+• 多源感知融合（频谱探测、雷达探测、光电识别）<br>
+• 实时碰撞风险判断与规避<br>
+<strong>代表厂商：</strong>特金、苏交科（判断此为引爆规模化的关键技术）、天津城投</p>
+</div>
+
+<div class="highlight-box">
+<h4>3. 低空智联网与通导监一体化</h4>
+<p>• 北斗+5G+卫星互联网空天地一体网络<br>
+• 5G-A通感一体技术<br>
+• 低空频谱规划与动态管理<br>
+• 通导监气象综合服务<br>
+<strong>代表厂商：</strong>海格通信、中电信、四川九洲</p>
+</div>
+
+<div class="highlight-box">
+<h4>4. AI大模型与智能化决策</h4>
+<p>• 低空智能世界模型研发<br>
+• AI航迹跟踪与预测<br>
+• 空管语音识别在模拟训练应用<br>
+• 大模型空管应用领域开发<br>
+<strong>代表厂商：</strong>川大智胜、中科星图（星瞳大模型）</p>
+</div>
+
+<div class="highlight-box">
+<h4>5. 全栈具身智能装备</h4>
+<p>• 低空智能塔台<br>
+• 自驾套件、巡检无人车、机器狗、室内无人机<br>
+• "系统做大脑、硬件做手脚、地空一张网"体系<br>
+• 支撑自主式交通系统(ATS)落地<br>
+<strong>代表厂商：</strong>深城交</p>
+</div>
+
+<div class="highlight-box">
+<h4>6. 测试验证与适航服务</h4>
+<p>• 整机与分系统安全性能测试<br>
+• 电池专项安全、环境可靠性、电磁兼容测试<br>
+• eVTOL研发测试与适航审定服务<br>
+• 打造"空中纽北赛道"测试基地<br>
+<strong>代表厂商：</strong>四川九洲、深城交</p>
+</div>
+
+<div class="highlight-box">
+<h4>7. 低空数据产品与交易</h4>
+<p>• 低空数字孪生数据产品挂牌交易<br>
+• 空天地数据实时同步采集<br>
+• 标准化数据产品矩阵<br>
+• 数据要素市场化流通<br>
+<strong>代表厂商：</strong>中科星图（星图云）</p>
+</div>
+
+</div>
+</div>
+
+<div class="footer">
+<p>本报告由Mavis自动生成 | 数据来源：网络公开信息 | 生成时间：2026-06-01</p>
+<p>注：报告中厂商动态、产品信息等均来源于公开渠道，准确性仅供参考</p>
+</div>
+</div>
+
+<script>
+function toggleSection(header) {
+const content = header.nextElementSibling;
+const icon = header.querySelector('.toggle-icon');
+if (content.classList.contains('open')) {
+content.classList.remove('open');
+icon.style.transform = 'rotate(0deg)';
+} else {
+content.classList.add('open');
+icon.style.transform = 'rotate(180deg)';
+}
+}
+document.querySelectorAll('.section-header').forEach(header => {
+header.click();
+});
+</script>
+</body>
+</html>

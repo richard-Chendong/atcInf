@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空ATC竞品分析-20260414</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Microsoft YaHei", "SimHei", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f7fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a5276, #2980b9);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .header .date {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 30px;
+        }
+        .section {
+            margin-bottom: 30px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .section-header {
+            background: #34495e;
+            color: white;
+            padding: 15px 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .section-header.warning {
+            background: #e74c3c;
+        }
+        .section-header.info {
+            background: #27ae60;
+        }
+        .section-header.bidding {
+            background: #f39c12;
+        }
+        .company-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+        .company-card {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            border-radius: 4px;
+            transition: transform 0.2s;
+        }
+        .company-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .company-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        .item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        .item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .item-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        .item-content {
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .item-source {
+            color: #3498db;
+            font-size: 12px;
+        }
+        .item-source a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .item-source a:hover {
+            text-decoration: underline;
+        }
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+        .tag-product {
+            background: #e8f4f8;
+            color: #2980b9;
+        }
+        .tag-tech {
+            background: #e8f8f0;
+            color: #27ae60;
+        }
+        .tag-solution {
+            background: #fef5e7;
+            color: #f39c12;
+        }
+        .tag-bidding {
+            background: #fdedec;
+            color: #e74c3c;
+        }
+        .summary-box {
+            background: #ebf5fb;
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .summary-box h3 {
+            color: #2980b9;
+            margin-bottom: 10px;
+        }
+        .footer {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .note-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 5px;
+        }
+        .highlight {
+            background: #fff;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>低空ATC竞品分析报告</h1>
+            <div class="date">收集日期：2026年4月14日 | 数据来源：网络公开信息</div>
+        </div>
+        
+        <div class="content">
+            <div class="note">
+                <div class="note-title">数据说明</div>
+                <p>本报告收集最近3天（2026年4月11日-14日）关于低空软件平台及系统的竞品分析资料，涵盖民营企业、空管厂商、地方国企及海外厂商动态。</p>
+            </div>
+
+            <!-- 一、招投标项目 -->
+            <div class="section">
+                <div class="section-header bidding">一、招投标项目信息（最近3天）</div>
+                <div class="company-grid">
+                    <div class="company-card">
+                        <div class="company-name">📋 2026年低空经济标准化产品服务项目</div>
+                        <div class="item">
+                            <div class="item-content">
+                                <strong>采购单位：</strong>江苏省设备成套股份有限公司<br>
+                                <strong>采购内容：</strong>无人机飞手培训服务、飞手服务、低空运营服务、AI大数据支撑、5G-A多模态融合感知保障服务<br>
+                                <strong>中标结果：</strong>
+                                <ul style="margin: 5px 0 5px 20px;">
+                                    <li>标包1：南京模幻天空航空科技有限公司（89%）</li>
+                                    <li>标包2：南通飞瞰智能科技有限公司（92%）</li>
+                                    <li>标包4：南京木牛数能信息技术有限公司（98.5%）</li>
+                                    <li>标包5：南京杰图空间信息技术有限公司（91%）</li>
+                                    <li>标包6：江苏莎普信息技术有限公司（60%）</li>
+                                    <li>标包7：常州市赛思网络科技有限公司（95%）</li>
+                                </ul>
+                                <strong>公告日期：</strong>2026年4月9日
+                            </div>
+                            <div class="item-source">来源：<a href="https://jiangsu.jianyu360.cn/jybx/20260411_26041045609495.html" target="_blank">剑鱼标讯官网</a></div>
+                        </div>
+                    </div>
+                    
+                    <div class="company-card">
+                        <div class="company-name">📋 岚山区低空飞行服务能力建设一期项目</div>
+                        <div class="item">
+                            <div class="item-content">
+                                <strong>地区：</strong>山东日照岚山区<br>
+                                <strong>预算金额：</strong>848万元<br>
+                                <strong>采购需求：</strong>低空飞行产业基础设施建设<br>
+                                <strong>招标截止：</strong>2026年4月28日09:30<br>
+                                <strong>资格要求：</strong>专门面向中小企业采购
+                            </div>
+                            <div class="item-source">来源：<a href="https://sd.bidcenter.com.cn/diqucontent-412240339-1.html" target="_blank">山东招标网</a></div>
+                        </div>
+                    </div>
+                    
+                    <div class="company-card">
+                        <div class="company-name">📋 江北区低空经济时空信息要素保障</div>
+                        <div class="item">
+                            <div class="item-content">
+                                <strong>地区：</strong>重庆江北区<br>
+                                <strong>采购方式：</strong>竞争性磋商<br>
+                                <strong>采购内容：</strong>低空经济专题要素普查技术体系构建、低空飞行安全支撑能力验证、技术成果集成与应用示范<br>
+                                <strong>服务要求：</strong>需具备测绘乙级及以上资质（地理信息系统工程专业）
+                            </div>
+                            <div class="item-source">来源：<a href="https://cq.bidcenter.com.cn/diqucontent-413300305-1.html" target="_blank">重庆招标网</a></div>
+                        </div>
+                    </div>
+
+                    <div class="company-card">
+                        <div class="company-name">📋 西安低空飞行服务与空域管理实验室建设</div>
+                        <div class="item">
+                            <div class="item-content">
+                                <strong>标段一（无人机监控设备）：</strong>中标供应商-广州南方<br>
+                                <strong>标段二（低空空域管理软件）：</strong>中标供应商-北京未尔，金额89万元<br>
+                                <strong>招标日期：</strong>2026年4月1日
+                            </div>
+                            <div class="item-source">来源：<a href="https://6101.bidcenter.com.cn/bidinfo-4-a0f73512c37219a924f8e730d929540cfcbbe2591ed1dd05.html" target="_blank">中国采招网</a></div>
+                        </div>
+                    </div>
+                    
+                    <div class="company-card">
+                        <div class="company-name">📋 乌审旗低空经济发展实施方案</div>
+                        <div class="item">
+                            <div class="item-content">
+                                <strong>地区：</strong>内蒙古鄂尔多斯乌审旗<br>
+                                <strong>预算金额：</strong>80万元<br>
+                                <strong>采购时间：</strong>2026年4月<br>
+                                <strong>采购内容：</strong>编制低空经济发展实施方案，研究重点领域、招商取向和操作步骤
+                            </div>
+                            <div class="item-source">来源：<a href="https://150626.bidcenter.com.cn/bidinfo-2-a0f73512c37219a9d4e0c893eb5df2b95d624d85990cfa45.html" target="_blank">中国采招网</a></div>
+                        </div>
+                    </div>
+
+                    <div class="company-card">
+                        <div class="company-name">📋 兰州分公司智慧城市低空经济平台服务</div>
+                        <div class="item">
+                            <div class="item-content">
+                                <strong>采购单位：</strong>中国电信兰州分公司<br>
+                                <strong>采购内容：</strong>1套无人机场及飞行器相关配套服务<br>
+                                <strong>预算金额：</strong>38.91万元（含税）<br>
+                                <strong>交付期：</strong>合同签订30日内完成，60天验收
+                            </div>
+                            <div class="item-source">来源：<a href="https://6201.bidcenter.com.cn/bidinfo-1-a0f73512c37219a98b9a956245d3070642f923a1061c2c0c.html" target="_blank">中国采招网</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 二、民航工作会议政策 -->
+            <div class="section">
+                <div class="section-header info">二、民航政策与行业动态</div>
+                <div class="company-grid">
+                    <div class="company-card">
+                        <div class="company-name">📰 2026年全国民航工作会议召开</div>
+                        <div class="item">
+                            <div class="item-content">
+                                <strong>会议时间：</strong>2026年1月6日<br><br>
+                                <strong>低空经济数据：</strong>
+                                <ul style="margin: 5px 0 5px 20px;">
+                                    <li>传统通用航空完成飞行121.8万小时</li>
+                                    <li>实名登记无人机总数突破328万架</li>
+                                    <li>累计飞行4530万小时，同比增长近70%</li>
+                                    <li>颁发6型无人驾驶航空器型号合格证</li>
+                                    <li>累计建成并联网46个低空飞行服务站</li>
+                                </ul>
+                                <strong>2026年重点工作：</strong>
+                                <ul style="margin: 5px 0 5px 20px;">
+                                    <li>健全完善低空民用航空政策体系</li>
+                                    <li>加快低空飞行服务站体系建设</li>
+                                    <li>推进建设低空飞行服务调度平台</li>
+                                    <li>优化调整无人驾驶航空试验区</li>
+                                </ul>
+                            </div>
+                            <div class="item-source">来源：<a href="https://www.thepaper.cn/newsDetail_forward_32326893" target="_blank">澎湃新闻</a> | <a href="http://finance.china.com.cn/news/20260106/6287961.shtml" target="_blank">中国网</a></div>
+                        </div>
+                    </div>
+                    
+                    <div class="company-card">
+                        <div class="company-name">📰 国家数据局加强低空数据体系建设</div>
+                        <div class="item">
+                            <div class="item-content">
+                                <strong>会议时间：</strong>2026年3月27日（苏州）<br><br>
+                                <strong>重点工作：</strong>
+                                <ul style="margin: 5px 0 5px 20px;">
+                                    <li>加强低空数据供给利用制度建设</li>
+                                    <li>健全管理制度，完善低空数据标准规范</li>
+                                    <li>扩大公共数据资源供给</li>
+                                    <li>加快构建体系化数据资源</li>
+                                    <li>强化低空数据与城市数据底座互联互通</li>
+                                    <li>探索开展低空经济领域数据市场交易</li>
+                                </ul>
+                                <strong>相关上市公司关注：</strong>中科星图、超图软件
+                            </div>
+                            <div class="item-source">来源：<a href="https://news.qq.com/rain/a/20260401A01M7S00" target="_blank">腾讯新闻</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 三、重点企业动态 -->
+            <div class="section">
+                <div class="section-header">三、重点企业最新动态</div>
+                <div class="company-grid">
+                    <div class="company-card">
+                        <div class="company-name">🏢 海格通信（002465）</div>
+                        <div class="item">
+                            <div class="item-content">
+                                <span class="tag tag-product">产品动态</span>
+                                <strong>2025年度业绩说明会（4月10日）</strong><br><br>
+                                <strong>低空经济领域：</strong>
+                                <ul style="margin: 5px 0 5px 20px;">
+                                    <li>已构建基于系列化通导监视终端设备的低空智联网</li>
+                                    <li>拥有强大的平台服务及成熟的无人机应用场景解决方案</li>
+                                    <li>覆盖"制造-运营-保障-服务"的低空生态全链条</li>
+                                    <li>在广州、合肥、重庆、福州、宁波等城市开展低空智联网示范应用建设</li>
+                                </ul>
+                                <strong>卫星互联网：</strong>实现全产业链布局，包括芯片、终端、信关站和系统运营
+                            </div>
+                            <div class="item-source">来源：<a href="https://stock.stockstar.com/RB2026041300028220.shtml" target="_blank">证券之星</a></div>
+                        </div>
+                    </div>
+
+                    <div class="company-card">
+                        <div class="company-name">🏢 莱斯信息（688631）</div>
+                        <div class="item">
+                            <div class="item-content">
+                                <span class="tag tag-product">中标信息</span>
+                                <strong>辽宁省省级低空飞行综合管理服务平台项目（一期）</strong><br><br>
+                                <strong>项目意义：</strong>
+                                <ul style="margin: 5px 0 5px 20px;">
+                                    <li>实现省级低空管服平台在东北区域市场关键性突破</li>
+                                    <li>贯通辽宁全省低空管理、审批流程与安全保障全链条</li>
+                                    <li>填补东北地区省级低空飞行综合管理服务体系的空白</li>
+                                </ul>
+                                <strong>公告时间：</strong>2026年4月2日
+                            </div>
+                            <div class="item-source">来源：<a href="https://www.stcn.com/article/detail/3724257.html" target="_blank">证券时报</a></div>
+                        </div>
+                        <div class="item">
+                            <div class="item-content">
+                                <span class="tag tag-product">产品发布</span>
+                                <strong>低空天牧平台</strong><br>
+                                核心能力覆盖全域感知、空域管理、飞行管理、飞行服务、安全监管等维度。支持40万级以上航空器实时监视数据接入。
+                            </div>
+                            <div class="item-source">来源：<a href="http://www.zqrb.cn/gscy/ggkx/2026-01-13/A1768294004161.html" target="_blank">证券日报网</a></div>
+                        </div>
+                    </div>
+
+                    <div class="company-card">
+                        <div class="company-name">🏢 中科星图（688568）</div>
+                        <div class="item">
+                            <div class="item-content">
+                                <span class="tag tag-solution">解决方案</span>
+                                <strong>省级低空智能网联系统解决方案</strong><br><br>
+                                <strong>核心能力：</strong>
+                                <ul style="margin: 5px 0 5px 20px;">
+                                    <li>"以天强空、以算制空"发展理念</li>
+                                    <li>打造"低空一朵云"数字底座</li>
+                                    <li>整合300多颗卫星数据</li>
+                                    <li>提供0.5米/0.8米级超高分辨率影像底图</li>
+                                    <li>接入低空通信、导航、监视、雷达探测、气象及起降场等动态感知数据</li>
+                                </ul>
+                            </div>
+                            <div class="item-source">来源：<a href="https://news.zol.com.cn/1142/11428600.html" target="_blank">中关村在线</a> | <a href="https://www.163.com/dy/article/KPGEORA605149OCK.html" target="_blank">网易</a></div>
+                        </div>
+                        <div class="item">
+                            <div class="item-content">
+                                <span class="tag tag-product">战略合作</span>
+                                <strong>与中国航空工业集团民机试飞中心达成战略合作</strong><br><br>
+                                重点领域：低空试飞测试场建设、机场净空安全防护体系、低空装备综合测试平台研发、低空飞行培训与考试服务
+                            </div>
+                            <div class="item-source">来源：<a href="https://www.c114.com.cn/la/6544/a1307861.html" target="_blank">C114通信网</a></div>
+                        </div>
+                    </div>
+
+                    <div class="company-card">
+                        <div class="company-name">🏢 北斗伏羲</div>
+                        <div class="item">
+                            <div class="item-content">
+                                <span class="tag tag-bidding">中标项目</span>
+                                <strong>黄石市低空飞行监管服务平台建设项目</strong><br><br>
+                                <strong>项目金额：</strong>2888万元<br>
+                                <strong>采购单位：</strong>黄石全域低空经济发展有限公司<br>
+                                <strong>建设内容：</strong>
+                                <ul style="margin: 5px 0 5px 20px;">
+                                    <li>一个低空监管服务门户</li>
+                                    <li>五大飞行监管服务系统</li>
+                                    <li>一个低空算法中心</li>
+                                    <li>一个低空数据底座</li>
+                                    <li>一套低空三维网格图和感知监测体系</li>
+                                </ul>
+                                <strong>公告时间：</strong>2026年2月14日
+                            </div>
+                            <div class="item-source">来源：<a href="https://c.m.163.com/news/a/KOAATC5S0511D6RL.html" target="_blank">网易新闻</a></div>
+                        </div>
+                    </div>
+
+                    <div class="company-card">
+                        <div class="company-name">🏢 四川低空经济产业动态</div>
+                        <div class="item">
+                            <div class="item-content">
+                                <span class="tag tag-product">产业动态</span>
+                                <strong>四川省低空经济发展情况</strong><br><br>
+                                <strong>政策支持：</strong>
+                                <ul style="margin: 5px 0 5px 20px;">
+                                    <li>低空经济列为"15+N"重点产业链，省领导担任"链长"</li>
+                                    <li>印发《四川省低空智能重点产品培育工作方案》</li>
+                                    <li>目标到2027年打造全国性标杆产品</li>
+                                </ul>
+                                <strong>资本动态：</strong>2025年成都航空航天领域投融资事件达26起，融资金额超8.172亿元，低空经济占近五成
+                            </div>
+                            <div class="item-source">来源：<a href="https://www.thecover.cn/news/uykkn%2B5SST2H90qSdq8Jkw==" target="_blank">封面新闻</a></div>
+                        </div>
+                    </div>
+
+                    <div class="company-card">
+                        <div class="company-name">🏢 莱斯信息（688631）- 2025年度业绩</div>
+                        <div class="item">
+                            <div class="item-content">
+                                <span class="tag tag-product">业绩发布</span>
+                                <strong>2025年度业绩快报</strong><br><br>
+                                <strong>财务数据：</strong>
+                                <ul style="margin: 5px 0 5px 20px;">
+                                    <li>营业总收入：127,353.29万元，同比下降20.89%</li>
+                                    <li>归母净利润：5,523.29万元，同比下降57.20%</li>
+                                </ul>
+                                <strong>业务亮点：</strong>
+                                <ul style="margin: 5px 0 5px 20px;">
+                                    <li>稳步构建"高空-低空-地面"一体化发展格局</li>
+                                    <li>率先卡位低空领域战略机遇</li>
+                                    <li>落实湖北、浙江、山西等省份及南京、扬州等市县十余个低空项目</li>
+                                </ul>
+                            </div>
+                            <div class="item-source">来源：<a href="https://paper.cnstock.com/html/2026-02/14/content_2181686.htm" target="_blank">中国证券报</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 四、海外厂商动态 -->
+            <div class="section">
+                <div class="section-header warning">四、海外厂商动态</div>
+                <div class="company-grid">
+                    <div class="company-card">
+                        <div class="company-name">🌍 Thales（法国泰雷兹）</div>
+                        <div class="item">
+                            <div class="item-content">
+                                <span class="tag tag-product">企业动态</span>
+                                <strong>2025年度业绩及2026年展望</strong><br><br>
+                                <strong>2025年财务数据：</strong>
+                                <ul style="margin: 5px 0 5px 20px;">
+                                    <li>总营收：221.4亿欧元，同比增长8%</li>
+                                    <li>防务部门订单量创下历史新高</li>
+                                    <li>调整后息税前利润：27.4亿欧元，营业利润率12.4%</li>
+                                </ul>
+                                <strong>2026年预期：</strong>
+                                <ul style="margin: 5px 0 5px 20px;">
+                                    <li>有机营收增长6%-7%</li>
+                                    <li>营业利润率提升至12.6%-12.8%</li>
+                                </ul>
+                                <strong>战略重点：</strong>优先降低债务，欧洲国防预算增加将持续拉动防务系统需求
+                            </div>
+                            <div class="item-source">来源：<a href="https://finance.sina.com.cn/stock/usstock/c/2026-03-03/doc-inhptkrh7434501.shtml" target="_blank">新浪财经</a></div>
+                        </div>
+                    </div>
+
+                    <div class="company-card">
+                        <div class="company-name">🌍 低空UTM国际厂商</div>
+                        <div class="item">
+                            <div class="item-content">
+                                <span class="tag tag-product">市场情况</span>
+                                <strong>国际UTM厂商格局</strong><br><br>
+                                根据搜索结果，海外主要低空UTM厂商包括：
+                                <ul style="margin: 5px 0 5px 20px;">
+                                    <li><strong>Unifly（比利时）：</strong>欧洲领先的UTM解决方案提供商</li>
+                                    <li><strong>ANRA Technologies（美国）：</strong>无人机交通管理解决方案供应商</li>
+                                    <li><strong>Thales（法国）：</strong>综合空中交通管理及低空解决方案</li>
+                                </ul>
+                                注：近期未搜索到上述厂商的具体产品发布或技术动态
+                            </div>
+                            <div class="item-source">来源：综合整理</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 五、行业分析报告 -->
+            <div class="section">
+                <div class="section-header info">五、行业研究报告推荐</div>
+                <div class="company-grid">
+                    <div class="company-card">
+                        <div class="company-name">📊 低空经济发展报告(2025-2026)</div>
+                        <div class="item">
+                            <div class="item-content">
+                                远瞻慧库发布的低空经济产业生态研究报告，涵盖商业模式创新路径分析。
+                            </div>
+                            <div class="item-source">来源：<a href="https://www.baogaobox.com/reports/260202000092905.html" target="_blank">远瞻慧库</a></div>
+                        </div>
+                    </div>
+                    
+                    <div class="company-card">
+                        <div class="company-name">📊 2026年我国低空经济发展形势展望</div>
+                        <div class="item">
+                            <div class="item-content">
+                                赛迪研究院相关报告，预测2026年我国低空经济将迈入规模化高质量发展关键阶段。
+                            </div>
+                            <div class="item-source">来源：<a href="https://www.baogaobox.com/reports/260104000089391.html" target="_blank">远瞻慧库</a></div>
+                        </div>
+                    </div>
+
+                    <div class="company-card">
+                        <div class="company-name">📊 2026年低空应用商业模式发展分析报告</div>
+                        <div class="item">
+                            <div class="item-content">
+                                分析低空应用商业模式发展趋势及创新路径。
+                            </div>
+                            <div class="item-source">来源：<a href="https://www.baogaobox.com/reports/260209000093727.html" target="_blank">远瞻慧库</a></div>
+                        </div>
+                    </div>
+
+                    <div class="company-card">
+                        <div class="company-name">📊 2026年低空经济产业生态图谱构建</div>
+                        <div class="item">
+                            <div class="item-content">
+                                商业创新路径研究报告，涵盖产业链分析及商业模式创新研究。
+                            </div>
+                            <div class="item-source">来源：<a href="https://www.baogaobox.com/reports/260118000091041.html" target="_blank">远瞻慧库</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 竞品分析总结 -->
+            <div class="summary-box">
+                <h3>📌 竞品分析要点总结</h3>
+                <div class="highlight">
+                    <p><strong>1. 市场格局：</strong>国内低空软件平台市场呈现"群雄并起"格局，传统空管厂商（莱斯信息）、卫星遥感企业（中科星图）、通信设备企业（海格通信）等多类主体积极布局。</p>
+                    
+                    <p><strong>2. 技术趋势：</strong>
+                    <ul style="margin: 5px 0 5px 20px;">
+                        <li>省级低空智能网联系统成为建设重点</li>
+                        <li>数字孪生、北斗定位、AI算法深度融合</li>
+                        <li>支持40万+级别航空器实时监视</li>
+                    </ul>
+                    </p>
+                    
+                    <p><strong>3. 商业模式：</strong>从单一软件销售向"平台+服务"转型，涵盖飞行服务、安全监管、数据运营等综合能力。</p>
+                    
+                    <p><strong>4. 招投标特点：</strong>
+                    <ul style="margin: 5px 0 5px 20px;">
+                        <li>项目金额从数十万到数千万不等</li>
+                        <li>省级平台与地方项目并行</li>
+                        <li>中小企业参与度提高</li>
+                    </ul>
+                    </p>
+                    
+                    <p><strong>5. 政策驱动：</strong>国家数据局、民航局等主管部门持续出台支持政策，推动低空数据体系建设和服务平台标准化。</p>
+                </div>
+            </div>
+
+            <!-- 未获取到近期动态的企业 -->
+            <div class="note">
+                <div class="note-title">备注：以下企业在本报告期未搜索到近期（3天内）公开动态</div>
+                <p>北斗伏羲、合众信息、安擎科技、四川九州、航天宏图、北京领云时代科技、北京智网易联科技、广州中科云图、新晨科技、奇航信息、中科天域、青岛云世纪、川大智胜、北京东进航科、民航二所、苏交科、深城交、Unifly、ANRA Technologies</p>
+                <p style="margin-top: 10px;">注：部分企业可能因未发布公开信息或信息未被抓取而未显示。</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>本报告由Matrix Agent收集整理 | 数据收集时间：2026年4月14日</p>
+            <p>信息来源：各企业官网、证券时报、中国证券报、澎湃新闻、中国采招网等公开渠道</p>
+        </div>
+    </div>
+</body>
+</html>

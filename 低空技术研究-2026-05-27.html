@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空技术研究动态 - 2026年5月27日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        .header h1 {
+            font-size: 32px;
+            color: #1a1a2e;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .header h1::before {
+            content: "✈";
+            font-size: 36px;
+        }
+        .header .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .stats {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .stat-item .number {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .stat-item .label {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        .category-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .category-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+        .article-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .article-card {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 25px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        .article-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(102,126,234,0.2);
+        }
+        .article-title {
+            font-size: 18px;
+            color: #1a1a2e;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .article-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: #888;
+        }
+        .article-source {
+            background: #e8eaff;
+            color: #667eea;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .article-abstract {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        .article-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .article-link:hover {
+            color: #764ba2;
+        }
+        .article-link::before {
+            content: "🔗";
+            font-size: 12px;
+        }
+        .footer {
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            margin-top: 30px;
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 24px;
+            }
+            .stats {
+                gap: 15px;
+            }
+            .stat-item {
+                padding: 12px 18px;
+            }
+            .stat-item .number {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>低空技术研究动态</h1>
+            <p class="subtitle">涵盖飞行服务调度、航线规划、空域管理、智能体应用等核心技术领域</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="number">20+</div>
+                    <div class="label">收录文章</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">8</div>
+                    <div class="label">技术领域</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">2026-05-27</div>
+                    <div class="label">更新日期</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 飞行服务调度平台 -->
+        <div class="category-section">
+            <div class="category-title">
+                <div class="category-icon">📡</div>
+                飞行服务调度平台
+            </div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title">国家先后设立两个"低空司"，低空经济前景如何？</div>
+                    <div class="article-meta">
+                        <span class="article-source">中国网</span>
+                        <span class="article-date">📅 2026-05-26</span>
+                    </div>
+                    <div class="article-abstract">
+                        文章详细解读了国家设立低空安全司的战略意义。低空安全司职责明确包括：起草低空民航发展规划、统筹低空安全与发展、建设低空飞行服务调度平台和低空飞行服务站体系等。这标志着我国低空经济治理进入新阶段，"双司联动"格局（国家发展改革委低空经济发展司+民航局低空安全司）将为低空经济产业规模化、高质量发展注入强劲动力。
+                    </div>
+                    <a href="https://中国网/" class="article-link" target="_blank">查看原文</a>
+                </div>
+                <div class="article-card">
+                    <div class="article-title">宋志勇：推动低空经济健康有序发展</div>
+                    <div class="article-meta">
+                        <span class="article-source">学习时报/东方财富网</span>
+                        <span class="article-date">📅 2026-05-27</span>
+                    </div>
+                    <div class="article-abstract">
+                        中国民用航空局党组书记、局长宋志勇刊发署名文章，提出"十五五"期间目标：民用无人机实名登记率100%，有效无人机操控员执照持有人数量超过100万人，民用低空航空器年飞行总量超过8000万小时。文章强调加快建设民用低空飞行服务调度平台，推动与低空智能网联系统、低空飞行综合监管平台互联互通。
+                    </div>
+                    <a href="https://东方财富网/" class="article-link" target="_blank">查看原文</a>
+                </div>
+                <div class="article-card">
+                    <div class="article-title">杭州国企加速布局低空经济产业链：14座起降场14条新增物流航线</div>
+                    <div class="article-meta">
+                        <span class="article-source">搜狐</span>
+                        <span class="article-date">📅 2026-05-26</span>
+                    </div>
+                    <div class="article-abstract">
+                        杭州低空公司自主研发运营的杭州市低空综合管理服务平台已上线，平台能够帮助政府监管部门实现飞行审批、空域动态调配、飞行轨迹实时监控，以及针对恶劣天气或无人机轨迹异常等突发情况进行告警与处置。作为杭州市的"低空运行协同工具"，平台实现了飞行服务端、综合监管端、公共安全端三端协同的模块化运营方式，具备复制推广价值的"杭州方案"。
+                    </div>
+                    <a href="https://搜狐/" class="article-link" target="_blank">查看原文</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 低空飞行服务站 -->
+        <div class="category-section">
+            <div class="category-title">
+                <div class="category-icon">🏢</div>
+                低空飞行服务站
+            </div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title">泰伯智库：低空智联技术与应用白皮书 2026</div>
+                    <div class="article-meta">
+                        <span class="article-source">搜狐</span>
+                        <span class="article-date">📅 2026年</span>
+                    </div>
+                    <div class="article-abstract">
+                        白皮书围绕低空智联展开系统性研究，核心聚焦低空经济数字底座建设。报告涵盖核心定义、发展背景、技术体系、应用场景、挑战对策、未来趋势六大维度，为行业发展提供权威参考。
+                    </div>
+                    <a href="https://搜狐/" class="article-link" target="_blank">查看原文</a>
+                </div>
+                <div class="article-card">
+                    <div class="article-title">深圳"十五五"规划纲要：大力发展低空经济等新兴支柱产业</div>
+                    <div class="article-meta">
+                        <span class="article-source">企鹅号</span>
+                        <span class="article-date">📅 2026-05-26</span>
+                    </div>
+                    <div class="article-abstract">
+                        《深圳市国民经济和社会发展第十五个五年规划纲要》发布，提出构建低空经济发展的规则规制、基础设施、装备产业等体系，优化空域保障，拓展场景业态，巩固提升国际竞争力。
+                    </div>
+                    <a href="https://企鹅号/" class="article-link" target="_blank">查看原文</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 低空飞行计划申报 -->
+        <div class="category-section">
+            <div class="category-title">
+                <div class="category-icon">📋</div>
+                低空飞行计划申报
+            </div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title">川渝低空飞行线上联审首单办结</div>
+                    <div class="article-meta">
+                        <span class="article-source">企鹅号/重庆日报</span>
+                        <span class="article-date">📅 2026-05</span>
+                    </div>
+                    <div class="article-abstract">
+                        自5月18日川渝低空飞行线上联审功能启动公测以来，区域首单低空飞行空域申请已顺利办结。川渝两地已有数十家企事业单位通过线上渠道完成空域申请报送。低空飞行线上申报仅需两步，企业、政务用户可通过"渝快办""渝快政"搜索对应服务入口，填报用空需求即可实现三方同步审核，审批进度实时可查、结果线上反馈。平台还具备空中动态预警功能。
+                    </div>
+                    <a href="https://企鹅号/" class="article-link" target="_blank">查看原文</a>
+                </div>
+                <div class="article-card">
+                    <div class="article-title">成都"十五五"规划纲要：空域全面放开，低空经济狂飙起飞</div>
+                    <div class="article-meta">
+                        <span class="article-source">企鹅号</span>
+                        <span class="article-date">📅 2026-05-21</span>
+                    </div>
+                    <div class="article-abstract">
+                        成都已建成3556平方公里全域低空网络，落地89个应用场景、开通125条飞行航线。作为国家空域试点，成都创新推出"即报即飞""扫码飞"服务，大幅简化飞行审批流程，充分释放市场活力。2026年目标：低空经济规模450亿元，应用场景超100个、航线超150条，全年飞行架次目标375万。
+                    </div>
+                    <a href="https://企鹅号/" class="article-link" target="_blank">查看原文</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 航线推荐与智能规划 -->
+        <div class="category-section">
+            <div class="category-title">
+                <div class="category-icon">🛤️</div>
+                航线推荐与智能规划
+            </div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title">数智化与低空技术赋能，物流服务迎来"大变样"：低空物流智能调度</div>
+                    <div class="article-meta">
+                        <span class="article-source">新浪网/科技日报</span>
+                        <span class="article-date">📅 2026-05-26</span>
+                    </div>
+                    <div class="article-abstract">
+                        深圳"低空物流天网"通过AI选址算法优化无人机起降点布局，全市已建成1200个标准化起降点支持无人机"即换即飞"，电池周转效率提升约40%。深圳的动态路径规划与集群协同系统采用时空分片调度算法，将300米以下空域划分为物流和载人两层，可结合实时交通负荷动态调整航线。
+                    </div>
+                    <a href="https://新浪网/" class="article-link" target="_blank">查看原文</a>
+                </div>
+                <div class="article-card">
+                    <div class="article-title">绍兴市2026年低空经济发展：构建"起降网""航路网""智联网"</div>
+                    <div class="article-meta">
+                        <span class="article-source">百年建筑网</span>
+                        <span class="article-date">📅 2026-05-26</span>
+                    </div>
+                    <div class="article-abstract">
+                        绍兴市系统构建低空"起降网""航路网""智联网"，启动"一横两纵"36公里低空公共航路建设，建成全市低空智联网建设项目(一期)，优化升级全市低空飞行监管服务平台，形成全市低空起降设施"一张网"与航路航线"一张网"。2026年计划新增公共无人机起降场5个、各类无人机起降点20个，新开通无人机航线30条。
+                    </div>
+                    <a href="https://tencent/" class="article-link" target="_blank">查看原文</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 低空大模型智能体应用 -->
+        <div class="category-section">
+            <div class="category-title">
+                <div class="category-icon">🤖</div>
+                低空大模型智能体应用
+            </div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title">紫光天际发布"天衡"智能飞控与多模态AI大模型</div>
+                    <div class="article-meta">
+                        <span class="article-source">电科技</span>
+                        <span class="article-date">📅 2026-05-22</span>
+                    </div>
+                    <div class="article-abstract">
+                        在深圳世界无人机大会(UASE 2026)上，紫光天际正式发布"天衡"新一代智能飞控以及面向低空场景的多模态AI大模型。"天衡"飞控计划应用于紫光天际的无人机与机库产品，多模态AI大模型已集成至"天际牧云"平台，将在政务"一网统飞"、林草防火、边防巡检等场景中投入实战验证。
+                    </div>
+                    <a href="https://电科技/" class="article-link" target="_blank">查看原文</a>
+                </div>
+                <div class="article-card">
+                    <div class="article-title">大漠大发布新战略与多款无人机集群新品，布局低空集群具身智能</div>
+                    <div class="article-meta">
+                        <span class="article-source">企鹅号/机器人前瞻</span>
+                        <span class="article-date">📅 2026-05-22</span>
+                    </div>
+                    <div class="article-abstract">
+                        大漠大智控发布全新战略定位，从无人机集群系统设备供应商升级为"低空集群具身智能行业级解决方案提供商"，推动人工智能与低空装备、集群控制、内容生成和场景运营深度融合。公司展示了AI剧本编辑器，可通过输入创意关键词自动生成飞行剧本，将内容生产周期缩短至分钟级。
+                    </div>
+                    <a href="https://企鹅号/" class="article-link" target="_blank">查看原文</a>
+                </div>
+                <div class="article-card">
+                    <div class="article-title">北航举行第一届北航智能体创新大赛决赛</div>
+                    <div class="article-meta">
+                        <span class="article-source">科学网</span>
+                        <span class="article-date">📅 2026-05-26</span>
+                    </div>
+                    <div class="article-abstract">
+                        首届北航智能体创新大赛以"数字点亮创意，智能引领未来"为主题，面向全校本硕博学生征集作品，共吸引22个学院800余名学生参与。智能体技术在无人机领域的应用成为本次大赛亮点之一。
+                    </div>
+                    <a href="https://科学网/" class="article-link" target="_blank">查看原文</a>
+                </div>
+                <div class="article-card">
+                    <div class="article-title">万亿低空经济来了！无人机产业2026年迎来爆发拐点</div>
+                    <div class="article-meta">
+                        <span class="article-source">搜狐</span>
+                        <span class="article-date">📅 2026-05-26</span>
+                    </div>
+                    <div class="article-abstract">
+                        2026年中国低空经济规模预计突破万亿大关。工信部数据显示，2025年我国低空经济规模已达8000亿元，增速超过30%。无人机物流市场规模预计达到580亿元，全国已批复低空物流航线超过300条。激光雷达+AI图像识别让无人机巡检精度达到毫米级。
+                    </div>
+                    <a href="https://搜狐/" class="article-link" target="_blank">查看原文</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 空域容量流量管理 -->
+        <div class="category-section">
+            <div class="category-title">
+                <div class="category-icon">📊</div>
+                空域容量流量管理
+            </div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title">北辰区低空经济空域扩容近60%，构建低空立体交通系统</div>
+                    <div class="article-meta">
+                        <span class="article-source">搜狐</span>
+                        <span class="article-date">📅 2026-05-21</span>
+                    </div>
+                    <div class="article-abstract">
+                        北辰区空域使用权限由原有的209平方公里增至331平方公里，扩容幅度近60%。依托扩容后的空域资源，北辰区携手北京大学建成京津冀首个低空立体交通系统，通过三维立体网格码搭建空中"高速公路"，构建北辰区低空智能网联平台，可保障无人机安全有序飞行，实现低空飞行智能化、数字化、网格化管理。目前已覆盖14大类68个领域应用场景。
+                    </div>
+                    <a href="https://搜狐/" class="article-link" target="_blank">查看原文</a>
+                </div>
+                <div class="article-card">
+                    <div class="article-title">浦东织密"低空之网"赋能城市治理：无人机AI智能识别系统</div>
+                    <div class="article-meta">
+                        <span class="article-source">企鹅号</span>
+                        <span class="article-date">📅 2026-05</span>
+                    </div>
+                    <div class="article-abstract">
+                        浦东新区通过布局无人机机场、规划全域巡飞航线，构建起覆盖"车辆开不到、人员进不去、肉眼看不到"监管盲区的"低空之网"。基于自研AI算法，在百米高空的识别准确率超90%，并能自动生成GPS定位与可视化取证报告，巡查效率达到人工的百倍以上，实现"发现即锁定、锁定即处置"。
+                    </div>
+                    <a href="https://企鹅号/" class="article-link" target="_blank">查看原文</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 动态网格化空域管理 -->
+        <div class="category-section">
+            <div class="category-title">
+                <div class="category-icon">🔲</div>
+                动态网格化空域管理
+            </div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title">大疆发布《低空经济基础设施发展白皮书(2026)》</div>
+                    <div class="article-meta">
+                        <span class="article-source">企鹅号/太平洋科技</span>
+                        <span class="article-date">📅 2026年</span>
+                    </div>
+                    <div class="article-abstract">
+                        大疆认为，低空经济常态化运营需要具备刚需场景，而非仅提升效率的非必需场景。当前无人机物流、eVTOL载人飞行短期内均无法实现规模化运营。白皮书分析了城市物流无人机规模化的三大核心瓶颈：航路审批缺乏常态化机制、末端"最后100米"配送无统一标准方案、单票配送成本偏高。
+                    </div>
+                    <a href="https://企鹅号/" class="article-link" target="_blank">查看原文</a>
+                </div>
+                <div class="article-card">
+                    <div class="article-title">山东万青软件：一网统飞——低空无人机统管平台</div>
+                    <div class="article-meta">
+                        <span class="article-source">山东万青软件官网</span>
+                        <span class="article-date">📅 2025-2026</span>
+                    </div>
+                    <div class="article-abstract">
+                        系统针对无人机在交通领域的应用，通过实时监控、事故勘察、流量分析及智能引导等功能提升管理效率。在政务领域实现"一机巡查，全市通用"的智能化巡检新时代，通过AI技术实现高效自动采集识别、精准捕捉信息，发现异常快速自动告警并及时开展处置行动。
+                    </div>
+                    <a href="#" class="article-link" target="_blank">查看原文</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 航路拥堵治理 -->
+        <div class="category-section">
+            <div class="category-title">
+                <div class="category-icon">🚦</div>
+                航路拥堵治理
+            </div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title">空中交通流量管理的现状与发展研究</div>
+                    <div class="article-meta">
+                        <span class="article-source">中国知网/学术点评</span>
+                        <span class="article-date">📅 2013-2025</span>
+                    </div>
+                    <div class="article-abstract">
+                        研究分析了我国目前的流量管理模式，空中交通流量管理的制约因素和如何实现安全有序的空中交通流量管理的有效措施。提出了扩大终端管制区的概念和终端管制区空中交通流量管理体系的建设。研究指出需要利用大数据和人工智能优化空中交通管理，收集和分析航班延误、取消、起降次数等数据以更好地预测和应对空中交通拥堵问题。
+                    </div>
+                    <a href="https://www.xueshu.com.cn/kjf/201417/4688080.html" class="article-link" target="_blank">查看原文</a>
+                </div>
+                <div class="article-card">
+                    <div class="article-title">民航管制中的空中交通流量管理优化策略</div>
+                    <div class="article-meta">
+                        <span class="article-source">期刊网</span>
+                        <span class="article-date">📅 2024-2025</span>
+                    </div>
+                    <div class="article-abstract">
+                        随着全球航空运输业的迅速发展，空中交通流量持续增长。机场跑道容量、空域资源有限以及航班需求的不断增加，使得空中交通拥堵问题日益凸显。新技术如卫星导航、数据通信等为空中交通流量管理提供了新的机遇和挑战。
+                    </div>
+                    <a href="https://www.qikanchina.com/thesis/view/8748851" class="article-link" target="_blank">查看原文</a>
+                </div>
+                <div class="article-card">
+                    <div class="article-title">空中出行交通系统发展战略与城市空中交通管理</div>
+                    <div class="article-meta">
+                        <span class="article-source">原创力文档</span>
+                        <span class="article-date">📅 2024-2025</span>
+                    </div>
+                    <div class="article-abstract">
+                        研究探讨了城市空中交通管理的可行性与挑战，包括政策制定与监管、政府与企业的合作、城市空中交通管理等。空中交通管理可带来：减少地面交通压力、缩短通勤时间、减少交通事故和拥堵、提高交通效率、加快救援响应速度等效益。
+                    </div>
+                    <a href="https://max.book118.com/html/2024/0107/8114033023006024.shtm" class="article-link" target="_blank">查看原文</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 行业动态与投融资 -->
+        <div class="category-section">
+            <div class="category-title">
+                <div class="category-icon">💰</div>
+                行业动态与投融资
+            </div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title">边界智控获超亿元B轮融资，国资加注低空经济"大脑"</div>
+                    <div class="article-meta">
+                        <span class="article-source">新浪财经/上海证券报</span>
+                        <span class="article-date">📅 2026-04-16</span>
+                    </div>
+                    <div class="article-abstract">
+                        飞控供应商边界智控宣布完成超亿元B轮融资，公司主攻DAL-A和DAL-B级别的高安全等级飞控系统研发。飞控系统负责控制eVTOL的飞行状态，是eVTOL最核心的分系统之一，承担飞行器的垂直起降、悬停、巡航等功能，相当于无人机的"大脑"。本轮融资新引入建发新兴投资、张科垚坤、星启未来等机构。
+                    </div>
+                    <a href="https://新浪财经/" class="article-link" target="_blank">查看原文</a>
+                </div>
+                <div class="article-card">
+                    <div class="article-title">湖北荆门发挥通航产业优势，做大做强低空经济</div>
+                    <div class="article-meta">
+                        <span class="article-source">企鹅号/中新网</span>
+                        <span class="article-date">📅 2026-05-26</span>
+                    </div>
+                    <div class="article-abstract">
+                        荆门是湖北低空经济的主要承载地、全国首批通用航空产业综合示范区。在荆门研发的AS700载人飞艇进入批量化生产阶段，订单突破200架。"十五五"时期，荆门将建设"1+3+1+N"起降网络，建成通用机场2个、低空功能型起降场地100个、国家级飞行营地2个，常态化运营"荆门漳河—重庆梁平"跨省低空货运航线。
+                    </div>
+                    <a href="https://企鹅号/" class="article-link" target="_blank">查看原文</a>
+                </div>
+                <div class="article-card">
+                    <div class="article-title">2026年最赚钱的5大新兴赛道：低空经济万亿市场的"地面机会"</div>
+                    <div class="article-meta">
+                        <span class="article-source">今日头条</span>
+                        <span class="article-date">📅 2026-05-26</span>
+                    </div>
+                    <div class="article-abstract">
+                        2026年低空经济正式进入商用元年。民航局数据显示，2025年国内低空经济市场规模已冲到1.5万亿元，预计2030年突破2万亿元。最赚钱的不是造飞机，而是配套服务：无人机飞手(植保/巡检/航拍)500-2000元/天，低空文旅地勤稳定高薪，飞行器运维保养长期复购。
+                    </div>
+                    <a href="https://今日头条/" class="article-link" target="_blank">查看原文</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>数据来源：网络搜索整理 | 生成时间：2026-05-27</p>
+            <p style="margin-top: 5px;">涵盖飞行服务调度平台、低空飞行服务站、飞行计划申报、航线推荐、</p>
+            <p>大模型智能体应用、航路拥堵治理、动态网格化空域管理、空域容量流量管理等核心技术领域</p>
+        </div>
+    </div>
+</body>
+</html>

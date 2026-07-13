@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空资讯 2026-04-28 | 低空经济标准体系</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --primary-dark: #0052a3;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --text-primary: #1a1a2e;
+            --text-secondary: #64648c;
+            --border-color: #e8ecf0;
+            --accent-red: #e74c3c;
+            --accent-green: #27ae60;
+            --accent-blue: #3498db;
+            --accent-orange: #f39c12;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            padding: 48px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .header-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            background: linear-gradient(90deg, #ffffff 0%, #e0e7ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-subtitle {
+            font-size: 16px;
+            opacity: 0.8;
+            max-width: 600px;
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 24px;
+            margin-top: 24px;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-secondary);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .filter-btn.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+
+        .card-header {
+            padding: 20px 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .card-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .category-policy { background: #e8f5e9; color: #2e7d32; }
+        .category-bidding { background: #fff3e0; color: #e65100; }
+        .category-industry { background: #e3f2fd; color: #1565c0; }
+        .category-tech { background: #f3e5f5; color: #7b1fa2; }
+        .category-report { background: #fce4ec; color: #c2185b; }
+
+        .card-time {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .card-body {
+            padding: 16px 20px;
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-summary {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            padding: 16px 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fafbfc;
+        }
+
+        .card-source {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .card-source svg {
+            width: 16px;
+            height: 16px;
+            opacity: 0.6;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: gap 0.2s ease;
+        }
+
+        .card-link:hover {
+            gap: 8px;
+        }
+
+        .card-link svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Highlight card */
+        .card.highlight {
+            grid-column: span 2;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 2px solid var(--primary-color);
+        }
+
+        .card.highlight .card-title {
+            font-size: 20px;
+            -webkit-line-clamp: 3;
+        }
+
+        /* Tags */
+        .card-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .tag {
+            padding: 4px 10px;
+            background: #f1f5f9;
+            border-radius: 6px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Statistics bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 24px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--card-bg);
+            border-radius: 20px;
+            max-width: 720px;
+            width: 100%;
+            max-height: 80vh;
+            overflow: hidden;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: #f1f5f9;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: #e2e8f0;
+        }
+
+        .modal-body {
+            padding: 24px;
+            overflow-y: auto;
+            max-height: 60vh;
+        }
+
+        .modal-content {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .btn-outline:hover {
+            background: #f8fafc;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 24px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card.highlight {
+                grid-column: span 1;
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Quality indicator */
+        .quality-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            color: #27ae60;
+        }
+
+        .quality-indicator svg {
+            width: 14px;
+            height: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="header-badge">
+                <span class="dot"></span>
+                <span>实时更新 · 2026年4月28日</span>
+            </div>
+            <h1>低空经济标准体系资讯</h1>
+            <p class="header-subtitle">涵盖低空空管自动化系统、低空飞行服务平台、低空运行控制系统AOC、低空智能网联系统、一网统飞系统、无人机管控等最新动态</p>
+            <div class="header-meta">
+                <span>共收录 11 条高质量资讯</span>
+                <span>·</span>
+                <span>发布时间：2026-04-27 至 2026-04-28</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-value">3</div>
+                <div class="stat-label">招投标信息</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">3</div>
+                <div class="stat-label">政策解读</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">3</div>
+                <div class="stat-label">行业动态</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">2</div>
+                <div class="stat-label">解决方案</div>
+            </div>
+        </div>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">全部</button>
+            <button class="filter-btn" data-filter="bidding">招投标</button>
+            <button class="filter-btn" data-filter="policy">政策解读</button>
+            <button class="filter-btn" data-filter="industry">行业动态</button>
+            <button class="filter-btn" data-filter="tech">技术方案</button>
+        </div>
+
+        <div class="cards-grid">
+            <!-- Card 1: Highlight -->
+            <div class="card highlight" data-category="industry" data-url="https://news.qq.com/rain/a/20260428A0249Z00" data-title="石家庄低空经济乘势"高飞"抢占发展新赛道" data-content="石家庄市低空经济发展取得显著成效，截至2025年底，全市低空经济企业数量同比增长3.3倍，达到100余家；营业总收入由2024年的53.1亿元提升至66.77亿元，年增长率达26%。\n\n【产业格局】形成以栾城区为牵引，鹿泉区、高新区和经开区、正定县、行唐县为支撑的1+4低空经济产业发展格局。拥有1.58万平方公里低空可开放空域，已获批华北地区最大试验试飞空域，面积约600平方公里，最高飞行高度4000米。\n\n【企业动态】河北凯为航空科技已顺利完成翼展8米新型无人机的陆上和水上试飞试验，下一步将进入批量生产阶段。中航通飞、中电华鸿、翊飞航空、达信电子等众多企业涵盖航空制造、改装维修、通用航空运营等产业链关键环节。\n\n【应用场景】已形成低空+农林植保、低空+公路巡检、低空+医疗救助、低空+物流运输、低空+消防应急等8个以上应用场景。无人机样本转运时间缩短超60%，构建起20分钟空中医疗圈。\n\n【平台建设】石家庄交投集团牵头建设全市低空政务一网统飞平台，实现政务无人机资源一网统飞、一机多飞、一飞多用，预计年底前建成运营。\n\n【发展目标】到2027年，低空经济企业达到100家以上，营业收入达到100亿元；到2030年，低空经济企业达到150家以上，营业收入达到150亿元。">
+                <div class="card-header">
+                    <span class="card-category category-industry">行业动态</span>
+                    <span class="card-time">2026-04-28 08:30</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">石家庄低空经济乘势"高飞"抢占发展新赛道</h3>
+                    <p class="card-summary">石家庄作为国家首批通用航空产业综合示范区、全国民用无人驾驶航空试验区，通过全链条布局、多维度发力，将空天机遇转化为发展势能。截至2025年底，全市低空经济企业数量同比增长3.3倍达100余家，营业总收入达66.77亿元...</p>
+                    <div class="card-tags">
+                        <span class="tag">河北凯为航空</span>
+                        <span class="tag">一网统飞</span>
+                        <span class="tag">医疗配送</span>
+                        <span class="tag">1+4产业格局</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V9a2 2 0 012-2h2a2 2 0 012 2v9a2 2 0 01-2 2h-2z"/></svg>
+                        石家庄日报
+                    </span>
+                    <span class="quality-indicator">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        高质量原创
+                    </span>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card" data-category="policy" data-url="http://www.ce.cn/xwzx/gnsz/gdxw/202604/t20260427_2933394.shtml" data-title="推动低空经济"管得好、飞得稳、用得活"" data-content="聚焦十五五期间低空经济发展，探讨如何实现管得好、飞得稳、用得活三大目标。\n\n【核心观点】\n- 党的二十届四中全会提出加快低空经济等战略性新兴产业集群发展\n- 2025年政府工作报告提出打造低空经济等新兴支柱产业\n- 2025年12月全国人大常委会修订通过《中华人民共和国民用航空法》，设置发展促进专章\n\n【监管重点】\n- 空域资源管理：明确低空空域使用权的属性、内容、程序、限制\n- 航空器规范：做好对低空航空器和飞行使用活动的双重规范\n- 管理服务：明确政府和市场在低空管理服务中的职责分工\n\n【地方动态】各地正因地制宜发展低空经济，赋予地方更多自主权">
+                <div class="card-header">
+                    <span class="card-category category-policy">政策解读</span>
+                    <span class="card-time">2026-04-27 16:36</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">聚焦"十五五"推动低空经济"管得好、飞得稳、用得活"</h3>
+                    <p class="card-summary">新华网报道，聚焦"十五五"期间低空经济发展重点。2025年12月全国人大常委会修订通过《民用航空法》设置"发展促进"专章，为低空经济发展提供法律保障...</p>
+                    <div class="card-tags">
+                        <span class="tag">十五五规划</span>
+                        <span class="tag">民用航空法</span>
+                        <span class="tag">空域管理</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V9a2 2 0 012-2h2a2 2 0 012 2v9a2 2 0 01-2 2h-2z"/></svg>
+                        新华网
+                    </span>
+                    <a href="http://www.ce.cn/xwzx/gnsz/gdxw/202604/t20260427_2933394.shtml" target="_blank" class="card-link" onclick="event.stopPropagation()">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6m4-3h6v6m-11 5L21 3"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card" data-category="policy" data-url="http://www.mzyfz.com/cms/caijing/caijingzixun/guonei/html/796/2026-04-27/content-1677527.html" data-title="打造低空经济新兴支柱产业亟待创新立法" data-content="民主与法制网报道，低空经济作为新兴支柱产业发展亟需立法创新。\n\n【现行体系问题】\n最突出问题：没有对传统军航、民航与低空经济涉及的飞行活动作出区划规范\n\n【两种立法思路】\n方案一：制定综合性航空法\n- 在空域全面系统化治理基础上统筹规范\n- 系统化优势明显，但难度较大\n\n方案二：单独出台低空经济促进法\n- 与现行民用航空法并行\n- 着力支持基础设施建设和资源配置\n- 难度相对较小，兼具针对性和系统性\n\n【五点重要内容】\n1. 统筹宏观目标与具体规范\n2. 深入推进科学立法\n3. 突出重点环节和堵点设计\n4. 明确高水平低空管理服务是支撑\n5. 关注新矛盾、新问题">
+                <div class="card-header">
+                    <span class="card-category category-policy">政策解读</span>
+                    <span class="card-time">2026-04-27</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">打造低空经济新兴支柱产业亟待创新立法</h3>
+                    <p class="card-summary">民主与法制网刊发专家观点，分析低空经济立法现状与不足。提出两种立法思路：一是制定综合性航空法，二是单独出台低空经济促进法...</p>
+                    <div class="card-tags">
+                        <span class="tag">立法创新</span>
+                        <span class="tag">低空经济促进法</span>
+                        <span class="tag">空域规范</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V9a2 2 0 012-2h2a2 2 0 012 2v9a2 2 0 01-2 2h-2z"/></svg>
+                        民主与法制网
+                    </span>
+                    <a href="http://www.mzyfz.com/cms/caijing/caijingzixun/guonei/html/796/2026-04-27/content-1677527.html" target="_blank" class="card-link" onclick="event.stopPropagation()">
+                        查看原文
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6m4-3h6v6m-11 5L21 3"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 4: Bidding -->
+            <div class="card" data-category="bidding" data-url="https://hb.bidcenter.com.cn/diqucontent-416304666-1.html" data-title="襄阳市低空飞行服务中心项目监理竞争性磋商公告" data-content="【项目概况】\n项目编号：ZYFW26ZX-0104\n项目名称：襄阳市低空飞行服务中心项目监理\n采购方式：竞争性磋商\n采购预算：11.xxxx万元\n\n【采购内容】\n负责整个项目的监理服务工作，包括：\n- 基础设施\n- 应用支撑系统\n- 应用系统等系统及设备\n- 全过程监理工作（实施准备、建设、保修阶段）\n\n【资格要求】\n1. 具有独立法人资格和有效的营业执照\n2. 提供2024或2025年度财务审计报告\n3. 近五年至少具有1项信息化项目监理服务业绩\n4. 总监理工程师需具备信息系统监理师证书\n\n【时间安排】\n获取采购文件：2026年4月28日至5月7日\n响应文件递交截止：2026年5月8日9点30分">
+                <div class="card-header">
+                    <span class="card-category category-bidding">招投标</span>
+                    <span class="card-time">2026-04-28</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">襄阳市低空飞行服务中心项目监理竞争性磋商公告</h3>
+                    <p class="card-summary">预算11万元，采购内容涵盖基础设施、应用支撑系统、应用系统等系统及设备的监理及相关咨询工作，负责整个项目实施准备、建设、保修阶段全过程监理...</p>
+                    <div class="card-tags">
+                        <span class="tag">预算11万</span>
+                        <span class="tag">监理服务</span>
+                        <span class="tag">截止5月8日</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V9a2 2 0 012-2h2a2 2 0 012 2v9a2 2 0 01-2 2h-2z"/></svg>
+                        湖北招标网
+                    </span>
+                    <a href="https://hb.bidcenter.com.cn/diqucontent-416304666-1.html" target="_blank" class="card-link" onclick="event.stopPropagation()">
+                        查看详情
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6m4-3h6v6m-11 5L21 3"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 5: Bidding -->
+            <div class="card" data-category="bidding" data-url="https://js.bidcenter.com.cn/diqucontent-416289871-1.html" data-title="扬州市低空应用场景及配套保障设施建设项目招标公告" data-content="【项目概况】\n项目编号：JSHT-DL#\n项目名称：低空应用场景及配套保障设施建设项目\n\n【采购需求】\n低空应用场景及配套保障设施建设\n\n【时间要求】\n供应商中标后2026年6月10日前完成所有供货和安装调试\n\n【资格条件】\n1. 满足政府采购法相关规定\n2. 提供2026年1月至3月社会保障资金缴纳凭证\n3. 提供2026年1月至3月依法纳税缴款凭证\n4. 2024或2025年度财务状况报告\n5. 参加采购活动前3年无重大违法记录\n6. 本项目不接受联合体投标\n\n【投标截止】\n2026年5月19日14点30分">
+                <div class="card-header">
+                    <span class="card-category category-bidding">招投标</span>
+                    <span class="card-time">2026-04-28</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">扬州市低空应用场景及配套保障设施建设项目招标公告</h3>
+                    <p class="card-summary">扬州航空集团委托江苏恒泰公开招标，采购低空应用场景及配套保障设施。要求中标后2026年6月10日前完成所有供货和安装调试...</p>
+                    <div class="card-tags">
+                        <span class="tag">扬州航空集团</span>
+                        <span class="tag">6月10日前交付</span>
+                        <span class="tag">截止5月19日</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V9a2 2 0 012-2h2a2 2 0 012 2v9a2 2 0 01-2 2h-2z"/></svg>
+                        江苏招标网
+                    </span>
+                    <a href="https://js.bidcenter.com.cn/diqucontent-416289871-1.html" target="_blank" class="card-link" onclick="event.stopPropagation()">
+                        查看详情
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6m4-3h6v6m-11 5L21 3"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 6: Industry -->
+            <div class="card" data-category="industry" data-url="https://news.yunnan.cn/system/2026/04/28/033983777.shtml" data-title="甘肃庆阳：低空经济赛道赛事圆满落幕" data-content="2026数字中国创新大赛·低空经济赛道于4月26日在甘肃庆阳举行，这是庆阳市第二次承办该赛事。\n\n【赛事规模】\n- 404支团队\n- 1570名选手参赛\n- 300余项原创解决方案\n- 20个优质项目落地\n- 评选出93个奖项\n\n【比赛项目】\n1. 低空物流运输场景赛：破解城市最后一公里配送难题\n2. 灾害应急智能投送场景赛：垂直起降、自主巡航、精准搜寻、物资投送\n3. AI全自主油田巡检场景赛：检验无人机全自主起降、智能识别、数据实时回传\n\n【其他活动】\n- 无人机职业技能挑战赛\n- 低空巡检六合特大桥展示\n- 空天地一体化智能森林火灾监测与扑救展示\n\n【庆阳优势】全国八大算力枢纽节点之一，依托东数西算工程强大算力优势">
+                <div class="card-header">
+                    <span class="card-category category-industry">行业动态</span>
+                    <span class="card-time">2026-04-28</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">甘肃庆阳：2026数字中国创新大赛低空经济赛道圆满落幕</h3>
+                    <p class="card-summary">404支团队、1570名选手参赛，汇聚300余项原创解决方案，推动20个优质项目落地。赛事涵盖低空物流、灾害应急智能投送、AI全自主油田巡检等场景...</p>
+                    <div class="card-tags">
+                        <span class="tag">数字中国创新大赛</span>
+                        <span class="tag">404支团队</span>
+                        <span class="tag">20个项目落地</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V9a2 2 0 012-2h2a2 2 0 012 2v9a2 2 0 01-2 2h-2z"/></svg>
+                        云南网
+                    </span>
+                    <a href="https://news.yunnan.cn/system/2026/04/28/033983777.shtml" target="_blank" class="card-link" onclick="event.stopPropagation()">
+                        查看详情
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6m4-3h6v6m-11 5L21 3"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 7: Industry -->
+            <div class="card" data-category="industry" data-url="https://mzrb.meizhou.cn/html/2026-04/28/content_404476.htm" data-title="梅州五华县抓住低空经济发展机遇" data-content="五华县委理论学习中心组举行专题讲座，深入学习贯彻习近平总书记关于发展新质生产力和低空经济的重要论述。\n\n【讲座内容】\n深圳市宝安区低空经济产业协会会长谭超尘作专题辅导，深度解析：\n- 低空经济产业概念\n- 十四五国家与地方低空经济产业政策\n- 大湾区低空经济产业实践案例\n- 十五五规划低空产业的机遇与挑战\n\n【发展举措】\n1. 产业集聚成群：以苌乐谷翔天航空科技有限公司为链主企业\n2. 场景融合赋能：建立完善低空+农业、低空+物流、低空+文旅、低空+公共服务等场景应用\n3. 基础设施提质：推进低空经济产业示范基地建设\n4. 加强与航空协会、低空产业联盟合作">
+                <div class="card-header">
+                    <span class="card-category category-industry">行业动态</span>
+                    <span class="card-time">2026-04-28</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">梅州五华县：以更实举措布局低空经济发展赛道</h3>
+                    <p class="card-summary">五华县委理论学习中心组举行专题讲座，邀请专家解读十五五规划低空产业机遇与挑战。以苌乐谷翔天航空科技为链主企业，推进低空+农业、物流、文旅等场景应用...</p>
+                    <div class="card-tags">
+                        <span class="tag">五华县</span>
+                        <span class="tag">苌乐谷翔天航空</span>
+                        <span class="tag">场景应用</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V9a2 2 0 012-2h2a2 2 0 012 2v9a2 2 0 01-2 2h-2z"/></svg>
+                        梅州日报
+                    </span>
+                    <a href="https://mzrb.meizhou.cn/html/2026-04/28/content_404476.htm" target="_blank" class="card-link" onclick="event.stopPropagation()">
+                        查看详情
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6m4-3h6v6m-11 5L21 3"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 8: Industry -->
+            <div class="card" data-category="industry" data-url="https://news.qq.com/rain/a/20260427A05BIY00" data-title="低空经济行业周报：中信证券称万亿蓝海启航在即" data-content="【亿欧/航投企服】低空经济行业周报(04.19 - 04.26) 核心内容：\n\n【央企动向】\n- 国务院国资委召开中央企业低空经济产业发展专题推进会\n- 中信证券：低空经济整装待发指令已明确，万亿蓝海启航在即\n\n【企业动态】\n- 山河智能：荣获中国灾害防御科技进步一等奖\n- 波音公司：第一季度商用飞机交付143架，积压订单5760亿美元\n- 浙江沪杭甬：成立合营公司从事低空基础设施投资建设运营\n- 黑龙江：天域航通北安综合基地开工，总投资2亿元\n\n【行业数据】\n- 截至2025年底，我国注册无人机共328.7万架，同比增长51%\n- 全年无人机累计飞行小时4530.29万小时，同比增长69.9%\n- 持证操控员超22.5万人，新注册无人机近60.8万架\n\n【技术创新】\n- 浙江联通完成5G-A通感一体化感知核心网部署，识别率达98%\n- 中国通信学会成立新型基站天线标准工作组，推动低空通信标准">
+                <div class="card-header">
+                    <span class="card-category category-industry">行业周报</span>
+                    <span class="card-time">2026-04-27 15:04</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">低空经济行业周报：中信证券称万亿蓝海启航在即</h3>
+                    <p class="card-summary">国务院国资委部署推动中央企业低空经济发展；山河智能荣获灾害防御科技进步一等奖；截至2025年底我国注册无人机328.7万架，同比增长51%...</p>
+                    <div class="card-tags">
+                        <span class="tag">中信证券</span>
+                        <span class="tag">山河智能</span>
+                        <span class="tag">328.7万架</span>
+                        <span class="tag">5G-A通感一体</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V9a2 2 0 012-2h2a2 2 0 012 2v9a2 2 0 01-2 2h-2z"/></svg>
+                        亿欧网
+                    </span>
+                    <a href="https://news.qq.com/rain/a/20260427A05BIY00" target="_blank" class="card-link" onclick="event.stopPropagation()">
+                        查看详情
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6m4-3h6v6m-11 5L21 3"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 9: Tech -->
+            <div class="card" data-category="tech" data-url="https://www.c114.com.cn/news/111/a1308650.html" data-title="浙江联通首次落地CU架构5G-A感知核心网" data-content="【技术突破】\n中国联通浙江分公司联合联通研究院及华为，在杭州成功完成基于C/U分离架构的5G-A通感一体化感知核心网部署与联调测试，并同步上线商用低空运行监管平台。\n\n【技术架构】\n- SG（感知业务网关）与SCF（感知信令面）集中部署\n- SPF（感知数据面）采用4U盒式一体机形态，下沉边缘部署\n- 实现基站周边低空24小时不间断监控\n\n【性能指标】\n- 无人机目标识别率提升至98%\n- 误报率严格控制在2%以下\n- 支持小型微型无人机、合作与非合作无人机精准区分\n\n【应用价值】\n及时发现违规黑飞、追踪轨迹、锁定源头，同时避免误报干扰正常合法使用需求。">
+                <div class="card-header">
+                    <span class="card-category category-tech">技术方案</span>
+                    <span class="card-time">2026-04-27</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">浙江联通首次落地CU架构5G-A感知核心网，开启低空经济商用赋能</h3>
+                    <p class="card-summary">业内首次实现感知业务网关与感知信令面集中部署、感知数据面下沉边缘的规模化组网方案，识别率达98%，误报率低于2%...</p>
+                    <div class="card-tags">
+                        <span class="tag">5G-A通感一体</span>
+                        <span class="tag">98%识别率</span>
+                        <span class="tag">杭州</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V9a2 2 0 012-2h2a2 2 0 012 2v9a2 2 0 01-2 2h-2z"/></svg>
+                        C114通信网
+                    </span>
+                    <a href="https://www.c114.com.cn/news/111/a1308650.html" target="_blank" class="card-link" onclick="event.stopPropagation()">
+                        查看详情
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6m4-3h6v6m-11 5L21 3"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 10: Tech -->
+            <div class="card" data-category="tech" data-url="https://blog.sciencenet.cn/blog-2636671-1530810.html" data-title="低空智慧物流网络探索：技术架构与应用场景" data-content="低空智慧物流网络正成为新质生产力重要代表，构建高效、灵活、智能的三维立体物流体系。\n\n【技术架构：五张网】\n1. 通信网：5G-A/6G通信、卫星互联网\n2. 感知网：雷达、光学/声学传感器、ADS-B\n3. 导航网：北斗/GPS、视觉SLAM、多源融合导航\n4. 气象网：分布式观测网络、多源气象信息融合\n5. 算力网：边缘计算、云计算、数字孪生平台\n\n【应用场景】\n- 即时配送（高频刚需）\n- 偏远地区与特殊地形配送\n- 跨海与岛际物流\n- 医疗应急与冷链运输\n\n【产业数据】\n截至2026年上半年，持民用无人驾驶航空器运营合格证企业超1.4万家，持证操控员超22.5万人，新注册无人机近60.8万架。">
+                <div class="card-header">
+                    <span class="card-category category-tech">技术方案</span>
+                    <span class="card-time">2026-04-27</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">低空智慧物流网络探索：技术架构与应用场景深度解析</h3>
+                    <p class="card-summary">系统梳理低空智联网五张网技术架构（通信网、感知网、导航网、气象网、算力网），以及即时配送、偏远地区配送、医疗应急等应用场景商业化进展...</p>
+                    <div class="card-tags">
+                        <span class="tag">五张网</span>
+                        <span class="tag">数字孪生</span>
+                        <span class="tag">即时配送</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V9a2 2 0 012-2h2a2 2 0 012 2v9a2 2 0 01-2 2h-2z"/></svg>
+                        科学网
+                    </span>
+                    <a href="https://blog.sciencenet.cn/blog-2636671-1530810.html" target="_blank" class="card-link" onclick="event.stopPropagation()">
+                        查看详情
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6m4-3h6v6m-11 5L21 3"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 11: Bidding -->
+            <div class="card" data-category="bidding" data-url="https://nr.gd.gov.cn/zwgknew/ygzj/zfcg/content/mpost_4890092.html" data-title="广东省低空遥感基础设施租赁及配套服务采购结果公告" data-content="【项目名称】\n广东省低空遥感基础设施租赁及配套服务采购（2026-2027年度）\n\n【采购单位】\n广东省自然资源厅\n\n【服务期限】\n2026-2027年度\n\n【采购结果】\n已于2026年4月27日发布结果公告\n\n【背景】\n广东省积极推进低空遥感基础设施建设，通过租赁方式获取低空遥感基础设施及配套服务，支撑自然资源监测、测绘等工作。">
+                <div class="card-header">
+                    <span class="card-category category-bidding">招投标结果</span>
+                    <span class="card-time">2026-04-27 17:03</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">广东省低空遥感基础设施租赁及配套服务采购结果公告</h3>
+                    <p class="card-summary">广东省自然资源厅发布2026-2027年度低空遥感基础设施租赁及配套服务采购结果公告，推进低空遥感基础设施建设...</p>
+                    <div class="card-tags">
+                        <span class="tag">广东省自然资源厅</span>
+                        <span class="tag">遥感基础设施</span>
+                        <span class="tag">2026-2027年度</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V9a2 2 0 012-2h2a2 2 0 012 2v9a2 2 0 01-2 2h-2z"/></svg>
+                        广东省自然资源厅
+                    </span>
+                    <a href="https://nr.gd.gov.cn/zwgknew/ygzj/zfcg/content/mpost_4890092.html" target="_blank" class="card-link" onclick="event.stopPropagation()">
+                        查看详情
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6m4-3h6v6m-11 5L21 3"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <div class="modal-header">
+                <div>
+                    <span class="card-category" id="modal-category">分类</span>
+                    <h2 id="modal-title" style="margin-top: 12px; font-size: 20px; line-height: 1.4;"></h2>
+                </div>
+                <button class="modal-close" onclick="closeModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-content" id="modal-content"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal()">关闭</button>
+                <a class="btn btn-primary" id="modal-link" href="#" target="_blank">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6m4-3h6v6m-11 5L21 3"/>
+                    </svg>
+                    查看原文
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>低空经济标准体系资讯 · 每日更新 · 数据来源均为权威机构</p>
+        <p style="margin-top: 8px; opacity: 0.7;">Generated by Matrix Agent · 2026-04-28</p>
+    </footer>
+
+    <script>
+        // Card click handler
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function() {
+                const category = this.dataset.category;
+                const url = this.dataset.url;
+                const title = this.dataset.title;
+                const content = this.dataset.content;
+
+                const categoryMap = {
+                    'bidding': '招投标',
+                    'policy': '政策解读',
+                    'industry': '行业动态',
+                    'tech': '技术方案',
+                    'report': '研究报告'
+                };
+
+                document.getElementById('modal-category').textContent = categoryMap[category] || '资讯';
+                document.getElementById('modal-category').className = `card-category category-${category}`;
+                document.getElementById('modal-title').textContent = title;
+                document.getElementById('modal-content').innerHTML = content.replace(/\n/g, '<br><br>');
+                document.getElementById('modal-link').href = url;
+                document.getElementById('modal').classList.add('active');
+            });
+        });
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const filter = this.dataset.filter;
+                document.querySelectorAll('.card').forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Keyboard close
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>

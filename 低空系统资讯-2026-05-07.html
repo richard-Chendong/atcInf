@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空系统资讯 2026-05-07</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #004d99;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --text-primary: #1a1a2e;
+            --text-secondary: #666666;
+            --border-color: #e1e5eb;
+            --accent-blue: #00a8ff;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --accent-red: #ef4444;
+            --accent-purple: #8b5cf6;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .header .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-item {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .stat-item.green { border-left-color: var(--accent-green); }
+        .stat-item.orange { border-left-color: var(--accent-orange); }
+        .stat-item.purple { border-left-color: var(--accent-purple); }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+        
+        .category-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .category-btn {
+            padding: 10px 20px;
+            border: none;
+            background: var(--card-bg);
+            color: var(--text-secondary);
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin: 40px 0 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 25px;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .card-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .tag-policy { background: #dbeafe; color: #1e40af; }
+        .tag-standard { background: #fef3c7; color: #92400e; }
+        .tag-vendor { background: #d1fae5; color: #065f46; }
+        .tag-bidding { background: #ede9fe; color: #5b21b6; }
+        .tag-product { background: #fce7f3; color: #9d174d; }
+        .tag-event { background: #cffafe; color: #0e7490; }
+        
+        .card-header {
+            padding: 25px 25px 15px;
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.4;
+            padding-right: 80px;
+        }
+        
+        .card-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .card-body {
+            padding: 0 25px 20px;
+        }
+        
+        .card-summary {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .card-footer {
+            padding: 15px 25px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card-source {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .card-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: gap 0.3s ease;
+        }
+        
+        .card:hover .card-link {
+            gap: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 50px;
+        }
+        
+        .time-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--accent-green);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>低空系统资讯</h1>
+        <div class="subtitle">
+            <span class="badge">2026年5月7日</span>
+            <span class="badge">第1期</span>
+            <span class="badge">每日更新</span>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">16</div>
+                <div class="stat-label">精选资讯</div>
+            </div>
+            <div class="stat-item green">
+                <div class="stat-number">5</div>
+                <div class="stat-label">政策标准</div>
+            </div>
+            <div class="stat-item orange">
+                <div class="stat-number">6</div>
+                <div class="stat-label">厂商动态</div>
+            </div>
+            <div class="stat-item purple">
+                <div class="stat-number">5</div>
+                <div class="stat-label">招投标</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            标准规范 / 政策解读
+        </h2>
+        <div class="cards-grid">
+            <div class="card" onclick="window.open('https://www.gz.gov.cn/ysgz/xwdt/ysdt/content/mpost_10797887.html', '_blank')">
+                <span class="card-tag tag-standard">国家标准</span>
+                <div class="card-header">
+                    <h3 class="card-title">《民用无人驾驶航空器实名登记和激活要求》正式实施</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月1日起</span>
+                        <span>中国民航局</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">5月1日起，强制性国家标准GB 46761-2025正式实施，要求所有民用无人机必须先实名登记激活才能解锁飞行能力。未激活或取消激活后，无人机无法起飞。标准确立了两种并行流程：通过"生产者信息系统"中转或直接与实名登记系统交互。存量无人机有12个月过渡期。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">广州市人民政府</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://health.people.com.cn/n1/2026/0501/c14739-40712558.html', '_blank')">
+                <span class="card-tag tag-standard">国家标准</span>
+                <div class="card-header">
+                    <h3 class="card-title">《民用无人驾驶航空器系统运行识别规范》正式实施</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月1日起</span>
+                        <span>中国民航局</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">GB 46750-2025规定无人机应在开机后和飞行全过程中主动向监管方报送身份、位置、速度、状态等信息。采用"广播式+网络式"双重识别，飞行全程每秒上报，数据留存120小时以上。解决"谁能飞""谁在飞"等问题。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">人民网</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://www.toutiao.com/article/7635509396205732390/', '_blank')">
+                <span class="card-tag tag-policy">政策解读</span>
+                <div class="card-header">
+                    <h3 class="card-title">无人机新规来了！5月1日起无人机不是想飞就飞</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月3日</span>
+                        <span>今日头条</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">详细解读新规五大要点：备案和实名双重登记；适飞空域内微型无人机真高不超过50米，轻型/小型不超过120米；管制空域必须审批；资质要到位；未成年人飞行需监护人在旁。无证商业飞行最高罚款10万元。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">今日头条</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('http://www.eeo.com.cn/2026/0504/863606.shtml', '_blank')">
+                <span class="card-tag tag-policy">行业报告</span>
+                <div class="card-header">
+                    <h3 class="card-title">《中国低空经济发展指数报告2026》正式发布</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月4日</span>
+                        <span>经济观察网</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">第九届数字中国建设峰会期间发布。报告显示2025年民用无人机整机总产值1761亿元，同比增长约20%；注册无人机328.7万架，同比增长51%；建成低空飞行服务站46个。广东、江苏、浙江、四川、北京稳居第一梯队。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">经济观察网</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://m.gkzhan.com/exhibition/detail/4937.html', '_blank')">
+                <span class="card-tag tag-event">行业展会</span>
+                <div class="card-header">
+                    <h3 class="card-title">上海国际航空航天低空飞行器技术与制造工程展览会</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月7-9日</span>
+                        <span>上海张江科学会堂</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">由中国航空学会主办，覆盖低空飞行器核心技术产品。展示范围包括eVTOL动力系统、低空智联网、航电系统、地空通信、模拟与仿真设计软件等。预计300+展商，6000m²展示空间+30多场活动，20000+观众。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">智能制造网</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            厂商动态 / 行业资讯
+        </h2>
+        <div class="cards-grid">
+            <div class="card" onclick="window.open('https://www.ithome.com/0/945/965.htm', '_blank')">
+                <span class="card-tag tag-vendor">海外拓展</span>
+                <div class="card-header">
+                    <h3 class="card-title">亿航智能EH216-S完成墨西哥及拉丁美洲首次载人飞行</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月1日</span>
+                        <span>亿航智能</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">亿航智能EH216-S获得墨西哥民用航空局(AFAC)颁发的飞行许可，在图卢姆国际机场完成拉美首次载人飞行。该eVTOL最大起飞重量650kg，最高飞行速度130km/h，航程30km，已在21个国家完成飞行演示。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">IT之家</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://www.c114.com.cn/news/119/a1309740.html', '_blank')">
+                <span class="card-tag tag-vendor">招标采购</span>
+                <div class="card-header">
+                    <h3 class="card-title">中国联通启动2026年中型复合翼无人机集采</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月6日</span>
+                        <span>中国联通</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">中国联通发布《2026年中国联通中型复合翼无人机集中采购招标公告》，计划采购6架中型复合翼无人机及相关服务，包含配套载荷、3年服务、培训服务。最终确定1-2名中标人。投标人须确保设备取得工信部相关许可。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">C114通信网</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://sztqb.sznews.com/MB/content/202605/06/content_3445056.html', '_blank')">
+                <span class="card-tag tag-vendor">行业标杆</span>
+                <div class="card-header">
+                    <h3 class="card-title">峰飞航空V2000CG入选国家首批低空经济应用场景典型案例</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月6日</span>
+                        <span>峰飞航空</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">峰飞航空2吨级无人驾驶货运eVTOL V2000CG凯瑞鸥在"海洋石油平台运维"领域入选国家首批低空经济应用场景典型案例。与中国海油、中信海直合作完成全球首次2吨级eVTOL海上物资运输飞行，58分钟跨越150公里。阿联酋猎鹰航空订购50架。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">深圳特区报</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://www.163.com/dy/article/KS3H34N505118K7K.html', '_blank')">
+                <span class="card-tag tag-vendor">运营商动态</span>
+                <div class="card-header">
+                    <h3 class="card-title">中国联通展示低空经济"1+1+N"能力体系</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月初</span>
+                        <span>中国联通</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">第九届数字中国峰会上，中国联通展示"1+1+N"能力体系，包括低空智联网、算力数据底座、低空安全体系、N个行业应用。展示警务无人机、应急救援、低空运输等应用成果，以及低空通信网络、机载网联终端等硬核技术。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">网易/航投企服</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://www.163.com/dy/article/KS3H34N505118K7K.html', '_blank')">
+                <span class="card-tag tag-vendor">运营商动态</span>
+                <div class="card-header">
+                    <h3 class="card-title">中国移动黄宇红：构筑低空智联底座</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月初</span>
+                        <span>中国移动</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">中国移动研究院院长黄宇红阐述低空新型信息基础设施与智能网联技术进展。以"通、导、感、管"一体为核心，构建"保资源-降干扰-稳切换"业务保障体系。提出构建多源融合感知系统，推动感知从"看得见"向"看得清、看得准"演进。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">网易/航投企服</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://www.163.com/dy/article/KS3H34N505118K7K.html', '_blank')">
+                <span class="card-tag tag-vendor">企业动态</span>
+                <div class="card-header">
+                    <h3 class="card-title">纵横股份任斌受聘四川省委决策咨询委员会委员</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月初</span>
+                        <span>纵横股份</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">纵横股份董事长任斌受聘担任四川省委省政府第四届决策咨询委员会委员。四川省委书记王晓晖强调决策咨询制度重要性，要求聚焦"十五五"目标任务。纵横股份将利用行业积累，为低空经济发展提供建议，促进产学研用融合。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">网易/航投企服</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+            招投标信息
+        </h2>
+        <div class="cards-grid">
+            <div class="card" onclick="window.open('https://scbid.com/bx/detail/2241649580_12520437.html', '_blank')">
+                <span class="card-tag tag-bidding">招标公告</span>
+                <div class="card-header">
+                    <h3 class="card-title">低空飞行器动力系统中试平台建设项目招标代理</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月6日</span>
+                        <span>绵阳市</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">低空飞行器动力系统中试平台建设项目招标代理机构比选公告发布，所属地区绵阳市，行业为招标代理，截止时间2026年5月8日。该项目旨在推进低空飞行器动力系统的中试平台建设。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">四川招投标网</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://guangxi.jianyu360.cn/jybx/20260501_26043050927409.html', '_blank')">
+                <span class="card-tag tag-bidding">招标公告</span>
+                <div class="card-header">
+                    <h3 class="card-title">南宁低空投资无人机表演编队项目公开招标</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月1日</span>
+                        <span>南宁市</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">南宁低空投资有限责任公司委托贯通建设项目管理有限公司进行无人机表演编队项目招标，预算481万元。A分标采购520架无人机及相关设备，B分标采购配套设备施工服务。合同签订后15个工作日内完成。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">广西招标网</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://guangxi.jianyu360.cn/jybx/20260501_26043051126098.html', '_blank')">
+                <span class="card-tag tag-bidding">招标公告</span>
+                <div class="card-header">
+                    <h3 class="card-title">广西自然资源综合监测监管无人机航摄服务采购</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月1日</span>
+                        <span>广西</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">2026年广西自然资源综合监测监管1:2000航空影像获取和正射影像生产(无人机)采购，预算1005.279万元，分为9个分标，覆盖凤山县、都安瑶族自治县等多个地区，最低点地面分辨率优于0.16米。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">广西招标网</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://guizhou.jianyu360.cn/jybx/20260501_26043050764054.html', '_blank')">
+                <span class="card-tag tag-bidding">中标公告</span>
+                <div class="card-header">
+                    <h3 class="card-title">黔西南州公安局无人机侦测设备及飞行指挥平台采购</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月1日</span>
+                        <span>贵州</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">黔西南州公安局无人机侦测设备部署及警用无人机飞行指挥平台采购竞价成交，中标单位贵州擎天航科科技有限责任公司，成交金额4.9999万元，成交日期2026年4月30日。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">贵州招标网</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://qinghai.jianyu360.cn/jybx/20260502_26050151189492.html', '_blank')">
+                <span class="card-tag tag-bidding">中标公告</span>
+                <div class="card-header">
+                    <h3 class="card-title">刚察县森林管护无人机智能管护系统采购</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月2日</span>
+                        <span>青海</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">刚察县2024年森林管护能力提升项目-无人机智能管护系统中标结果公告，中标供应商青海天巡地联信息科技有限公司，中标金额215.227万元，用于哈尔盖镇、伊克乌兰乡管护站护林巡护装备采购。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">青海招标网</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            产品技术 / 解决方案
+        </h2>
+        <div class="cards-grid">
+            <div class="card" onclick="window.open('https://www.lcxw.cn/bumen/zhengfa/20260501/171027.html', '_blank')">
+                <span class="card-tag tag-product">解决方案</span>
+                <div class="card-header">
+                    <h3 class="card-title">2025-2026年低空感知平台解决方案商评测</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月1日</span>
+                        <span>聊城新闻网</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">全球低空经济市场规模预计2026年突破千亿美元，低空感知与无人机管理平台市场年复合增长率超25%。评测标准包括技术成熟度40%（自研集群智能算法、高速数据链、多机协同调度）、场景适配性35%、自动化水平与生态支持25%。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">聊城新闻网</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+            
+            <div class="card" onclick="window.open('https://www.cir.cn/3/57/WuRenJiQiXiangJianCeXiTongDeXianZhuangYuQianJing.html', '_blank')">
+                <span class="card-tag tag-product">技术趋势</span>
+                <div class="card-header">
+                    <h3 class="card-title">无人机气象监测系统2026年发展趋势</h3>
+                    <div class="card-meta">
+                        <span class="time-badge">5月初</span>
+                        <span>产业调研网</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">无人机气象监测系统将向贴片式集成、标准化组网与智能协同转型。气象传感器将实现极致轻量化与贴片化，结合AI算法实现实时气象风险预警，自动识别风切变与湍流区域，为无人机集群提供动态路径规划。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">产业调研网</span>
+                    <span class="card-link">查看详情 →</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>数据来源：公开网络资讯 | 更新时间：2026年5月7日</p>
+        <p style="margin-top: 10px; font-size: 0.85rem;">本页面内容来源于各媒体公开报道，点击卡片可查看原始出处</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空系统资讯 - 2026年4月18日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #0a84ff;
+            --secondary: #5856d6;
+            --accent: #30d158;
+            --bg-dark: #0d1117;
+            --bg-card: #161b22;
+            --bg-card-hover: #1c2128;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --border: #30363d;
+            --tag-policy: #ff6b6b;
+            --tag-bid: #ffd93d;
+            --tag-tech: #6bcb77;
+            --tag-industry: #4d96ff;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding: 48px 0;
+            background: linear-gradient(135deg, rgba(10, 132, 255, 0.1) 0%, rgba(88, 86, 214, 0.1) 100%);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+        
+        header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        header .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+        
+        header .stat-item {
+            text-align: center;
+        }
+        
+        header .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        header .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 24px;
+        }
+        
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 40px rgba(10, 132, 255, 0.15);
+        }
+        
+        .card-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        
+        .card-tag {
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .tag-policy { background: rgba(255, 107, 107, 0.15); color: var(--tag-policy); }
+        .tag-bid { background: rgba(255, 217, 61, 0.15); color: var(--tag-bid); }
+        .tag-tech { background: rgba(107, 203, 119, 0.15); color: var(--tag-tech); }
+        .tag-industry { background: rgba(77, 150, 255, 0.15); color: var(--tag-industry); }
+        
+        .card-time {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        
+        .card-body {
+            padding: 24px;
+        }
+        
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+        
+        .card-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .card-title a:hover {
+            color: var(--primary);
+        }
+        
+        .card-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .card-highlights {
+            background: rgba(10, 132, 255, 0.08);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+        }
+        
+        .card-highlights li {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            padding-left: 16px;
+            position: relative;
+        }
+        
+        .card-highlights li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .card-highlights li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+        
+        .card-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .card-source {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .card-link {
+            font-size: 0.85rem;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: gap 0.2s;
+        }
+        
+        .card-link:hover {
+            gap: 8px;
+        }
+        
+        .highlight-card {
+            grid-column: span 2;
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(10, 132, 255, 0.05) 100%);
+            border-color: rgba(10, 132, 255, 0.3);
+        }
+        
+        .highlight-card .card-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .highlight-card {
+                grid-column: span 1;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+            header .stats {
+                gap: 24px;
+            }
+        }
+        
+        .refresh-time {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>低空系统资讯</h1>
+            <p class="subtitle">低空空管 · 飞行服务 · 智能网联 · 无人机管控</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">精选资讯</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">24h</div>
+                    <div class="stat-label">实时追踪</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">年度</div>
+                </div>
+            </div>
+        </header>
+        
+        <p class="refresh-time">数据更新时间：2026-04-18 19:42 | 筛选范围：近24小时</p>
+        
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">全部</button>
+            <button class="filter-btn" data-filter="policy">政策解读</button>
+            <button class="filter-btn" data-filter="bid">招投标</button>
+            <button class="filter-btn" data-filter="tech">技术方案</button>
+            <button class="filter-btn" data-filter="industry">行业动态</button>
+        </div>
+        
+        <div class="grid">
+            <!-- 头条：国家发改委政策 -->
+            <div class="card highlight-card" data-category="policy">
+                <div class="card-header">
+                    <span class="card-tag tag-policy">政策解读</span>
+                    <span class="card-time">2026-04-17</span>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        <a href="https://yzdsb.hbfzb.com/yzdsbpaper/pad/content/202604/18/content_101144.html" target="_blank">
+                            国家发展改革委：五方面推动低空经济"管得好、飞得稳、用得活"
+                        </a>
+                    </h2>
+                    <div class="card-highlights">
+                        <li><strong>安全前提：</strong>加强航空器全周期管理，创新完善安全监管机制</li>
+                        <li><strong>产业支撑：</strong>加大大载重固定翼无人机、长航时垂直起降航空器研制</li>
+                        <li><strong>场景牵引：</strong>推动建设低空智能网联系统，推广"扫码飞"简化审批</li>
+                        <li><strong>创新动力：</strong>突破智能飞行、混合动力系统等关键技术</li>
+                        <li><strong>合作路径：</strong>积极参与全球低空经济治理，推广中国方案</li>
+                    </div>
+                    <p class="card-desc">
+                        国务院新闻办公室4月17日举行"开局起步'十五五'"系列主题新闻发布会，国家发展改革委低空经济发展司司长郑剑表示，将重点做好五个方面工作，推动低空经济实现"管得好、飞得稳、用得活"。
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">📍 来源：央视新闻 / 新华网</span>
+                    <a href="https://yzdsb.hbfzb.com/yzdsbpaper/pad/content/202604/18/content_101144.html" target="_blank" class="card-link">
+                        查看原文 →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 招投标：无人机国际标准研究 -->
+            <div class="card" data-category="bid">
+                <div class="card-header">
+                    <span class="card-tag tag-bid">招投标</span>
+                    <span class="card-time">2026-04-18</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a href="https://beijing.jianyu360.cn/jybx/20260418_26041747569055.html" target="_blank">
+                            国家市场监管总局：无人机关键技术国际标准研究公开招标
+                        </a>
+                    </h3>
+                    <div class="card-highlights">
+                        <li><strong>预算金额：</strong>112万元（人民币）</li>
+                        <li><strong>研究内容：</strong>研制无人机自主飞行控制等级划分、eVTOL控制技术国际标准</li>
+                        <li><strong>服务期限：</strong>中标至2026年12月31日</li>
+                        <li><strong>投标截止：</strong>2026年5月8日 09:00</li>
+                    </div>
+                    <p class="card-desc">
+                        本项目由国家市场监督管理总局发布，招标编号0747-2661SCCZAB134，接受联合体投标，采用综合评分法评标。
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">📍 来源：剑鱼标讯</span>
+                    <a href="https://beijing.jianyu360.cn/jybx/20260418_26041747569055.html" target="_blank" class="card-link">
+                        查看详情 →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 招投标：无人机国家标准研究 -->
+            <div class="card" data-category="bid">
+                <div class="card-header">
+                    <span class="card-tag tag-bid">招投标</span>
+                    <span class="card-time">2026-04-18</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a href="https://beijing.jianyu360.cn/jybx/20260418_26041747569064.html" target="_blank">
+                            国家市场监管总局：无人机关键技术与典型应用场景国家标准研究
+                        </a>
+                    </h3>
+                    <div class="card-highlights">
+<li><strong>预算金额：</strong>150万元（人民币）</li>
+                        <li><strong>研究内容：</strong>研制轻小型无人机北斗高精度定位、机巢系统、无人机清洁服务国家标准</li>
+                        <li><strong>招标编号：</strong>0747-2661SCCZAB135</li>
+                        <li><strong>投标截止：</strong>2026年5月8日 09:00</li>
+                    </div>
+                    <p class="card-desc">
+                        本项目旨在完善无人机领域标准体系，涵盖北斗高精度定位、机巢系统及清洁服务等关键应用场景标准研制。
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">📍 来源：剑鱼标讯</span>
+                    <a href="https://beijing.jianyu360.cn/jybx/20260418_26041747569064.html" target="_blank" class="card-link">
+                        查看详情 →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 招投标：低空经济标准化产品服务 -->
+            <div class="card" data-category="bid">
+                <div class="card-header">
+                    <span class="card-tag tag-bid">招投标</span>
+                    <span class="card-time">2026-04-18</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a href="https://jiangsu.jianyu360.cn/jybx/20260418_26041747489084.html" target="_blank">
+                            2026年低空经济标准化产品服务项目【重新招标】结果公示
+                        </a>
+                    </h3>
+                    <div class="card-highlights">
+                        <li><strong>中标单位：</strong>旺诚航空科技（江苏）有限公司</li>
+                        <li><strong>折扣报价：</strong>95%</li>
+                        <li><strong>评审方法：</strong>综合评估法（5位评委）</li>
+                        <li><strong>公示期：</strong>2026年4月17日至4月20日</li>
+                    </div>
+                    <p class="card-desc">
+                        本项目为重新招标，标包3的唯一中标候选人为旺诚航空科技（江苏）有限公司，服务期满足要求。
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">📍 来源：江苏招标网</span>
+                    <a href="https://jiangsu.jianyu360.cn/jybx/20260418_26041747489084.html" target="_blank" class="card-link">
+                        查看详情 →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 技术方案：无人机反制系统 -->
+            <div class="card" data-category="tech">
+                <div class="card-header">
+                    <span class="card-tag tag-tech">技术方案</span>
+                    <span class="card-time">2026-04</span>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a href="https://www.cnblogs.com/yscm/p/19807474" target="_blank">
+                            2026年无人机反制技术突破与核心厂商分析
+                        </a>
+                    </h3>
+                    <div class="card-highlights">
+                        <li><strong>技术突破：</strong>光纤控制无人机反制难题获解，Epirus Leonidas系统完成实战验证</li>
+                        <li><strong>核心趋势：</strong>多模融合探测、导航诱骗、软压制、侦测反制一体化</li>
+                        <li><strong>代表厂商：</strong>峦盾（68+项目落地）、理工全盛、华诺星空、中电科航空电子</li>
+                        <li><strong>应用场景：</strong>机场、政府机关、医院、能源设施、大型活动</li>
+                    </div>
+                    <p class="card-desc">
+                        2026年市场已从单纯产品竞争演变为技术研发、场景适配、系统集成与全周期服务的综合实力较量。
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-source">📍 来源：行业研究</span>
+                    <a href="https://www.cnblogs.com/yscm/p/19807474" target="_blank" class="card-link">
+                        查看详情 →
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>本页面内容均来源于公开网络渠道，信息仅供学习参考</p>
+            <p style="margin-top: 8px;">生成时间：2026-04-18 19:42 | Matrix Agent 整理</p>
+        </footer>
+    </div>
+    
+    <script>
+        // 简单的过滤功能
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                document.querySelectorAll('.card').forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

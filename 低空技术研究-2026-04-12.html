@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空技术研究动态 | 2026年4月12日</title>
+    <style>
+        :root {
+            --primary: #1a56db;
+            --primary-light: #e1effe;
+            --secondary: #0e7490;
+            --accent: #7c3aed;
+            --success: #059669;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-500: #6b7280;
+            --gray-700: #374151;
+            --gray-900: #111827;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0fdf4 100%);
+            color: var(--gray-700);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 1.5rem;
+            color: white;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+        }
+        
+        .header .date-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.25rem;
+            border-radius: 2rem;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            backdrop-filter: blur(4px);
+            position: relative;
+        }
+        
+        /* Category Navigation */
+        .category-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .category-nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+            border: 1px solid var(--gray-200);
+            color: var(--gray-600);
+        }
+        
+        .category-nav a:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--card-shadow);
+        }
+        
+        .category-nav a.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        /* Category Section */
+        .category-section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--gray-200);
+        }
+        
+        .category-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+        }
+        
+        .category-title h2 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        
+        .category-count {
+            margin-left: auto;
+            background: var(--gray-100);
+            color: var(--gray-500);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        /* Article Cards */
+        .articles-grid {
+            display: grid;
+            gap: 1.25rem;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.25s ease;
+            border: 1px solid var(--gray-100);
+        }
+        
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--card-shadow-hover);
+            border-color: var(--gray-200);
+        }
+        
+        .article-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .article-type {
+            flex-shrink: 0;
+            padding: 0.3rem 0.7rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .article-type.paper {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .article-type.report {
+            background: #fce7f3;
+            color: #9d174d;
+        }
+        
+        .article-type.news {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .article-type.patent {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .article-type.policy {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+        
+        .article-title {
+            flex: 1;
+        }
+        
+        .article-title h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+            line-height: 1.5;
+        }
+        
+        .article-title h3 a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .article-title h3 a:hover {
+            color: var(--primary);
+        }
+        
+        .article-meta {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+        
+        .article-meta span {
+            margin-right: 1rem;
+        }
+        
+        .article-source {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .article-summary {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--gray-50);
+            border-radius: 0.75rem;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tag {
+            padding: 0.25rem 0.75rem;
+            background: var(--gray-100);
+            color: var(--gray-600);
+            border-radius: 1rem;
+            font-size: 0.8rem;
+        }
+        
+        .article-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--gray-100);
+        }
+        
+        .article-url {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+        
+        .article-url:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        
+        .article-url svg {
+            width: 1rem;
+            height: 1rem;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+        
+        .footer-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .stat-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .category-nav {
+                gap: 0.5rem;
+            }
+            
+            .category-nav a {
+                padding: 0.5rem 0.9rem;
+                font-size: 0.8rem;
+            }
+            
+            .article-card {
+                padding: 1.25rem;
+            }
+            
+            .article-header {
+                flex-direction: column;
+            }
+            
+            .category-count {
+                display: none;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .category-section {
+            animation: fadeIn 0.4s ease-out;
+        }
+        
+        .category-section:nth-child(2) { animation-delay: 0.1s; }
+        .category-section:nth-child(3) { animation-delay: 0.2s; }
+        .category-section:nth-child(4) { animation-delay: 0.3s; }
+        .category-section:nth-child(5) { animation-delay: 0.4s; }
+        .category-section:nth-child(6) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>低空技术研究动态</h1>
+            <p class="subtitle">低空飞行计划申报 | 航线推荐 | 大模型智能体 | 空域治理</p>
+            <div class="date-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px;">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                2026年4月12日 资讯汇总
+            </div>
+        </header>
+        
+        <!-- Category Navigation -->
+        <nav class="category-nav">
+            <a href="#planning">飞行计划申报</a>
+            <a href="#routing">航线推荐规划</a>
+            <a href="#llm-agent">大模型智能体</a>
+            <a href="#congestion">航路拥堵治理</a>
+            <a href="#grid">动态网格化空域</a>
+            <a href="#capacity">容量流量管理</a>
+        </nav>
+
+        <!-- 1. 低空飞行计划申报 -->
+        <section id="planning" class="category-section">
+            <div class="category-title">
+                <div class="category-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                    </svg>
+                </div>
+                <h2>低空飞行计划申报</h2>
+                <span class="category-count">4 篇</span>
+            </div>
+            
+            <div class="articles-grid">
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type policy">政策</span>
+                        <div class="article-title">
+                            <h3><a href="https://news.qq.com/rain/a/20260327A07ILB00" target="_blank">2026年UOM政策落地三月，春季花期管制区航拍报备流程攻略</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">腾讯新闻</span>
+                                <span>2026-03-27</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        民航局民用无人驾驶航空器综合管理平台(UOM)自2026年1月1日起全面落地执行，已平稳运行近三个月。文章详细介绍了当前全国各省市配套细则的执行情况，包括北京全域电子围栏管控、上海"随申办"一站式报备、浙江"浙里办"无人机服管通等差异化执行模式。针对飞友普遍遇到的审核困局，提供了"拉长申报周期、拆分飞行计划"的实操通关指南，强调起降点必须精准到具体经纬度。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">UOM平台</span>
+                        <span class="tag">实名登记</span>
+                        <span class="tag">空域查询</span>
+                        <span class="tag">合规飞行</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://news.qq.com/rain/a/20260327A07ILB00" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问原文
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type news">新闻</span>
+                        <div class="article-title">
+                            <h3><a href="https://news.qq.com/rain/a/20260201A020T800" target="_blank">破局之路：平衡严管与活力，构建精细化治理体系</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">腾讯新闻</span>
+                                <span>2026-02-01</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        针对2026年无人机新规实施后行业面临的UOM审核困局、地方平台乱象、合规边界模糊等问题，文章提出四个维度的破解策略：一是优化UOM平台审核机制，明确审核标准与反馈机制，区分个人与商用、常规与紧急飞行；二是规范地方报备平台建设，避免碎片化治理，统一技术标准；三是强化技术赋能，推动无人机识别模块加装，落实"一机一码"实时监控；四是提升飞手合规意识。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">精细化治理</span>
+                        <span class="tag">分级管控</span>
+                        <span class="tag">精准监管</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://news.qq.com/rain/a/20260201A020T800" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问原文
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type report">报告</span>
+                        <div class="article-title">
+                            <h3><a href="https://database.caixin.com/2026-02-02/102410748.html" target="_blank">低空经济标准体系建设指南（2025年版）发布</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">财新网</span>
+                                <span>2026-02-02</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        市场监管总局等部门联合印发《低空经济标准体系建设指南(2025年版)》，由中央空管办、国家发展改革委、工信部、自然资源部、交通运输部等九部门共同发布，旨在建立健全低空经济标准体系，规范行业健康发展。文件明确了标准体系建设的总体目标、重点领域和实施路径，为低空飞行活动提供统一的技术规范和监管依据。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">标准体系</span>
+                        <span class="tag">政策引导</span>
+                        <span class="tag">九部门联合</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://database.caixin.com/2026-02-02/102410748.html" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问原文
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type policy">政策</span>
+                        <div class="article-title">
+                            <h3><a href="http://www.caac.gov.cn/XWZX/MHYW/202512/t20251227_229595.html" target="_blank">新修订的民用航空法自2026年7月1日起施行</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">中国民用航空局</span>
+                                <span>2025-12-27</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        全国人大常委会会议表决通过新修订的民用航空法，明确自2026年7月1日起施行。该法是规范民用航空活动的基础性法律，旨在维护国家领空主权、规范民用航空活动、保障航空安全。新修订版本增加了低空空域管理、无人驾驶航空器运行规范等相关条款，为低空经济的规范化发展提供法律保障。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">民用航空法</span>
+                        <span class="tag">法律法规</span>
+                        <span class="tag">低空空域</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="http://www.caac.gov.cn/XWZX/MHYW/202512/t20251227_229595.html" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问原文
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 2. 航线推荐规划 -->
+        <section id="routing" class="category-section">
+            <div class="category-title">
+                <div class="category-icon" style="background: linear-gradient(135deg, #10b981, #047857);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                    </svg>
+                </div>
+                <h2>航线推荐规划</h2>
+                <span class="category-count">3 篇</span>
+            </div>
+            
+            <div class="articles-grid">
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type report">报告</span>
+                        <div class="article-title">
+                            <h3><a href="https://www.cnblogs.com/brand2026/p/19847940" target="_blank">智能规划飞行路线：2026低空物流航线规划低空平台推荐</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">博客园</span>
+                                <span>2026年</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        围绕低空物流航线规划与智能管控，介绍低空经济发展趋势、行业痛点及技术解决路径。重点介绍冰柏科技及旗下低空飞行三维数智平台，该平台可实现航线智能规划、实时动态调整、多维度风险评估等功能，为低空物流运营提供全流程数字化支撑。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">航线规划</span>
+                        <span class="tag">三维数智平台</span>
+                        <span class="tag">智能管控</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://www.cnblogs.com/brand2026/p/19847940" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问原文
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type news">新闻</span>
+                        <div class="article-title">
+                            <h3><a href="https://www.lowaltitude.cn/sys-nd/91.html" target="_blank">高德用智能技术让无人机飞行更精准高效</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">低空经济网</span>
+                                <span>2026年</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        高德基于海量交通数据训练的路径规划算法，能为无人机实时优化航线，兼顾距离最短、能耗最低、避障最优等多重目标。面对动态变化的低空环境，无人机需要具备自主决策的"智慧"，高德地图的智能化技术为低空飞行提供精准高效的导航服务支撑。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">高德</span>
+                        <span class="tag">路径规划</span>
+                        <span class="tag">智能导航</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://www.lowaltitude.cn/sys-nd/91.html" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问原文
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type paper">论文</span>
+                        <div class="article-title">
+                            <h3><a href="https://blog.csdn.net/oo7890/article/details/154920710" target="_blank">无人机航线规划实战：从数据采集到智能避障</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">CSDN</span>
+                                <span>2026年</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        深入探讨了无人机航线规划的完整实战流程，从数据采集、三维建模到智能航线生成与AI避障。文章介绍了基于A*算法、遗传算法、深度强化学习等方法在无人机航线路径规划中的应用，并提供了实际代码实现参考。文章阅读量574次，获赞12次，收藏18次。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">A*算法</span>
+                        <span class="tag">遗传算法</span>
+                        <span class="tag">深度强化学习</span>
+                        <span class="tag">智能避障</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://blog.csdn.net/oo7890/article/details/154920710" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问原文
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 3. 低空大模型智能体应用 -->
+        <section id="llm-agent" class="category-section">
+            <div class="category-title">
+                <div class="category-icon" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2"></path>
+                        <circle cx="8" cy="14" r="1"></circle>
+                        <circle cx="16" cy="14" r="1"></circle>
+                    </svg>
+                </div>
+                <h2>低空大模型智能体应用</h2>
+                <span class="category-count">4 篇</span>
+            </div>
+            
+            <div class="articles-grid">
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type paper">综述论文</span>
+                        <div class="article-title">
+                            <h3><a href="https://m.blog.csdn.net/weixin_37990186/article/details/145201646" target="_blank">当无人机遇上大模型：低空机动性智能体的综述与展望</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">中科院自动化所 | arXiv:2501.02341</span>
+                                <span>2026年</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        中科院自动化所发布的重磅综述论文，系统探索基础模型（FMs）与无人机系统的集成方式。论文涵盖UAVs功能模块（感知、导航、规划、控制、通信）、基础模型技术（LLMs、VLMs）、Agentic UAV框架（数据、基础模型、知识、工具、智能体五大模块），以及监控、物流、应急响应三大应用场景。研究表明LLMs能显著提升UAVs在复杂环境中的自主性和智能化水平。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">Agentic UAV</span>
+                        <span class="tag">LLM+UAV</span>
+                        <span class="tag">多智能体</span>
+                        <span class="tag">自主感知</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://m.blog.csdn.net/weixin_37990186/article/details/145201646" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            GitHub: UAVs_Meet_LLMs
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type news">重磅发布</span>
+                        <div class="article-title">
+                            <h3><a href="https://m.tech.china.com/articles/20260115/202601151797611.html" target="_blank">全球首个低空安全飞行大模型"安飞"在京发布</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">中华网</span>
+                                <span>2026-01-15</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        锐士装备科技联合中电达通发布全球首个低空安全飞行大模型"安飞"，填补行业空白。核心突破包括：米级三维空域建模、参数化航线规划、毫秒级避障、AI智能体监管。技术特点包括属地化/私有化城市低空AI大脑（基于DeepSeek+华为算力）、AI通讯专利（支持星网GW星座）、AI多模态态势感知（ULAM-GM三维网格化建模）。已获北京国际大数据交易所首批数据资产登记证书。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">安飞大模型</span>
+                        <span class="tag">DeepSeek</span>
+                        <span class="tag">三维空域建模</span>
+                        <span class="tag">可监管可运营可规模化</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://m.tech.china.com/articles/20260115/202601151797611.html" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问原文
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type paper">论文</span>
+                        <div class="article-title">
+                            <h3><a href="https://adg.csdn.net/696f2168437a6b403369707a.html" target="_blank">AI大模型引领低空经济新时代，赋能无人集群智能变革</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">CSDN</span>
+                                <span>2026年</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        阐述大模型在低空经济和无人集群领域的融合应用。在低空经济方面，大模型赋能空域智能规划、无人机协同调度（强化学习+大模型）、低空物流智能调度、多模态环境感知（融合图像、雷达、语音）。在无人集群方面，实现群体智能决策（多智能体协作优化）、自然语言交互与指挥控制、人机对话指挥等能力。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">UAM</span>
+                        <span class="tag">城市空中交通</span>
+                        <span class="tag">无人集群</span>
+                        <span class="tag">强化学习</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://adg.csdn.net/696f2168437a6b403369707a.html" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问原文
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type paper">论文</span>
+                        <div class="article-title">
+                            <h3><a href="https://ir.pku.edu.cn/handle/20.500.11897/784503" target="_blank">Large AI Model in the Air: Ubiquitous Intelligent Networks for Low Altitude Economy</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">北京大学 | IEEE NETWORK</span>
+                                <span>2026-02-11</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        北大与南洋理工、鹏城实验室联合发表的IEEE论文，探索AI大模型在低空经济中的泛在智能网络应用。论文研究空中平台（如无人机）如何执行实时高效的导航，支持智慧城市服务（城市机动性、环境监测、应急响应），为低空经济的智能化发展提供理论框架和技术路径。
+                    </div>
+                    <div class="article-tags">
+                        <span class="article-source">北京大学</span>
+                        <span class="tag">IEEE NETWORK</span>
+                        <span class="tag">泛在智能网络</span>
+                        <span class="tag">导航</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://ir.pku.edu.cn/handle/20.500.11897/784503" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问原文
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 4. 航路拥堵治理 -->
+        <section id="congestion" class="category-section">
+            <div class="category-title">
+                <div class="category-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                </div>
+                <h2>航路拥堵治理</h2>
+                <span class="category-count">3 篇</span>
+            </div>
+            
+            <div class="articles-grid">
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type report">报告</span>
+                        <div class="article-title">
+                            <h3><a href="https://www.qstheory.cn/20260326/98e7315de28f41a2be2d37535cdfea7e/c.html" target="_blank">如何优化低空经济产业生态</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">求理论坛</span>
+                                <span>2026-03-26</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        指出低空经济发展涉及众多管理部门，空域管理存在纵向分层割裂、横向职能交叉的现象，需推动管理模式从分散的多头管理向整体性、协同化治理转型。回溯交通发展史，空域资源如同地面道路资源，需要精细化管理和动态调度才能最大化利用效率。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">协同治理</span>
+                        <span class="tag">多头管理</span>
+                        <span class="tag">整体性治理</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://www.qstheory.cn/20260326/98e7315de28f41a2be2d37535cdfea7e/c.html" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问原文
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type report">报告</span>
+                        <div class="article-title">
+                            <h3><a href="http://paper.people.com.cn/rmlt/pc/content/202512/17/content_30130619.html" target="_blank">低空经济的核心优势与趋势前瞻</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">人民日报</span>
+                                <span>2025-12-17</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        报道"eVTOL+5G-A+数字孪生"构建的城市空中交通管理系统，可实时模拟城市上空飞行器运行态势，预测潜在冲突并优化航线规划，提升空域资源利用率。该系统通过数字孪生技术构建与物理世界实时同步的城市三维数字模型，为智慧城市管理提供决策支撑。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">eVTOL</span>
+                        <span class="tag">5G-A</span>
+                        <span class="tag">数字孪生</span>
+                        <span class="tag">冲突预测</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="http://paper.people.com.cn/rmlt/pc/content/202512/17/content_30130619.html" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问原文
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type report">报告</span>
+                        <div class="article-title">
+                            <h3><a href="https://www.baiyin.gov.cn/zwgk/zcwdpt/SJHJ/art/2025/art_022bdb03745e492e94f04433f4b75d47.html" target="_blank">低空经济如何重构城市未来版图</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">白银市人民政府</span>
+                                <span>2025年</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        在低空经济发展的推动下，城市空域、道路、地下将能够实现联动的动态网格化分区管理，城市交通逐渐形成"低空—地面—地下"协同的立体化治理体系，三维交通管理成为可能。这一趋势将重塑城市空间利用方式，开启全新的城市规划与发展模式。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">城市版图重构</span>
+                        <span class="tag">立体化治理</span>
+                        <span class="tag">三维交通</span>
+                        <span class="tag">网格化分区</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://www.baiyin.gov.cn/zwgk/zcwdpt/SJHJ/art/2025/art_022bdb03745e492e94f04433f4b75d47.html" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问原文
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 5. 动态网格化空域管理 -->
+        <section id="grid" class="category-section">
+            <div class="category-title">
+                <div class="category-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                </div>
+                <h2>动态网格化空域管理</h2>
+                <span class="category-count">3 篇</span>
+            </div>
+            
+            <div class="articles-grid">
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type paper">技术标准</span>
+                        <div class="article-title">
+                            <h3><a href="https://www.ttbz.org.cn/Home/PdfFileStreamGet/c3QsMTUxNDM1" target="_blank">低空空域网格赋值基础框架（T/SIE 13—2025）</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">四川省电子学会团体标准</span>
+                                <span>2025-11-23</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        该标准将低空空域离散化为基本空域网格单元，构建完整的赋值体系结构，涵盖空间位置赋值、时间赋值、空域种类赋值、地面环境赋值、保障能力赋值、飞行计划赋值和航空器航迹赋值。数值计算体系包括飞行流量计算、低空空域容量评估、多机飞行冲突探测、低空空域态势等功能模块。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">团体标准</span>
+                        <span class="tag">网格赋值</span>
+                        <span class="tag">空域离散化</span>
+                        <span class="tag">数值计算</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://www.ttbz.org.cn/Home/PdfFileStreamGet/c3QsMTUxNDM1" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问标准原文
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type paper">技术方案</span>
+                        <div class="article-title">
+                            <h3><a href="https://www.sciopen.com/local/article_pdf/10.7527/S1000-6893.2025.31399.pdf" target="_blank">低空空域无人系统交通管理方案初探</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">航空学报</span>
+                                <span>2025年</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        提出基于实时空域使用情况和交通密度的动态调整航线方案，确保无人机飞行过程中避免拥堵或冲突。采用A*算法进行路径规划，有效避免障碍物、优化飞行路径。研究构建了碰撞概率地图避障的无人机避障通信系统模型，为解决低空混合障碍下最大化无人机通信能效提供了新思路。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">UTM</span>
+                        <span class="tag">A*算法</span>
+                        <span class="tag">动态调整</span>
+                        <span class="tag">冲突避免</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://www.sciopen.com/local/article_pdf/10.7527/S1000-6893.2025.31399.pdf" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问原文
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type paper">技术方案</span>
+                        <div class="article-title">
+                            <h3><a href="https://zhuanlan.zhihu.com/p/13741955392" target="_blank">基于北斗网格的低空空域管理关键技术</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">知乎专栏</span>
+                                <span>2026年</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        北斗网格码是在地球空间剖分理论基础上发展的离散化、多尺度区域位置标识体系，可为地心至地上50万公里地球空间中任意网格赋予全球唯一的一维编码。关键技术包括：空域环境数据的北斗网格化（障碍物、气象等）、空域结构的北斗网格化（固定航路/动态航路规划）、空域运行的北斗网格化（飞行器实时定位、间隔控制、冲突预警）。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">北斗网格码</span>
+                        <span class="tag">地球空间剖分</span>
+                        <span class="tag">厘米级精度</span>
+                        <span class="tag">空间+时间编码</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://zhuanlan.zhihu.com/p/13741955392" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问原文
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 6. 空域容量流量管理 -->
+        <section id="capacity" class="category-section">
+            <div class="category-title">
+                <div class="category-icon" style="background: linear-gradient(135deg, #ec4899, #be185d);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                </div>
+                <h2>空域容量流量管理</h2>
+                <span class="category-count">3 篇</span>
+            </div>
+            
+            <div class="articles-grid">
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type paper">论文</span>
+                        <div class="article-title">
+                            <h3><a href="https://hkxb.buaa.edu.cn/CN/html/20200101.html" target="_blank">低空无人机交通管理概览与建议综述</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">航空学报</span>
+                                <span>2020年</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        系统综述了无人机空中交通服务，包括空域管理、容量管理、流量管理、空中交通管制、飞行监视、无人机围栏、飞行情报服务、告警与通知等。与传统民用航空空中交通管理相比，无人机交通管理面临管控对象多元化、飞行器性能差异大、运行环境复杂等新挑战，需要建立适应性的管理框架。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">UTM</span>
+                        <span class="tag">容量管理</span>
+                        <span class="tag">流量管理</span>
+                        <span class="tag">飞行情报服务</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://hkxb.buaa.edu.cn/CN/html/20200101.html" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问原文
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type patent">专利</span>
+                        <div class="article-title">
+                            <h3><a href="https://www.doc88.com/p-40159709763777.html" target="_blank">一种中小型垂直起降无人机机场空域流量控制方法</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">道客巴巴</span>
+<span>2026年</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        该方法包含六个核心步骤：无人机模型设计、机场航路图模型设计、航路规划方法设计、飞行延时策略、机场航路图更新方法设计、紧急降落。通过构建完整的机场空域流量控制体系，实现中小型垂直起降无人机的高效、安全运行管理。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">垂直起降</span>
+                        <span class="tag">流量控制</span>
+                        <span class="tag">航路规划</span>
+                        <span class="tag">紧急降落</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://www.doc88.com/p-40159709763777.html" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问专利
+                        </a>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <div class="article-header">
+                        <span class="article-type report">报告</span>
+                        <div class="article-title">
+                            <h3><a href="https://www.baogaobox.com/insights/260205000025393.html" target="_blank">2026年中国无人机空管平台市场前景分析</a></h3>
+                            <div class="article-meta">
+                                <span class="article-source">远瞻慧库/头豹研究院</span>
+                                <span>2026-02</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-summary">
+                        2024年中国无人机空管平台市场规模达4.39亿元，预计2025年将增长至6.18亿元，2027年有望突破200亿元。报告指出AI算法使空域冲突识别效率大幅提升，系统正向全域感知与智能协同决策转变。5G-A通感一体、AI态势感知等技术的成熟，推动空管平台从单点监管向全域协同发展。
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">空管平台</span>
+                        <span class="tag">AI态势感知</span>
+                        <span class="tag">5G-A通感一体</span>
+                        <span class="tag">智能协同</span>
+                    </div>
+                    <div class="article-footer">
+                        <a class="article-url" href="https://www.baogaobox.com/insights/260205000025393.html" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            访问原文
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-stats">
+                <div class="stat">
+                    <div class="stat-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+                    </div>
+                    <span>共收录 <strong>20</strong> 篇精选资料</span>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path></svg>
+                    </div>
+                    <span>涵盖 <strong>6</strong> 个技术领域</span>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle></svg>
+                    </div>
+                    <span>数据来源：权威媒体与学术机构</span>
+                </div>
+            </div>
+            <p>本页面由 Matrix Agent 自动生成 | 数据采集时间：2026-04-12</p>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('.category-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Active nav highlight
+        const sections = document.querySelectorAll('.category-section');
+        const navLinks = document.querySelectorAll('.category-nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

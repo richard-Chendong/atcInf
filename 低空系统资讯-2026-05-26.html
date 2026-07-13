@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空系统资讯-2026年5月26日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f1724 0%, #1a2332 50%, #0f1724 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(180deg, rgba(59, 130, 246, 0.15) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        
+        .header .subtitle {
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #60a5fa;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 3px solid #3b82f6;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 24px;
+        }
+        
+        .card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #818cf8, #c084fc);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(59, 130, 246, 0.1);
+        }
+        
+        .card:hover::before {
+            opacity: 1;
+        }
+        
+        .card-category {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .category-policy {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+        }
+        
+        .category-platform {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+        }
+        
+        .category-product {
+            background: rgba(168, 85, 247, 0.15);
+            color: #a78bfa;
+        }
+        
+        .category-enterprise {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+        }
+        
+        .card h3 {
+            font-size: 1.1rem;
+            color: #f1f5f9;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .card-summary {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .tag {
+            padding: 4px 10px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: #60a5fa;
+        }
+        
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+        }
+        
+        .card-source {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        
+        .card-date {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        
+        .card-link {
+            color: #3b82f6;
+            font-size: 0.85rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .card-link:hover {
+            color: #60a5fa;
+        }
+        
+        .quality-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .quality-high {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+        }
+        
+        .quality-medium {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #64748b;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.1);
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-bar {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>低空系统资讯</h1>
+        <div class="subtitle">低空经济标准体系 · 厂商动态 · 政策解读</div>
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value">9</div>
+                <div class="stat-label">精选资讯</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">3</div>
+                <div class="stat-label">覆盖领域</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">2026.05.24-26</div>
+                <div class="stat-label">时间范围</div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <h2 class="section-title">政策与监管动态</h2>
+        <div class="card-grid">
+            <article class="card" onclick="window.open('https://中国网/#tencent-b972e0ed-51ad-41ee-8dfc-a3f9409a521f-5', '_blank')">
+                <span class="card-category category-policy">政策解读</span>
+                <h3>民航局设立低空安全司，与发改委低空经济发展司形成"双司联动"</h3>
+                <p class="card-summary">5月13日，中国民航局低空安全司正式亮相，与2024年底国家发改委设立的低空经济发展司形成"双司联动"格局。民航局低空安全司职责明确：起草低空民航发展规划、统筹低空安全与发展、建设低空飞行服务调度平台和低空飞行服务站体系等。截至2025年底，中国注册无人机共328.7万架，同比增长51%，市场规模约1.5万亿元。</p>
+                <div class="card-tags">
+                    <span class="tag">低空安全司</span>
+                    <span class="tag">双司联动</span>
+                    <span class="tag">万亿市场</span>
+                </div>
+                <div class="card-meta">
+                    <span class="card-source">中国网</span>
+                    <span class="quality-badge quality-high">高质量</span>
+                </div>
+            </article>
+            
+            <article class="card" onclick="window.open('https://搜狐/#tencent-b972e0ed-51ad-41ee-8dfc-a3f9409a521f-11', '_blank')">
+                <span class="card-category category-policy">地方政策</span>
+                <h3>云南拟出台"52条"推动低空经济发展，含低空智能网联系统建设规划</h3>
+                <p class="card-summary">云南省发改委发布《云南省低空经济促进条例(草案)》(征求意见稿)，共8章52条。明确省级编制低空基础设施总体布局规划，建设省级低空智能网联系统，全面安全接入有关部门和运营单位数据，与飞行综合监管平台实现信息交互。支持适应高原环境的无人驾驶航空器和通用航空整机研发制造，同步牵引复合材料、飞控系统等产业协同集聚。意见反馈截止2026年6月13日。</p>
+                <div class="card-tags">
+                    <span class="tag">云南52条</span>
+                    <span class="tag">智能网联</span>
+                    <span class="tag">高原特色</span>
+                </div>
+                <div class="card-meta">
+                    <span class="card-source">昆明日报/搜狐</span>
+                    <span class="quality-badge quality-high">高质量</span>
+                </div>
+            </article>
+            
+            <article class="card" onclick="window.open('https://搜狐/#tencent-b972e0ed-51ad-41ee-8dfc-a3f9409a521f-13', '_blank')">
+                <span class="card-category category-policy">人才培育</span>
+                <h3>三大"低空+"新增专业适配不同考生，高校布局低空人才培养</h3>
+                <p class="card-summary">低空技术与工程(交叉学科)、低空经济与管理(经济学门类)、低空安全管理(公安技术类)三大新增专业获批。沈阳航空航天大学成立全国首家低空经济学院，华南农业大学将电子工程学院更名为人工智能与低空技术学院。2026年市场规模将突破1万亿元，人才缺口严重，复合型低空人才成"香饽饽"。</p>
+                <div class="card-tags">
+                    <span class="tag">高校专业</span>
+                    <span class="tag">人才培养</span>
+                    <span class="tag">就业方向</span>
+                </div>
+                <div class="card-meta">
+                    <span class="card-source">搜狐/优志愿</span>
+                    <span class="quality-badge quality-medium">中等质量</span>
+                </div>
+            </article>
+        </div>
+        
+        <h2 class="section-title" style="margin-top: 40px;">平台与系统建设</h2>
+        <div class="card-grid">
+            <article class="card" onclick="window.open('https://企鹅号/#tencent-b972e0ed-51ad-41ee-8dfc-a3f9409a521f-1', '_blank')">
+                <span class="card-category category-platform">空管系统</span>
+                <h3>川渝低空飞行线上联审功能上线公测，首单已办结</h3>
+                <p class="card-summary">5月18日，川渝低空飞行线上联审功能启动公测，实现空域申请"一网通办"。企业只需两步：通过"渝快办"(企业用户)或"渝快政"(政务用户)搜索"低空飞行社会服务"，填报用空需求，系统自动推送三方同步审核，进度实时可查。军航航管部门、民航西南空管局与地方政府联动，彻底打破信息壁垒，川渝两地已有数十家企事业单位完成空域申请报送。</p>
+                <div class="card-tags">
+                    <span class="tag">川渝一体化</span>
+                    <span class="tag">线上联审</span>
+                    <span class="tag">军地民协同</span>
+                </div>
+                <div class="card-meta">
+                    <span class="card-source">央广网/重庆日报</span>
+                    <span class="quality-badge quality-high">高质量</span>
+                </div>
+            </article>
+            
+            <article class="card" onclick="window.open('https://企鹅号/#tencent-5bcc3347-6d61-4d9b-8fe8-cd5f4b6417dd-4', '_blank')">
+                <span class="card-category category-platform">一网统飞</span>
+                <h3>博远视讯携"一网统飞"平台亮相世界无人机大会，斩获双项大奖</h3>
+                <p class="card-summary">山东博远视讯在2026第十届世界无人机大会上展示"智能硬件+管理平台+算法中枢"三大核心成果。其"一网统飞"数字监管服务平台以北斗网格化技术为时空基座，通过三维空域网格编码实现精准定位与逐格管理，深度融合AI智能体与多模态大模型，实现黑飞自动预警、机库联动取证、航路冲突预判等功能。获"2026低空经济产业优秀示范项目奖"与"2026UASE无人机展·金鹰奖"两项重磅大奖。</p>
+                <div class="card-tags">
+                    <span class="tag">一网统飞</span>
+                    <span class="tag">北斗网格</span>
+                    <span class="tag">AI智能体</span>
+                    <span class="tag">博远视讯</span>
+                </div>
+                <div class="card-meta">
+                    <span class="card-source">济南日报/企鹅号</span>
+                    <span class="quality-badge quality-high">高质量</span>
+                </div>
+            </article>
+            
+            <article class="card" onclick="window.open('https://搜狐/#tencent-5bcc3347-6d61-4d9b-8fe8-cd5f4b6417dd-3', '_blank')">
+                <span class="card-category category-platform">低空智联</span>
+                <h3>盾华电子发布低空智联网监管平台、一网统飞平台、低空仿真验证系统</h3>
+                <p class="card-summary">盾华电子正式发布三大核心产品：低空智联网监管平台(低空经济运行核心数字底座)、低空一网统飞平台(一体化智能治理体系)、低空仿真验证系统(支撑飞行器研发测试)。低空智联网平台深度融合通信、感知、导航、算力，构建全域协同、智能联动的低空运行保障体系；一网统飞平台依托AI智能算法实现"巡查—识别—派单—闭环处置"全流程高效治理链路。</p>
+                <div class="card-tags">
+                    <span class="tag">低空智联网</span>
+                    <span class="tag">数字孪生</span>
+                    <span class="tag">仿真验证</span>
+                    <span class="tag">盾华电子</span>
+                </div>
+                <div class="card-meta">
+                    <span class="card-source">搜狐</span>
+                    <span class="quality-badge quality-high">高质量</span>
+                </div>
+            </article>
+        </div>
+        
+        <h2 class="section-title" style="margin-top: 40px;">行业白皮书与解决方案</h2>
+        <div class="card-grid">
+            <article class="card" onclick="window.open('https://搜狐/#tencent-b972e0ed-51ad-41ee-8dfc-a3f9409a521f-14', '_blank')">
+                <span class="card-category category-product">白皮书</span>
+                <h3>大疆发布《低空经济基础设施发展白皮书(2026)》，定义无人机自动机场为"基础设施"</h3>
+                <p class="card-summary">大疆发布的白皮书以无人机自动机场为核心，系统阐述低空经济从概念到规模化运营的路径。白皮书指出无人机自动机场是支撑低空经济从"能飞"走向"常飞"的关键基础设施节点。大疆机场3支持-30°C至50°C极端环境，IP56防护，可固定/车载双部署。广州南沙36套覆盖10+部门年飞行4.3万架次；江苏泰州207套实现全域输变配线路覆盖，效率提升3倍；长沙、南京、深圳实现高速/城市路网常态化执法。</p>
+                <div class="card-tags">
+                    <span class="tag">大疆机场</span>
+                    <span class="tag">无人值守</span>
+                    <span class="tag">行业应用</span>
+                    <span class="tag">标准化</span>
+                </div>
+                <div class="card-meta">
+                    <span class="card-source">搜狐</span>
+                    <span class="quality-badge quality-high">高质量</span>
+                </div>
+            </article>
+            
+            <article class="card" onclick="window.open('https://企鹅号/#tencent-5bcc3347-6d61-4d9b-8fe8-cd5f4b6417dd-8', '_blank')">
+                <span class="card-category category-product">管控系统</span>
+                <h3>雷科防务携低慢小目标探测与防御解决方案亮相世界无人机大会</h3>
+                <p class="card-summary">雷科防务展出低空安全核心产品：低慢小目标探测与防御解决方案(无人机防御系统)、微波天线/元器件/射频前端分系统集成、国产化计算与处理平台、低空安全感知与导航定位测试系统。无人机防御系统以低空探测雷达和无线电侦测设备为探测手段，实现对危险目标的报警、光电确认、联动处置。W波段自动定向两维天馈伺分系统优先用于军事测控、低空精密探测等场景。</p>
+                <div class="card-tags">
+                    <span class="tag">低空探测</span>
+                    <span class="tag">反无人机</span>
+                    <span class="tag">国产化</span>
+                    <span class="tag">雷科防务</span>
+                </div>
+                <div class="card-meta">
+                    <span class="card-source">企鹅号</span>
+                    <span class="quality-badge quality-high">高质量</span>
+                </div>
+            </article>
+            
+            <article class="card" onclick="window.open('https://企鹅号/#tencent-5bcc3347-6d61-4d9b-8fe8-cd5f4b6417dd-9', '_blank')">
+                <span class="card-category category-product">测试系统</span>
+                <h3>理工雷科展示低空安全感知全系列测试方案，破解产业测试验证短板</h3>
+                <p class="card-summary">理工雷科展出低空飞行器整机性能评估系统、规模化生产测试系统：无人机场景模拟测试系统(高保真、可定制、可复现)、无人机避障及定位评估系统(专业电磁屏蔽暗室)、无人机生产测试系统(全流程自动化测试)。核心硬件均搭载自研毫米波雷达测试仪、卫星导航信号模拟器，核心技术自主可控，补齐低空产业测试短板。</p>
+                <div class="card-tags">
+                    <span class="tag">仿真测试</span>
+                    <span class="tag">毫米波雷达</span>
+                    <span class="tag">量产质检</span>
+                    <span class="tag">理工雷科</span>
+                </div>
+                <div class="card-meta">
+                    <span class="card-source">企鹅号</span>
+                    <span class="quality-badge quality-high">高质量</span>
+                </div>
+            </article>
+            
+            <article class="card" onclick="window.open('https://企鹅号/#tencent-5bcc3347-6d61-4d9b-8fe8-cd5f4b6417dd-11', '_blank')">
+                <span class="card-category category-enterprise">企业动态</span>
+                <h3>美团无人机低空航网正式投入常态化运营，开启全国授权服务商招募</h3>
+                <p class="card-summary">美团无人机宣布"低空航网"正式投入常态化运营，同时面向全国低空物流运营人开启授权服务商招募计划，依托全新发布的自研软硬件产品，向行业开放低空配送能力。今年初美团无人机首批已签约10个授权服务商，服务场景从餐饮外卖快速拓展至其他多元化高价值场景，服务地区将覆盖浙江、湖南、广西等省份。</p>
+                <div class="card-tags">
+                    <span class="tag">美团无人机</span>
+                    <span class="tag">低空物流</span>
+                    <span class="tag">商业化运营</span>
+                </div>
+                <div class="card-meta">
+                    <span class="card-source">钛媒体/企鹅号</span>
+                    <span class="quality-badge quality-medium">中等质量</span>
+                </div>
+            </article>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>数据来源：公开网络资讯 | 整理时间：2026年5月26日</p>
+        <p style="margin-top: 8px; color: #475569;">点击卡片即可查看原始内容出处详情</p>
+    </footer>
+</body>
+</html>

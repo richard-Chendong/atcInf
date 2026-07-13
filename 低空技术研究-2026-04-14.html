@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空技术研究资讯 - 2026年4月14日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+        
+        .date-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #f1f5f9;
+            margin-bottom: 25px;
+            padding-left: 15px;
+            border-left: 4px solid #60a5fa;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-icon {
+            width: 28px;
+            height: 28px;
+            fill: #60a5fa;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-2px);
+            border-color: rgba(96, 165, 250, 0.3);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .card-title {
+            font-size: 1.15rem;
+            color: #f1f5f9;
+            font-weight: 600;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .card-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .card-title a:hover {
+            color: #60a5fa;
+        }
+        
+        .source-tag {
+            background: rgba(96, 165, 250, 0.15);
+            color: #60a5fa;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .card-content {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #60a5fa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        
+        .card-link:hover {
+            color: #93c5fd;
+            gap: 10px;
+        }
+        
+        .card-link svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #60a5fa;
+        }
+        
+        .stat-label {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .stats {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>低空技术研究资讯日报</h1>
+            <p class="subtitle">收集整理低空飞行领域的最新动态、政策解读、技术进展与行业分析</p>
+            <span class="date-badge">2026年4月14日</span>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">条精选资讯</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">个主题分类</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 低空飞行计划申报 -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg class="section-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                低空飞行计划申报
+            </h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://330825.bidcenter.com.cn/bidinfo-1-a0f73512c37219a99948f46e503e1c1d60adb3fc25b0e1c5.html" target="_blank">龙游2026年低空服务采购项目公告</a></div>
+                        <span class="source-tag">中国采招网</span>
+                    </div>
+                    <p class="card-content">龙游县发布2026年低空服务采购公告，要求供应商具备通用航空企业经营许可证。采购涵盖飞行服务、监管平台运营等内容，合同履行期限为一年。供应商需通过在线系统完成CA锁申领和信息入库备案。</p>
+                    <a class="card-link" href="https://330825.bidcenter.com.cn/bidinfo-1-a0f73512c37219a99948f46e503e1c1d60adb3fc25b0e1c5.html" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://zsjtw.zhoushan.gov.cn/col/col1229416948/art/2026/art_7bab1007f7dc409bb0cf25d6109baf1e.html" target="_blank">舟山市2026年低空飞行运营补贴情况公示</a></div>
+                        <span class="source-tag">舟山市人民政府</span>
+                    </div>
+                    <p class="card-content">舟山市公示2026年低空物流运营补贴方案，包括港务码头-盘峙岛、普陀-六横-东极等多条无人机物流航线。中型无人机飞行架次最多，补贴金额按航线和飞行器类型分级，最高可达25万元市级补贴。</p>
+                    <a class="card-link" href="https://zsjtw.zhoushan.gov.cn/col/col1229416948/art/2026/art_7bab1007f7dc409bb0cf25d6109baf1e.html" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://www.chinabgao.com/tag/feasibility/dikongyunying.html" target="_blank">2026年低空运营可行性研究报告</a></div>
+                        <span class="source-tag">报告大厅</span>
+                    </div>
+                    <p class="card-content">系统阐述低空运营行业可行性研究报告的编写规范与用途，包括建设项目论证、资金筹集、银行贷款申请、专项资金申请及股票上市等应用场景，为低空经济项目提供决策依据。</p>
+                    <a class="card-link" href="https://www.chinabgao.com/tag/feasibility/dikongyunying.html" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 航线推荐与规划 -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg class="section-icon" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+                航线推荐与智能规划
+            </h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://www.stdaily.com/web/cjgxdj/content_490996.html" target="_blank">低空航路航线网规划设计服务</a></div>
+                        <span class="source-tag">中国科技网</span>
+                    </div>
+                    <p class="card-content">采用三维网格化空域分割与唯一编码技术，构建精细化、可计算的城市低空空间智联模型。通过融合空地环境数据、通导监控能力与无人机性能等多维约束，建立智能航线规划算法模型，实现无人机航线的自动化、精细化规划与动态优化。</p>
+                    <a class="card-link" href="https://www.stdaily.com/web/cjgxdj/content_490996.html" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://jyt.henan.gov.cn/2026/01-22/3312501.html" target="_blank">无人机智能规划与控制关键技术</a></div>
+                        <span class="source-tag">河南省教育厅</span>
+                    </div>
+                    <p class="card-content">中原工学院瞿博阳教授团队攻克航迹规划、抗干扰通信与组网优化三大关键技术。提出多策略融合的差分进化规划与自适应动态多模态避障方法，研制具备双目视觉融合定位与智能避障能力的AI识别无人机，定位精度达10厘米。</p>
+                    <a class="card-link" href="https://jyt.henan.gov.cn/2026/01-22/3312501.html" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+<div class="card-title"><a href="https://www.cir.cn/8/80/RenGongZhiNengCaoKongWuRenJiHangYeQianJingFenXi.html" target="_blank">2026年人工智能操控无人机行业前景分析</a></div>
+                        <span class="source-tag">产业调研网</span>
+                    </div>
+                    <p class="card-content">人工智能操控无人机通过机载AI芯片、多传感器融合与深度学习算法，实现自主避障、目标跟踪、路径规划及集群协同。支持RTK厘米级定位、4G/5G图传及边缘推理，可在无GPS环境下依靠视觉SLAM导航。未来将向通用智能体与空地协同方向突破。</p>
+                    <a class="card-link" href="https://www.cir.cn/8/80/RenGongZhiNengCaoKongWuRenJiHangYeQianJingFenXi.html" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 低空大模型智能体应用 -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg class="section-icon" viewBox="0 0 24 24"><path d="M21 10.12h-6.78l2.74-2.82c-2.73-2.7-7.15-2.8-9.88-.1-2.73 2.71-2.73 7.08 0 9.79s7.15 2.71 9.88 0c1.36-1.35 2.04-3.12 2.04-4.89h2c0 2.37-.9 4.64-2.56 6.3-3.33 3.31-8.73 3.31-12.06 0s-3.33-8.69 0-12 8.73-3.31 12.06 0l2.56-2.6V10.12z"/></svg>
+                低空大模型智能体应用
+            </h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://www.qbitai.com/2023/12/106007.html" target="_blank">北航团队提出大模型操纵无人机具身智能新架构</a></div>
+                        <span class="source-tag">量子位</span>
+                    </div>
+                    <p class="card-content">北京航空航天大学智能无人机团队提出基于多模态大模型的具身智能体架构。视觉模块捕捉启动条件后，大模型生成动作指令，无人机迅速准确执行。该架构让无人机具备理解自然语言指令并分解执行步骤的能力。</p>
+                    <a class="card-link" href="https://www.qbitai.com/2023/12/106007.html" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://m.sohu.com/a/810410812_121752158/?pvid=000115_3w_a" target="_blank">AI Agent智能体：从技术概念到场景落地</a></div>
+                        <span class="source-tag">海通国际证券</span>
+                    </div>
+                    <p class="card-content">大模型成为智能体最完美的载体，用户设置目标和身份后，AI自主拆分任务、使用工具、完成工作。智能体可赋能自动驾驶、智能电网控制、能源管理等垂直领域。预计2026年国内人工智能市场规模超过260亿美元。</p>
+                    <a class="card-link" href="https://m.sohu.com/a/810410812_121752158/?pvid=000115_3w_a" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://www.cir.cn/5/62/WuRenJiFeiXingKongZhiXiTongDeQianJingQuShi.html" target="_blank">2026年无人机飞行控制系统前景趋势</a></div>
+                        <span class="source-tag">产业调研网</span>
+                    </div>
+                    <p class="card-content">无人机飞行控制系统正朝着智能化、自主化方向发展。通过集成深度学习、强化学习等AI算法，无人机将具备更强的环境感知和决策能力。无人机编队飞行技术成熟将推动单机作业向集群作业转变，实现大范围、高密度协同作业。</p>
+                    <a class="card-link" href="https://www.cir.cn/5/62/WuRenJiFeiXingKongZhiXiTongDeQianJingQuShi.html" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 航路拥堵治理 -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg class="section-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                航路拥堵治理
+            </h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://m.163.com/dy/article/KIJ65T690534A4SC.html" target="_blank">2026年民航将深入整治"内卷式"竞争</a></div>
+                        <span class="source-tag">界面新闻</span>
+                    </div>
+                    <p class="card-content">民航局将修订完善公共航空运输企业经营许可、航线经营许可管理等规章；科学把控国内航线航班评审节奏，完善精细化调控措施，严控低效航线运力供给；研究制定旅客运输成本调查办法，建立运价监测预警联动机制。</p>
+                    <a class="card-link" href="https://m.163.com/dy/article/KIJ65T690534A4SC.html" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://www.163.com/dy/article/KIJ5LHB30534A4SC.html" target="_blank">2026年民航将加快航空枢纽体系建设</a></div>
+                        <span class="source-tag">中国民航网</span>
+                    </div>
+                    <p class="card-content">民航将推进"四极六轴"高空航路网建设，强化枢纽空域资源保障；优化航权时刻资源配置，支持国际航空枢纽发展；推动航空口岸简化手续工作机制全覆盖，提升出入境便利化水平。</p>
+                    <a class="card-link" href="https://www.163.com/dy/article/KIJ5LHB30534A4SC.html" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://read.cnki.net/web/Journal/Article/HKJJ202402002.html" target="_blank">基于时空图网络的空中交通流量预测研究</a></div>
+                        <span class="source-tag">知网</span>
+                    </div>
+                    <p class="card-content">提出基于时空图网络的空中交通流量预测方法，捕获空中流量的时间变化模式和不同机场之间的依赖关系。在时间特征学习模块引入高效重构器表征长程时间相关性，未来6-12小时预测的加权平均绝对百分比误差约为35-36%。</p>
+                    <a class="card-link" href="https://read.cnki.net/web/Journal/Article/HKJJ202402002.html" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 动态网格化空域管理 -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg class="section-icon" viewBox="0 0 24 24"><path d="M20 3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM8 19H4v-4h4v4zm0-6H4V9h4v4zm0-6H4V5h4v2zm6 12h-4v-4h4v4zm0-6h-4V9h4v4zm0-6h-4V5h4v2zm6 12h-4v-4h4v4zm0-6h-4V9h4v4zm0-6h-4V5h4v2z"/></svg>
+                动态网格化空域管理
+            </h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://www.chinairn.com/hyzx/20260205/155006491.shtml" target="_blank">2026年城市空中交通行业市场深度调研</a></div>
+                        <span class="source-tag">中研网</span>
+                    </div>
+                    <p class="card-content">城市空中交通利用低空空域，通过eVTOL为城市及近郊提供人员与货物运输服务。当前行业进入"认证与试点"关键时期，主流飞行器制造商原型机已多次成功试飞。焦点转向如何飞得安全、可靠、经济且符合法规。</p>
+                    <a class="card-link" href="https://www.chinairn.com/hyzx/20260205/155006491.shtml" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://www.iim.net.cn/2244/view-162390-1.html" target="_blank">低空空域精细化划设与管理服务行业深度战略分析</a></div>
+                        <span class="source-tag">IIM信息</span>
+                    </div>
+                    <p class="card-content">低空空域精细化划设与管理核心在于通过数字化技术对空域资源进行三维解构、动态分配与高效调度。市场呈现爆发式增长，驱动因素包括：城市空中交通对高精度导航和实时冲突解脱的需求、无人机物流高密度协同运行要求等。</p>
+                    <a class="card-link" href="https://www.iim.net.cn/2244/view-162390-1.html" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://sc.bidcenter.com.cn/diqucontent-413171809-2.html" target="_blank">绵阳市2026年度低空空域及地面基础设施规划编制</a></div>
+                        <span class="source-tag">四川招标网</span>
+                    </div>
+                    <p class="card-content">绵阳市开展全域1000米以下空域现状调研、分类优化、布局规划、运行规则制定等工作。兼顾民航运输、飞行训练、通用航空、无人机科研等多类型空域协同需求，推动空域资源高效利用。</p>
+                    <a class="card-link" href="https://sc.bidcenter.com.cn/diqucontent-413171809-2.html" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 空域容量流量管理 -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg class="section-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+                空域容量流量管理
+            </h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="http://finance.china.com.cn/news/20260106/6287961.shtml" target="_blank">2026年全国民航工作会议：因地制宜拓展低空应用场景</a></div>
+                        <span class="source-tag">中国网</span>
+                    </div>
+                    <p class="card-content">2025年传统通航完成飞行121.8万小时，无人机实名登记突破328万架，累计飞行4530万小时同比增长近70%。民航将健全完善低空民用航空政策体系，加快低空飞行服务站体系建设，推进建设低空飞行服务调度平台。</p>
+                    <a class="card-link" href="http://finance.china.com.cn/news/20260106/6287961.shtml" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://www.163.com/dy/article/KIPBOS4P051288FS.html" target="_blank">专家解读：锚定低空经济，民航工作会议如何定调2026</a></div>
+                        <span class="source-tag">网易</span>
+                    </div>
+                    <p class="card-content">民航会议释放四大积极信号：政策体系化、基建网络化、技术协同化、场景规模化。重点聚焦飞行服务站体系与低空调度平台建设，精准破解"上天难"核心痛点，筑牢"管得住"监管根基。</p>
+                    <a class="card-link" href="https://www.163.com/dy/article/KIPBOS4P051288FS.html" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://www.baogaobox.com/insights/260217000025676.html" target="_blank">低空经济行业深度分析：2026年低空产业五大发展趋势</a></div>
+                        <span class="source-tag">远瞻慧库</span>
+                    </div>
+                    <p class="card-content">2025年低空经济市场规模预计达1.5万亿元，实名登记无人机突破328万架，飞行时长同比增长近70%。"十五五"期间，低空经济将聚焦政策与标准"双轮驱动"，为规模化发展扫清障碍。</p>
+                    <a class="card-link" href="https://www.baogaobox.com/insights/260217000025676.html" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 行业报告与专利 -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg class="section-icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                行业深度报告
+            </h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://www.sohu.com/a/984475058_121755728?scm=10001.8085_13-8085_13.0.0-0-0-0-0.0" target="_blank">低空应用商业模式发展分析报告(2026)</a></div>
+                        <spanclass="source-tag">TD产业联盟</span>
+                    </div>
+                    <p class="card-content">报告围绕低空经济核心环节，系统剖析行业发展环境、商业模式现状、企业实践及未来趋势。2025年投融资事件289起，融资金额261.66亿元；农林植保无人机市场规模达281亿元。</p>
+                    <a class="card-link" href="https://www.sohu.com/a/984475058_121755728?scm=10001.8085_13-8085_13.0.0-0-0-0-0.0" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://www.chinairn.com/hyzx/20260213/092655249.shtml" target="_blank">2026-2030年中国城市空中交通行业深度分析</a></div>
+                        <span class="source-tag">中研网</span>
+                    </div>
+                    <p class="card-content">分析城市空中交通如何重构城市天际线与通勤地图。政策层面，民航局推动低空空域分类划设试点，建立"简化申报、动态监控"的飞行服务保障机制；地方层面，深圳、合肥、广州、成都等地率先出台低空经济行动方案。</p>
+                    <a class="card-link" href="https://www.chinairn.com/hyzx/20260213/092655249.shtml" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><a href="https://www.cnblogs.com/digiproto/p/19549988.html" target="_blank">低空经济产业动态：2025年度盘点与趋势观察</a></div>
+                        <span class="source-tag">迪捷软件</span>
+                    </div>
+                    <p class="card-content">低空经济以无人机、eVTOL、通航飞机为载体，覆盖物流配送、城市空中交通(UAM)、应急救援、农业植保、低空旅游等应用场景。2026国际无人机应用及防控大会将于6月25-27日在北京举办。</p>
+                    <a class="card-link" href="https://www.cnblogs.com/digiproto/p/19549988.html" target="_blank">
+                        查看详情 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>数据来源：网络搜索收集 | 生成时间：2026年4月14日</p>
+            <p style="margin-top: 10px; color: #475569;">本页面内容仅供学习研究参考</p>
+        </footer>
+    </div>
+</body>
+</html>

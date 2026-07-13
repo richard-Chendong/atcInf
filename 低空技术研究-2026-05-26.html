@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空技术研究资讯 - 2026-05-26</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 50px 40px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 15s linear infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(90deg, #ffffff, #64b5f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .date-badge {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 25px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            font-size: 0.95em;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #64b5f6;
+        }
+        
+        .stat-label {
+            font-size: 0.85em;
+            opacity: 0.8;
+        }
+        
+        .category {
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .category:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .category-header {
+            padding: 20px 30px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .category-header h2 {
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        
+        .category-icon {
+            font-size: 1.8em;
+        }
+        
+        .cat-policy .category-header { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .cat-platform .category-header { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .cat-tech .category-header { background: linear-gradient(135deg, #27ae60, #1e8449); }
+        .cat-standard .category-header { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .cat-research .category-header { background: linear-gradient(135deg, #f39c12, #d68910); }
+        .cat-industry .category-header { background: linear-gradient(135deg, #1abc9c, #16a085); }
+        
+        .article-list {
+            padding: 0;
+        }
+        
+        .article-item {
+            padding: 25px 30px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s ease;
+        }
+        
+        .article-item:last-child {
+            border-bottom: none;
+        }
+        
+        .article-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .article-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+            flex: 1;
+            line-height: 1.5;
+        }
+        
+        .article-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .article-title a:hover {
+            color: #3498db;
+        }
+        
+        .article-source {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            padding: 4px 12px;
+            background: #ecf0f1;
+            border-radius: 15px;
+            white-space: nowrap;
+            margin-left: 15px;
+        }
+        
+        .article-summary {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85em;
+            color: #95a5a6;
+        }
+        
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .article-link {
+            color: #3498db;
+            text-decoration: none;
+            padding: 5px 15px;
+            border: 1px solid #3498db;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        
+        .article-link:hover {
+            background: #3498db;
+            color: white;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        .footer-note {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .stats-bar {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .article-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .article-source {
+                margin-left: 0;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>低空技术研究资讯</h1>
+            <p class="subtitle">低空飞行服务调度平台 | 航线规划 | 空域管理</p>
+            <div class="date-badge">
+                <span>数据收集日期：2026年5月26日</span>
+            </div>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">资讯分类</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">18</div>
+                    <div class="stat-label">篇文献/资讯</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">1天</div>
+                    <div class="stat-label">监测周期</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 政策法规与机构建设 -->
+        <div class="category cat-policy">
+            <div class="category-header">
+                <span class="category-icon">🏛️</span>
+                <h2>政策法规与机构建设</h2>
+            </div>
+            <div class="article-list">
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">设立两个"低空司"，中国低空经济前景如何？</a></div>
+                        <span class="article-source">中国网</span>
+                    </div>
+                    <p class="article-summary">5月13日，中国民航局低空安全司正式亮相，与国家发改委低空经济发展司形成"双司联动"格局。低空安全司职责包括起草低空民航发展规划、统筹低空安全与发展、建设低空飞行服务调度平台和低空飞行服务站体系等。标志着中国低空经济治理结构迈入新阶段，为产业规模化、高质量发展提供制度保障。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-05-26</span>
+                        <a href="https://中国网/#tencent-59b99976-f1db-438b-a524-6780b6db26f4-5" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">多所高校密集增加低空专业</a></div>
+                        <span class="article-source">第一财经</span>
+                    </div>
+                    <p class="article-summary">教育部发布2026年本科专业目录，新增"低空经济与管理"（中国社会科学院大学）和"低空安全管理"（中国人民警察大学）两个专业。南京航空航天大学、北京航空航天大学等高校增设"低空技术与工程"专业，形成完整的低空经济人才培养体系。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-05-25</span>
+                        <a href="https://今日头条/#tencent-c359419b-c646-4579-8159-fe8f56549202-1" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">双司护航！低空经济崛起，三大"低空"新增专业适配不同考生</a></div>
+                        <span class="article-source">搜狐</span>
+                    </div>
+                    <p class="article-summary">详细解读低空技术与工程、低空经济与管理、低空安全管理三大新增专业的培养方向和就业前景。2026年市场规模预计突破1万亿元，复合型人才缺口巨大，高校"低空+"专业布局正加速推进。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-05-25</span>
+                        <a href="https://搜狐/#tencent-59b99976-f1db-438b-a524-6780b6db26f4-3" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 飞行服务调度平台 -->
+        <div class="category cat-platform">
+            <div class="category-header">
+                <span class="category-icon">🛸</span>
+                <h2>飞行服务调度平台</h2>
+            </div>
+            <div class="article-list">
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">光明瞰西洽：航天时代"九天航驭"助推低空审批迈入"军地民联审"时代</a></div>
+                        <span class="article-source">光明网</span>
+                    </div>
+                    <p class="article-summary">航天时代低空科技携"九天航驭"低空智能网联系统亮相西洽会。该平台以"九天航驭"为核心底座，率先打通"军地民联审"机制。平台纵向打通战区、民航局及国家UOM系统，横向联通公安、应急等34家单位，已接入37家主体、6082架航空器，日均常态化飞行超2.3万架次。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-05-25</span>
+                        <a href="https://光明网/#tencent-36ac2dd0-9619-472b-85f2-02053d84c131-1" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">川渝低空飞行线上联审首单办结</a></div>
+                        <span class="article-source">重庆日报</span>
+                    </div>
+                    <p class="article-summary">5月18日川渝一体化低空运行管理服务平台启动公测，5月22日区域首单低空飞行空域申请顺利办结。军航航管部门、民航西南空管局联合川渝两地政府，依托军地民低空飞行服务平台与UOM平台，打通多方信息壁垒，推行线上并联审批新模式。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-05-25</span>
+                        <a href="https://企鹅号/#tencent-40b24aec-1494-4314-b9fd-1f6366dbeba7-2" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">莱斯信息发布《莱斯低空飞行服务平台系统软件V1.0》</a></div>
+                        <span class="article-source">搜狐</span>
+                    </div>
+                    <p class="article-summary">莱斯信息在软件著作权登记方面取得新进展，注册低空飞行服务平台系统软件。该系统结合GIS地理信息系统和AI算法，为无人机等飞行器安全运行提供技术支持，实现飞行数据实时监测和管理，为低空经济发展注入新动力。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-05-26</span>
+                        <a href="https://www.sohu.com/a/827251278_121798711" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 低空飞行计划申报 -->
+        <div class="category cat-tech">
+            <div class="category-header">
+                <span class="category-icon">📝</span>
+                <h2>低空飞行计划申报</h2>
+            </div>
+            <div class="article-list">
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">告别"多头跑"：川渝低空飞行申请实现线上联审</a></div>
+                        <span class="article-source">央广网</span>
+                    </div>
+                    <p class="article-summary">详细介绍了川渝低空飞行线上联审的操作流程。企业用户通过"渝快办"、政务用户通过"渝快政"搜索"低空飞行社会服务"，填报用空需求后系统自动推送三方同步审核，审批进度实时可查，结果线上返回。平台还具备周边10公里内空中动态预警功能。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-05-25</span>
+                        <a href="https://企鹅号/#tencent-40b24aec-1494-4314-b9fd-1f6366dbeba7-1" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">"宁易飞"小程序：指尖通云端一键畅飞行</a></div>
+                        <span class="article-source">南京国资</span>
+                    </div>
+                    <p class="article-summary">南京市空地数智集团开发的全国首创微信小程序，把曾经繁琐复杂的低空审批变成指尖便捷服务。用户只需提前一天在小程序上提交飞行空域、航线、时间等信息，即可全程线上办理。飞行前平台自动核验信息、智能调配航线；飞行中实时推送气象、通信、空域态势；飞行结束后完整轨迹全程留存。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-05-25</span>
+                        <a href="https://搜狐/#tencent-8a0b02a1-ef56-4f6d-9561-ad19cad0420e-1" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">航天宏图注册《无人机飞行计划申报系统V1.0》</a></div>
+                        <span class="article-source">搜狐</span>
+                    </div>
+                    <p class="article-summary">航天宏图成功注册无人机飞行计划申报系统和低空智巡软件两个项目软件著作权。飞行计划申报系统通过简单易用的界面设计，使飞行计划的编制、审核和执行流程更加流畅，降低操作人员负担，减少人为错误发生。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-05-25</span>
+                        <a href="https://www.sohu.com/a/842707816_121924584" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 航路拥堵治理与空域管理 -->
+        <div class="category cat-research">
+            <div class="category-header">
+                <span class="category-icon">🛤️</span>
+                <h2>航路拥堵治理与空域管理</h2>
+            </div>
+            <div class="article-list">
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">空中交通会堵车吗？低空航路规划与调度系统揭秘</a></div>
+                        <span class="article-source">搜狐</span>
+                    </div>
+                    <p class="article-summary">系统阐述低空交通防堵解决方案：1）分层飞行：物流无人机低空通行、载人eVTOL中层通勤、观光飞行器高层巡航；2）网格化空域：绿色为通畅、黄色为趋近饱和、红色为禁飞/拥堵；3）单向航路+分离航线：核心城区采用单向通行、往返分离；4）AI动态预规划：四维动态航路规划，提前规避拥堵。AI智能调度系统形成感知、预测、决策、执行全闭环管控。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-05-25</span>
+                        <a href="https://搜狐/#tencent-4e1458fb-6c23-4fcc-80fa-e5e43e425fdf-1" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">空域容量流量协同管理关键技术研究</a></div>
+                        <span class="article-source">万方数据</span>
+                    </div>
+                    <p class="article-summary">南京航空航天大学硕士学位论文，研究空域容量与交通流的耦合机理。提出基于复杂性的管制工作负荷分析方法，构建空域容量流量耦合模型。战略阶段采用基于时间窗约束的航班时刻资源配置策略；预战术阶段采用基于条件航路动态优化的终端空域路由指派；战术阶段提出动态条件下空域管制移交间隔更新方法。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-05-26</span>
+                        <a href="https://d.wanfangdata.com.cn/thesis/D01281667" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">低空空域容量评估研究综述</a></div>
+                        <span class="article-source">长安大学</span>
+                    </div>
+                    <p class="article-summary">发表在《交通运输工程学报》的综述论文，系统梳理低空空域容量评估方法。包括基于复杂性的评估方法、基于管制工作负荷的评估方法等，为低空经济时代的空域管理提供理论支撑。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-05-26</span>
+                        <a href="https://transport.chd.edu.cn/cn/article/doi/10.19818/j.cnki.1671-1637.2023.06.003" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 标准与规范 -->
+        <div class="category cat-standard">
+            <div class="category-header">
+                <span class="category-icon">📋</span>
+                <h2>标准与规范</h2>
+            </div>
+            <div class="article-list">
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">T/CPUMT 053-2026《军民通用低空飞行服务站建设指南》</a></div>
+                        <span class="article-source">全国团体标准信息平台</span>
+                    </div>
+                    <p class="article-summary">中国和平利用军工技术协会发布，给出了低空飞行服务站的场地设施、设施设备、服务站系统、建设与运行管理等指导。适用于A类、B类服务站的建设，亦可作为低空基础设施建设的参考依据。起草单位包括中交综合规划设计院、同济大学等。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-03-05</span>
+                        <a href="https://www.ttbz.org.cn/standardDetail.html?id=dh22jsbkklcrh743ql71va4ipyr0vrg" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">T/JSAS 129-2026《低空航空器导航基础设施应用规范》</a></div>
+                        <span class="article-source">全国团体标准信息平台</span>
+                    </div>
+                    <p class="article-summary">江苏省标准化协会发布，给出了低空航空器导航基础设施应用的基本要求、机载定位设备、基准站、监测站、数据中心等规范。适用于真高1000米(含)以下低空空域内航空器导航基础设施的规划、设计、建设、测试、服务运营与管理。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-03-24</span>
+                        <a href="https://www.ttbz.org.cn/standardDetail.html?id=zgop4ewlmu4dkk6c5xn0ilw1vj5cytx" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">MH/T 4055《低空飞行服务系统技术规范》系列标准</a></div>
+                        <span class="article-source">民航局</span>
+                    </div>
+                    <p class="article-summary">中国民用航空行业标准，规定了低空飞行服务系统的三级架构和通用配置要求。包含第1部分架构与配置、第2部分技术要求、第3部分测试方法。适用于低空飞行服务系统的规划、设计、研发、建设、检验和验收。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2022-10-28</span>
+                        <a href="https://std.samr.gov.cn/hb/search/stdHBDetailed?id=041DF5E7782BB996E06397BE0A0A5D88" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 行业应用与产品 -->
+        <div class="category cat-industry">
+            <div class="category-header">
+                <span class="category-icon">🚀</span>
+                <h2>行业应用与产品</h2>
+            </div>
+            <div class="article-list">
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">南京低空飞行服务平台：打通城市"低空微循环"</a></div>
+                        <span class="article-source">南京国资</span>
+                    </div>
+                    <p class="article-summary">南京市交通集团以低空经济为翼，构建完善的低空服务体系。截至目前，南京已获批空域208片、总面积2332平方公里，航线总里程超3500公里，累计服务超60万架次、日均保障1100架次。典型应用包括：急救血液跨江速达（单程最快10分钟）、生鲜食材精准入校配送、跨江大桥无人机智能巡检等。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-05-25</span>
+                        <a href="https://搜狐/#tencent-59b99976-f1db-438b-a524-6780b6db26f4-2" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">理工雷科低空安全感知测试方案亮相2026深圳UASE无人机展</a></div>
+                        <span class="article-source">企鹅号</span>
+                    </div>
+                    <p class="article-summary">理工雷科携低空安全感知全系列测试方案重磅亮相，包括：无人机场景模拟测试系统（高保真、可定制、可复现的场景模拟与测试验证）、无人机避障及定位评估系统（专业电磁屏蔽暗室环境）、无人机生产测试系统（面向规模化量产质检场景的全流程自动化测试）。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-05-25</span>
+                        <a href="https://企鹅号/#tencent-8a0b02a1-ef56-4f6d-9561-ad19cad0420e-2" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">雷科防务携多款硬核产品亮相2026国际低空经济与无人系统博览会</a></div>
+                        <span class="article-source">企鹅号</span>
+                    </div>
+                    <p class="article-summary">雷科防务展出低慢小目标探测与防御解决方案、射频前端分系统集成、国产化计算与处理平台、低空安全感知与导航定位测试、安全存储等系列产品。低空探测雷达和无线电侦测设备可实时传输无人机信息，管控平台根据目标距离、角度、黑白名单确认危险等级，联动处置设备进行处置。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-05-25</span>
+                        <a href="https://企鹅号/#tencent-59b99976-f1db-438b-a524-6780b6db26f4-6" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 低空大模型智能体 -->
+        <div class="category cat-tech">
+            <div class="category-header">
+                <span class="category-icon">🤖</span>
+                <h2>低空大模型智能体应用</h2>
+            </div>
+            <div class="article-list">
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">"九天航驭"平台基于航天科技集团"天玄大模型"打造低空垂类大模型</a></div>
+                        <span class="article-source">光明网</span>
+                    </div>
+                    <p class="article-summary">航天时代低空科技的"九天航驭"平台基于航天科技集团"天玄大模型"打造低空垂类大模型，通过民航局FSS及USS最高标准符合性检查，将用户申报效率提升60%以上，构建起能自主进化的低空"交通大脑"。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-05-25</span>
+                        <a href="https://光明网/#tencent-36ac2dd0-9619-472b-85f2-02053d84c131-1" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <div class="article-header">
+                        <div class="article-title"><a href="#">数航智境：AI智慧低空最好的状态，是藏于无声，护于无形</a></div>
+                        <span class="article-source">企鹅号</span>
+                    </div>
+                    <p class="article-summary">数航智境负责人周冰洁专访，分享企业"机-网-云"一体化解决方案创新理念。核心是通过AI主动识别环境、自动调整飞行策略、提前预警风险、沉淀数据资产，让用户无需感知背后技术，只享受效率提升、风险降低、作业省心的体验。专注攻克恶劣环境下的"次次可靠"能力。</p>
+                    <div class="article-meta">
+                        <span class="article-date">📅 2026-05-25</span>
+                        <a href="https://企鹅号/#tencent-36ac2dd0-9619-472b-85f2-02053d84c131-2" class="article-link" target="_blank">查看原文</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-note">
+                <p>📊 本报告由 Mavis 自动生成 | 数据来源：网络搜索</p>
+                <p style="margin-top: 8px; font-size: 0.85em;">收集周期：2026年5月25日-26日 | 共收录18篇相关资讯</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

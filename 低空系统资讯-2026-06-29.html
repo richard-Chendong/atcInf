@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>低空系统资讯 2026-06-29</title>
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --card-bg: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #5f5f5f;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --border: #e5e5e0;
+    --tag-legal: #dcfce7; --tag-legal-text: #166534;
+    --tag-policy: #fef3c7; --tag-policy-text: #92400e;
+    --tag-platform: #dbeafe; --tag-platform-text: #1e40af;
+    --tag-bidding: #fce7f3; --tag-bidding-text: #9d174d;
+    --tag-infra: #e0e7ff; --tag-infra-text: #3730a3;
+    --tag-standard: #ccfbf1; --tag-standard-text: #134e4a;
+    --strength-high: #dcfce7; --strength-high-text: #166534;
+    --strength-mid: #fef9c3; --strength-mid-text: #854d0e;
+    --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--text); line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  .header {
+    background: linear-gradient(135deg, #0c1929 0%, #1a365d 40%, #1e40af 100%);
+    color:#fff; padding:44px 0 36px; text-align:center; position:relative; overflow:hidden;
+  }
+  .header::after {
+    content:''; position:absolute; bottom:0; left:0; right:0; height:3px;
+    background: linear-gradient(90deg, #3b82f6, #06b6d4, #3b82f6);
+  }
+  .header h1 { font-size:26px; font-weight:700; letter-spacing:0.5px; margin-bottom:6px; }
+  .header .subtitle { font-size:13px; opacity:0.8; font-weight:400; }
+  .header .meta { margin-top:14px; font-size:11px; opacity:0.55; }
+  .container { max-width:960px; margin:0 auto; padding:28px 20px; }
+
+  .intro-banner {
+    background: linear-gradient(135deg, #fef3c7 0%, #ffedd5 100%);
+    border:1px solid #fcd34d; border-radius:10px; padding:16px 20px; margin-bottom:28px;
+    font-size:13px; color:#92400e; line-height:1.7;
+  }
+  .intro-banner strong { color:#78350f; }
+
+  .section { margin-bottom:42px; }
+  .section-title {
+    font-size:18px; font-weight:700; color:#0c1929; padding-bottom:10px;
+    border-bottom:2px solid #e2e8f0; margin-bottom:20px; display:flex; align-items:center; gap:8px;
+  }
+  .section-title .icon { font-size:20px; }
+
+  .news-list { display:flex; flex-direction:column; gap:14px; }
+  .news-card {
+    background:var(--card-bg); border-radius:10px; padding:18px 22px;
+    box-shadow:var(--shadow); border:1px solid var(--border);
+    transition: box-shadow 0.2s, transform 0.15s; cursor:pointer; position:relative;
+  }
+  .news-card:hover { box-shadow:var(--shadow-hover); transform:translateY(-1px); }
+  .news-card .card-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; gap:10px; }
+  .news-card .card-title { font-size:15px; font-weight:600; color:#0c1929; line-height:1.5; flex:1; }
+  .news-card .card-badges { display:flex; gap:5px; flex-shrink:0; flex-wrap:wrap; }
+  .badge {
+    font-size:10px; padding:2px 7px; border-radius:3px; font-weight:500; white-space:nowrap;
+  }
+  .badge-legal { background:var(--tag-legal); color:var(--tag-legal-text); }
+  .badge-policy { background:var(--tag-policy); color:var(--tag-policy-text); }
+  .badge-platform { background:var(--tag-platform); color:var(--tag-platform-text); }
+  .badge-bidding { background:var(--tag-bidding); color:var(--tag-bidding-text); }
+  .badge-infra { background:var(--tag-infra); color:var(--tag-infra-text); }
+  .badge-standard { background:var(--tag-standard); color:var(--tag-standard-text); }
+  .strength-high { background:var(--strength-high); color:var(--strength-high-text); }
+  .strength-mid { background:var(--strength-mid); color:var(--strength-mid-text); }
+  .news-card .card-meta {
+    font-size:11px; color:var(--text-secondary); display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .news-card .card-summary { font-size:13px; color:#3a3a3a; line-height:1.65; margin-top:6px; }
+  .news-card .card-source { font-size:11px; color:#999; margin-top:5px; }
+  .news-card .card-link {
+    font-size:11px; color:var(--accent); text-decoration:none; margin-top:6px; display:inline-block; font-weight:500;
+  }
+  .news-card .card-link:hover { text-decoration:underline; }
+  .news-card .card-link::after { content:' ↗'; font-size:10px; }
+
+  .footer {
+    text-align:center; padding:28px 0; font-size:11px; color:#aaa;
+    border-top:1px solid var(--border); margin-top:40px; line-height:1.8;
+  }
+
+  @media (max-width:640px) {
+    .header { padding:28px 0 24px; }
+    .header h1 { font-size:20px; }
+    .news-card .card-header { flex-direction:column; }
+    .news-card { padding:14px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>低空系统资讯周报</h1>
+  <div class="subtitle">聚焦空管自动化 · 飞行服务平台 · 运行控制(AOC) · 智能网联 · 一网统飞 · 无人机管控</div>
+  <div class="meta">2026年6月23日 — 6月29日 &nbsp;|&nbsp; 整理时间：2026-06-29</div>
+</div>
+
+<div class="container">
+
+<div class="intro-banner">
+  <strong>📌 本周核心脉络：</strong>新修订《民用航空法》将于<strong>7月1日（2天后）正式施行</strong>，首次在国家法律层面设立"低空经济发展促进"专章，确立0-120米开放空域（备案制）+ 120-300米管制空域（简化报备制）框架。6月30日为12大试点城市空域改革截止日。全国UOM平台完成GIS数据更新，多省适飞空域大幅扩容。低空经济正从"政策热"走向"法治保障+商业闭环"的关键拐点。
+</div>
+
+<!-- ====== 1. 法治与政策 ====== -->
+<div class="section">
+  <div class="section-title"><span class="icon">⚖️</span> 法治与政策 · 本周重磅</div>
+  <div class="news-list">
+
+    <div class="news-card" onclick="window.open('https://yuanxiangsky.com/N/1499.html','_blank')">
+      <div class="card-header">
+        <div class="card-title">2026低空经济"硬性时间节点"全梳理：6月30日、7月1日、12月31日三关连闯</div>
+        <div class="card-badges">
+          <span class="badge badge-legal">法治</span><span class="badge badge-policy">政策</span><span class="badge strength-high">强相关</span>
+        </div>
+      </div>
+      <div class="card-meta"><span>📅 2026-06-25</span><span>🏛️ 圆象低空产业观察</span></div>
+      <div class="card-summary">
+        <strong>三个关键节点：</strong>① 6月30日——北京、上海、广州、深圳、南京、杭州、成都、重庆、武汉、西安、青岛、厦门12城须完成城市低空航路划设与常态航线开通；② 7月1日——新《民用航空法》施行，0-120米开放空域（备案制）+ 120-300米管制空域（简化报备制），审批从72小时压缩至2小时内；③ 12月31日——全国市场规模突破2.5万亿，单城产业规模≥500亿（北上广深≥1000亿）。
+      </div>
+      <div class="card-source">来源：圆象低空产业观察 · yuanxiangsky.com</div>
+    </div>
+
+    <div class="news-card" onclick="window.open('https://www.nbd.com.cn/articles/2026-06-24/4436366.html','_blank')">
+      <div class="card-header">
+        <div class="card-title">每经专访朱克力：低空经济迎来制度化拐点，UOM平台全国一张网、分钟级更新</div>
+        <div class="card-badges">
+          <span class="badge badge-policy">政策解读</span><span class="badge strength-high">强相关</span>
+        </div>
+      </div>
+      <div class="card-meta"><span>📅 2026-06-25</span><span>🏛️ 每日经济新闻</span></div>
+      <div class="card-summary">
+        国研新经济研究院创始院长、湾区低空经济研究院院长朱克力接受专访指出：全国适飞空域调整+UOM平台GIS数据更新，标志着低空空域正从"管控逻辑"向"生产要素逻辑"实质性转变。广西、四川、湖南、江西适飞空域占比分别达84.26%、80%、75.5%、64.71%。地方政府需从"争空域"转向建生态、强配套、育场景。同步推进USS服务平台建设，与UOM打通数据。
+      </div>
+      <div class="card-source">来源：每经网 · nbd.com.cn</div>
+    </div>
+
+    <div class="news-card" onclick="window.open('https://news.qq.com/rain/a/20260621A06TPJ00','_blank')">
+      <div class="card-header">
+        <div class="card-title">空域重构深度解读：全国20+省公布新版适飞空域，UOM完成统一GIS数据更新</div>
+        <div class="card-badges">
+          <span class="badge badge-policy">深度分析</span><span class="badge strength-high">强相关</span>
+        </div>
+      </div>
+      <div class="card-meta"><span>📅 2026-06-21</span><span>🏛️ 城市进化论 / 腾讯新闻</span></div>
+      <div class="card-summary">
+        今年5月起全国新版微型/轻型/小型无人机适飞空域正式启用，UOM同步完成全国空域GIS数据更新。湖南适飞空域占比从43%飙升至75.5%（增幅全国第一），广东新版适飞空域约10.24万km²（增长16%）。UOM是"交通规则制定者"，省级平台是"区域运营调度者"。民航局今年初已发文确立UOM与USS系统数据交换规范。
+      </div>
+      <div class="card-source">来源：腾讯新闻 · news.qq.com</div>
+    </div>
+
+    <div class="news-card" onclick="window.open('https://m.youuav.com/news/detail/202606/63408.html','_blank')">
+      <div class="card-header">
+        <div class="card-title">国家发改委官宣：低空基础设施纳入7万亿"新基建"，民企迎三大黄金赛道</div>
+        <div class="card-badges">
+          <span class="badge badge-policy">顶层政策</span><span class="badge strength-high">强相关</span>
+        </div>
+      </div>
+      <div class="card-meta"><span>📅 2026-06-17（发改委发布会）</span><span>🏛️ 国家发改委</span></div>
+      <div class="card-summary">
+        发改委新闻发言人李超宣布低空基础设施正式纳入国家7万亿"新基建"大盘子，明确"持续推动央国企开放高价值应用场景，能源、交通、算力等核心资源向民企敞开"。低空经济战略地位实现"三级跳"：2024年"新增长引擎"→2025年"新兴产业"→2026年"新兴支柱产业"。2026年市场规模预计突破1万亿元，2035年达3.5万亿元。
+      </div>
+      <div class="card-source">来源：无人机网 · youuav.com</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====== 2. 平台与产品动态 ====== -->
+<div class="section">
+  <div class="section-title"><span class="icon">🖥️</span> 飞行服务平台与系统动态</div>
+  <div class="news-list">
+
+    <div class="news-card" onclick="window.open('https://www.163.com/dy/article/L01KTVOP054257KQ.html','_blank')">
+      <div class="card-header">
+        <div class="card-title">浙江"浙里畅飞"低空飞行服务移动端正式上线——飞行服务迈入"指尖时代"</div>
+        <div class="card-badges">
+          <span class="badge badge-platform">平台发布</span><span class="badge strength-high">强相关</span>
+        </div>
+      </div>
+      <div class="card-meta"><span>📅 2026-06-22</span><span>📍 浙江</span><span>🏛️ 浙江省交通运输厅</span></div>
+      <div class="card-summary">
+        作为浙江省无人机运行与监管服务平台的移动端入口，可通过浙里办、微信小程序访问。首发版本搭载<strong>适飞空域查询</strong>功能（输入地名/经纬度/航线区域即可核验合规性）、点位级气象服务、知识库板块。今年5月《浙江省民用航空条例》已审议通过并增设"低空飞行促进"专章，浙江已布局11个省级"先飞区"试点。
+      </div>
+      <div class="card-source">来源：网易新闻 · 163.com</div>
+    </div>
+
+    <div class="news-card" onclick="window.open('https://www.163.com/dy/article/L05KI9KP0515AQGM.html','_blank')">
+      <div class="card-header">
+        <div class="card-title">深圳120米以下低空空域常态化全域开放——适飞空域覆盖市域75%</div>
+        <div class="card-badges">
+          <span class="badge badge-platform">空域开放</span><span class="badge strength-high">强相关</span>
+        </div>
+      </div>
+      <div class="card-meta"><span>📅 2026-06-23（报道）</span><span>📍 深圳</span></div>
+      <div class="card-summary">
+        深圳全市120米以下低空空域实现常态化全域开放，适飞空域覆盖75%，福田、南山、罗湖等中心城区全面纳入常规飞行管理。已建成<strong>1284个标准化起降点</strong>，依托近万个5G-A通感基站构建空天地一体化监管体系。全市日均低空飞行超<strong>2700架次</strong>，丰翼科技、美团已开通310条市内货运航线+8条跨城专线。2025年深圳无人机载货飞行突破百万架次。
+      </div>
+      <div class="card-source">来源：通航在线 / 深圳特区报</div>
+    </div>
+
+    <div class="news-card" onclick="window.open('https://m.163.com/dy/article/L0CDSLER0511A632.html','_blank')">
+      <div class="card-header">
+        <div class="card-title">三大运营商低空基建全景：电信四大平台联动、移动5G-A通感一体、联通低空数字底座</div>
+        <div class="card-badges">
+          <span class="badge badge-infra">基础设施</span><span class="badge strength-high">强相关</span>
+        </div>
+      </div>
+      <div class="card-meta"><span>📅 2026-06-26</span><span>🏢 中国电信/移动/联通</span></div>
+      <div class="card-summary">
+        <strong>中国电信</strong>发布AI+"1+1+4+N"低空经济能力体系，天翼星瀚/星巡/星盾/星云四大平台协同，星巡低空服务监管平台已落地29个省市。以苏州为例，平台通过民航局B类飞行服务站审查，服务167家企业，获批空域153块、航线538条。<strong>中国移动</strong>在重庆建成640km²低空智联网示范区，推出四码合一无人机精细化管控体系，反制成功率超90%。<strong>中国联通</strong>在广东打造近10000km²低空专网，在宁波构建低空数字底座与统一服务平台。
+      </div>
+      <div class="card-source">来源：网易新闻 · 163.com</div>
+    </div>
+
+    <div class="news-card" onclick="window.open('https://www.info.gov.hk/gia/general/202606/24/P2026062400273.htm','_blank')">
+      <div class="card-header">
+        <div class="card-title">香港立法会推动低空经济发展：研究设立UTM系统与多场景共享平台</div>
+        <div class="card-badges">
+          <span class="badge badge-policy">政策动态</span><span class="badge strength-mid">一般相关</span>
+        </div>
+      </div>
+      <div class="card-meta"><span>📅 2026-06-24</span><span>📍 香港</span><span>🏛️ 香港立法会</span></div>
+      <div class="card-summary">
+        香港立法会议员提出推动低空经济发展的多项质询，包括：设立本地UTM系统和多场景/多用户共享平台的时间表、成立"香港低空管理局"作为专责法定管理机构、修订《小型无人机令》扩展至5700公斤以上重型无人机、确立AI辅助飞行申请的法律地位等。政府回应将构建具国际竞争力的低空经济生态圈，打造低空创新应用亚太区枢纽。
+      </div>
+      <div class="card-source">来源：香港政府新闻公报 · info.gov.hk</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====== 3. 招投标与项目 ====== -->
+<div class="section">
+  <div class="section-title"><span class="icon">📊</span> 招投标与项目落地</div>
+  <div class="news-list">
+
+    <div class="news-card" onclick="window.open('https://www.laernoc.com/productinfo/1844273797960699905','_blank')">
+      <div class="card-header">
+        <div class="card-title">嵊泗县低空飞服中心低空综合管理平台开发及配套软件采购——200万元</div>
+        <div class="card-badges">
+          <span class="badge badge-bidding">招标</span><span class="badge strength-high">强相关</span>
+        </div>
+      </div>
+      <div class="card-meta"><span>📅 2026-06-03发布 / 06-25截止</span><span>📍 浙江舟山嵊泗</span><span>💰 200万元</span></div>
+      <div class="card-summary">
+        嵊泗县交通运输局采购低空飞服中心低空综合管理平台开发及配套软件。该项目为县级低空飞行服务中心的核心信息化建设，直接涉及飞行服务与综合管理平台。
+      </div>
+      <div class="card-source">来源：低空经济资源网 · laernoc.com</div>
+    </div>
+
+    <div class="news-card" onclick="window.open('https://www.bidcenter.com.cn/news-426468878-1.html','_blank')">
+      <div class="card-header">
+        <div class="card-title">低空公司2026年第七批无人机设备及服务采购——32套无人机套装招标</div>
+        <div class="card-badges">
+          <span class="badge badge-bidding">招标</span><span class="badge strength-mid">一般相关</span>
+        </div>
+      </div>
+      <div class="card-meta"><span>📅 2026-06-24发布 / 06-30截止</span><span>📍 湖北</span></div>
+      <div class="card-summary">
+        采购三标段共32套无人机套装（含机场、无人机、电池、喊话器、探照灯、4G增强图传及2年配套保险与维护服务），中标后30个工作日交付。属于无人机设备层面的常规采购，非平台系统类。
+      </div>
+      <div class="card-source">来源：采招网 · bidcenter.com.cn</div>
+    </div>
+
+    <div class="news-card" onclick="window.open('https://www.laernoc.com/productinfo/1844273797960699905','_blank')">
+      <div class="card-header">
+        <div class="card-title">近期低空经济招投标汇总：6月下旬多项目密集发布</div>
+        <div class="card-badges">
+          <span class="badge badge-bidding">招投标汇总</span><span class="badge strength-mid">一般相关</span>
+        </div>
+      </div>
+      <div class="card-meta"><span>📅 更新至2026-06-24</span></div>
+      <div class="card-summary">
+        近期值得关注的项目：乌审旗低空经济发展实施方案（75万）、深圳信息职业技术大学低空无人机操作应用实践教学项目（225.9万）、静宁县山区果业低空社会化服务项目（140万）、国家核安保中心低空小型无人机入侵防御系统（297万）等。整体以规划咨询、教学实践、行业应用类为主，平台级系统类招标相对较少。
+      </div>
+      <div class="card-source">来源：低空经济资源网 · laernoc.com</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====== 4. 标准与规范 ====== -->
+<div class="section">
+  <div class="section-title"><span class="icon">📐</span> 标准规范与行业指引</div>
+  <div class="news-list">
+
+    <div class="news-card" onclick="window.open('https://yuanxiangsky.com/N/1448.html','_blank')">
+      <div class="card-header">
+        <div class="card-title">四部委联合印发《2026年低空经济高质量发展补充细则》——"报备即飞"全国推广</div>
+        <div class="card-badges">
+          <span class="badge badge-standard">政策细则</span><span class="badge strength-high">强相关</span>
+        </div>
+      </div>
+      <div class="card-meta"><span>📅 2026-06中旬</span><span>🏛️ 发改委/工信部/交通部/民航局</span></div>
+      <div class="card-summary">
+        罕见四部委联合发文，核心内容：①"报备即飞"从四川/上海试点正式向全国推广；②通用机场突破500个；③全国常态化航线目标超2000条。叠加7月1日新《民航法》实施，形成"上位法+产业细则"的组合拳，标志中国低空经济从政策驱动迈向法治保障。四川"扫码飞"累计保障飞行计划超3000个、飞行总时长突破5000小时、注册用户超4万人。
+      </div>
+      <div class="card-source">来源：圆象低空产业观察 · yuanxiangsky.com</div>
+    </div>
+
+    <div class="news-card" onclick="window.open('https://www.caac.gov.cn/XXGK/XXGK/FLFG/202512/t20251227_229597.html','_blank')">
+      <div class="card-header">
+        <div class="card-title">新《民用航空法》全文公布（7月1日施行）——首次增设"低空经济发展促进"专章</div>
+        <div class="card-badges">
+          <span class="badge badge-legal">法律</span><span class="badge strength-high">强相关</span>
+        </div>
+      </div>
+      <div class="card-meta"><span>📅 2025-12-27修订通过 / 2026-07-01施行</span><span>🏛️ 全国人大常委会</span></div>
+      <div class="card-summary">
+        条文从215条扩充至262条，核心突破：第74条——空域划分须兼顾"低空经济发展需要"；第225条——国家优化低空空域资源配置，推动建设民用低空飞行和应用监管服务平台，建立健全适航审定、飞行管理等制度和标准。无人机须设置唯一识别码。低空经济首次从政策层面上升到国家法律层面。
+      </div>
+      <div class="card-source">来源：中国民航局官网 · caac.gov.cn</div>
+    </div>
+
+    <div class="news-card" onclick="window.open('https://ndls.cnis.ac.cn/standard/detail/cd604610d8da2f7fc3dc494cdb1cd28e','_blank')">
+      <div class="card-header">
+        <div class="card-title">T/CAMETA 001103-2025《低空飞行综合监管控服一体化平台》团体标准已实施</div>
+        <div class="card-badges">
+          <span class="badge badge-standard">团体标准</span><span class="badge strength-high">强相关</span>
+        </div>
+      </div>
+      <div class="card-meta"><span>📅 2025-12-26发布 / 2026-03-01实施</span></div>
+      <div class="card-summary">
+        系统架构覆盖空域管理、飞行器监控、通信导航、应急处置等核心模块，规定了技术要求、安全要求和符合性判定。适用于低空经济活动中的安全管理、飞行监控、通信导航、低空交通场景态势预测、航路规划及相关系统平台的设计、开发、建设和运营。是直接对标本次研究主题的国家级团体标准。
+      </div>
+      <div class="card-source">来源：国家数字标准馆 · ndls.cnis.ac.cn</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====== FOOTER ====== -->
+<div class="footer">
+  <p>低空系统资讯周报 · 2026年6月23日—29日</p>
+  <p style="margin-top:4px;">本报告基于公开信息整理，来源包括政府官网、企业官网、权威媒体及行业研究平台。</p>
+  <p style="margin-top:2px;">标注说明：<span style="color:#166534;">强相关</span> = 直接涉及目标系统且来源可靠 · <span style="color:#854d0e;">一般相关</span> = 部分涉及或参考价值</p>
+  <p style="margin-top:4px;color:#bbb;">所有卡片均可点击跳转至原始出处</p>
+</div>
+
+</div>
+</body>
+</html>

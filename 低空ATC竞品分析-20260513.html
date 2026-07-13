@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空ATC竞品分析 - 20260513</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f7fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            color: #fff;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .header .meta {
+            margin-top: 15px;
+            font-size: 13px;
+            opacity: 0.8;
+        }
+        .content {
+            padding: 30px;
+        }
+        h2 {
+            color: #1a365d;
+            font-size: 20px;
+            margin: 30px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        h2:first-child {
+            margin-top: 0;
+        }
+        h3 {
+            color: #2c5282;
+            font-size: 16px;
+            margin: 20px 0 10px;
+        }
+        h4 {
+            color: #4a5568;
+            font-size: 14px;
+            margin: 15px 0 8px;
+        }
+        p {
+            margin-bottom: 10px;
+            color: #4a5568;
+        }
+        .section-box {
+            background: #f8fafc;
+            border-left: 4px solid #3182ce;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .company-section {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .company-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .company-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a365d;
+        }
+        .quality-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .quality-high {
+            background: #c6f6d5;
+            color: #276749;
+        }
+        .quality-medium {
+            background: #fefcbf;
+            color: #975a16;
+        }
+        .quality-low {
+            background: #fed7d7;
+            color: #c53030;
+        }
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        .product-table th {
+            background: #2c5282;
+            color: #fff;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .product-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        .product-table tr:nth-child(even) {
+            background: #f7fafc;
+        }
+        .feature-tag {
+            display: inline-block;
+            background: #ebf8ff;
+            color: #2b6cb0;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin: 2px;
+        }
+        .tech-tag {
+            display: inline-block;
+            background: #f0fff4;
+            color: #276749;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin: 2px;
+        }
+        .url-link {
+            color: #3182ce;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .url-link:hover {
+            text-decoration: underline;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .info-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .info-card .label {
+            font-size: 12px;
+            color: #718096;
+            margin-bottom: 5px;
+        }
+        .info-card .value {
+            font-size: 14px;
+            color: #2d3748;
+            font-weight: 500;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #ebf8ff 0%, #e6fffa 100%);
+            border: 1px solid #90cdf4;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        .comparison-table th {
+            background: #1a365d;
+            color: #fff;
+            padding: 12px;
+            text-align: left;
+        }
+        .comparison-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .comparison-table tr:nth-child(even) {
+            background: #f7fafc;
+        }
+        .bid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        .bid-table th {
+            background: #2c5282;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+        }
+        .bid-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .bid-table tr:nth-child(even) {
+            background: #fff7ed;
+        }
+        .budget-high {
+            color: #c53030;
+            font-weight: 600;
+        }
+        .source-list {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .source-list li {
+            margin: 8px 0;
+            padding-left: 15px;
+            position: relative;
+        }
+        .source-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #3182ce;
+        }
+        .toc {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .toc h3 {
+            margin-top: 0;
+        }
+        .toc a {
+            color: #3182ce;
+            text-decoration: none;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        .toc ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        .toc li {
+            margin: 5px 0;
+        }
+        .summary-box {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .summary-box h3 {
+            color: #fff;
+            margin-top: 0;
+        }
+        .note {
+            font-size: 12px;
+            color: #718096;
+            font-style: italic;
+            margin-top: 15px;
+        }
+        .footer {
+            background: #1a365d;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+        }
+        @media print {
+            body {
+                background: #fff;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>低空ATC竞品分析报告</h1>
+            <div class="subtitle">低空软件平台及系统竞品资料整理</div>
+            <div class="meta">研究时间范围：2026年5月6日 - 2026年5月13日（最近7天）| 报告生成日期：2026年5月13日</div>
+        </div>
+
+        <div class="content">
+            <!-- 目录 -->
+            <div class="toc">
+                <h3>目录导航</h3>
+                <ul>
+                    <li><a href="#overview">一、行业总体动态</a></li>
+                    <li><a href="#private">二、民营企业竞品分析</a></li>
+                    <li><a href="#atc">三、空管厂商竞品分析</a></li>
+                    <li><a href="#state">四、地方国企竞品分析</a></li>
+                    <li><a href="#bidding">五、招投标项目汇总</a></li>
+                    <li><a href="#comparison">六、竞品对比与技术门槛</a></li>
+                    <li><a href="#planning">七、产品规划参考</a></li>
+                    <li><a href="#sources">八、信息来源清单</a></li>
+                </ul>
+            </div>
+
+            <!-- 行业总体动态 -->
+            <h2 id="overview">一、行业总体动态</h2>
+            
+            <h3>1.1 政策与监管动态</h3>
+            <div class="section-box">
+                <h4>国家发改委低空司发布2026年研究课题征集公告</h4>
+                <p><strong>发布时间：</strong>2026年5月9日</p>
+                <p><strong>来源：</strong><a href="https://www.jiemian.com/article/14405247.html" class="url-link" target="_blank">界面新闻</a></p>
+                <p><strong>研究题目：</strong>低空经济发展立法深化研究、低空物流成本分析及降本举措研究</p>
+                <p><strong>申报截止时间：</strong>2026年5月19日</p>
+                <p><span class="feature-tag">政策研究能力</span></p>
+                <p><strong>质量评估：</strong><span class="quality-badge quality-high">高</span></p>
+            </div>
+
+            <div class="section-box">
+                <h4>《民用无人驾驶航空器系统运行识别规范》正式实施</h4>
+                <p><strong>发布时间：</strong>2026年5月1日</p>
+                <p><strong>来源：</strong>中国民用航空局官网</p>
+                <p>规范进一步加强民用无人机安全运行管理</p>
+                <p><strong>质量评估：</strong><span class="quality-badge quality-high">高</span></p>
+            </div>
+
+            <div class="section-box">
+                <h4>北京市无人驾驶航空器管理新规出台</h4>
+                <p><strong>发布时间：</strong>2026年5月1日</p>
+                <p><strong>来源：</strong>新华社</p>
+                <p><strong>核心内容：</strong>全域管制+核心部件管控</p>
+                <p><strong>质量评估：</strong><span class="quality-badge quality-high">高</span></p>
+            </div>
+
+            <h3>1.2 重大会议与活动</h3>
+            <div class="section-box">
+                <h4>2026低空产业协同与生态合伙人发展论坛</h4>
+                <p><strong>时间：</strong>2026年5月9日，浙江桐乡</p>
+                <p><strong>参会规模：</strong>超1000人</p>
+                <p><strong>主办方：</strong>中科星图联合多家协会主办</p>
+                <p><strong>质量评估：</strong><span class="quality-badge quality-high">高</span></p>
+            </div>
+
+            <div class="section-box">
+                <h4>CEE 2026中国（杭州）国际低空经济博览会</h4>
+                <p><strong>时间：</strong>2026年5月13日-15日</p>
+                <p><strong>地点：</strong>杭州国际博览中心</p>
+                <p><strong>展出面积：</strong>20,000平方米</p>
+                <p><strong>预计专业采购商：</strong>25,000人次</p>
+                <p><strong>质量评估：</strong><span class="quality-badge quality-high">高</span></p>
+            </div>
+
+            <!-- 民营企业 -->
+            <h2 id="private">二、民营企业竞品分析</h2>
+
+            <!-- 中科星图 -->
+            <div class="company-section">
+                <div class="company-header">
+                    <span class="company-name">中科星图股份有限公司（688568）</span>
+                    <span class="quality-badge quality-high">高质量</span>
+                </div>
+                <div class="section-box">
+                    <h4>产品发布：生态合伙人战略</h4>
+                    <p><strong>发布时间：</strong>2026年5月9日</p>
+                    <p><strong>来源：</strong><a href="https://www.stcn.com/article/detail/3903800.html" class="url-link" target="_blank">证券时报</a>、<a href="https://www.cei.cn//defaultsite/s/article/2026/05/12/4b4ff607-9d914745-019e-1a01020c-3d82_home.html" class="url-link" target="_blank">中国经济信息网</a></p>
+                    
+                    <h4>五位一体低空产品体系</h4>
+                    <table class="product-table">
+                        <thead>
+                            <tr>
+                                <th>产品名称</th>
+                                <th>功能定位</th>
+                                <th>技术特点</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>启航·低空规划平台</td>
+                                <td>空域规划全流程支撑</td>
+                                <td>从规划到落地全流程覆盖</td>
+                            </tr>
+                            <tr>
+                                <td>御航·低空反无平台</td>
+                                <td>低空反无安防</td>
+                                <td>已获重大活动保障应用</td>
+                            </tr>
+                            <tr>
+                                <td>天信·低空气象服务平台</td>
+                                <td>气象服务</td>
+                                <td>已在深圳、合肥等十余城试点</td>
+                            </tr>
+                            <tr>
+                                <td>驿航·低空物流应用平台</td>
+                                <td>物流配送</td>
+                                <td>推动"单点自动化"迈向"全域网联化"</td>
+</tr>
+                            <tr>
+                                <td>星瞳大模型</td>
+                                <td>全场景AI内核</td>
+                                <td>规划、飞服、监管、安全、物流等智能体</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>战略布局</h4>
+                    <ul>
+                        <li>"1+2+N+M"低空业务战略布局</li>
+                        <li>"五位一体"标准化产品矩阵</li>
+                        <li>投建运一体化可复制路径</li>
+                        <li>已签约交付城市：20余个</li>
+                    </ul>
+
+                    <h4>生态合伙人模式</h4>
+                    <ul>
+                        <li>四级成长阶梯：注册 → 黄金 → 铂金 → 钻石</li>
+                        <li>三大权益保障包：工具包、服务包、价值包</li>
+                        <li>四大经营管理机制</li>
+                    </ul>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>特色模块与技术门槛</h4>
+                    <p><span class="feature-tag">五位一体产品体系</span>
+                    <span class="feature-tag">星瞳大模型</span>
+                    <span class="feature-tag">生态合伙人模式</span></p>
+                    <p><span class="tech-tag">空天地一体化技术</span>
+                    <span class="tech-tag">星瞳大模型AI能力</span>
+                    <span class="tech-tag">投建运一体化模式</span></p>
+                </div>
+            </div>
+
+            <!-- 航天宏图 -->
+            <div class="company-section">
+                <div class="company-header">
+                    <span class="company-name">航天宏图信息技术股份有限公司</span>
+                    <span class="quality-badge quality-low">低质量</span>
+                </div>
+                <div class="section-box">
+                    <h4>近期动态</h4>
+                    <p>5月7日新闻报道未显示具体产品发布，在WTC大会上无相关信息披露，低空业务布局情况未明确。</p>
+                    <p><strong>质量评估：</strong>近期无实质性低空软件平台产品发布</p>
+                </div>
+            </div>
+
+            <!-- 海格通信 -->
+            <div class="company-section">
+                <div class="company-header">
+                    <span class="company-name">海格通信集团股份有限公司</span>
+                    <span class="quality-badge quality-medium">中等</span>
+                </div>
+                <div class="section-box">
+                    <h4>2026年二季度业绩预测</h4>
+                    <ul>
+                        <li>北斗导航业务维持高增长</li>
+                        <li>卫星通信毛利率超55%</li>
+                        <li>低空经济空管系统市占率领先</li>
+                        <li>在手订单超220亿元</li>
+                    </ul>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>特色模块与技术门槛</h4>
+                    <p><span class="feature-tag">北斗导航</span>
+                    <span class="feature-tag">卫星通信</span>
+                    <span class="feature-tag">低空经济空管系统</span></p>
+                    <p><span class="tech-tag">北斗导航技术</span>
+                    <span class="tech-tag">卫星通信技术</span></p>
+                </div>
+            </div>
+
+            <!-- 青岛云世纪 -->
+            <div class="company-section">
+                <div class="company-header">
+                    <span class="company-name">青岛云世纪信息科技有限公司</span>
+                    <span class="quality-badge quality-high">高质量</span>
+                </div>
+                <div class="section-box">
+                    <h4>产品展示："优小站"无人机自动机场</h4>
+                    <p><strong>来源：</strong><a href="https://news.21csp.com.cn/c3/202506/11426884.html" class="url-link" target="_blank">中国安防行业网</a></p>
+                    
+                    <h4>技术特点</h4>
+                    <ul>
+                        <li>集成无人值守、智能调度等8大系统模块</li>
+                        <li>高温、高湿天气下依然有很好的作业表现</li>
+                        <li>能够适应多地区各类复杂的户外环境</li>
+                        <li>部署后可代替人工执行无人机户外作业</li>
+                        <li>服务城市级低空政务感知应用</li>
+                    </ul>
+
+                    <h4>应用案例</h4>
+                    <ul>
+                        <li>崂山区部署以来累计作业超16,000架次</li>
+                        <li>总飞行时长超20万分钟</li>
+                        <li>成本降低约50%</li>
+                        <li>较手动操作无人机效率提升10倍</li>
+                    </ul>
+
+                    <h4>已部署城市</h4>
+                    <p>青岛、北京、广州、济南、德州等</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>特色模块与技术门槛</h4>
+                    <p><span class="feature-tag">优小站无人机自动机场</span>
+                    <span class="feature-tag">8大系统模块集成</span></p>
+                    <p><span class="tech-tag">无人值守技术</span>
+                    <span class="tech-tag">智能调度算法</span>
+                    <span class="tech-tag">高温高湿环境适应性</span></p>
+                </div>
+            </div>
+
+            <!-- 众合科技 -->
+            <div class="company-section">
+                <div class="company-header">
+                    <span class="company-name">众合科技股份有限公司（000925）</span>
+                    <span class="quality-badge quality-high">高质量</span>
+                </div>
+                <div class="section-box">
+                    <h4>三大核心产品发布</h4>
+                    <p><strong>来源：</strong><a href="https://stock.stockstar.com/RB2025051300007732.shtml" class="url-link" target="_blank">证券之星</a></p>
+                    
+                    <h4>产品一：UniTFCC 三余度飞控计算机</h4>
+                    <ul>
+                        <li><strong>产品定位：</strong>三余度（triple-redundant）飞行控制计算机</li>
+                        <li><strong>技术特点：</strong>采用三余度冗余设计，安全性高</li>
+                        <li><strong>升级版本：</strong>UniTFCC-B：具备高载重和载人功能</li>
+                    </ul>
+
+                    <h4>产品二：UniPort 智慧起降场</h4>
+                    <ul>
+                        <li><strong>产品定位：</strong>城市级低空基础设施</li>
+                        <li><strong>技术特点：</strong>服务于智慧起降需求</li>
+                    </ul>
+
+                    <h4>产品三：UniSpace 低空综合服务平台</h4>
+                    <ul>
+                        <li><strong>产品定位：</strong>城市级综合管理平台</li>
+                        <li><strong>技术特点：</strong>服务于政府端低空治理与产业发展</li>
+                    </ul>
+
+                    <p><strong>业务发展：</strong>2025年从"场景试点"向"体系构建"跨越</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>特色模块与技术门槛</h4>
+                    <p><span class="feature-tag">三余度飞控计算机</span>
+                    <span class="feature-tag">智慧起降场</span>
+                    <span class="feature-tag">低空综合服务平台</span></p>
+                    <p><span class="tech-tag">三余度冗余设计技术</span>
+                    <span class="tech-tag">城市级平台构建能力</span></p>
+                </div>
+            </div>
+
+            <!-- 新晨科技 -->
+            <div class="company-section">
+                <div class="company-header">
+                    <span class="company-name">新晨科技股份有限公司（300542）</span>
+                    <span class="quality-badge quality-medium">中等</span>
+                </div>
+                <div class="section-box">
+                    <h4>近期动态</h4>
+                    <p>5月11日召开业绩说明会，2025年亏损大幅收窄至-1,334.69万元，2026年一季度营收同比增长26.58%。低空业务方面积极拓展低空经济业务空间。</p>
+                    <p><strong>质量评估：</strong>具体产品信息不详</p>
+                </div>
+            </div>
+
+            <!-- 杰能科世 -->
+            <div class="company-section">
+                <div class="company-header">
+                    <span class="company-name">杰能科世智能安全科技（杭州）有限公司</span>
+                    <span class="quality-badge quality-high">高质量</span>
+                </div>
+                <div class="section-box">
+                    <h4>产品：空中交通安全防护管理平台</h4>
+                    <p><strong>来源：</strong><a href="https://www.zjsst.com/corporatenews.html" class="url-link" target="_blank">低空界官网</a></p>
+                    
+                    <h4>平台功能</h4>
+                    <ul>
+                        <li>空域分层布防</li>
+                        <li>轨迹溯源</li>
+                        <li>风险预警</li>
+                        <li>采用低空防护技术</li>
+                    </ul>
+
+                    <h4>资质荣誉</h4>
+                    <ul>
+                        <li>联合会低空服务专委会主任委员单位</li>
+                        <li>"低空安全垂域模型悟穹"获2025年度低空经济科技创新协作示范项目</li>
+                    </ul>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>特色模块与技术门槛</h4>
+                    <p><span class="feature-tag">空中交通安全防护管理平台</span>
+                    <span class="feature-tag">低空安全垂域模型悟穹</span></p>
+                    <p><span class="tech-tag">轨迹预测技术</span>
+                    <span class="tech-tag">空域冲突识别技术</span>
+                    <span class="tech-tag">智能航路规划技术</span></p>
+                </div>
+            </div>
+
+            <!-- 空管厂商 -->
+            <h2 id="atc">三、空管厂商竞品分析</h2>
+
+            <!-- 莱斯信息 -->
+            <div class="company-section">
+                <div class="company-header">
+                    <span class="company-name">南京莱斯信息技术股份有限公司（688631）</span>
+                    <span class="quality-badge quality-high">高质量</span>
+                </div>
+                <div class="section-box">
+                    <h4>产品系列：天牧系列产品</h4>
+                    <p><strong>来源：</strong><a href="https://finance.stockstar.com/RB2026051300004231.shtml" class="url-link" target="_blank">证券之星ESG报告</a>、<a href="https://finance.eastmoney.com/a/202605093732250537.html" class="url-link" target="_blank">东方财富网</a></p>
+                    
+                    <h4>技术能力</h4>
+                    <ul>
+                        <li><strong>天牧低空大模型：</strong>我国首套航空运输大模型</li>
+                        <li><strong>资质：</strong>获批江苏省智慧低空飞行管服重点实验室</li>
+                        <li><strong>战略：</strong>牵头组建省级低空经济创新联合体</li>
+                    </ul>
+
+                    <h4>中标项目</h4>
+                    <table class="product-table">
+                        <thead>
+                            <tr>
+                                <th>项目类型</th>
+                                <th>地区</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>省级低空标杆项目</td>
+                                <td>湖北</td>
+                            </tr>
+                            <tr>
+                                <td>省级低空标杆项目</td>
+                                <td>山西</td>
+                            </tr>
+                            <tr>
+                                <td>省级低空标杆项目</td>
+                                <td>浙江</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>研发实力</h4>
+                    <ul>
+                        <li><strong>2025年研发投入：</strong>15,504.52万元（占营业收入12.17%）</li>
+                        <li><strong>研发人员：</strong>316人（占比36.36%）</li>
+                        <li><strong>有效专利：</strong>170件（2025年新增64件）</li>
+                    </ul>
+
+                    <h4>战略布局</h4>
+                    <ul>
+                        <li>中国电科"网信事业国家队"定位</li>
+                        <li>覆盖国家-省-市三级的低空智能网联平台解决方案</li>
+                        <li>民航空管、城市治理核心业务基础上拓展低空经济</li>
+                    </ul>
+
+                    <p><strong>荣誉：</strong>2025数字中国创新大赛一等奖</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>特色模块与技术门槛</h4>
+                    <p><span class="feature-tag">天牧低空大模型</span>
+                    <span class="feature-tag">天牧系列产品</span>
+                    <span class="feature-tag">江苏省重点实验室</span></p>
+                    <p><span class="tech-tag">航空运输大模型技术</span>
+                    <span class="tech-tag">国产化替代能力</span></p>
+                </div>
+            </div>
+
+            <!-- 川大智胜 -->
+            <div class="company-section">
+                <div class="company-header">
+                    <span class="company-name">川大智胜软件股份有限公司</span>
+                    <span class="quality-badge quality-low">低质量</span>
+                </div>
+                <div class="section-box">
+                    <h4>近期动态</h4>
+                    <p>未搜索到2026年5月期间具体产品发布，主要为空管自动化系统。</p>
+                    <p><strong>质量评估：</strong>近期无实质性低空软件平台产品发布</p>
+                </div>
+            </div>
+
+            <!-- 民航二所 -->
+            <div class="company-section">
+                <div class="company-header">
+                    <span class="company-name">中国民航局第二研究所（民航二所）</span>
+                    <span class="quality-badge quality-low">低质量</span>
+                </div>
+                <div class="section-box">
+                    <h4>近期动态</h4>
+                    <p>未搜索到2026年5月期间具体产品发布。</p>
+                    <p><strong>质量评估：</strong>近期无实质性低空软件平台产品发布</p>
+                </div>
+            </div>
+
+            <!-- 地方国企 -->
+            <h2 id="state">四、地方国企竞品分析</h2>
+
+            <!-- 苏交科 -->
+            <div class="company-section">
+                <div class="company-header">
+                    <span class="company-name">苏交科集团股份有限公司（300284）</span>
+                    <span class="quality-badge quality-high">高质量</span>
+                </div>
+                <div class="section-box">
+                    <h4>低空AI综合巡检平台发布</h4>
+                    <p><strong>来源：</strong><a href="https://stock.stockstar.com/RB2025050800021087.shtml" class="url-link" target="_blank">证券之星</a></p>
+                    
+                    <h4>核心产品：低空AI综合巡检平台</h4>
+                    
+                    <h4>标准参编</h4>
+                    <ul>
+                        <li>《低空起降场布设指南》（全国首批省级低空基础设施标准）</li>
+<li>《低空空域划设指南》（全国首批省级低空基础设施标准）</li>
+                    </ul>
+
+                    <h4>技术特点</h4>
+                    <ul>
+                        <li>构建覆盖空域管理、运行监管至智能巡检的全链条解决方案</li>
+                        <li>BIM、数字孪生、AI设计及智慧运维等前沿技术应用</li>
+                        <li>"业务中台+管理中台"双中台架构</li>
+                    </ul>
+
+                    <h4>业务布局</h4>
+                    <p>低空经济、城市安全、绿色低碳、物流五大方向</p>
+
+                    <h4>海外拓展</h4>
+                    <ul>
+                        <li>子公司Eptisa与埃塞俄比亚工业部签署首个合作协议</li>
+                        <li>与越南交通大学共建越南首个数字交通研究中心</li>
+                    </ul>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>特色模块与技术门槛</h4>
+                    <p><span class="feature-tag">低空AI综合巡检平台</span>
+                    <span class="feature-tag">双中台架构</span></p>
+                    <p><span class="tech-tag">AI设计技术</span>
+                    <span class="tech-tag">数字孪生技术</span>
+                    <span class="tech-tag">标准制定能力</span></p>
+                </div>
+            </div>
+
+            <!-- 深城交 -->
+            <div class="company-section">
+                <div class="company-header">
+                    <span class="company-name">深圳市城市交通规划设计研究中心股份有限公司（深城交）</span>
+                    <span class="quality-badge quality-high">高质量</span>
+                </div>
+                <div class="section-box">
+                    <h4>重大签约：哈萨克斯坦低空经济项目</h4>
+                    <p><strong>来源：</strong><a href="https://news.goalfore.cn/topstories/detail/94689.html" class="url-link" target="_blank">国复咨询</a></p>
+                    
+                    <h4>签约内容</h4>
+                    <ul>
+                        <li>与阿拉套先进航空集团（AAAG）签署低空经济项目合作合同</li>
+                        <li>阿拉木图市首个正式落地的低空经济项目</li>
+                        <li>合作领域：低空空空域管理、无人机物流配送、城市空中交通</li>
+                    </ul>
+
+                    <h4>项目背景</h4>
+                    <ul>
+                        <li><strong>2024年4月：</strong>阿拉木图代表团访深，了解深城交数字孪生、交通操作系统等创新实践</li>
+                        <li><strong>2024年10月：</strong>深城交团队回访阿拉木图</li>
+                        <li><strong>2025年2月：</strong>签署合作协议</li>
+                        <li><strong>2025年7月：</strong>上海合作组织数字经济论坛签署阿拉木图数字孪生平台项目合作协议</li>
+                        <li><strong>2026年4月15日：</strong>正式签署低空经济项目合作合同</li>
+                    </ul>
+
+                    <h4>技术支撑</h4>
+                    <p>自主研发技术</p>
+
+                    <p><strong>战略意义：</strong>深圳低空产业全链条出海</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>特色模块与技术门槛</h4>
+                    <p><span class="feature-tag">数字孪生平台</span>
+                    <span class="feature-tag">低空经济整体解决方案</span></p>
+                    <p><span class="tech-tag">数字孪生技术</span>
+                    <span class="tech-tag">国际项目承接能力</span></p>
+                </div>
+            </div>
+
+            <!-- 纵横通信 -->
+            <div class="company-section">
+                <div class="company-header">
+                    <span class="company-name">纵横通信股份有限公司</span>
+                    <span class="quality-badge quality-medium">中等</span>
+                </div>
+                <div class="section-box">
+                    <h4>低空经济业务进展</h4>
+                    <p><strong>发布时间：</strong>2026年5月8日</p>
+                    
+                    <h4>项目进展</h4>
+                    <ul>
+                        <li>温州低空空管项目上线试运行</li>
+                        <li>苍南县无人机物联感知系统项目顺利推进</li>
+                        <li>参股公司纵横飞空携手峰飞航空成功完成全球首次吨级eVTOL海上风电物资运输作业</li>
+                    </ul>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>特色模块与技术门槛</h4>
+                    <p><span class="feature-tag">低空空管系统</span>
+                    <span class="feature-tag">无人机物联感知系统</span></p>
+                    <p><span class="tech-tag">eVTOL运营能力</span></p>
+                </div>
+            </div>
+
+            <!-- 新劲刚 -->
+            <div class="company-section">
+                <div class="company-header">
+                    <span class="company-name">新劲刚股份有限公司</span>
+                    <span class="quality-badge quality-medium">中等</span>
+                </div>
+                <div class="section-box">
+                    <h4>无人机业务布局</h4>
+                    <p><strong>来源：</strong>证券之星</p>
+                    
+                    <h4>业务方向</h4>
+                    <ul>
+                        <li>射频微波产品应用于无人机通信与数据链、导航、雷达等系统</li>
+                        <li>全资子公司凯际智能专注低慢小无人机监测与反制领域</li>
+                        <li>产品包括：微小目标探测雷达、无线电侦测设备、反无人机干扰设备</li>
+                    </ul>
+
+                    <h4>应用案例</h4>
+                    <p>在边检、码头、油库等重点区域完成低空安防监控体系试点部署</p>
+
+                    <h4>战略投资</h4>
+                    <p>广州劲空联合研发低空管制监管系统</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>特色模块与技术门槛</h4>
+                    <p><span class="feature-tag">微小目标探测雷达</span>
+                    <span class="feature-tag">无线电侦测设备</span>
+                    <span class="feature-tag">反无人机干扰设备</span></p>
+                    <p><span class="tech-tag">射频微波技术</span>
+                    <span class="tech-tag">无人机反制技术</span></p>
+                </div>
+            </div>
+
+            <!-- 招投标项目汇总 -->
+            <h2 id="bidding">五、招投标项目汇总</h2>
+            <p><strong>数据来源：</strong>低空经济资源网（laernoc.com）</p>
+            <p class="note">以下项目截止日期均在2026年5月20日之后，属于近期有效项目</p>
+
+            <h3>5.1 高预算项目（500万元以上）</h3>
+            <table class="bid-table">
+                <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>采购单位</th>
+                        <th>预算金额</th>
+                        <th>截止时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>恩平工业园低空经济产业园基础设施建设项目（一期）检测验证实验室设备、低空飞行服务保障系统设备采购及运维</td>
+                        <td>恩平产业转移工业园管理委员会</td>
+                        <td class="budget-high">1,752.73万元</td>
+                        <td>2026-05-28</td>
+                    </tr>
+                    <tr>
+                        <td>沈阳航空航天大学绿色通航项目-多用途低空智能无人系统/地面指挥控制系统</td>
+                        <td>沈阳航空航天大学</td>
+                        <td class="budget-high">900万元</td>
+                        <td>2026-05-27</td>
+                    </tr>
+                    <tr>
+                        <td>沈北新区低空政务服务项目</td>
+                        <td>沈阳市沈北新区数据局</td>
+                        <td class="budget-high">823.7万元</td>
+                        <td>2026-06-01</td>
+                    </tr>
+                    <tr>
+                        <td>河北省自然资源低空智能监管技术支撑（指挥调度服务）</td>
+                        <td>河北省自然资源信息中心</td>
+                        <td class="budget-high">528万元</td>
+                        <td>2026-05-28</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>5.2 应用场景类项目</h3>
+            <table class="bid-table">
+                <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>采购单位</th>
+                        <th>预算金额</th>
+                        <th>截止时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>深圳市宝安区中心血站2026年低空经济示范应用场景-无人机血液运输服务项目</td>
+                        <td>深圳市宝安区中心血站</td>
+                        <td>150万元</td>
+                        <td>2026-05-14</td>
+                    </tr>
+                    <tr>
+                        <td>小金县无人机机场设备采购项目（低空治安巡逻）</td>
+                        <td>小金县公安局</td>
+                        <td>68.78万元</td>
+                        <td>2026-05-29</td>
+                    </tr>
+                    <tr>
+                        <td>"低空警务中心"建设项目</td>
+                        <td>凉山彝族自治州公安局</td>
+                        <td>71.2068万元</td>
+                        <td>2026-05-12</td>
+                    </tr>
+                    <tr>
+                        <td>南昌航空大学2026年度信工学院城市低空环境管控及测试设备采购项目</td>
+                        <td>南昌航空大学</td>
+                        <td>110万元</td>
+                        <td>2026-05-20</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>5.3 政策规划类项目</h3>
+            <table class="bid-table">
+                <thead>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>采购单位</th>
+                        <th>预算金额</th>
+                        <th>截止时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>低空经济产业发展服务项目</td>
+                        <td>四川省发展和改革委员会</td>
+                        <td>73.84万元</td>
+                        <td>2026-05-26</td>
+                    </tr>
+                    <tr>
+                        <td>《哈密市低空经济高质量发展三年行动方案（2026-2028年）》编制服务项目</td>
+                        <td>哈密市发展和改革委员会</td>
+                        <td>70万元</td>
+                        <td>2026-05-20</td>
+                    </tr>
+                    <tr>
+                        <td>《云南省低空经济促进条例》编制</td>
+                        <td>云南省发展和改革委员会</td>
+                        <td>50万元</td>
+                        <td>2026-05-18</td>
+                    </tr>
+                    <tr>
+                        <td>福建省公路水路平急两用低空网络布局方案研究</td>
+                        <td>福建省交通规划办公室</td>
+                        <td>105万元</td>
+                        <td>2026-06-01</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 竞品对比与技术门槛 -->
+            <h2 id="comparison">六、竞品对比与技术门槛</h2>
+
+            <h3>6.1 各企业特色模块对比</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>企业</th>
+                        <th>特色产品/模块</th>
+                        <th>技术特点</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>中科星图</strong></td>
+                        <td>五位一体产品体系、星瞳大模型</td>
+                        <td>空天地一体化、AI智能体</td>
+                    </tr>
+                    <tr>
+                        <td><strong>莱斯信息</strong></td>
+                        <td>天牧低空大模型、天牧系列</td>
+                        <td>航空运输大模型、国产化替代</td>
+                    </tr>
+                    <tr>
+                        <td><strong>苏交科</strong></td>
+                        <td>低空AI综合巡检平台</td>
+                        <td>AI设计、数字孪生、双中台架构</td>
+                    </tr>
+                    <tr>
+                        <td><strong>众合科技</strong></td>
+                        <td>UniTFCC飞控计算机、UniPort起降场、UniSpace平台</td>
+                        <td>三余度冗余设计、城市级平台</td>
+                    </tr>
+                    <tr>
+                        <td><strong>青岛云世纪</strong></td>
+                        <td>优小站无人机自动机场</td>
+                        <td>8大系统模块集成、无人值守</td>
+                    </tr>
+                    <tr>
+                        <td><strong>杰能科世</strong></td>
+                        <td>空中交通安全防护管理平台、悟穹垂域模型</td>
+                        <td>轨迹预测、空域冲突识别、智能航路规划</td>
+                    </tr>
+                    <tr>
+                        <td><strong>深城交</strong></td>
+                        <td>数字孪生平台、低空经济整体解决方案</td>
+                        <td>国际项目承接、数字孪生技术</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>6.2 技术门槛分析</h3>
+            <div class="section-box">
+                <h4>1. AI大模型能力</h4>
+                <p>星瞳大模型、天牧低空大模型、悟穹垂域模型</p>
+                <p><span class="tech-tag">技术壁垒：需要大量行业数据训练、场景适配能力</span></p>
+            </div>
+            <div class="section-box">
+                <h4>2. 平台系统集成</h4>
+                <p>五位一体体系、城市级综合管理平台</p>
+                <p><span class="tech-tag">技术壁垒：复杂系统架构设计、多源数据融合能力</span></p>
+            </div>
+            <div class="section-box">
+                <h4>3. 硬件系统设计</h4>
+                <p>三余度飞控计算机、无人机自动机场</p>
+                <p><span class="tech-tag">技术壁垒：安全性认证、环境适应性设计</span></p>
+            </div>
+            <div class="section-box">
+                <h4>4. 通感一体技术</h4>
+                <p>5G-A通感一体、监管平台</p>
+                <p><span class="tech-tag">技术壁垒：通信感知融合算法、低时延要求</span></p>
+            </div>
+            <div class="section-box">
+                <h4>5. 标准制定能力</h4>
+                <p>省级低空基础设施标准参编</p>
+                <p><span class="tech-tag">技术壁垒：行业影响力、政策解读能力</span></p>
+            </div>
+
+            <!-- 产品规划参考 -->
+            <h2 id="planning">七、产品规划参考</h2>
+
+            <div class="summary-box">
+                <h3>可供产品规划的参考点</h3>
+                <ol>
+                    <li style="margin: 10px 0;"><strong>生态化发展模式：</strong>中科星图生态合伙人战略值得借鉴，四级成长阶梯+三大权益保障包</li>
+                    <li style="margin: 10px 0;"><strong>标准化产品矩阵：</strong>五位一体标准化产品体系（规划、反无、气象、物流、监管）</li>
+                    <li style="margin: 10px 0;"><strong>投建运一体化模式：</strong>可复制路径验证（已签约20余个城市）</li>
+                    <li style="margin: 10px 0;"><strong>AI赋能路径：</strong>大模型赋能全场景应用（星瞳大模型、天牧低空大模型）</li>
+                    <li style="margin: 10px 0;"><strong>国际化拓展：</strong>深城交出海模式（哈萨克斯坦项目）</li>
+                    <li style="margin: 10px 0;"><strong>行业标准参与：</strong>积极参与省级标准制定（苏交科参编两项标准）</li>
+                    <li style="margin: 10px 0;"><strong>硬件+软件集成：</strong>众合科技三余度飞控+智慧起降场+综合服务平台模式</li>
+                    <li style="margin: 10px 0;"><strong>无人值守自动化：</strong>青岛云世纪8大系统模块集成的无人机自动机场</li>
+                </ol>
+            </div>
+
+            <!-- 质量评估汇总 -->
+            <h3>7.1 高质量信息汇总</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>企业</th>
+                        <th>信息内容</th>
+                        <th>评估依据</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>中科星图</td>
+                        <td>五位一体产品体系、生态合伙人战略、具体产品功能</td>
+                        <td>有技术参数、有战略细节</td>
+                    </tr>
+                    <tr>
+                        <td>莱斯信息</td>
+                        <td>天牧大模型、省级重点实验室、研发投入数据</td>
+                        <td>有技术突破、有具体数据</td>
+                    </tr>
+                    <tr>
+                        <td>苏交科</td>
+                        <td>低空AI巡检平台、两项标准参编、双中台架构</td>
+                        <td>有产品特色、有技术门槛</td>
+                    </tr>
+                    <tr>
+                        <td>众合科技</td>
+                        <td>三大核心产品、三余度设计、城市级平台</td>
+                        <td>有产品参数、有技术特点</td>
+                    </tr>
+                    <tr>
+                        <td>青岛云世纪</td>
+                        <td>优小站8大模块、具体作业数据、部署城市</td>
+                        <td>有技术细节、有应用案例</td>
+                    </tr>
+                    <tr>
+                        <td>杰能科世</td>
+                        <td>空中防护平台、悟穹垂域模型、技术特点</td>
+                        <td>有产品功能、有技术门槛</td>
+                    </tr>
+                    <tr>
+                        <td>深城交</td>
+                        <td>哈萨克斯坦项目签约、数字孪生技术</td>
+                        <td>有具体项目、有国际案例</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>7.2 中等质量信息汇总</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>企业</th>
+                        <th>信息内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>海格通信</td>
+                        <td>业绩预测、业务布局概述</td>
+                    </tr>
+                    <tr>
+                        <td>纵横通信</td>
+                        <td>项目进展、eVTOL运营</td>
+                    </tr>
+                    <tr>
+                        <td>新劲刚</td>
+                        <td>无人机反制产品、试点部署</td>
+                    </tr>
+                    <tr>
+                        <td>震有科技</td>
+                        <td>卫星核心网技术</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>7.3 低质量信息汇总</h3>
+            <p>以下企业近期无实质性产品发布：</p>
+            <p>航天宏图、北斗伏羲、四川九州、川大智胜、民航二所、安擎科技、合众信息（指非众合科技）、北京领云时代科技、北京智网易联科技、中科天域、北京东进航科</p>
+
+            <!-- 信息来源清单 -->
+            <h2 id="sources">八、信息来源清单</h2>
+            <div class="source-list">
+                <ol>
+                    <li><a href="https://www.stcn.com/article/detail/3903800.html" class="url-link" target="_blank">证券时报 - 中科星图生态合伙人战略</a></li>
+                    <li><a href="https://www.cei.cn//defaultsite/s/article/2026/05/12/4b4ff607-9d914745-019e-1a01020c-3d82_home.html" class="url-link" target="_blank">中国经济信息网 - 中科星图生态合伙人战略</a></li>
+                    <li><a href="https://finance.stockstar.com/RB2026051300004231.shtml" class="url-link" target="_blank">证券之星 - 莱斯信息ESG报告</a></li>
+                    <li><a href="https://stock.stockstar.com/RB2025050800021087.shtml" class="url-link" target="_blank">证券之星 - 苏交科研报</a></li>
+                    <li><a href="https://stock.stockstar.com/RB2025051300007732.shtml" class="url-link" target="_blank">证券之星 - 众合科技业绩说明会</a></li>
+                    <li><a href="https://news.21csp.com.cn/c3/202506/11426884.html" class="url-link" target="_blank">中国安防行业网 - 青岛云世纪</a></li>
+                    <li><a href="https://news.21csp.com.cn/c3/202605/11429703.html" class="url-link" target="_blank">中国安防行业网 - 低空经济发展指数报告</a></li>
+                    <li><a href="https://news.goalfore.cn/topstories/detail/94689.html" class="url-link" target="_blank">国复咨询 - 深城交哈萨克斯坦项目</a></li>
+                    <li><a href="https://www.laernoc.com/newsinfo/1844273797960699905" class="url-link" target="_blank">低空经济资源网 - 招投标汇总</a></li>
+                    <li><a href="https://www.zjsst.com/corporatenews.html" class="url-link" target="_blank">杰能科世官网 - 企业新闻</a></li>
+                    <li><a href="https://www.jiemian.com/article/14405247.html" class="url-link" target="_blank">界面新闻 - 国家发改委低空司课题征集</a></li>
+                    <li><a href="https://finance.eastmoney.com/a/202605093732250537.html" class="url-link" target="_blank">东方财富网 - 莱斯信息业绩</a></li>
+                </ol>
+            </div>
+
+            <p class="note">
+                <strong>报告说明：</strong><br>
+                本报告基于2026年5月6日至5月13日期间公开可获取的信息进行整理和分析。报告中涉及的所有信息均来源于公开渠道，包括上市公司公告、行业媒体新闻、政府采购平台等。部分企业因信息披露有限，暂时无法获取更详细的产品和技术信息。<br><br>
+                报告中"高质量"评估基于信息是否包含具体技术参数、功能描述、项目案例或产品特色等实质性内容。评估结果仅供参考，不构成任何投资建议或产品推荐。
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>低空ATC竞品分析报告 | 生成日期：2026年5月13日</p>
+        </div>
+    </div>
+</body>
+</html>

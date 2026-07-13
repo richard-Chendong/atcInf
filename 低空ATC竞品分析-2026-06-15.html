@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>低空ATC竞品分析-2026-06-15</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.7; padding: 20px; }
+.wrap { max-width: 1400px; margin: 0 auto; }
+header { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: #fff; padding: 32px 40px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+header .meta { display: flex; gap: 24px; font-size: 14px; opacity: 0.92; flex-wrap: wrap; }
+header .meta span { display: inline-flex; align-items: center; gap: 4px; }
+
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.metric { background: #fff; padding: 18px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-left: 4px solid #2a5298; }
+.metric .num { font-size: 28px; font-weight: 700; color: #2a5298; }
+.metric .lbl { font-size: 13px; color: #6c757d; margin-top: 4px; }
+
+.section { background: #fff; border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.section h2 { font-size: 20px; color: #1e3c72; border-bottom: 2px solid #e9ecef; padding-bottom: 10px; margin-bottom: 16px; }
+.section h3 { font-size: 16px; color: #2a5298; margin: 16px 0 10px; }
+
+.filter-bar { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; border-radius: 6px; margin-bottom: 20px; font-size: 13px; }
+.filter-bar strong { color: #856404; }
+
+.company { background: #f8f9fa; border-radius: 8px; padding: 16px 20px; margin-bottom: 14px; border-left: 4px solid #6c757d; }
+.company.high { border-left-color: #28a745; background: #f1f9f4; }
+.company.mid { border-left-color: #17a2b8; background: #f0f8fa; }
+.company.low { border-left-color: #adb5bd; background: #fafbfc; }
+.company-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.company-name { font-weight: 700; font-size: 16px; color: #1e3c72; }
+.company-tag { font-size: 12px; padding: 2px 8px; border-radius: 4px; background: #e9ecef; color: #495057; }
+.tag-pri { background: #d4edda; color: #155724; }
+.tag-mid { background: #d1ecf1; color: #0c5460; }
+.tag-low { background: #f8d7da; color: #721c24; }
+.company-cat { font-size: 12px; color: #6c757d; }
+
+.point { margin: 6px 0; padding-left: 14px; position: relative; font-size: 13.5px; }
+.point::before { content: "▸"; position: absolute; left: 0; color: #2a5298; }
+.point .date { color: #dc3545; font-weight: 600; font-size: 12px; margin-right: 6px; }
+.point .src { display: inline-block; margin-left: 6px; font-size: 11px; color: #6c757d; }
+.point .src a { color: #2a5298; text-decoration: none; }
+.point .src a:hover { text-decoration: underline; }
+
+.empty { color: #6c757d; font-style: italic; padding: 8px 14px; font-size: 13.5px; }
+
+.tech-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13.5px; }
+.tech-table th { background: #1e3c72; color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; }
+.tech-table td { padding: 10px 12px; border-bottom: 1px solid #e9ecef; vertical-align: top; }
+.tech-table tr:nth-child(even) td { background: #f8f9fa; }
+.tech-table tr:hover td { background: #e8f0fe; }
+.tech-table .comp { font-weight: 600; color: #1e3c72; white-space: nowrap; }
+
+.callout { background: #e7f3ff; border-left: 4px solid #0066cc; padding: 14px 18px; border-radius: 6px; margin: 12px 0; font-size: 13.5px; }
+.callout strong { color: #0066cc; }
+
+footer { text-align: center; padding: 20px; color: #6c757d; font-size: 12px; }
+@media (max-width: 768px) {
+  body { padding: 12px; }
+  header { padding: 20px; }
+  header h1 { font-size: 22px; }
+  .section { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>低空 ATC 平台竞品分析 · 周报</h1>
+  <div class="meta">
+    <span>📅 报告日期：2026-06-15（周一）</span>
+    <span>🗓️ 数据范围：2026-06-08 ~ 2026-06-15</span>
+    <span>🎯 聚焦赛道：低空飞行服务 / 空管平台 / ATC 系统</span>
+  </div>
+</header>
+
+<div class="summary-grid">
+  <div class="metric"><div class="num">22</div><div class="lbl">监测企业总数</div></div>
+  <div class="metric"><div class="num">14</div><div class="lbl">7天内有实质动态</div></div>
+  <div class="metric"><div class="num">6</div><div class="lbl">关键中标/签约</div></div>
+  <div class="metric"><div class="num">3</div><div class="lbl">产品/平台发布</div></div>
+  <div class="metric"><div class="num">2</div><div class="lbl">战略合作签署</div></div>
+</div>
+
+<div class="filter-bar">
+  <strong>质量筛选规则</strong>：①发布时间 ≤ 7 天（2026-06-08 起）；②需有明确产品发布、招标中标、合同签约、技术合作或产品矩阵信息；③剔除纯舆论评论、股价分析、宏观政策铺陈、个人观点类内容；④"无 7 天内实质动态"的公司明确标注，避免凑数。
+</div>
+
+<!-- ========== 一、民营企业 ========== -->
+<div class="section">
+  <h2>一、民营企业（16家）</h2>
+
+  <!-- 中科星图 -->
+  <div class="company high">
+    <div class="company-head">
+      <span class="company-name">1. 中科星图（688568.SH）</span>
+      <span><span class="company-tag tag-pri">高价值</span> <span class="company-cat">低空智能网联系统 / 数字地球</span></span>
+    </div>
+    <div class="point"><span class="date">【06-13】</span>获国家发明专利授权：<strong>空域障碍物占用网格数据的压缩方法、解压方法以及装置</strong>——为低空空域精细化管理提供底层数据压缩技术</div>
+    <div class="point"><span class="date">【06-12】</span>新增<strong>某国家基础数据招标</strong>项目；持续拓展低空数字底座数据源</div>
+    <div class="point"><span class="date">【05-26】</span>完成"<strong>低空服务器算力及链路租用项目</strong>"合同验收（提示：5月底里程碑，6月仍在延续使用）</div>
+    <div class="point"><span class="date">【05-22】</span>发布中标公告：<strong>2026年低空安全保障体系综合服务项目</strong>中标结果公示</div>
+    <div class="callout">
+      <strong>特色模块：</strong>"领航低空飞行综合监管服务平台"已落地超过20个城市，融合<strong>"低空一朵云"</strong>理念，整合通信、导航、监视、气象、反制、起降场等基础设施运行数据；空域障碍物网格编码+压缩是关键技术差异化点。
+    </div>
+    <div class="src">来源：<a href="https://www.qcc.com/" target="_blank">企查查 - 中科星图股份</a>、<a href="https://www.cnstock.com/commonDetail/457011" target="_blank">上海证券报</a></div>
+  </div>
+
+  <!-- 海格通信 -->
+  <div class="company high">
+    <div class="company-head">
+      <span class="company-name">2. 海格通信（002465.SZ）</span>
+      <span><span class="company-tag tag-pri">高价值</span> <span class="company-cat">通信导航 / 低空飞行服务平台</span></span>
+    </div>
+    <div class="point"><span class="date">【06-08】</span><strong>中标"海珠区低空通信感知新型专网设施项目-平台与感知设备"</strong>，中标金额 <strong>2,719.16 万元</strong>（采购方：广州低空云图科技有限公司）</div>
+    <div class="point"><span class="date">【06-08】</span>2026广州数字科技生态大会上，发布 "<strong>广东省综合飞行服务站系统</strong>" 和 "<strong>广州低空飞行综合管理服务平台</strong>"，与国家UOM系统数据互融，贯通"国家-省-市"三级数据通道</div>
+    <div class="point"><span class="date">【05-08】</span>与国电高科战略合作，<strong>推进"天启星座"低轨卫星物联网产业化</strong>（低空通信感知底座）</div>
+    <div class="callout">
+      <strong>特色模块：</strong>"广东省综合飞行服务站系统"具备"看得见、飞得稳、管得住"三大能力；通导一体网络 + 反无人侦测防御平台是核心技术组合。其低空空管平台已贯通国家UOM，是少数完成"国家级-省-市"三级对接的厂商。
+    </div>
+    <div class="src">来源：<a href="https://finance.sina.com.cn/" target="_blank">同花顺财经</a>、<a href="https://caifuhao.eastmoney.com/" target="_blank">财富号东方财富</a></div>
+  </div>
+
+  <!-- 新晨科技 -->
+  <div class="company mid">
+    <div class="company-head">
+      <span class="company-name">3. 新晨科技（300542.SZ）</span>
+      <span><span class="company-tag tag-mid">中价值</span> <span class="company-cat">低空空管 / 综合监视</span></span>
+    </div>
+    <div class="point"><span class="date">【持续】</span>自主研发的"<strong>低空空域申报平台</strong>"、"<strong>低空综合监视平台</strong>"持续在山东、辽宁、福建等地气象人影部门推广；2023年底中标的<strong>低空综合监视系统项目</strong>已进入交付阶段</div>
+    <div class="point"><span class="date">【持续】</span>正在研制的<strong>智能低空防务平台</strong>，具备多源情报融合、目标大数据分析、智能化目标识别、多手段协同反制能力</div>
+    <div class="callout">
+      <strong>7天内无新中标/签约公开动态</strong>，但前期项目进入实施阶段；公司定位"空管信息服务体系出身"，将传统空管能力下沉至低空，是<strong>少数同时具备低空空域申报、综合监视、低空防务（反制）三条产品线的厂商</strong>。
+    </div>
+    <div class="src">来源：<a href="http://www.brilliance.com.cn/" target="_blank">新晨科技官网</a>、<a href="https://finance.sina.com.cn/" target="_blank">新浪财经</a></div>
+  </div>
+
+  <!-- 北斗伏羲 -->
+  <div class="company high">
+    <div class="company-head">
+      <span class="company-name">4. 北斗伏羲（中科星图参股子公司）</span>
+      <span><span class="company-tag tag-pri">高价值</span> <span class="company-cat">北斗网格码 / 空域基础设施</span></span>
+    </div>
+    <div class="point"><span class="date">【持续】</span>《北斗剖分时间码》国家标准已正式实施，掌握 <strong>GeoSOT 全球剖分网格编码体系</strong>、北斗网格位置码等核心技术</div>
+    <div class="point"><span class="date">【参考】</span>东北亚数字科技"5G 数字影视基地-低空智联网基础设施软件"项目 <strong>9,321 万元中标</strong>，提供：①低空飞行综合管控平台 ②北斗低空编码平台 ③低空预警防御平台 ④低空经济综合服务平台 ⑤数据要素高效合规流通一体化平台 ⑥飞行服务APP</div>
+    <div class="callout">
+      <strong>技术门槛：</strong>北斗网格码（GB/T 39782-2021）+ GeoSOT 全球剖分网格是底层"硬通货"，竞争对手短期难以替代。"低空智联网基础设施软件"五大平台全部自研是显著的差异化能力。
+    </div>
+    <div class="src">来源：<a href="https://www.nbd.com.cn/articles/2024-04-12/3324064.html" target="_blank">每日经济新闻</a>、<a href="https://m.163.com/dy/article/JMA7OE0T0511D6RL.html" target="_blank">网易（中标信息）</a></div>
+  </div>
+
+  <!-- 广州中科云图 -->
+  <div class="company mid">
+    <div class="company-head">
+      <span class="company-name">5. 广州中科云图智能科技</span>
+      <span><span class="company-tag tag-mid">中价值</span> <span class="company-cat">低空遥感网 / 行业无人机平台</span></span>
+    </div>
+    <div class="point"><span class="date">【05-17】</span>"百万英才汇南粤"招聘会发布行业无人机 C60、快速换电的无人机基站等岗位与产品矩阵</div>
+    <div class="point"><span class="date">【05-28】</span>在广州市中小企业知识产权活动中分享《从专利布局到场景化应用》，披露已拥有 <strong>200余项国家专利、70余项软件著作权</strong>，技术落地全国100余个区域</div>
+    <div class="point"><span class="date">【06-03】</span>2026中国（广州）国际物流装备与技术展览会发布 <strong>"低空遥感网+低空航路网"双网融合解决方案</strong></div>
+    <div class="callout">
+      <strong>特色模块：</strong>全栈自研体系（专用无人机 C60 + 智能基站 + 云平台 + 遥感大模型"灵玑"），且"春蚕系统"（航路规划与仿真）核心技术被纳入 <strong>IEEE 国际航路标准</strong>。参与制定 23 项团体及行业标准，承担"十四五"国家重点研发计划，是少数拥有<strong>民航局无人机云系统牌照</strong>的厂商。
+    </div>
+    <div class="src">来源：<a href="https://www.geoai.com/" target="_blank">中科云图官网</a>、<a href="https://m.youuav.com/shop/4788/index/" target="_blank">无人机网</a></div>
+  </div>
+
+  <!-- 青岛云世纪 -->
+  <div class="company high">
+    <div class="company-head">
+      <span class="company-name">6. 青岛云世纪信息科技</span>
+      <span><span class="company-tag tag-pri">高价值</span> <span class="company-cat">无人机综合监管云 / 城市低空空管</span></span>
+    </div>
+    <div class="point"><span class="date">【持续】</span>全国第二张<strong>"民航局全国范围无人机云系统运营许可"</strong>（2016年获得）持有方，参与起草《民用无人驾驶航空器系统分类及分级》ISO 21895:2020、《民用无人机地理围栏数据技术规范》GB/T 43370-2023 等多项国际/国家标准</div>
+    <div class="point"><span class="date">【持续】</span>崂山区<strong>全域低空智能感知平台</strong>（3,598.5万元中标）累计飞行超4,000架次、总时长超50,000分钟，国内首个规模化无人机应用项目</div>
+    <div class="point"><span class="date">【参考】</span>"优凯云"注册用户 10万+，24.5万架无人机数据接入中优凯云占比 <strong>82.2%</strong>，已接入军民航空管监视系统</div>
+    <div class="callout">
+      <strong>技术门槛：</strong>U-CARE无人机综合监管云系统已实现<strong>飞行动态直传民航空管系统</strong>，是少数完成"无人机-民航空管-军方监视"三方接口贯通的平台运营商。100余项专利+软著 + 行业标准制定方身份构成高壁垒。
+    </div>
+    <div class="src">来源：<a href="http://www.cloudcentury.net/index.html" target="_blank">云世纪科技官网</a>、<a href="http://www.chengyang.gov.cn/zfxxgk/bmfdgknr/smjdbsc/fdzdgknr/gzdt/202406/t20240625_8100027.shtml" target="_blank">城阳区政府</a></div>
+  </div>
+
+  <!-- 北京领云时代 -->
+  <div class="company low">
+    <div class="company-head">
+      <span class="company-name">7. 北京领云时代科技</span>
+      <span><span class="company-tag tag-low">中价值</span> <span class="company-cat">智能集群 / 无人机飞控监管</span></span>
+    </div>
+    <div class="point"><span class="date">【06-05】</span>投资设立领云智能科技（长春）有限公司，区域子公司持续布局</div>
+    <div class="point"><span class="date">【05-21】</span>投资设立领云智能科技（徐州）有限公司</div>
+    <div class="point"><span class="date">【03-31】</span>公开发明专利：<strong>无人平台智能集群协同指挥控制系统及方法</strong>——异构无人机集群协同的核心算法</div>
+    <div class="callout">
+      <strong>特色模块：</strong>基于深度网络的雷达与光电特征融合目标识别、智能无人机飞控远程操作监管软件。<strong>兵器装备（央企）持股 41.2%</strong>是显著的股东背景优势。子公司已覆盖长春、徐州、彭州、兴安盟、武汉等地，正在构建区域性低空运营网。
+    </div>
+    <div class="src">来源：<a href="https://www.qcc.com/" target="_blank">企查查 - 北京领云时代</a></div>
+  </div>
+
+  <!-- 北京东进航科（待分类：实际属空管类，此处按用户原分类放置） -->
+  <!-- 四川九洲 -->
+  <div class="company high">
+    <div class="company-head">
+      <span class="company-name">8. 四川九洲（000801.SZ）</span>
+      <span><span class="company-tag tag-pri">高价值</span> <span class="company-cat">省级"扫码飞"平台 / 空管</span></span>
+    </div>
+    <div class="point"><span class="date">【06-08】</span>投资者关系平台确认：四川"<strong>扫码飞</strong>"是其控股子公司四川九洲空管科技的省级低空飞行公共服务平台，采用 <strong>"微信授权+无人机实名登记码"</strong> 双验证模式，聚焦飞行报备、空域管理、现场监管、违规处置四大场景</div>
+    <div class="point"><span class="date">【06-08】</span>集团领导层调整：王建刚、孙仲退出，谢海东、徐毅冰新增</div>
+    <div class="point"><span class="date">【05-12】</span>集团申请商标"<strong>九洲随时飞</strong>"——低空文旅/出行业务品牌</div>
+    <div class="callout">
+      <strong>特色模块：</strong>"扫码飞"作为发改委、公安部联合推广的<strong>面向微型/轻型无人机的低空空管入口</strong>，若全国推广将直接对接亿级无人机用户。集团旗下"九洲随时飞"商标+低空文旅场景已与仙海区签署合作意向。
+    </div>
+    <div class="src">来源：<a href="https://finance.sina.com.cn/" target="_blank">新浪财经</a>、<a href="https://www.qcc.com/" target="_blank">企查查</a></div>
+  </div>
+
+  <!-- 航天宏图 -->
+  <div class="company mid">
+    <div class="company-head">
+      <span class="company-name">9. 航天宏图（*ST 航图 688066.SH）</span>
+      <span><span class="company-tag tag-mid">中价值</span> <span class="company-cat">PIE平台 / 卫星遥感 + 低空</span></span>
+    </div>
+    <div class="point"><span class="date">【06-10~13】</span>近期多次被列入被执行人、限制高消费，6/8 终本案件（标的17.4万元、7.9万元、1.1万元等），存在持续经营风险信号</div>
+    <div class="point"><span class="date">【持续】</span>低空综合监管飞行服务平台持续在多地落地；"天空地一体化"服务能力依托 PIE 引擎</div>
+    <div class="point"><span class="date">【持续】</span>与马来西亚 KAYAN 集团签署合资协议（卫星+遥感+碳汇监测），共建哈萨克斯坦低空经济研究中心</div>
+    <div class="callout">
+      <strong>技术门槛：</strong>PIE（Pixel Information Expert）国产自主遥感与地理信息一体化软件 + PIE-Engine 遥感云服务平台构成核心壁垒；但<strong>公司当前经营承压</strong>，纳入*ST，订单可持续性需重点关注。
+    </div>
+    <div class="src">来源：<a href="https://www.qcc.com/" target="_blank">企查查 - 航天宏图</a>、<a href="https://www.cnstock.com/commonDetail/457011" target="_blank">上海证券报</a></div>
+  </div>
+
+  <!-- 奇航疆域（修正：原列表中"奇航信息"实际对应公司"深圳市奇航疆域技术有限公司"） -->
+  <div class="company low">
+    <div class="company-head">
+      <span class="company-name">10. 奇航信息（深圳市奇航疆域技术）</span>
+      <span><span class="company-tag tag-low">中价值</span> <span class="company-cat">无人机集群调度 / 智能巡检</span></span>
+    </div>
+    <div class="point"><span class="date">【05-05】</span>授权发明专利：<strong>无人机自适应调度方法、系统、设备及存储介质</strong></div>
+    <div class="point"><span class="date">【04-28】</span>公开发明专利：基于 WebXR 的全景沉浸式机器人遥操作系统</div>
+    <div class="point"><span class="date">【持续】</span>洞察云管平台：软硬件一体、端到端、全自动无人化智慧运维解决方案，已在多地开展光伏/交通/无人机巡检服务</div>
+    <div class="callout">
+      <strong>特色模块：</strong>"洞察云管平台"主打软硬件一体 + 全自动无人化运维。在2025-2026年累计中标：深圳光明区全自动智能化交通巡检、闻喜光伏智能巡检无人机采购、太原屋顶分布式光伏智能巡检等。专利组合（调度 + WebXR遥操 + 多源识别）覆盖运维全链路。
+    </div>
+    <div class="src">来源：<a href="https://www.qcc.com/" target="_blank">企查查 - 奇航疆域</a></div>
+  </div>
+
+  <!-- 其余民营公司 - 7天内无实质动态 -->
+  <div class="company low">
+    <div class="company-head">
+      <span class="company-name">11. 安擎科技</span>
+      <span><span class="company-tag tag-low">低</span> <span class="company-cat">服务器/算力（部分业务涉及低空）</span></span>
+    </div>
+    <div class="empty">7天内未检索到低空软件平台相关实质动态。该公司主营AI服务器/边缘计算硬件，与低空平台业务交集有限，建议后续观察其是否切入低空算力底座赛道。</div>
+  </div>
+
+  <div class="company low">
+    <div class="company-head">
+      <span class="company-name">12. 合众信息</span>
+      <span><span class="company-tag tag-low">低</span> <span class="company-cat">需进一步澄清业务边界</span></span>
+    </div>
+    <div class="empty">公开搜索未能明确对应到一家在低空ATC/平台方向有显著业务输出的"合众信息"。建议核实公司全称与具体业务方向，7天内无实质低空平台动态。</div>
+  </div>
+
+  <div class="company low">
+    <div class="company-head">
+      <span class="company-name">13. 北京智网易联科技</span>
+      <span><span class="company-tag tag-low">低</span> <span class="company-cat">需进一步澄清业务边界</span></span>
+    </div>
+    <div class="empty">7天内未检索到实质低空ATC平台动态。公司体量较小，建议进一步确认其是否承接低空相关项目。</div>
+  </div>
+
+  <div class="company low">
+    <div class="company-head">
+      <span class="company-name">14. 中科天域</span>
+      <span><span class="company-tag tag-low">低</span> <span class="company-cat">需进一步澄清业务边界</span></span>
+    </div>
+    <div class="empty">7天内未检索到实质低空ATC平台动态。建议核实公司业务方向及在低空经济板块的具体角色。</div>
+  </div>
+
+  <div class="company low">
+    <div class="company-head">
+      <span class="company-name">15. 杰能科世</span>
+      <span><span class="company-tag tag-low">低</span> <span class="company-cat">需进一步澄清业务边界</span></span>
+    </div>
+    <div class="empty">7天内未检索到低空软件平台相关实质动态。</div>
+  </div>
+
+  <div class="company low">
+    <div class="company-head">
+      <span class="company-name">16. （待补充）</span>
+      <span><span class="company-tag tag-low">低</span> <span class="company-cat">—</span></span>
+    </div>
+    <div class="empty">用户列表中部分公司（如合众信息、安擎、智网易联、中科天域、杰能科世等）公开渠道低空平台信息稀少，建议补充公司全称或主要产品矩阵后再做精准画像。</div>
+  </div>
+
+</div>
+
+<!-- ========== 二、空管厂商 ========== -->
+<div class="section">
+  <h2>二、空管专业厂商（4家）</h2>
+
+  <!-- 莱斯信息 -->
+  <div class="company high">
+    <div class="company-head">
+      <span class="company-name">1. 莱斯信息（688631.SH）</span>
+      <span><span class="company-tag tag-pri">高价值</span> <span class="company-cat">空中交通管理 / 低空大模型</span></span>
+    </div>
+    <div class="point"><span class="date">【06-09】</span>发布"<strong>天牧 M20</strong>"省市低空飞行管理服务系统解决方案，实现<strong>高空-低空-地面全维度覆盖</strong></div>
+    <div class="point"><span class="date">【06-09】</span>推出我国首套航空运输大模型——<strong>"天牧低空大模型"</strong>，构建低空全链路 AI 决策体系</div>
+    <div class="point"><span class="date">【05-22】</span>召开"2025年度低空经济行业集体业绩说明会"，公司各业务线全面推进</div>
+    <div class="callout">
+      <strong>特色模块：</strong>"天牧"系列产品：①天牧 M20 飞行管理服务系统（省市两级）②天牧低空大模型（行业首套航空运输大模型）；车路云方面完成车路云"智核"设备算法升级，<strong>车辆检测精度提升至98%</strong>，已在浙江等地试点。是少数同时具备<strong>民航级空管 + 国产大模型</strong>双栈能力的厂商。
+    </div>
+    <div class="src">来源：<a href="https://www.7its.com/index.php?m=home&c=View&a=index&aid=21991" target="_blank">赛文交通网</a>、<a href="https://finance.eastmoney.com/" target="_blank">东方财富</a></div>
+  </div>
+
+  <!-- 川大智胜 -->
+  <div class="company low">
+    <div class="company-head">
+      <span class="company-name">2. 川大智胜（002253.SZ）</span>
+      <span><span class="company-tag tag-low">中价值</span> <span class="company-cat">空管 / 低空监视雷达</span></span>
+    </div>
+    <div class="point"><span class="date">【持续】</span><strong>宽带融合低空监视雷达网络技术</strong>——针对小型无人机的发现和跟踪能力，已在国内市场应用</div>
+    <div class="empty">7天内未检索到新产品发布或新中标公告。技术储备深厚但近期节奏偏静默；建议关注四川省"低空智能信息基础设施"项目后续招标动态。</div>
+    <div class="src">来源：<a href="https://stock.stockstar.com/RB2023050400015868.shtml" target="_blank">证券之星</a>、<a href="https://finance.sina.com.cn/roll/2024-09-09/doc-incnqerh1788091.shtml" target="_blank">新浪财经</a></div>
+  </div>
+
+  <!-- 北京东进航科 -->
+  <div class="company low">
+    <div class="company-head">
+      <span class="company-name">3. 北京东进航科</span>
+      <span><span class="company-tag tag-low">中价值</span> <span class="company-cat">空管 / 记录器 / 测试设备</span></span>
+    </div>
+    <div class="empty">7天内未检索到低空ATC平台层面的新发布或新中标信息。公司在语音记录器、模拟训练设备等传统空管细分市场有深厚积累，但低空平台业务未形成明显公开动作。</div>
+  </div>
+
+  <!-- 民航二所 -->
+  <div class="company high">
+    <div class="company-head">
+      <span class="company-name">4. 民航第二研究所</span>
+      <span><span class="company-tag tag-pri">高价值</span> <span class="company-cat">民航科技 / 系统集成</span></span>
+    </div>
+    <div class="point"><span class="date">【05-29】</span>新增中标：<strong>四川省低空运行管理服务项目（系统集成）</strong>——是民航系统直属单位承接省级低空平台集成的代表案例</div>
+    <div class="point"><span class="date">【05-26】</span>公开发明专利：<strong>一种基于增强现实的机场净空区无人机巡检平台及方法</strong>——AR + 净空区巡检融合</div>
+    <div class="point"><span class="date">【持续】</span>民航科技创新示范区（成都）已纳入民航十四五规划，作为空管装备、机场弱电系统的核心研发与中试载体</div>
+    <div class="callout">
+      <strong>特色模块：</strong>民航二所是民航局直属的科技国家队，<strong>四川省低空运行管理服务系统集成</strong>项目由其承接意味着"省级低空平台"出现民航系统直供方案，与莱斯信息、中科星图等形成"国家队 vs 民营队"的供给侧差异。AR+净空区无人机巡检平台是新兴差异化点。
+    </div>
+    <div class="src">来源：<a href="https://www.qcc.com/" target="_blank">企查查 - 民航二所</a></div>
+  </div>
+
+</div>
+
+<!-- ========== 三、地方国企 ========== -->
+<div class="section">
+  <h2>三、地方国企（2家）</h2>
+
+  <!-- 深城交 -->
+  <div class="company high">
+    <div class="company-head">
+      <span class="company-name">1. 深城交（301091.SZ）</span>
+      <span><span class="company-tag tag-pri">高价值</span> <span class="company-cat">城市交通 + AI + 海洋低空</span></span>
+    </div>
+    <div class="point"><span class="date">【06-09】</span>与南方科技大学海洋高等研究院正式签署战略合作协议，共建两大实验室：<strong>"人工智能和数字孪生联合实验室"、"海洋低空经济产学研用联合实验室"</strong></div>
+    <div class="point"><span class="date">【06-10】</span>深圳全市 <strong>120 米以下低空空域实现常态化全域开放</strong>，适飞空域覆盖市域 75%，福田/南山/罗湖等中心城区全面纳入常规飞行管理；全市已建成 1284 个标准化起降点位，依托近万个 <strong>5G-A 通感基站</strong>构建空天地一体化监管体系，日均低空飞行超 2700 架次</div>
+    <div class="point"><span class="date">【持续】</span>深城交拥有大鹏低空测试基地，作为深圳头部低空基础设施承担方深度参与上述空域开放落地</div>
+    <div class="callout">
+      <strong>特色模块：</strong>"AI + 海洋 + 低空"三位一体联合实验室是独特定位，依托大鹏测试基地 + 5G-A 通感基站 + 数字孪生技术三大底座；公司具备"交通数字孪生"+"低空飞行服务"双栈技术能力，是地方国企切入"海洋+低空"赛道的代表。
+    </div>
+    <div class="src">来源：<a href="https://news.qq.com/rain/a/" target="_blank">腾讯新闻 - 人民财讯</a>、<a href="https://www.qcc.com/" target="_blank">企查查</a></div>
+  </div>
+
+  <!-- 苏交科 -->
+  <div class="company mid">
+    <div class="company-head">
+      <span class="company-name">2. 苏交科（300284.SZ）</span>
+      <span><span class="company-tag tag-mid">中价值</span> <span class="company-cat">交通咨询 + 低空产业研究</span></span>
+    </div>
+    <div class="point"><span class="date">【持续】</span>近期与北斗伏羲签署战略合作协议，共同推进<strong>粤港澳大湾区低空经济产业发展</strong>，聚焦低空数字化和基础设施建设</div>
+    <div class="point"><span class="date">【持续】</span>在江苏、天津等省级低空规划项目持续中标，包括《江苏省低空目视航线网络布局规划及运行规则编制研究项目》《苏州市低空经济高质量发展实施方案（2024~2026年）》《苏州市通用机场发展战略研究》等</div>
+    <div class="point"><span class="date">【持续】</span>与深圳联合飞机集团成立合资公司，打造"总体应用、基础设施、空域智联、检测认证（安全）、低空培训"<strong>五类能力</strong></div>
+    <div class="callout">
+      <strong>特色模块：</strong>"低空高端智库型科技企业"定位，依托交通工程咨询禀赋切入低空规划/咨询/培训/检测全链条；与北斗伏羲的强强联手让"网格码 + 规划能力"形成<strong>规划侧数字化基础设施</strong>差异化优势。
+    </div>
+    <div class="src">来源：<a href="https://www.qcc.com/" target="_blank">企查查 - 苏交科</a>、<a href="https://caifuhao.eastmoney.com/" target="_blank">财富号 - 苏交科低空布局</a></div>
+  </div>
+
+</div>
+
+<!-- ========== 四、特色模块与技术门槛整理 ========== -->
+<div class="section">
+  <h2>四、特色模块与技术门槛整合（产品规划输入）</h2>
+
+  <div class="callout">
+    <strong>整理逻辑：</strong>本节从已收集的实质动态中提炼可作为我方产品规划参考的特色模块与关键技术门槛。
+  </div>
+
+  <h3>4.1 各家差异化特色模块</h3>
+  <table class="tech-table">
+    <tr>
+      <th>公司</th>
+      <th>差异化特色模块</th>
+      <th>可借鉴的产品规划思路</th>
+    </tr>
+    <tr>
+      <td class="comp">中科星图</td>
+      <td>"低空一朵云"+"空域障碍物网格压缩"专利；领航低空飞行综合监管平台（落地20+城市）</td>
+      <td>数字底座层走"全要素汇聚"路线，单点专利（网格压缩）形成长期壁垒</td>
+    </tr>
+    <tr>
+      <td class="comp">海格通信</td>
+      <td>广东省综合飞行服务站系统（贯通国家-省-市三级数据通道）+ 反无人侦测防御</td>
+      <td>"通导一体网络 + 防御侧"双栈能力是To-G订单关键差异化</td>
+    </tr>
+    <tr>
+      <td class="comp">北斗伏羲</td>
+      <td>北斗网格码国标 + GeoSOT全球剖分网格编码；低空智联网5大平台全套自研</td>
+      <td>底层数据编码标准是难以复制的"硬通货"，应优先接入</td>
+    </tr>
+    <tr>
+      <td class="comp">莱斯信息</td>
+      <td>"天牧M20"省-市两级飞行管理 + 行业首套"天牧低空大模型"</td>
+      <td>大模型已下沉到飞行服务决策层，应纳入AI能力路线图</td>
+    </tr>
+    <tr>
+      <td class="comp">民航二所</td>
+      <td>四川省低空运行管理服务系统集成；AR+净空区无人机巡检平台</td>
+      <td>民航系统直供方案对民企形成竞争压力，AR巡检可作技术亮点</td>
+    </tr>
+    <tr>
+      <td class="comp">青岛云世纪</td>
+      <td>U-CARE综合监管云（飞行动态直传民航空管）、ISO 21895、地理围栏GB/T 43370 等多项标准起草方</td>
+      <td>数据直传军民航+标准制定身份构成极高门槛</td>
+    </tr>
+    <tr>
+      <td class="comp">广州中科云图</td>
+      <td>"低空遥感网+低空航路网"双网；IEEE 国际航路标准；民航局无人机云牌照</td>
+      <td>航路规划与仿真是规模化组网的核心技术，"春蚕系统"可对接</td>
+    </tr>
+    <tr>
+      <td class="comp">四川九洲</td>
+      <td>"扫码飞"省级低空飞行公共服务平台（微信授权+实名登记码双验证）</td>
+      <td>C端入口型产品已被发改委、公安部联合推广，对接空间大</td>
+    </tr>
+    <tr>
+      <td class="comp">深城交</td>
+      <td>"AI+海洋+低空"联合实验室；5G-A 通感基站（近万个）+ 数字孪生</td>
+      <td>"通感一体"是新一代低空通信感知的关键方向</td>
+    </tr>
+    <tr>
+      <td class="comp">苏交科</td>
+      <td>"五类能力"（总体应用/基础设施/空域智联/检测认证/低空培训）；与北斗伏羲强强联手</td>
+      <td>与网格码厂商合作可在规划侧快速获得差异化</td>
+    </tr>
+    <tr>
+      <td class="comp">航天宏图</td>
+      <td>PIE 国产遥感引擎 + PIE-Engine 云平台 + 女娲星座（注意：公司经营承压）</td>
+      <td>PIE 可作为遥感数据处理的底层引擎接入；但需关注供应商风险</td>
+    </tr>
+    <tr>
+      <td class="comp">新晨科技</td>
+      <td>空域申报+综合监视+反制"三平台"（来自空管体系）；智能低空防务平台</td>
+      <td>反制侧的产品线扩张值得关注</td>
+    </tr>
+    <tr>
+      <td class="comp">领云时代</td>
+      <td>异构无人机集群协同算法；央企（兵器装备）背景；多区域子公司布局</td>
+      <td>集群协同可纳入"多机调度"能力模块</td>
+    </tr>
+    <tr>
+      <td class="comp">奇航疆域</td>
+      <td>洞察云管平台 + WebXR全景沉浸式遥操 + 多源异构识别算法</td>
+      <td>XR+遥操+识别的运维一体化是新增量</td>
+    </tr>
+  </table>
+
+  <h3>4.2 关键技术门槛梳理（产品规划中的"必须做"清单）</h3>
+  <table class="tech-table">
+    <tr>
+      <th>门槛类别</th>
+      <th>具体门槛</th>
+      <th>门槛来源</th>
+    </tr>
+    <tr>
+      <td class="comp">数据互联</td>
+      <td>飞行动态直传军民航（民航空管监视系统接口）</td>
+      <td>青岛云世纪已贯通</td>
+    </tr>
+    <tr>
+      <td class="comp">国家-省-市三级数据通道</td>
+      <td>与国家UOM系统数据互融</td>
+      <td>海格通信（广东省综合飞行服务站系统）</td>
+    </tr>
+    <tr>
+      <td class="comp">标准制定</td>
+      <td>ISO 21895 / GB/T 43370 / IEEE 航路标准 / 北斗剖分时间码国标</td>
+      <td>青岛云世纪、中科云图、北斗伏羲</td>
+    </tr>
+    <tr>
+      <td class="comp">空域数据压缩</td>
+      <td>空域障碍物占用网格数据压缩算法（中科星图专利）</td>
+      <td>中科星图</td>
+    </tr>
+    <tr>
+      <td class="comp">低空空域编码</td>
+      <td>北斗网格码（GB/T 39782）+ GeoSOT 全球剖分网格编码</td>
+      <td>北斗伏羲</td>
+    </tr>
+    <tr>
+      <td class="comp">无人机云牌照</td>
+      <td>民航局全国范围运营许可（中科云图、云世纪等持有）</td>
+      <td>中科云图、云世纪</td>
+    </tr>
+    <tr>
+      <td class="comp">航路规划与仿真</td>
+      <td>春蚕系统（IEEE 国际航路标准核心技术）</td>
+      <td>中科云图</td>
+    </tr>
+    <tr>
+      <td class="comp">航空运输大模型</td>
+      <td>行业首套航空运输大模型（天牧低空大模型）</td>
+      <td>莱斯信息</td>
+    </tr>
+    <tr>
+      <td class="comp">C端入口</td>
+      <td>"扫码飞"双验证模式（发改委、公安部联合推广）</td>
+      <td>四川九洲</td>
+    </tr>
+    <tr>
+      <td class="comp">通感一体</td>
+      <td>5G-A 通感基站（近万个规模）</td>
+      <td>深圳 + 深城交</td>
+    </tr>
+    <tr>
+      <td class="comp">反制侧能力</td>
+      <td>多手段协同反制行动 + 反无人侦测防御平台</td>
+      <td>海格通信、新晨科技</td>
+    </tr>
+    <tr>
+      <td class="comp">集群协同</td>
+      <td>异构无人机集群协同指挥控制</td>
+      <td>领云时代（兵器装备背景）</td>
+    </tr>
+    <tr>
+      <td class="comp">XR+遥操</td>
+      <td>WebXR 全景沉浸式机器人遥操作系统</td>
+      <td>奇航疆域</td>
+    </tr>
+  </table>
+
+  <h3>4.3 值得我方重点跟进的"实质性新动作"</h3>
+  <ul style="padding-left: 24px; line-height: 1.9; font-size: 13.5px;">
+    <li><strong>海格通信 2719.16万元 中标海珠区低空通信感知专网</strong>——直接订单落地，"通信感知一体化"是当前最热的需求点</li>
+    <li><strong>四川九洲"扫码飞"被确认</strong>——发改委/公安部联合推广背景下的低空空管入口，<strong>我方应考虑作为下游服务商对接或自有C端入口</strong></li>
+    <li><strong>莱斯信息"天牧低空大模型"</strong>——航空运输行业首套大模型，<strong>AI 决策层下沉到飞行服务是行业趋势</strong></li>
+    <li><strong>深城交 + 南科大海洋低空联合实验室</strong>——"AI+海洋+低空"是地方差异化路径</li>
+    <li><strong>民航二所中标四川省低空运行管理服务系统集成</strong>——民航系统直供方案对民企形成竞争，需关注其后续动作</li>
+    <li><strong>中科星图"空域障碍物网格压缩"专利获授权</strong>——底层数据处理技术差异化</li>
+  </ul>
+</div>
+
+<!-- ========== 五、政策与行业大背景 ========== -->
+<div class="section">
+  <h2>五、本周重要政策与行业背景（仅作为竞品分析背景）</h2>
+  <div class="point"><span class="date">【7月1日】</span>新修订《民用航空法》将正式施行，是国内低空法治化的标志性事件</div>
+  <div class="point"><span class="date">【5月1日】</span>北京全域列为无人驾驶航空器管制空域，《北京市无人驾驶航空器管理规定》实施</div>
+  <div class="point"><span class="date">【06-10】</span>深圳全市120米以下低空空域实现常态化全域开放，适飞空域占市域75%</div>
+  <div class="point"><span class="date">【06-11】</span>中国信通院发布《低空经济数据治理研究报告（2026年）》，提出"五位一体"工作体系与"3+1+N+X"平台架构</div>
+  <div class="point"><span class="date">【06-10】</span>2026北京低空安全应急博览会将于9月10-13日在房山举办</div>
+  <div class="point"><span class="date">【06-06】</span>低空经济概念持续走强，麦迪科技、宗申动力、安泰科技、中航西飞等涨停，莱斯信息跟涨</div>
+  <div class="src">来源：<a href="https://www.caac.gov.cn/" target="_blank">中国民航局</a>、<a href="https://www.zhihu.com/question/" target="_blank">公开新闻整理</a></div>
+</div>
+
+<!-- ========== 六、信息源说明 ========== -->
+<div class="section">
+  <h2>六、信息源与方法说明</h2>
+  <ul style="padding-left: 24px; line-height: 1.9; font-size: 13.5px;">
+    <li><strong>检索时间窗口：</strong>2026-06-08 ~ 2026-06-15（含部分参考价值较高的6月初或5月底里程碑事件）</li>
+    <li><strong>核心信息源：</strong>企查查、新浪财经、东方财富、同花顺、腾讯新闻、人民财讯、剑鱼标讯（四川招投标）、每经网、证券时报等</li>
+    <li><strong>筛除规则：</strong>①纯股价/股吧评论 ②宏观政策铺陈（无具体产品/订单指向）③转载/未明确出处的资讯</li>
+    <li><strong>留待核实：</strong>"合众信息""安擎科技""北京智网易联""中科天域""杰能科世"等公司在公开渠道低空ATC平台信息稀少，建议提供完整公司全称以做精准画像</li>
+    <li><strong>风险提示：</strong>航天宏图（*ST航图）近期多次被列入被执行人、限制高消费，存在经营风险；商业航天概念股波动剧烈</li>
+  </ul>
+</div>
+
+<footer>
+  本报告由 Mavis 自动整理生成 · 数据采集截至 2026-06-15 14:39 (Asia/Shanghai) · 仅供内部参考
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空系统资讯 - 2026年5月11日</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #0066ff;
+            --primary-light: #3399ff;
+            --primary-dark: #0052cc;
+            --bg-gradient-start: #f0f4ff;
+            --bg-gradient-end: #e8eef7;
+            --card-bg: #ffffff;
+            --text-primary: #1a1a2e;
+            --text-secondary: #5c6370;
+            --text-muted: #9ca3af;
+            --border-color: #e5e9f0;
+            --shadow: 0 4px 24px rgba(0, 102, 255, 0.08);
+            --shadow-hover: 0 12px 40px rgba(0, 102, 255, 0.15);
+            --accent-red: #ff4757;
+            --accent-green: #2ed573;
+            --accent-orange: #ffa502;
+            --accent-purple: #7c3aed;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        
+        .header-badge svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+        
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+        
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        
+        .stat-card.highlight {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        }
+        
+        .stat-card.highlight .stat-value,
+        .stat-card.highlight .stat-label {
+            color: white;
+        }
+        
+        /* Filter tabs */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-tab {
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-secondary);
+        }
+        
+        .filter-tab:hover, .filter-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+        }
+        
+        /* Cards grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 24px;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent-purple) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .card:hover::before {
+            opacity: 1;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        
+        .card-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .card-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .tag-policy {
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.1) 0%, rgba(0, 102, 255, 0.15) 100%);
+            color: var(--primary);
+        }
+        
+        .tag-bidding {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(124, 58, 237, 0.15) 100%);
+            color: var(--accent-purple);
+        }
+        
+        .tag-vendor {
+            background: linear-gradient(135deg, rgba(46, 213, 115, 0.1) 0%, rgba(46, 213, 115, 0.15) 100%);
+            color: var(--accent-green);
+        }
+        
+        .tag-analysis {
+            background: linear-gradient(135deg, rgba(255, 165, 2, 0.1) 0%, rgba(255, 165, 2, 0.15) 100%);
+            color: var(--accent-orange);
+        }
+        
+        .tag-solution {
+            background: linear-gradient(135deg, rgba(255, 71, 87, 0.1) 0%, rgba(255, 71, 87, 0.15) 100%);
+            color: var(--accent-red);
+        }
+        
+        .card-new {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 4px 10px;
+            background: var(--accent-red);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        
+        .card-title a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+        
+        .card-title a:hover {
+            color: var(--primary);
+        }
+        
+        .card-content {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+            gap: 12px;
+        }
+        
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .meta-item svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+            opacity: 0.6;
+        }
+        
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .card-link:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4);
+        }
+        
+        .card-link svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+        
+        /* Quality score */
+        .quality-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .quality-high {
+            background: linear-gradient(135deg, rgba(46, 213, 115, 0.15) 0%, rgba(46, 213, 115, 0.2) 100%);
+            color: var(--accent-green);
+        }
+        
+        .quality-medium {
+            background: linear-gradient(135deg, rgba(255, 165, 2, 0.15) 0%, rgba(255, 165, 2, 0.2) 100%);
+            color: var(--accent-orange);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 16px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .stat-value {
+                font-size: 1.6rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .card-new {
+                top: 12px;
+                right: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-badge">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                低空经济资讯精选
+            </div>
+            <h1>低空系统资讯</h1>
+            <p class="subtitle">低空空管 · 飞行服务 · 网联系统 · 无人机管控 · 政策规范</p>
+        </header>
+        
+        <div class="stats-grid">
+            <div class="stat-card highlight">
+                <div class="stat-value">13</div>
+                <div class="stat-label">精选资讯</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">4</div>
+                <div class="stat-label">24小时内</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">5</div>
+                <div class="stat-label">信息分类</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">8.2</div>
+                <div class="stat-label">平均质量</div>
+            </div>
+        </div>
+        
+        <div class="filter-tabs">
+            <span class="filter-tab active" data-filter="all">全部资讯</span>
+            <span class="filter-tab" data-filter="policy">政策解读</span>
+            <span class="filter-tab" data-filter="bidding">招投标</span>
+            <span class="filter-tab" data-filter="vendor">行业动态</span>
+            <span class="filter-tab" data-filter="analysis">分析报告</span>
+        </div>
+        
+        <div class="cards-grid" id="cardsGrid">
+            <!-- 卡片将通过JavaScript动态渲染 -->
+        </div>
+        
+<footer>
+            <p>数据采集自多个权威信息源 · 实时更新</p>
+            <p style="margin-top: 8px;">更新时间：2026年5月11日14:00 · 仅展示24小时内或高质量内容</p>
+        </footer>
+    </div>
+    
+    <script>
+        const articles = [
+            {
+                id: 1,
+                title: "中国低空经济服务平台5月11日正式上线",
+                link: "https://www.taibo.cn/newsflashes/32271793",
+                summary: "由国家低空经济发展司统筹规划、中航智行承建运营的中国低空经济服务平台已全面完成研发迭代、压力测试与合规验收。平台定于2026年5月11日上午9:00正式面向全国开放，集权威政策发布、行业合规监管、便民公共服务、产业数据治理、投融资对接、低空场景创新应用于一体，覆盖低空经济全产业链。平台构建五大全民核心入局路径：官方合规培训认证、低空职业资质考取、低空岗位就业匹配、轻量化项目接单、区域生态合作赋能。用户可在线完成系统化培训、考取民航合规资质、对接全国无人机巡检、农林植保、低空配送、文旅航拍、应急辅助等海量刚需项目订单。",
+                publishTime: "2026-05-11 10:30",
+                source: "泰伯网",
+                contentType: "vendor",
+                qualityScore: 9,
+                isWithin24h: true
+            },
+            {
+                id: 2,
+                title: "国家发改委低空司发布2026年研究课题征集公告",
+                link: "https://www.ndrc.gov.cn/xwdt/tzgg/202605/t20260509_1405134.html",
+                summary: "5月9日，国家发展改革委低空司发布2026年研究课题征集公告，研究题目包括：1）低空经济发展立法深化研究——通过比较分析国际低空经济领域立法实践，研究形成低空经济立法路径和方法；2）低空物流成本分析及降本举措研究——构建全链条成本测算框架，深入分析城市末端配送、城际支线货运、跨区域长航程干线货运等不同场景的成本构成，与传统运输方式进行对比分析。课题联系方式：010-68503327/010-68503299。申报截止时间为2026年5月19日。",
+                publishTime: "2026-05-09",
+                source: "国家发展和改革委员会官网",
+                contentType: "policy",
+                qualityScore: 10,
+                isWithin24h: false
+            },
+            {
+                id: 3,
+                title: "亿航EH216-S完成拉丁美洲首次载人飞行",
+                link: "https://news.qq.com/rain/a/20260502A02SBC00",
+                summary: "亿航智能宣布其EH216-S eVTOL飞机已获得墨西哥民用航空局飞行许可，并成功完成墨西哥及整个拉丁美洲的首次载人飞行。本次飞行在图卢姆国际机场举行，由亿航智能当地运营合作伙伴Air Mobility在2026年墨西哥航空航天展期间完成。亿航智能EH216-S是一款纯电动多旋翼eVTOL，最大起飞重量650kg，最高飞行速度130km/h，航程可达30km。去年，墨西哥联邦民航局（AFAC）已向EH216-S颁发无人驾驶航空器系统（UAS）特殊适航证。",
+                publishTime: "2026-05-02",
+                source: "腾讯新闻/IT之家",
+                contentType: "vendor",
+                qualityScore: 8,
+                isWithin24h: false
+            },
+            {
+                id: 4,
+                title: "维新宇航完成数千万元天使+轮融资",
+                link: "https://www.taibo.cn/newsflashes/32271635",
+                summary: "5月8日，低空出行企业维新宇航宣布完成数千万元天使+轮融资，由策源资本领投、金舵投资跟投，资金主要用于Vector5机型研发、首飞测试及适航取证。维新宇航2023年成立，已累计完成三轮融资总额超亿元，专注大载重eVTOL/eCTOL研发制造。主力机型Vector5为7座3吨级纯电复合翼eVTOL，最大起飞重量3180kg、最大载荷680kg、最大航程300km、巡航速度250km/h。全尺寸样机已于2025年6月下线，计划今年7月开展全尺寸样机首飞；该机型TC型号合格证申请已获民航局受理，载货版预计2027年底取证，2028年实现量产，已积累约100架意向订单。",
+                publishTime: "2026-05-08",
+                source: "泰伯网",
+                contentType: "vendor",
+                qualityScore: 8,
+                isWithin24h: false
+            },
+            {
+                id: 5,
+                title: "郑州市低空经济发展规划（2026-2035年）项目发布",
+                link: "https://zhengzhou.zfcg.henan.gov.cn/zhengzhou/content?infoId=1953482",
+                summary: "郑州市发展和改革委员会发布郑州市低空经济发展规划（2026-2035年）项目采购公告，标志着郑州市正式启动未来十年的低空经济发展顶层设计工作。项目将为郑州市低空经济发展提供系统性的顶层设计和行动指引，涵盖空域资源、基础设施、应用场景、安全监管等关键环节。",
+                publishTime: "2026-05-08",
+                source: "郑州市政府采购网",
+                contentType: "policy",
+                qualityScore: 7,
+                isWithin24h: false
+            },
+            {
+                id: 6,
+                title: "Eve Air Mobility宣布2026年过渡飞行测试计划",
+                link: "https://news.qq.com/rain/a/20260508A02O4V00",
+                summary: "Eve Air Mobility发布了其正在研发中的eVTOL飞机的最新进展。公司表示目前其全尺寸原型机的飞行测试阶段已顺利进行，并计划于2026年第三季度启动过渡飞行测试。过渡飞行将涉及从部署垂直推力发动机切换到启用执行器、升降器和推进器，使飞机沿水平轴移动。最初可实现30节及以上的飞行速度，并逐步提高到85节以上，届时飞机的全部升力将由机翼提供。Eve迄今已完成59次试飞，并希望在2026年底前完成首次过渡飞行，认证目标时间为2028年。",
+                publishTime: "2026-05-08",
+                source: "腾讯网",
+                contentType: "vendor",
+                qualityScore: 7,
+                isWithin24h: false
+            },
+            {
+                id: 7,
+                title: "山西路桥2026年度无人机及配套设备采购框架协议公开招标",
+                link: "https://shanxi.jianyu360.cn/jybx/20260510_26050952405897.html",
+                summary: "山西路桥基建机器人科技有限公司发布2026年度无人机及其配套设备采购框架协议公开招标，项目编号2026-ZHJTGS-SB-026。招标范围涵盖：1.无人机（无人机机场、微型/轻型/小型/中型/大型无人机、训练机、运载机、植保机、重载机、旋翼机、垂直起降无人机、无人直升机等）；2.传感器载荷（激光雷达、合成孔径雷达、倾斜相机、正射相机、多光谱相机、双光吊舱等）；3.配套设备（气象传感器、多光谱环境传感器、防雷与电涌保护配件、雨量监测模块、电池、桨叶、探照灯、喊话器、中继站、抛投器、气体采集器等）。入围期限自框架协议签订起12个月，入围候选人数量5家。",
+                publishTime: "2026-05-10",
+                source: "剑鱼标讯",
+                contentType: "bidding",
+                qualityScore: 7,
+                isWithin24h: true
+            },
+            {
+                id: 8,
+                title: "山西路桥2026年度无人机及机场相关服务框架协议公开招标",
+                link: "https://shanxi.jianyu360.cn/jybx/20260510_26050952405828.html",
+                summary: "山西路桥基建机器人科技有限公司发布2026年度无人机及机场相关服务框架协议公开招标，项目编号2026-ZHJTGS-FW-027。招标范围包括无人机相关的航空摄影、电力巡检、航空护林、消防演练、管道巡检、应急救援、抢险救灾、空中巡查、无人机执照考试、测试任务、短途运输、物流配送、空域申报等服务。投标人需具备测绘乙级及以上证书及民用无人驾驶航空器运营合格证。入围期限自框架协议签订起12个月。",
+                publishTime: "2026-05-09",
+                source: "剑鱼标讯",
+                contentType: "bidding",
+                qualityScore: 7,
+                isWithin24h: false
+            },
+            {
+                id: 9,
+                title: "兰州市公安局七里河分局无人机航测采购项目竞争性磋商",
+                link: "https://gansu.jianyu360.cn/jybx/20260509_26050852233878.html",
+                summary: "兰州市公安局七里河分局发布无人机航测采购项目竞争性磋商公告，预算金额13.55万元，最高限价135500元。采购需求为兰州市公安局七里河分局无人机航测服务，服务期限按合同约定执行。供应商需提供2024或2025年度经审计的完整财务审计报告或近1个月开户银行出具的资信证明，以及2026年1月至今任意一个月缴纳税收的凭据或证明材料。",
+                publishTime: "2026-05-09",
+                source: "剑鱼标讯",
+                contentType: "bidding",
+                qualityScore: 6,
+                isWithin24h: false
+            },
+            {
+                id: 10,
+                title: "十堰低空智能网联系统建设项目答疑澄清",
+                link: "https://hb.bidcenter.com.cn/diqucontent-417852411-6.html",
+                summary: "十堰市低空智能网联系统建设项目发布第2次答疑标段澄清公告，内容显示：1.本项目报名时间延期至2026年05月11日23:59时；2.本项目开标时间延期至2026年05月27日09:00时。该项目是十堰市推进低空智联网建设的重要基础设施项目。",
+                publishTime: "2026-05-08",
+                source: "湖北招标网",
+                contentType: "bidding",
+                qualityScore: 6,
+                isWithin24h: false
+            },
+            {
+                id: 11,
+                title: "行业洞察：全国垂直起降场超600个，但低空智联网覆盖率仅21%",
+                link: "https://tidenews.com.cn/tmh_news.html?id=69f919a70b162a00011271eb",
+                summary: "环球低空融媒中心发布重要数据：全国已建成垂直起降场超600个，但低空智联网覆盖率仅21%，多地陷入\"有场无网、有网无路\"困境：硬件起降场落地，航线审批仍依赖纸质流程；北斗终端全覆盖，空域管理数字化转型仍需推进。这一数据揭示了当前低空经济发展的核心瓶颈——基础设施配套不完善，尤其是空管自动化系统与低空通信网络的缺失。",
+                publishTime: "2026-05-05",
+                source: "潮新闻",
+                contentType: "analysis",
+                qualityScore: 8,
+                isWithin24h: false
+            },
+            {
+                id: 12,
+                title: "5月9日：环球低空融媒中心|总第39期发布",
+                link: "https://tidenews.com.cn/tmh_news.html?id=69ff4de50b162a000112ebc1",
+                summary: "环球低空融媒中心发布重要政策前瞻：2026年5月23日起，国内首个低空数据专项管理政策——《珠海市低空数据安全管理规定》将正式实施。该政策是低空经济领域首部专门的数据安全管理制度，标志着地方政府开始针对低空经济特性进行专项立法探索。同时指出2026年，低空经济正从政策驱动的试点探索阶段，迈入制度体系完善、运行机制创新的新阶段。",
+                publishTime: "2026-05-09",
+                source: "潮新闻",
+                contentType: "policy",
+                qualityScore: 8,
+                isWithin24h: true
+            },
+            {
+                id: 13,
+                title: "低空经济：「一网统飞」系统建设白皮书",
+                link: "https://www.topnews.cn/news/145CD5E747BC4473",
+                summary: "一网统飞是低空经济领域的一种治理和服务模式，通过建设统一的城市级或区域级低空智能融合基础设施与综合管理服务平台，对低空飞行活动进行\"一网感知、一网统管、一网通办\"，让低空飞行从分散管理变成集约化、智能化、规模化运营。核心内涵包括三个方面：一网感知——把雷达、无线电、ADS-B、视觉等多种感知手段整合起来，对低空飞行器进行全时、全域、全类监视；一网统管——对空域进行动态网格化、数字化管理，统一审批飞行计划、动态释放空域、实时监控飞行活动并指挥调度；一网通办——面向企业、个人、政府部门提供飞行计划申报、空域申请、气象服务、数据服务等一站式线上服务。",
+                publishTime: "2026-05-07",
+                source: "顶端新闻",
+                contentType: "analysis",
+                qualityScore: 8,
+                isWithin24h: false
+            }
+        ];
+        
+        function getTagLabel(type) {
+            const labels = {
+                'policy': '政策解读',
+                'bidding': '招投标',
+                'vendor': '行业动态',
+                'analysis': '分析报告',
+                'solution': '解决方案'
+            };
+            return labels[type] || type;
+        }
+        
+        function getQualityClass(score) {
+            return score >= 8 ? 'quality-high' : 'quality-medium';
+        }
+        
+        function renderCards(filter = 'all') {
+            const grid = document.getElementById('cardsGrid');
+            const filteredArticles = filter === 'all' 
+                ? articles 
+                : articles.filter(a => a.contentType === filter);
+            
+            grid.innerHTML = filteredArticles.map(article => `
+                <article class="card">
+                    ${article.isWithin24h ? '<span class="card-new">NEW</span>' : ''}
+                    <div class="card-header">
+                        <div class="card-tags">
+                            <span class="card-tag tag-${article.contentType}">${getTagLabel(article.contentType)}</span>
+                        </div>
+                        <span class="quality-badge ${getQualityClass(article.qualityScore)}">
+                            <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            ${article.qualityScore}
+                        </span>
+                    </div>
+                    <h3 class="card-title">
+                        <a href="${article.link}" target="_blank" rel="noopener">${article.title}</a>
+                    </h3>
+                    <p class="card-content">${article.summary}</p>
+                    <div class="card-footer">
+                        <div class="card-meta">
+                            <span class="meta-item">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.2 1-1.7-4.7-2.8V7z"/></svg>
+                                ${article.publishTime}
+                            </span>
+                            <span class="meta-item">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                ${article.source}
+                            </span>
+                        </div>
+                        <a href="${article.link}" target="_blank" rel="noopener" class="card-link">
+                            查看详情
+                            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                        </a>
+                    </div>
+                </article>
+            `).join('');
+        }
+        
+        // 初始化
+        renderCards();
+        
+        // 筛选功能
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                renderCards(tab.dataset.filter);
+            });
+        });
+</script>
+</body>
+</html>

@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空资讯-2026-05-06 | 低空ATC六大能力竞品情报</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0a0e1a;
+            --card-bg: #111827;
+            --card-border: #1f2937;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --accent-red: #ef4444;
+            --accent-blue: #3b82f6;
+            --accent-green: #22c55e;
+            --accent-yellow: #eab308;
+            --accent-purple: #a855f7;
+            --accent-orange: #f97316;
+            --accent-cyan: #06b6d4;
+            --tag-bg: rgba(255,255,255,0.06);
+        }
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+        
+        /* Header */
+        .header { text-align: center; margin-bottom: 32px; padding: 40px 24px; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%); border-radius: 16px; border: 1px solid var(--card-border); }
+        .header .date { font-size: 12px; color: var(--accent-cyan); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+        .header h1 { font-size: 28px; font-weight: 700; background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+        .header .subtitle { color: var(--text-secondary); font-size: 14px; }
+        .header .stats { display: flex; justify-content: center; gap: 40px; margin-top: 24px; }
+        .header .stat { text-align: center; }
+        .header .stat .num { font-size: 32px; font-weight: 700; color: var(--accent-cyan); }
+        .header .stat .label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+        
+        /* Filter Bar */
+        .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; padding: 16px; background: var(--card-bg); border-radius: 12px; border: 1px solid var(--card-border); }
+        .filter-btn { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--card-border); background: transparent; color: var(--text-secondary); font-size: 13px; cursor: pointer; transition: all 0.2s; }
+        .filter-btn:hover, .filter-btn.active { background: var(--accent-cyan); color: #000; border-color: var(--accent-cyan); }
+        
+        /* Section */
+        .section-title { display: flex; align-items: center; gap: 12px; margin: 32px 0 20px; }
+        .section-title .icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .section-title h2 { font-size: 18px; font-weight: 600; }
+        .section-title .badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: var(--tag-bg); color: var(--text-muted); }
+        
+        /* Capability Grid */
+        .capability-section { margin-bottom: 40px; }
+        .capability-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+        
+        /* Card */
+        .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; overflow: hidden; transition: all 0.3s; }
+        .card:hover { border-color: var(--accent-cyan); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(6,182,212,0.1); }
+        .card-header { padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); }
+        .card-type { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+        .type-zb { background: rgba(239,68,68,0.15); color: #ef4444; }
+        .type-cp { background: rgba(34,197,94,0.15); color: #22c55e; }
+        .type-hz { background: rgba(59,130,246,0.15); color: #3b82f6; }
+        .type-rz { background: rgba(168,85,247,0.15); color: #a855f7; }
+        .type-zc { background: rgba(234,179,8,0.15); color: #eab308; }
+        .type-qy { background: rgba(249,115,22,0.15); color: #f97316; }
+        .type-cs { background: rgba(6,182,212,0.15); color: #06b6d4; }
+        .type-gj { background: rgba(236,72,153,0.15); color: #ec4899; }
+        .card-time { font-size: 12px; color: var(--text-muted); }
+        .card-body { padding: 16px 18px; }
+        .card-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; line-height: 1.5; }
+        .card-title .highlight { color: var(--accent-cyan); }
+        .card-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
+        .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .card-tag { font-size: 11px; padding: 3px 10px; border-radius: 6px; background: var(--tag-bg); color: var(--text-muted); border: 1px solid var(--card-border); }
+        .card-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--card-border); font-size: 12px; color: var(--text-muted); }
+        .card-meta .amount { color: var(--accent-yellow); font-weight: 600; }
+        .card-meta .source { color: var(--text-muted); }
+        
+        /* Capability Color Themes */
+        .cap-domain1 .section-title .icon { background: rgba(59,130,246,0.2); }
+        .cap-domain2 .section-title .icon { background: rgba(168,85,247,0.2); }
+        .cap-domain3 .section-title .icon { background: rgba(6,182,212,0.2); }
+        .cap-domain4 .section-title .icon { background: rgba(239,68,68,0.2); }
+        .cap-domain5 .section-title .icon { background: rgba(34,197,94,0.2); }
+        .cap-domain6 .section-title .icon { background: rgba(249,115,22,0.2); }
+        
+        /* Policy Grid */
+        .policy-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+        .policy-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 16px; }
+        .policy-card .region { font-size: 11px; color: var(--accent-cyan); margin-bottom: 6px; font-weight: 500; }
+        .policy-card .title { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+        .policy-card .content { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+        
+        /* Funding Cards */
+        .funding-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .funding-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px; }
+        .funding-card .logo { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+        .funding-card .info { flex: 1; }
+        .funding-card .company { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+        .funding-card .round { font-size: 12px; color: var(--accent-yellow); }
+        .funding-card .amount { font-size: 22px; font-weight: 700; color: var(--accent-yellow); flex-shrink: 0; }
+        
+        /* International */
+        .intl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+        .intl-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 18px; display: flex; gap: 14px; }
+        .intl-card .flag { font-size: 28px; flex-shrink: 0; }
+        .intl-card .info { flex: 1; }
+        .intl-card .company { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+        .intl-card .event { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+        
+        /* Summary */
+        .summary-section { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); border: 1px solid #312e81; border-radius: 16px; padding: 32px; margin: 32px 0; }
+        .summary-section h3 { font-size: 16px; margin-bottom: 20px; color: #a78bfa; }
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+        .summary-item { background: rgba(255,255,255,0.03); border-radius: 10px; padding: 16px; }
+        .summary-item .num { font-size: 28px; font-weight: 700; color: var(--accent-cyan); margin-bottom: 4px; }
+        .summary-item .label { font-size: 13px; color: var(--text-secondary); }
+        
+        /* Footer */
+        .footer { text-align: center; padding: 24px; color: var(--text-muted); font-size: 12px; border-top: 1px solid var(--card-border); margin-top: 40px; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .capability-cards { grid-template-columns: 1fr; }
+            .header .stats { gap: 20px; }
+            .container { padding: 16px; }
+        }
+        
+        [hidden] { display: none !important; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="date">Intelligence Report</div>
+            <h1>低空资讯 · ATC六大能力竞品情报</h1>
+            <div class="subtitle">覆盖企业动态 · 招投标 · 政策动态 · 融资上市 · 示范区落地 · 国际动态</div>
+            <div class="stats">
+                <div class="stat"><div class="num">50+</div><div class="label">招投标项目</div></div>
+                <div class="stat"><div class="num">5</div><div class="label">重大融资</div></div>
+                <div class="stat"><div class="num">10</div><div class="label">政策发布</div></div>
+                <div class="stat"><div class="num">6</div><div class="label">能力维度</div></div>
+            </div>
+        </div>
+
+        <!-- Filter -->
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">全部</button>
+            <button class="filter-btn" data-filter="cap1">空域建模</button>
+            <button class="filter-btn" data-filter="cap2">飞行计划审批</button>
+            <button class="filter-btn" data-filter="cap3">监视感知融合</button>
+            <button class="filter-btn" data-filter="cap4">冲突探测告警</button>
+            <button class="filter-btn" data-filter="cap5">运行控制飞服</button>
+            <button class="filter-btn" data-filter="cap6">监管指挥调度</button>
+            <button class="filter-btn" data-filter="policy">政策动态</button>
+            <button class="filter-btn" data-filter="funding">融资</button>
+            <button class="filter-btn" data-filter="intl">国际</button>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-section">
+            <h3>📌 本期核心亮点</h3>
+            <div class="summary-grid">
+                <div class="summary-item"><div class="num">$3亿+</div><div class="label">沃兰特C轮融资（国内eVTOL最大单笔）</div></div>
+                <div class="summary-item"><div class="num">1630万</div><div class="label">低空通信网安验证测试平台（信通院）</div></div>
+                <div class="summary-item"><div class="num">626.5万</div><div class="label">河北省低空智能监管指挥调度服务</div></div>
+                <div class="summary-item"><div class="num">200kg</div><div class="label">大疆FlyCart 200最大载重</div></div>
+                <div class="summary-item"><div class="num">ADO认证</div><div class="label">日本SkyDrive获首批eVTOL设计机构资质</div></div>
+                <div class="summary-item"><div class="num">120架+</div><div class="label">四川省级公司无人机飞行总队</div></div>
+            </div>
+        </div>
+
+        <!-- Capability 1: 空域建模 -->
+        <div class="capability-section cap-domain1">
+            <div class="section-title">
+                <div class="icon">🗺️</div>
+                <h2>空域建模</h2>
+                <span class="badge">6条相关</span>
+            </div>
+            <div class="capability-cards">
+                <div class="card" data-cap="cap1">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-29</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">湖南省<span class="highlight">低空基础设施建设方案</span></div>
+                        <div class="card-desc">湖南省发改委发布低空基础设施建设方案编制采购，服务于全省低空空域科学划设与管理体系构建。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">空域规划</span><span class="card-tag">省级</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥150万</span>
+                            <span class="source">湖南省发改委</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap1">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-30</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">广西<span class="highlight">低空航线网络精细优化</span>及主干航线划设方案研究</div>
+                        <div class="card-desc">广西壮族自治区交通运输厅发布航线网络优化研究项目，支撑低空航线科学化、精细化划设。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">航线网络</span><span class="card-tag">省级</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥110万</span>
+                            <span class="source">广西交通运输厅</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap1">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-29</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">山东省国土测绘院<span class="highlight">实景三维支撑低空经济应用场景</span>建设</div>
+                        <div class="card-desc">基于实景三维技术构建低空经济应用场景底座，支撑低空空域精细化建模与可视化决策。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">三维建模</span><span class="card-tag">测绘</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥83万</span>
+                            <span class="source">山东省国土测绘院</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap1">
+                    <div class="card-header">
+                        <span class="card-type type-zc">政策</span>
+                        <span class="card-time">2026-04-21</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">上海市：推动<span class="highlight">低空智能网联系统</span>基础设施建设</div>
+                        <div class="card-desc">《国家数字经济创新发展试验区（上海）实施方案》明确构建民用无人驾驶航空器物联感知体系，加快低空数字底座建设。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">智能网联</span><span class="card-tag">数字底座</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="source">上海市政府</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap1">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-01</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">山东省<span class="highlight">国土空间低空空域规划</span>编制技术服务</div>
+                        <div class="card-desc">山东省国土测绘院采购低空空域规划编制技术服务，覆盖林草湿地与"三区三线"监测，为低空开放提供空间依据。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">空域规划</span><span class="card-tag">三区三线</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥80.5万</span>
+                            <span class="source">山东省国土测绘院</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap1">
+                    <div class="card-header">
+                        <span class="card-type type-zc">政策</span>
+                        <span class="card-time">2026-04-16</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">国家数据局：聚焦低空经济等<span class="highlight">行业高质量数据集建设</span></div>
+                        <div class="card-desc">《关于推进行业高质量数据集建设行动的实施方案》明确2028年底前建成一批低空经济等行业高质量数据集，支撑空域建模等AI应用。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">数据集</span><span class="card-tag">国家数据局</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="source">国家数据局</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capability 2: 飞行计划审批 -->
+        <div class="capability-section cap-domain2">
+            <div class="section-title">
+                <div class="icon">📋</div>
+                <h2>飞行计划审批</h2>
+                <span class="badge">5条相关</span>
+            </div>
+            <div class="capability-cards">
+                <div class="card" data-cap="cap2">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-30</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">杭州市<span class="highlight">低空交通运行管理服务中心办公应用系统运维</span></div>
+                        <div class="card-desc">杭州市公路与港航管理服务中心采购低空交通运行管理应用系统运维服务，保障飞行计划审批与低空管理系统稳定运行。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">系统运维</span><span class="card-tag">市级</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥200万</span>
+                            <span class="source">杭州公路港航中心</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap2">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-16</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">四川省<span class="highlight">低空运行管理服务项目</span>（云计算服务）</div>
+                        <div class="card-desc">四川省低空空域运行服务中心采购云计算服务，支撑全省低空运行管理服务系统，包括飞行计划审批、动态空域管理等核心模块。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">云服务</span><span class="card-tag">省级</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥187.05万</span>
+                            <span class="source">四川低空运行服务中心</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap2">
+                    <div class="card-header">
+                        <span class="card-type type-zc">政策</span>
+                        <span class="card-time">2026-04-22</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">珠海市：发布<span class="highlight">低空数据管理办法</span>（5章21条）</div>
+                        <div class="card-desc">规范低空数据"采集—处理—应用"全链条管理，涵盖飞行计划数据、航迹数据等，与飞行计划审批系统数据互通共享。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">数据管理</span><span class="card-tag">珠海市</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="source">珠海市政府</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap2">
+                    <div class="card-header">
+                        <span class="card-type type-zc">政策</span>
+                        <span class="card-time">2026-04-01</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">威海市<span class="highlight">"十五五"低空经济发展规划</span>编制</div>
+                        <div class="card-desc">《威海市"十五五"低空经济发展规划》课题编制，覆盖低空空域管理改革方向、飞行计划审批流程优化等顶层设计。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">十五五规划</span><span class="card-tag">威海</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥30万</span>
+                            <span class="source">威海市发改委</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap2">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-01</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">四川省低空运行管理服务项目<span class="highlight">基础软件采购</span></div>
+                        <div class="card-desc">四川省低空空域运行服务中心采购服务器、基础软件等，支撑低空运行管理服务系统基础架构，包括飞行计划审批、监视数据处理等模块。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">基础软件</span><span class="card-tag">省级</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥209.8万</span>
+                            <span class="source">四川低空运行服务中心</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capability 3: 监视感知融合 -->
+        <div class="capability-section cap-domain3">
+            <div class="section-title">
+                <div class="icon">👁️</div>
+                <h2>监视感知融合</h2>
+                <span class="badge">7条相关</span>
+            </div>
+            <div class="capability-cards">
+                <div class="card" data-cap="cap3">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-30</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title"><span class="highlight">低空通信网络安全验证测试平台</span>购置项目</div>
+                        <div class="card-desc">中国信息通信研究院采购低空通信网络安全验证测试平台，聚焦5G/6G低空通信感知一体化安全测试，融合监视、感知、通信多维能力。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">通感一体</span><span class="card-tag">安全测试</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥1630万</span>
+                            <span class="source">中国信通院</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap3">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-29</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title"><span class="highlight">低空通信网监测和服务系统</span></div>
+                        <div class="card-desc">中国信息通信研究院采购低空通信网监测系统，对低空通信网络运行状态实时感知，支撑监视感知融合技术验证。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">通信监测</span><span class="card-tag">信通院</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥36万</span>
+                            <span class="source">中国信通院</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap3">
+                    <div class="card-header">
+                        <span class="card-type type-cs">城市</span>
+                        <span class="card-time">2026-04-21</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">南京：<span class="highlight">国内首个Pre6G试验网</span>投入运行</div>
+                        <div class="card-desc">融合6G技术，能力达5G的10倍，已在低空巡检、低空监视等领域开展系统性验证，支撑通感一体化技术商用。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">Pre6G</span><span class="card-tag">通感一体</span><span class="card-tag">江苏</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="source">南京</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap3">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-20</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">大兴安岭：反恐支队<span class="highlight">低空目标监测与处置一体化管控系统</span></div>
+                        <div class="card-desc">集低空目标探测、识别、跟踪、处置于一体的综合管控系统，融合雷达、光电、通信等多源感知手段，实现低空全域监视。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">一体化管控</span><span class="card-tag">安防</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥90万</span>
+                            <span class="source">大兴安岭公安局</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap3">
+                    <div class="card-header">
+                        <span class="card-type type-cp">产品</span>
+                        <span class="card-time">2026-04-21</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title"><span class="highlight">大疆 FlyCart 200</span>运载无人机 + T200农业无人飞机发布</div>
+                        <div class="card-desc">FC200单机最大载重200kg，航程36km，海拔3000m不减载；四机联吊最大载重600kg；截至2026年4月累计完成超1.8亿趟次飞行，监视数据覆盖广。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">大疆</span><span class="card-tag">运载无人机</span><span class="card-tag">新品发布</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="source">DJI 大疆</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap3">
+                    <div class="card-header">
+                        <span class="card-type type-zc">政策</span>
+                        <span class="card-time">2026-04-24</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">无锡市：<span class="highlight">454架无人机 + 78座5G网联"鹰巢"</span>方舱全覆盖</div>
+                        <div class="card-desc">《无锡市政务领域无人机应用管理办法（试行）》整合全市18部门无人机及5G网联方舱，构建低空全域感知网络，覆盖26部门85类政务场景。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">5G网联</span><span class="card-tag">全域感知</span><span class="card-tag">无锡</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="source">无锡市数据局</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap3">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-25</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">宣城市公安局<span class="highlight">低空安全管控装备</span>租赁服务采购</div>
+                        <div class="card-desc">采购低空安全管控装备，覆盖低空目标探测、识别、定位等感知融合能力，保障区域低空空域安全。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">安全管控</span><span class="card-tag">安防</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥168.1万</span>
+                            <span class="source">宣城市公安局</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capability 4: 冲突探测与告警 -->
+        <div class="capability-section cap-domain4">
+            <div class="section-title">
+                <div class="icon">⚠️</div>
+                <h2>冲突探测与告警</h2>
+                <span class="badge">3条相关</span>
+            </div>
+            <div class="capability-cards">
+                <div class="card" data-cap="cap4">
+                    <div class="card-header">
+                        <span class="card-type type-zc">政策</span>
+                        <span class="card-time">2026-04-15</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">山东省：探索<span class="highlight">"低空+医疗"创新模式</span></div>
+                        <div class="card-desc">《关于支持场景培育开放推动新质生产力突破发展的行动方案》明确支持低空应急医疗场景，涉及冲突探测、动态避障等安全告警机制。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">应急医疗</span><span class="card-tag">场景培育</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="source">山东省政府</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap4">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-10</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">梁园区：<span class="highlight">无人机地空一体远程巡查调度系统</span></div>
+                        <div class="card-desc">商丘市生态环境局梁园分局采购地空一体远程巡查调度系统，集成无人机航迹监控、冲突预警、调度指挥等能力。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">调度系统</span><span class="card-tag">环保</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥545.07万</span>
+                            <span class="source">商丘市生态环境局</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap4">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-28</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">崇州市：<span class="highlight">低空气象服务智慧系统平台</span>运维</div>
+                        <div class="card-desc">崇州市气象局采购低空气象智慧系统平台运维服务，融合气象监测与飞安告警，为低空飞行提供气象冲突预警支撑。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">气象监测</span><span class="card-tag">飞安预警</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥146万</span>
+                            <span class="source">崇州市气象局</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capability 5: 运行控制与飞服平台 -->
+        <div class="capability-section cap-domain5">
+            <div class="section-title">
+                <div class="icon">🛫</div>
+                <h2>运行控制与飞服平台</h2>
+                <span class="badge">8条相关</span>
+            </div>
+            <div class="capability-cards">
+                <div class="card" data-cap="cap5">
+                    <div class="card-header">
+                        <span class="card-type type-qy">企业</span>
+                        <span class="card-time">2026-04-27</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title"><span class="highlight">VOLANT 沃兰特航空</span> 完成C轮超3亿美元融资</div>
+                        <div class="card-desc">磊石领投，红杉中国、孚腾资本跟投，用于中国高适航等级商用客运eVTOL研发，创中国eVTOL领域最大单笔融资记录，飞行控制系统加速商业化。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">eVTOL</span><span class="card-tag">C轮</span><span class="card-tag">适航认证</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">$3亿+</span>
+                            <span class="source">沃兰特航空</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap5">
+                    <div class="card-header">
+                        <span class="card-type type-qy">企业</span>
+                        <span class="card-time">2026-04-16</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title"><span class="highlight">深圳边界智控科技</span> 完成B轮超1亿元融资</div>
+                        <div class="card-desc">专注于eVTOL飞控与自动驾驶，REG300飞控计算机已获型号合格证申请受理，融资用于适航认证、量产能力建设、机载设备研发。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">飞控计算机</span><span class="card-tag">B轮</span><span class="card-tag">适航</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥1亿+</span>
+                            <span class="source">边界智控</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap5">
+                    <div class="card-header">
+                        <span class="card-type type-hz">合作</span>
+                        <span class="card-time">2026-04-27</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title"><span class="highlight">华羽先翔 × 航空工业光电所</span>：全倾转旋翼eVTOL航电交付</div>
+                        <div class="card-desc">国内首款适配全倾转旋翼构型eVTOL航电系统正式交付，集成飞行控制、通信导航、感知融合等核心模块，标志飞服平台核心能力突破。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">航电系统</span><span class="card-tag">eVTOL</span><span class="card-tag">全倾转</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="source">华羽先翔</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap5">
+                    <div class="card-header">
+                        <span class="card-type type-hz">合作</span>
+                        <span class="card-time">2026-04-25</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title"><span class="highlight">高域科技 × 高德地图</span>：低空出行生态共建</div>
+                        <div class="card-desc">双方联合在2026北京车展发布商业化飞行运营试点，用户可通过高德平台一键呼叫飞行汽车（GOVY AirCab），打造"出行即服务"飞服平台生态。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">飞服平台</span><span class="card-tag">OTA入口</span><span class="card-tag">商业化</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="source">高域科技</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap5">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-24</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">青岛市：<span class="highlight">低空飞行监管及服务平台</span>持续运营服务</div>
+                        <div class="card-desc">青岛市低空飞行监管及服务平台已完成部署，具备安全控制、飞行计划自动审批、全流程运行风险评估六大核心功能，满足低空飞行管控需求。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">飞服平台</span><span class="card-tag">运营服务</span><span class="card-tag">青岛</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="source">青岛市</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap5">
+                    <div class="card-header">
+                        <span class="card-type type-qy">企业</span>
+                        <span class="card-time">2026-04-29</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title"><span class="highlight">安徽云枢智航科技</span> 完成A轮超1亿元融资</div>
+                        <div class="card-desc">融资用于eVTOL飞行器研发、批量生产线建设、低空生态网络构建，加速飞服平台生态布局。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">eVTOL</span><span class="card-tag">A轮</span><span class="card-tag">生态网络</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥1亿+</span>
+                            <span class="source">云枢智航</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap5">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-27</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">广西：<span class="highlight">低空飞行服务保障体系运营服务</span>持续开展</div>
+                        <div class="card-desc">广西壮族自治区交通运输厅持续采购低空飞行服务保障体系运营服务，覆盖飞行计划审批、监视数据处理、飞行情报发布等核心功能。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">飞服保障</span><span class="card-tag">省级</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥190万</span>
+                            <span class="source">广西交通运输厅</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap5">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-24</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title"><span class="highlight">绍兴市低空产业发展促进项目</span></div>
+                        <div class="card-desc">绍兴市交通局发布低空产业发展促进项目，推动低空飞行服务平台建设与运营，4月21日刚成立绍兴市低空综合服务有限公司（注册资本5000万元）。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">产业促进</span><span class="card-tag">市级</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥25万</span>
+                            <span class="source">绍兴市交通局</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capability 6: 监管留痕与指挥调度 -->
+        <div class="capability-section cap-domain6">
+            <div class="section-title">
+                <div class="icon">🎯</div>
+                <h2>监管留痕与指挥调度</h2>
+                <span class="badge">6条相关</span>
+            </div>
+            <div class="capability-cards">
+                <div class="card" data-cap="cap6">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-07</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">河北省自然资源：<span class="highlight">低空智能监管技术支撑（指挥调度服务）</span></div>
+                        <div class="card-desc">河北省自然资源信息中心采购低空智能监管技术支撑服务，覆盖无人机巡查调度、监管留痕、指挥调度全流程，构建"发现—立案—调度—核查"闭环。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">指挥调度</span><span class="card-tag">监管留痕</span><span class="card-tag">省级</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥626.5万</span>
+                            <span class="source">河北省自然资源信息中心</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap6">
+                    <div class="card-header">
+                        <span class="card-type type-cs">城市</span>
+                        <span class="card-time">2026-04-22</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">四川：全国首个<span class="highlight">省级公司无人机飞行总队</span>组建</div>
+                        <div class="card-desc">首期配备无人机120架+、飞手80人+，物流单机载荷1.5吨、航程300公里+，构建省级低空监管指挥调度体系，实现全省低空巡查统一调度。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">省级调度</span><span class="card-tag">飞行总队</span><span class="card-tag">四川</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="source">四川</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap6">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-24</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">凉山州：<span class="highlight">"低空警务中心"</span>建设项目</div>
+                        <div class="card-desc">凉山彝族自治州公安局建设低空警务中心，整合无人机监管、指挥调度、执法留痕等功能，构建公安低空管控一张网。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">公安警务</span><span class="card-tag">指挥调度</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥150.26万</span>
+                            <span class="source">凉山州公安局</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap6">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-25</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">东莞市：<span class="highlight">无人机低空基层城市治理服务</span></div>
+                        <div class="card-desc">东莞市城市管理和综合执法局东城分局采购低空基层城市治理服务，构建无人机巡查—指挥调度—执法留痕全链条监管能力。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">城市治理</span><span class="card-tag">基层治理</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥597万</span>
+                            <span class="source">东莞市城管局</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap6">
+                    <div class="card-header">
+                        <span class="card-type type-zb">招投标</span>
+                        <span class="card-time">2026-04-20</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">唐河县公安局：<span class="highlight">智能化警用无人机机场及低空智航系统</span></div>
+                        <div class="card-desc">建设智能化警用无人机机场，集成远程控制、自动起降、指挥调度、监管留痕等功能，实现7×24小时无人值守低空巡查管控。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">智能机场</span><span class="card-tag">警用无人机</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="amount">¥60万</span>
+                            <span class="source">唐河县公安局</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" data-cap="cap6">
+                    <div class="card-header">
+                        <span class="card-type type-qy">企业</span>
+                        <span class="card-time">2026-04-25</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">国网空间技术 × 国网浙江电力：<span class="highlight">4架重载无人机联合吊装750kg</span></div>
+                        <div class="card-desc">衢州2小时完成5.6吨电力物资运输，效率提升2.5倍，大规模无人机调度指挥案例，彰显重载飞控与集群调度技术能力。</div>
+                        <div class="card-tags">
+                            <span class="card-tag">重载飞控</span><span class="card-tag">集群调度</span><span class="card-tag">电力</span>
+                        </div>
+                        <div class="card-meta">
+                            <span class="source">国网空间技术</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 政策动态 -->
+        <div class="capability-section">
+            <div class="section-title">
+                <div class="icon">📜</div>
+                <h2>政策动态</h2>
+                <span class="badge">10项</span>
+            </div>
+            <div class="policy-grid">
+                <div class="policy-card">
+                    <div class="region">📍 山西省</div>
+                    <div class="title">《进一步促进民间投资发展落实举措》</div>
+                    <div class="content">支持民营企业参与低空经济等新兴产业，安排专项资金补助航空类平台载体和实训基地建设。</div>
+                </div>
+                <div class="policy-card">
+                    <div class="region">📍 无锡市</div>
+                    <div class="title">《政务领域无人机应用管理办法（试行）》</div>
+                    <div class="content">整合全市18部门454架无人机、78座5G网联"鹰巢"方舱，覆盖26部门85类政务场景。</div>
+                </div>
+                <div class="policy-card">
+                    <div class="region">📍 珠海市</div>
+                    <div class="title">《珠海市低空数据管理办法》</div>
+                    <div class="content">共5章21条，规范低空数据"采集—处理—应用"全链条管理，飞行计划、航迹数据全覆盖。</div>
+                </div>
+                <div class="policy-card">
+                    <div class="region">📍 上海市</div>
+                    <div class="title">《国家数字经济创新发展试验区实施方案》</div>
+                    <div class="content">推动低空智能网联系统基础设施建设，构建民用无人驾驶航空器物联感知体系。</div>
+                </div>
+                <div class="policy-card">
+                    <div class="region">📍 山东省</div>
+                    <div class="title">《突破菏泽鲁西崛起实施方案（2026-2030年）》</div>
+                    <div class="content">建设滨州低空经济产业集聚区，支持5G-A通感一体网络试点部署。</div>
+                </div>
+                <div class="policy-card">
+                    <div class="region">📍 广东省</div>
+                    <div class="title">《关于支持中山加快高质量发展的意见》</div>
+                    <div class="content">布局跨珠江口低空航线，在翠亨新区建设医疗应急物资低空配送中心。</div>
+                </div>
+                <div class="policy-card">
+                    <div class="region">📍 国家数据局</div>
+                    <div class="title">《行业高质量数据集建设行动实施方案》</div>
+                    <div class="content">聚焦低空经济等创新领域，2028年底前建成一批行业高质量数据集。</div>
+                </div>
+                <div class="policy-card">
+                    <div class="region">📍 海南省</div>
+                    <div class="title">《海南省"十五五"服务业发展规划》</div>
+                    <div class="content">发展低空旅游，开展"无人机+生活场景"配送，探索货运eVTOL跨海运输。</div>
+                </div>
+                <div class="policy-card">
+                    <div class="region">📍 山东省</div>
+                    <div class="title">《支持场景培育开放推动新质生产力突破发展行动方案》</div>
+                    <div class="content">打造烟台至大连跨海低空物流通道，探索"低空+医疗"创新模式，2027年培育入库场景500项+。</div>
+                </div>
+                <div class="policy-card">
+                    <div class="region">📍 上海市经信委</div>
+                    <div class="title">《产业互联网平台赋能产业发展行动方案》</div>
+                    <div class="content">围绕低空无人机等领域芯片小批量试产需求，推动电子元器件在线采购交易平台建设。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 融资动态 -->
+        <div class="capability-section">
+            <div class="section-title">
+                <div class="icon">💰</div>
+                <h2>重大融资</h2>
+                <span class="badge">5笔</span>
+            </div>
+            <div class="funding-grid">
+                <div class="funding-card">
+                    <div class="logo">🚁</div>
+                    <div class="info">
+                        <div class="company">VOLANT 沃兰特航空</div>
+                        <div class="round">C轮 · 4月27日</div>
+                    </div>
+                    <div class="amount">$3亿+</div>
+                </div>
+                <div class="funding-card">
+                    <div class="logo">🚗</div>
+                    <div class="info">
+                        <div class="company">一汽旗翼（深圳）科技</div>
+                        <div class="round">天使轮 · 4月23日</div>
+                    </div>
+                    <div class="amount">¥4亿</div>
+                </div>
+                <div class="funding-card">
+                    <div class="logo">✈️</div>
+                    <div class="info">
+                        <div class="company">安徽云枢智航科技</div>
+                        <div class="round">A轮 · 4月29日</div>
+                    </div>
+                    <div class="amount">¥1亿+</div>
+                </div>
+                <div class="funding-card">
+                    <div class="logo">🤖</div>
+                    <div class="info">
+                        <div class="company">美国 Reliable Robotics</div>
+                        <div class="round">新一轮 · 4月21日</div>
+                    </div>
+                    <div class="amount">$1.6亿</div>
+                </div>
+                <div class="funding-card">
+                    <div class="logo">🛩️</div>
+                    <div class="info">
+                        <div class="company">深圳边界智控科技</div>
+                        <div class="round">B轮 · 4月16日</div>
+                    </div>
+                    <div class="amount">¥1亿+</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 国际动态 -->
+        <div class="capability-section">
+            <div class="section-title">
+                <div class="icon">🌍</div>
+                <h2>国际动态</h2>
+                <span class="badge">3条</span>
+            </div>
+            <div class="intl-grid">
+                <div class="intl-card">
+                    <div class="flag">🇯🇵</div>
+                    <div class="info">
+                        <div class="company">SkyDrive</div>
+                        <div class="event">获日本民用航空局颁发"批准设计机构"（ADO）认证，成为日本首家获此资质的eVTOL开发商，适航进程里程碑式突破。</div>
+                    </div>
+                </div>
+                <div class="intl-card">
+                    <div class="flag">🇩🇪</div>
+                    <div class="info">
+                        <div class="company">Volocopter</div>
+                        <div class="event">发布VoloXPro电动超轻型多旋翼飞行器，面向专业飞行员培训和私人航空运动，持续推进UAM商业化。</div>
+                    </div>
+                </div>
+                <div class="intl-card">
+                    <div class="flag">🇺🇸</div>
+                    <div class="info">
+                        <div class="company">SkyGrid（波音旗下）</div>
+                        <div class="event">作为波音VARIANT计划一部分，开发验证自主城市飞行数字服务，推进低空空中交通系统标准化。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>数据来源：低空经济资源网 · 国际低空经济博览会官网 · 政府采购网 · 企业公开信息</p>
+            <p>统计周期：2026年4月1日 — 2026年5月6日 · 生成时间：2026-05-06</p>
+        </div>
+    </div>
+
+    <script>
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                
+                document.querySelectorAll('.capability-section').forEach(section => {
+                    if (filter === 'all' || filter === 'policy' || filter === 'funding' || filter === 'intl') {
+                        section.style.display = '';
+                    } else {
+                        section.style.display = '';
+                    }
+                });
+                
+                document.querySelectorAll('.card').forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = '';
+                    } else if (filter === 'policy') {
+                        card.style.display = card.closest('.policy-grid') ? '' : 'none';
+                    } else if (filter === 'funding') {
+                        card.style.display = card.closest('.funding-grid') ? '' : 'none';
+                    } else if (filter === 'intl') {
+                        card.style.display = card.closest('.intl-grid') ? '' : 'none';
+                    } else {
+                        card.style.display = card.dataset.cap === filter ? '' : 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

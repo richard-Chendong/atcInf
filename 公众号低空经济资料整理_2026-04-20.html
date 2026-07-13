@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公众号低空经济资料整理 2026-04-20</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#07C160;--primary-dark:#05903F;--bg-dark:#1a1a1a;--bg-card:#ffffff;--text-primary:#333;--text-secondary:#666;--border:#f0f0f0;--shadow:0 8px 30px rgba(0,0,0,0.08);--radius:12px}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 100%);min-height:100vh;color:var(--text-primary);line-height:1.7}
+        .container{max-width:1200px;margin:0 auto;padding:40px 20px}
+        header{text-align:center;margin-bottom:50px;animation:fadeDown .6s ease-out}
+        @keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+        .header-badge{display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:white;padding:8px 20px;border-radius:50px;font-size:14px;font-weight:500;margin-bottom:20px;box-shadow:0 4px 15px rgba(7,193,96,0.4)}
+        h1{font-size:2.5rem;font-weight:700;background:linear-gradient(135deg,#fff 0%,#a0a0a0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px}
+        .subtitle{color:rgba(255,255,255,0.6);font-size:1.1rem;font-weight:300}
+        .stats-row{display:flex;justify-content:center;gap:40px;margin-top:30px;flex-wrap:wrap}
+        .stat-item{text-align:center;color:rgba(255,255,255,0.9)}
+        .stat-value{font-size:2rem;font-weight:700;color:var(--primary)}
+        .stat-label{font-size:.85rem;color:rgba(255,255,255,0.5);margin-top:4px}
+        .section{margin-bottom:40px;animation:fadeUp .6s ease-out;animation-fill-mode:both}
+        .section:nth-child(2){animation-delay:.1s}.section:nth-child(3){animation-delay:.2s}.section:nth-child(4){animation-delay:.3s}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        .section-title{display:flex;align-items:center;gap:12px;margin-bottom:20px;color:#fff;font-size:1.3rem}
+        .section-title::before{content:'';width:4px;height:28px;background:var(--primary);border-radius:2px}
+        .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:20px}
+        .card{background:var(--bg-card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);transition:all .3s ease;position:relative}
+        .card:hover{transform:translateY(-4px);box-shadow:0 15px 40px rgba(0,0,0,0.15)}
+        .card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+        .card-tag{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:500;flex-shrink:0}
+        .card-date{color:var(--text-secondary);font-size:13px}
+        .card-title{font-size:1.05rem;font-weight:600;color:var(--text-primary);margin-bottom:12px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+        .card-summary{color:var(--text-secondary);font-size:14px;line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:16px}
+        .card-actions{display:flex;gap:10px;padding-top:14px;border-top:1px solid var(--border)}
+        .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s ease;border:none;text-decoration:none}
+        .btn-primary{background:var(--primary);color:white}.btn-primary:hover{background:var(--primary-dark)}
+        .btn-secondary{background:#f5f5f5;color:var(--text-primary)}.btn-secondary:hover{background:#e8e8e8}
+        .btn svg{width:14px;height:14px;fill:currentColor}
+        .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#333;color:white;padding:14px 24px;border-radius:10px;font-size:14px;opacity:0;transition:all .3s ease;z-index:1000;display:flex;align-items:center;gap:8px}
+        .toast.show{transform:translateX(-50%) translateY(0);opacity:1}.toast svg{width:16px;height:16px;fill:var(--primary)}
+        footer{text-align:center;padding:40px 20px;color:rgba(255,255,255,0.4);font-size:14px}
+        .footer-time{background:rgba(255,255,255,0.1);padding:8px 16px;border-radius:20px;display:inline-block;margin-bottom:15px}
+        @media(max-width:768px){.container{padding:20px 16px}h1{font-size:1.8rem}.cards-grid{grid-template-columns:1fr}.stats-row{gap:20px}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-badge"><span>公众号资料整理</span></div>
+            <h1>低空经济公众号资料整理</h1>
+            <p class="subtitle">7天内热门文章汇总 · 低空系统 · 平台建设 · 政策解读</p>
+            <div class="stats-row">
+                <div class="stat-item"><div class="stat-value">16</div><div class="stat-label">精选文章</div></div>
+                <div class="stat-item"><div class="stat-value">5</div><div class="stat-label">信息来源</div></div>
+                <div class="stat-item"><div class="stat-value">7天</div><div class="stat-label">追踪周期</div></div>
+            </div>
+        </header>
+
+        <section class="section">
+            <h3 class="section-title">政策解读与行业趋势</h3>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header"><span class="card-tag">政策解读</span><span class="card-date">2026-04-17</span></div>
+                    <h3 class="card-title">国家发改委：五方面推动低空经济"管得好、飞得稳，用得活"</h3>
+                    <p class="card-summary">国务院新闻办发布会上，国家发改委低空经济发展司司长郑剑表示，将重点做好五个方面工作：以安全为前提加强航空器全周期管理；以产业为支撑加大新型航空器研制；以场景为牵引推动建设低空智能网联系统；以创新为动力深化基础理论研究。</p>
+                    <div class="card-actions">
+                        <a href="http://www.news.cn/fortune/20260417/cfee6258e42648b99ad41ce60cfd69a1/c.html" target="_blank" class="btn btn-primary">查看原文</a>
+                        <button class="btn btn-secondary" onclick="copyLink('http://www.news.cn/fortune/20260417/cfee6258e42648b99ad41ce60cfd69a1/c.html')">复制链接</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><span class="card-tag">政策解读</span><span class="card-date">2026-04-16</span></div>
+                    <h3 class="card-title">民航局连发四部重磅文件！加强低空领域安全能力建设</h3>
+                    <p class="card-summary">民航局制定《民用无人驾驶航空器特定类标准场景管理办法》《民用无人驾驶航空器特定类运行风险评估与缓解指南》《民用中小型无人驾驶航空器操控员训练安全运行指南》及《微轻小型民用无人驾驶航空器集群表演飞行安全运行指南》四部文件，面向社会公开征求意见。</p>
+                    <div class="card-actions">
+                        <a href="http://www.caac.gov.cn/HDJL/YJZJ/202604/t20260416_230556.html" target="_blank" class="btn btn-primary">查看原文</a>
+                        <button class="btn btn-secondary" onclick="copyLink('http://www.caac.gov.cn/HDJL/YJZJ/202604/t20260416_230556.html')">复制链接</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><span class="card-tag">行业报告</span><span class="card-date">2026-04-14</span></div>
+                    <h3 class="card-title">2026低空产业发展大会召开 战略地位第三次跃升</h3>
+                    <p class="card-summary">4月9日2026低空产业发展大会在横琴召开，主题为"开放融合 共筑低空产业发展新生态"。2026年两会政府工作报告中，低空经济明确为"新兴支柱产业"，实现从"新增长引擎"到"新兴产业"再到"新兴支柱产业"的三级跳。</p>
+                    <div class="card-actions">
+                        <a href="https://m.chinairn.com/hyzx/20260410/17365773.shtml" target="_blank" class="btn btn-primary">查看原文</a>
+                        <button class="btn btn-secondary" onclick="copyLink('https://m.chinairn.com/hyzx/20260410/17365773.shtml')">复制链接</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3 class="section-title">低空系统与平台建设</h3>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header"><span class="card-tag">平台建设</span><span class="card-date">2026-04-04</span></div>
+                    <h3 class="card-title">国家低空飞行服务保障平台正式并网运行</h3>
+                    <p class="card-summary">被业内称为"空中交警大脑"的国家低空飞行服务保障平台正式并网运行，标志着我国低空管理从多部门、碎片化的"函件时代"，全面迈入数字化、协同化新阶段。</p>
+                    <div class="card-actions">
+                        <a href="https://tidenews.com.cn/tmh_news.html?id=69d0e2b932279600010c4f2e" target="_blank" class="btn btn-primary">查看原文</a>
+                        <button class="btn btn-secondary" onclick="copyLink('https://tidenews.com.cn/tmh_news.html?id=69d0e2b932279600010c4f2e')">复制链接</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><span class="card-tag">系统建设</span><span class="card-date">2026-04-01</span></div>
+                    <h3 class="card-title">国家数据局：加强低空数据体系建设</h3>
+                    <p class="card-summary">国家数据局数据资源司在苏州召开会议，要求加强低空数据供给利用制度建设，健全管理制度，完善低空数据标准规范；强化低空数据与城市数据底座互联互通，探索开展低空经济领域数据市场交易。</p>
+                    <div class="card-actions">
+                        <a href="https://finance.eastmoney.com/a/202604013691192945.html" target="_blank" class="btn btn-primary">查看原文</a>
+                        <button class="btn btn-secondary" onclick="copyLink('https://finance.eastmoney.com/a/202604013691192945.html')">复制链接</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><span class="card-tag">平台建设</span><span class="card-date">2026-04-11</span></div>
+                    <h3 class="card-title">4月下旬低空经济国内外发展动态汇总</h3>
+                    <p class="card-summary">平台聚焦三大核心能力建设：构建"网络安全、系统安全、数据安全与飞行安全"四维防护体系；实现低空飞行"一窗受理、一键审批、一网统管"；推动低空智能网联系统建设。</p>
+                    <div class="card-actions">
+                        <a href="https://www.aamshanghai.com/4%E6%9C%88%E4%B8%8B%E6%97%AC%E4%BD%8E%E7%A9%BA%E7%BB%8F%E6%B5%8E%E5%9B%BD%E5%86%85%E5%A4%96%E5%8F%91%E5%B1%95%E5%8A%A8%E6%80%81%EF%BC%8C%E4%B8%80%E6%96%87%E6%8E%8C%E6%8F%A1%E4%B8%A8%E4%BD%8E%E7%A9%BA.html" target="_blank" class="btn btn-primary">查看原文</a>
+                        <button class="btn btn-secondary" onclick="copyLink('https://www.aamshanghai.com/4%E6%9C%88%E4%B8%8B%E6%97%AC%E4%BD%8E%E7%A9%BA%E7%BB%8F%E6%B5%8E%E5%9B%BD%E5%86%85%E5%A4%96%E5%8F%91%E5%B1%95%E5%8A%A8%E6%80%81%EF%BC%8C%E4%B8%80%E6%96%87%E6%8E%8C%E6%8F%A1%E4%B8%A8%E4%BD%8E%E7%A9%BA.html')">复制链接</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3 class="section-title">招投标与项目动态</h3>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header"><span class="card-tag">招投标</span><span class="card-date">2026-04-02</span></div>
+                    <h3 class="card-title">莱斯信息中标辽宁省省级低空飞行综合管理服务平台项目</h3>
+                    <p class="card-summary">莱斯信息成功中标辽宁省省级低空飞行综合管理服务平台项目（一期)，实现省级低空管服平台在东北区域市场关键性突破，填补东北地区省级低空飞行综合管理服务体系空白。</p>
+                    <div class="card-actions">
+                        <a href="https://www.stcn.com/article/detail/3724257.html" target="_blank" class="btn btn-primary">查看原文</a>
+                        <button class="btn btn-secondary" onclick="copyLink('https://www.stcn.com/article/detail/3724257.html')">复制链接</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><span class="card-tag">招投标</span><span class="card-date">2026-04-13</span></div>
+                    <h3 class="card-title">云南曲靖经开区低空政务飞行服务项目公开招标 预算400万</h3>
+                    <p class="card-summary">项目覆盖曲靖经开区全域（157平方公里），为公安、应急、城管等7个部门提供无人机飞行服务。服务期限三年，合同一年一签。</p>
+                    <div class="card-actions">
+                        <a href="https://5303.bidcenter.com.cn/bidinfo-1-a0f73512c37219a9289c42cc74f890663b94f1dc8fa59760.html" target="_blank" class="btn btn-primary">查看原文</a>
+                        <button class="btn btn-secondary" onclick="copyLink('https://5303.bidcenter.com.cn/bidinfo-1-a0f73512c37219a9289c42cc74f890663b94f1dc8fa59760.html')">复制链接</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><span class="card-tag">招投标</span><span class="card-date">2026-04-17</span></div>
+                    <h3 class="card-title">四川巴中市山地丘陵地区低空经济政务应用场景方案编制</h3>
+                    <p class="card-summary">巴中市交通运输局《巴中市山地丘陵地区低空经济政务应用场景综合实施方案》编制服务完成招标，将针对山地丘陵地区特点制定低空经济政务应用场景综合实施方案。</p>
+                    <div class="card-actions">
+                        <a href="https://scbid.com/bx/detail/1467711619_12502501.html" target="_blank" class="btn btn-primary">查看原文</a>
+                        <button class="btn btn-secondary" onclick="copyLink('https://scbid.com/bx/detail/1467711619_12502501.html')">复制链接</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3 class="section-title">厂商动态与技术发布</h3>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header"><span class="card-tag">厂商动态</span><span class="card-date">2026-04-07</span></div>
+                    <h3 class="card-title">深城交牵头深圳市低空智能交通运行系统重点实验室获批</h3>
+                    <p class="card-summary">深城交科技集团牵头，联合中山大学·深圳和电子科技大学(深圳)高等研究院共同建设的"深圳市低空智能交通运行系统重点实验室"正式获批并揭牌。作为深圳低空经济领域首个获批的重点实验室。</p>
+                    <div class="card-actions">
+                        <a href="https://finance.eastmoney.com/a/202604073696268389.html" target="_blank" class="btn btn-primary">查看原文</a>
+                        <button class="btn btn-secondary" onclick="copyLink('https://finance.eastmoney.com/a/202604073696268389.html')">复制链接</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><span class="card-tag">技术方案</span><span class="card-date">2026-04-01</span></div>
+                    <h3 class="card-title">中科星图"低空一朵云"数据全要素支撑方案</h3>
+                    <p class="card-summary">中科星图基于空天信息多圈层数据供给能力，整合通信、导航、监视、气象、反制、起降场等低空基础设施运行数据，打造"低空一朵云"，提供低空数据全要素支撑。</p>
+                    <div class="card-actions">
+                        <a href="https://finance.eastmoney.com/a/202604013691192945.html" target="_blank" class="btn btn-primary">查看原文</a>
+                        <button class="btn btn-secondary" onclick="copyLink('https://finance.eastmoney.com/a/202604013691192945.html')">复制链接</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><span class="card-tag">厂商动态</span><span class="card-date">2026-04-13</span></div>
+                    <h3 class="card-title">海格通信低空智联网多城市示范建设</h3>
+                    <p class="card-summary">海格通信已构建基于系列化通导监视终端设备的低空智联网、平台服务及无人机解决方案，覆盖"制造-运营-保障-服务"全链条，已在广州、合肥、重庆、福州、宁波等城市开展示范应用建设。</p>
+                    <div class="card-actions">
+                        <a href="https://stock.stockstar.com/RB2026041300028220.shtml" target="_blank" class="btn btn-primary">查看原文</a>
+                        <button class="btn btn-secondary" onclick="copyLink('https://stock.stockstar.com/RB2026041300028220.shtml')">复制链接</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-time"><span>最后更新：2026-04-20 13:13</span></div>
+            <p>数据来源：公开网络资讯平台 · 仅供研究参考</p>
+        </footer>
+    </div>
+    <div class="toast" id="toast"><span id="toast-text">链接已复制</span></div>
+    <script>
+        function copyLink(url){navigator.clipboard.writeText(url).then(function(){showToast('链接已复制')},function(){showToast('复制失败')})}
+        function showToast(msg){var t=document.getElementById('toast');document.getElementById('toast-text').textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},2500)}
+    </script>
+</body>
+</html>

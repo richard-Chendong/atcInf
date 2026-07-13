@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低空技术研究资讯 - 2026年6月1日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 30px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+        
+        .header .subtitle {
+            font-size: 1.1em;
+            color: #a0aec0;
+            margin-bottom: 8px;
+        }
+        
+        .header .date {
+            font-size: 0.95em;
+            color: #718096;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #4fd1c5;
+        }
+        
+        .stat-label {
+            font-size: 0.85em;
+            color: #a0aec0;
+            margin-top: 4px;
+        }
+        
+        .section {
+            margin-bottom: 45px;
+        }
+        
+        .section-title {
+            font-size: 1.35em;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 22px;
+            padding-left: 15px;
+            border-left: 4px solid #4fd1c5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #4fd1c5;
+            border-radius: 50%;
+        }
+        
+        .article-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 14px;
+            padding: 24px 28px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border: 1px solid #edf2f7;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        
+        .article-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        
+        .article-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .article-title a:hover {
+            color: #4fd1c5;
+        }
+        
+        .article-summary {
+            font-size: 0.95em;
+            color: #4a5568;
+            line-height: 1.75;
+            margin-bottom: 14px;
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-top: 12px;
+            border-top: 1px solid #edf2f7;
+        }
+        
+        .source-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 0.8em;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .article-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #4fd1c5;
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .article-link:hover {
+            color: #38b2ac;
+        }
+        
+        .article-link svg {
+            width: 14px;
+            height: 14px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px;
+            color: #718096;
+            font-size: 0.85em;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.6em;
+            }
+            
+            .stats {
+                gap: 20px;
+            }
+            
+            .article-card {
+                padding: 18px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>低空技术研究资讯</h1>
+            <div class="subtitle">飞行服务调度 · 低空飞行服务站 · 航线规划 · 智能体应用 · 空域管理</div>
+            <div class="date">数据采集日期：2026年6月1日 | 数据来源：全网搜索</div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">精选资讯</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">涵盖主题</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">飞行服务调度平台与低空数智系统</div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title"><a href="#">深圳世界无人机大会：AI空域调度系统可同时管控上万架无人机</a></div>
+                    <div class="article-summary">深圳2026世界无人机大会上，多家企业展示AI空域调度系统，通过算法实时规划最优航线并动态调整飞行路径，避免无人机扎堆拥堵。该系统能同时管控上万架无人机，提升空域利用率并降低碰撞风险，标志着低空飞行管理正式进入智能化时代。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">搜狐</span>
+                        <a href="https://搜狐" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-title"><a href="#">新空安低空数智平台V3.9功能迭代升级</a></div>
+                    <div class="article-summary">新空安低空数智平台完成V3.9版本升级，聚焦低空建模作业、设备管理、大型联合行动、智能算法检测、数据检索五大功能模组。新增手飞无人机云端三维建模、模型区域裁剪、设备组织架构灵活切换、人车流量智能统计等功能，全面提升平台智能化与实战化能力。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">搜狐</span>
+                        <a href="https://搜狐" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-title"><a href="#">中国铁塔低空安全全链条管控技术</a></div>
+                    <div class="article-summary">中国铁塔在2026世界智能产业博览会上展示低空安全全链条管控技术成果，包括低空安全监管系统和航路航线规划智能调度系统。前者实现飞行器全程监控、黑白名单管理及智能告警；后者支持复杂空域下航线自动规划与冲突检测，为低空飞行安全提供可靠支撑。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">新华网</span>
+                        <a href="https://新华网" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">低空大模型智能体与AI技术应用</div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title"><a href="#">云圣智能"AI+低空"战略布局与工业无人机2.0</a></div>
+                    <div class="article-summary">云圣智能在智博会上展示"圣·宝莲尊"全自主无人机巡检系统，提出构建"第七张网"——低空智能网联网络的企业战略。公司从单兵作业模式转向系统化解决方案，产品覆盖电力巡检、河道巡查、森林防火、城市治理等场景，实现"一屏观天下，一网管全城"的数字化治理新模式。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">同花顺财经</span>
+                        <a href="https://同花顺财经" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-title"><a href="#">紫东长空：国内首个低空经济行业级大模型</a></div>
+                    <div class="article-summary">长春净月高新区联合中科紫东太初推出"紫东长空"行业级大模型，融合多模态架构与深度推理能力，可全天候处理图像、视频、雷达、传感器等多源异构数据，已接入省级飞行管理平台并完成主城区约500平方公里数字地图建模与北斗网格编码布设。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">腾讯网</span>
+                        <a href="https://腾讯网" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-title"><a href="#">无人机蜂群协同集群智能调度大模型系统</a></div>
+                    <div class="article-summary">北京华盛恒辉推出无人机蜂群协同集群智能调度大模型系统，融合大语言模型与分布式强化学习，重点解决动态任务分配、实时路径规划、抗毁自愈、多模态感知融合四大难题，实现"一人控百机、无中心自主作战"的协同控制能力。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">新浪网</span>
+                        <a href="https://新浪网" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">动态网格化空域管理与容量流量控制</div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title"><a href="#">吉林空域开放比例升至43.5%，探索网格化精细管控</a></div>
+                    <div class="article-summary">吉林省调整无人驾驶航空器适飞空域，可飞行区域占比由不到4.3%攀升至43.5%，松原市超过六成空域可开放使用。该省采用网格化精细管控手段，管理思路由"先管控后开放"转为"先开放后管控"，近300家企业、9类84个场景已纳入产业版图，探索空域管理创新路径。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">腾讯网</span>
+                        <a href="https://腾讯网" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-title"><a href="#">沈向洋：深圳SILAS低空操作系统破解空域管理瓶颈</a></div>
+                    <div class="article-summary">香港科技大学校董会主席沈向洋在深交所2026全球投资者大会上介绍，基于深圳五年实践研发的智能融合低空基础设施系统SILAS，涵盖数据平台、系统内核、能力平台、应用服务四层架构，能全域感知空域实时飞行信息，一站式解决空域资源分配、飞行安全管控、规模化飞行统筹等四大行业痛点。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">企鹅号</span>
+                        <a href="https://企鹅号" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-title"><a href="#">低空经济运营策略：空域容量与流量管理分析</a></div>
+                    <div class="article-summary">行业报告指出，低空经济运营面临四大核心难题：多企业空域资源如何共享、海量无人机同时飞行如何保障安全、飞行活动如何实现规模化运行、公共飞行服务如何高效统筹。未来一线城市单日无人机飞行架次需达到100万架次，空域同时在线飞行器数量需突破10万架次。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">搜狐</span>
+                        <a href="https://搜狐" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">低空飞行计划申报与航线推荐</div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title"><a href="#">广东低空经济发展条例征求意见稿发布</a></div>
+                    <div class="article-summary">广东省发展改革委公开征求《广东省低空经济发展条例》意见，针对空域开放不足问题提出构建低空空域协同运行机制以提高空域使用效能。该条例聚焦制约低空经济发展的突出瓶颈问题，有针对性地作出制度安排，标志着地方低空经济立法进程加速。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">东方财富网</span>
+                        <a href="https://东方财富网" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-title"><a href="#">低空基础设施发展白皮书：无纸化飞行服务体系</a></div>
+                    <div class="article-summary">《低空经济基础设施发展白皮书(2026)》提出，低空经济的规模化发展依赖于智能化、无人值守的基础设施。白皮书以大疆机场3为例阐述"机场+飞行器+云平台"三位一体架构，推动从"能飞"到"常飞"的转变，构建无人值守一体化解决方案。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">搜狐</span>
+                        <a href="https://搜狐" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">航路拥堵治理与行业发展分析</div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title"><a href="#">2026低空经济深度思考：合规落地提速，行业进入理性成长周期</a></div>
+                    <div class="article-summary">行业观察者王猛指出，2026年被公认为低空经济合规元年、常态运营元年。新版《民用航空法》增设低空经济发展促进专章，明确300米以下低空空域分类分级管理规则，搭配无人机实名登记强制性国标，实现一机一码、全程可溯的合规管控体系，行业告别野蛮生长进入规范化阶段。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">搜狐</span>
+                        <a href="https://搜狐" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-title"><a href="#">中国社会科学院《低空经济发展报告(2026)》发布</a></div>
+                    <div class="article-summary">中国社会科学院发布《低空经济发展报告(2026)》，明确提出"十五五"开局之年将是中国低空经济真正意义上的产业发展元年。报告指出中国低空经济产业竞争力全球领先（RCA指数3.13，TC指数0.83），但材料、航电系统、适航认证等方面仍存在短板，需技术与制度建设并重。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">企鹅号</span>
+                        <a href="https://企鹅号" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-title"><a href="#">eVTOL商业化提速：IPO预期升温引领行业新焦点</a></div>
+                    <div class="article-summary">沉寂一年后，eVTOL领衔低空经济再次升温。广汽集团孵化的高域首台量产机正式下线，沃兰特完成近10亿元新一轮融资。行业正从融资驱动转向商业化驱动，适航取证、生产制造与商业运营能力成为竞争焦点，业内预判2027年为载人eVTOL商业化元年。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">搜狐</span>
+                        <a href="https://搜狐" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">典型企业与创新实践案例</div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title"><a href="#">山东高速2亿设立低空经济发展公司</a></div>
+                    <div class="article-summary">山东高速集团全资设立山东省低空经济发展有限公司，注册资本2亿元，依托高速公路路网资源构建"空中巡查网"。集团拥有169对服务区和500多个收费站可改造为无人机起降场，已开通6条无人机医学样本配送航线，将40分钟地面运输缩短至15分钟，实现路网资源向低空经济延伸。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">企鹅号</span>
+                        <a href="https://企鹅号" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-title"><a href="#">峰飞航空完成eVTOL混合三机编队飞行</a></div>
+                    <div class="article-summary">峰飞航空成功完成V5000天际龙与V2000系列机型混合三机编队演示飞行，成为国内首家完成吨级以上eVTOL混合编队的厂商。与哈萨克斯坦AAAG集团签署合作备忘录，计划采购50架大型eVTOL机型用于中亚低空交通网络建设，标志着中国eVTOL技术向海外市场输出加速。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">搜狐</span>
+                        <a href="https://搜狐" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-title"><a href="#">安阳低空经济创新高地建设</a></div>
+                    <div class="article-summary">河南蓝天实验室作为全省唯一聚焦低空经济的省级新型研发机构，落地安阳后聚焦空域管理、无人机技术、适航审定三大方向，攻克40余项技术难题。推动城市治理、物流配送、警务应用等10余类场景落地，打造多条示范项目，形成完善的低空产业生态。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">搜狐</span>
+                        <a href="https://搜狐" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">相关学术与技术研究</div>
+            <div class="article-list">
+                <div class="article-card">
+                    <div class="article-title"><a href="#">智能航迹规划算法研究现状与展望</a></div>
+                    <div class="article-summary">《兵器装备工程学报》发表综述论文，从传统规划算法和智能优化算法两方面对航迹规划算法进行系统梳理，重点阐述智能优化航迹规划算法的发展现状，并对未来发展趋势进行展望。研究涵盖动态规划法、遗传算法、蚁群算法、粒子群算法等多种路径规划方法。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">中国知网</span>
+                        <a href="https://mall.cnki.net/magazine/Article/CUXI202012002.htm" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-title"><a href="#">军用飞行器低空突防航路规划算法分析</a></div>
+                    <div class="article-summary">中国船舶重工集团公司江苏自动化研究所分析军用飞行器低空突防航路规划算法应满足的条件及特点，阐述动态规划法、启发式搜索法、遗传算法、蚁群算法等航路规划算法，并分别指出其优缺点，为民用低空航迹规划算法研究提供参考。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">豆丁网</span>
+                        <a href="https://www.docin.com/p-1530302514.html" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="article-title"><a href="#">基于改进A*算法的三维飞行航线规划</a></div>
+                    <div class="article-summary">高分辨率对地观测学术年会优秀论文提出基于改进A*算法的三维飞行航线规划方法，针对多约束条件下的智能飞行器航迹快速规划问题展开研究，考虑飞行器定位误差自动校正机制，实现最短航迹长度和多约束条件下的综合优化。</div>
+                    <div class="article-meta">
+                        <span class="source-tag">CSPD文库</span>
+                        <a href="https://cpfd.cnki.com.cn/Article/CPFDTOTAL-ZKZD201412002013.htm" class="article-link" target="_blank">查看原文 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>本资讯整理自2026年6月1日全网搜索 | 低空技术研究资讯汇总</p>
+            <p style="margin-top: 8px; opacity: 0.7;">数据来源包括新华网、搜狐、腾讯网、中国经济网、东方财富网、中国知网等平台</p>
+        </div>
+    </div>
+</body>
+</html>
